@@ -1,6 +1,7 @@
 
  <img width="20%" src="https://user-images.githubusercontent.com/92582589/221138404-29788b44-3166-4b20-8aec-a623a204bcf5.png">
 
+![CI/CD](https://github.com/benjamin-biollaz/646-2_alzheimer/actions/workflows/ci_on_dev.yml/badge.svg)
 
 "Keep some souvenirs of your past, or how will you ever prove it wasn't all a dream?" ~ Ashleigh Brilliant
 
