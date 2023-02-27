@@ -35,7 +35,9 @@
     ]
   },
   "devDependencies": {
+    "@firebase/firestore": "^3.5.0",
     "@testing-library/react": "^14.0.0",
+    "firebase": "^9.17.1",
     "react-test-renderer": "^18.2.0"
   }
 }
