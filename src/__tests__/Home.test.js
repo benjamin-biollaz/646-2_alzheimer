@@ -6,9 +6,17 @@ test('test', () => {
     expect(true).toBe(true);
 });
 
-test('should render home component', () => {
+test('should render hello world', () => {
     render(<Home/>);
     const homeElement = screen.getByTestId('1');
     expect(homeElement).toBeInTheDocument();
     expect(homeElement).toHaveTextContent('Hello World!');
 });
+
+/*test ('should render resident name', () => {
+    render(<Home/>);
+    const residentName = screen.getByTestId('2');
+    expect(residentName).toBeInTheDocument();
+    expect(residentName).toHaveTextContent('Marc');
+});*/
+
