@@ -8,7 +8,7 @@
 
 Memorys aims to help Alzheimer patients document their fulfilled life. But how do we do it ?
 
-Our website gives an overview of a person life in just one look! To achieve that, figures and graphical elements are preferred over raw text. For instance our timeline to summarize succinctly a person's life periods and important events.
+Our website gives an overview of a person life in just one look! To achieve that, figures and graphical elements are preferred over raw text. For instance our timeline  summarizes succinctly one's life periods and important events.
 
 Not only is Memorys a gift to Alzheimer patients, it also assist caregivers to respect habits and preferences. Does this resident prefers tea over coffee? Ask Memorys.
 
