@@ -1,7 +1,10 @@
 import {initializeApp} from "firebase/app";
 import {getAuth} from "firebase/auth";
 import {collection, getFirestore} from "firebase/firestore";
+import { eventConverter } from "../DTO/EventDTO";
+import { periodConverter } from "../DTO/PeriodDTO";
 import { residentConverter } from "../DTO/ResidentDTO";
+import { timelineConverter } from "../DTO/TimelineDTO";
 
 // Configure Firebase.
 const config = {
@@ -17,10 +20,13 @@ const config = {
 const app = initializeApp(config);
 const db = getFirestore(app);
 
-// Collections
+// Collections references
 const residentRef = collection(db, "Residents").withConverter(residentConverter);
+const timelineRef = collection(db, "Timelines").withConverter(timelineConverter);
+const periodRef = collection(db, "Periods").withConverter(periodConverter);
+const eventRef = collection(db, "Events").withConverter(eventConverter);
 
 
 export const auth = getAuth(app);
 export {db};
-export {residentRef};
+export {timelineRef, residentRef, periodRef, eventRef};
