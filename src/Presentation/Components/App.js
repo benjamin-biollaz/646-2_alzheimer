@@ -1,26 +1,23 @@
-import '../CSS/App.css';
-import React, {useEffect} from "react";
+import React from "react";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Home from './Home.js';
-import { ResidentDAO } from "../../DAL/ResidentDAO";
-import { ResidentDTO } from "../../DTO/ResidentDTO";
+import Page404 from "./Page404.js";
+import '../CSS/App.css';
 
 function App() {
-  const [resident, setResident] = React.useState(null);
-
-    useEffect(() => {
-        getResident();
-    }, []);
 
   return (
-    <div className="App">
-      <Home resident={resident}/>
-    </div>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="*" element={<Page404 />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
   );
 
-  async function getResident() {
-    const res = await ResidentDAO.prototype.getresidentById("HvrELV7MRnnJcV24ro1w");
-    setResident(res);
-}
 }
 
 export default App;
