@@ -2,6 +2,7 @@ import * as React from "react";
 import { NavLink } from "react-router-dom";
 import icon from "../img/dark_green.png";
 import "../CSS/Navbar.css";
+import { FiMenu } from "react-icons/fi";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -42,12 +43,13 @@ class Nav extends React.Component {
         <NavLink to="/home">
           <img className="navImage" src={icon} alt="logo" />
         </NavLink>
-        <img
+        <button
           className="hamburger"
-          //   src={expand}
           alt="logo"
           onClick={() => this.toggleNavBarOpen()}
-        />
+        >
+          <FiMenu />
+        </button>
         <nav
           className={this.state.isNavBarOpen ? "appBar" : "appBar appBarClosed"}
         >
@@ -55,17 +57,6 @@ class Nav extends React.Component {
             <ul className="nav navbar-nav">
               {graphs}
               {information}
-              {/* <NavLink to="/home" onClick={() => this.closeNavBar()}>
-                Home
-              </NavLink> */}
-
-              {/* {questionnaire}
-              {results}
-              {profile}
-              {docPage}
-              {admin}
-              {register}
-              {LoginLogout} */}
             </ul>
           </div>
         </nav>
