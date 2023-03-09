@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200&display=swap");
+
+.personal_infos {
+  font-size: 15px;
+  margin: 130px auto;
+  display: flex; /* set display to flex */
+  justify-content: center; /* center horizontally */
+  align-items: center;
+  margin-top: 100px;
+  font-family: "Lexend Deca", sans-serif;
+  color: aliceblue;
+}
+
+span {
+  display: inline-block;
+  margin-left: 15px;
+}
