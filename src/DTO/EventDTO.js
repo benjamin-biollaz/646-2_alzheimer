@@ -1,3 +1,6 @@
+/**
+ * EventDTO contains the event properties and a converter from and to Firestore.
+ */
 class EventDTO {
     constructor(date, name) {
         this.date = date;
