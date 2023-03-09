@@ -1,6 +1,6 @@
 class TimelineWithId {
-    constructor (timelineId, timelineDTO) {
-        this.timelineId = timelineId;
+    constructor (id, timelineDTO) {
+        this.id = id;
         this.timelineDTO = timelineDTO;
     }
 }
