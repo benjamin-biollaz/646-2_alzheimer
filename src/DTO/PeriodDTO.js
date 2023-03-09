@@ -1,3 +1,6 @@
+/**
+ * PeriodDTO contains the period properties and a converter from and to Firestore.
+ */
 class PeriodDTO {
     constructor(name, location, startDate, endDate) {
         this.name = name;
