@@ -7,7 +7,7 @@ class EventDAO {
 
     /**
      * Get all the events of a timeline.
-     * @param {The timeline id} timelineId 
+     * @param {The timeline document id} timelineId 
      * @returns A list of "EventWithId" type.
      */
     async getEventsByTimelineId(timelineId) {
@@ -25,11 +25,11 @@ class EventDAO {
 
     /**
      * Update the event
-     * @param {*} timelineId 
+     * @param {The timeline document id} timelineId 
      * @param {The old event, must be of type EventWithId.} eventToChange 
      * @param {New date} date 
      * @param {New name} name 
-     * @returns 
+     * @returns Nothing
      */
     async updateEvent(timelineId, eventToChange, date, name) {
         // access DB only if changes have been made 
