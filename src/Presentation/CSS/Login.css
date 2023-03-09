@@ -1,9 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-
 * {
   width: auto;
   height: auto;
-  font-family: "Open Sans", sans-serif;
 }
 
 .logo_memorys {
@@ -52,4 +49,42 @@
     height: auto;
     float: right;
   }
+}
+
+.login_container {
+  width: 400px;
+  height: 400px;
+  font-size: 15px;
+  margin: 130px auto;
+  display: flex; /* set display to flex */
+  justify-content: center; /* center horizontally */
+  align-items: center;
+  flex-direction: column;
+}
+
+input {
+  display: block;
+  background-color: #e9dac4;
+  margin-block: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  height: 45px;
+  width: 300px;
+  border: transparent;
+  padding-left: 10px;
+  border-radius: 10px;
+}
+
+input::placeholder {
+  color: #224957;
+  opacity: 100;
+  padding-left: 5px;
+  font-weight: bold;
+}
+
+input:hover {
+  box-shadow: #054a2f 2px 2px 2px 2px;
+}
+
+.btn_container {
+  margin-top: 30px;
 }

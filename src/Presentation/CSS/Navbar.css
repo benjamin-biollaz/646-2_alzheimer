@@ -1,0 +1,113 @@
+#navBarDiv {
+  background-color: #e7d7c1;
+  opacity: 90%;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-left: auto;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.navImage {
+  float: left;
+  height: 40px;
+  margin-top: 10px;
+  min-width: 15px;
+  margin-left: 2%;
+  margin-right: 1%;
+}
+
+/*Displayed only when the screen width is too thin*/
+.hamburger {
+  display: none;
+  float: right;
+  font-size: 25px;
+  background-color: transparent;
+  border: none;
+  height: 27px;
+  padding: 10px;
+  margin-top: 5px;
+  min-width: 15px;
+  margin-left: 2%;
+  margin-right: 1%;
+}
+
+.appBar {
+  width: 90%;
+}
+
+.appBar a {
+  float: right;
+}
+
+.appBar ul a {
+  display: block;
+  color: black;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bolder;
+  text-align: center;
+  padding: 20px 20px;
+  text-decoration: none;
+}
+
+.appBar a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.appBar a::after {
+  content: "";
+  display: block;
+  margin: auto;
+  height: 3px;
+  width: 0;
+  top: 5px;
+  background: transparent;
+  transition: all 0.3s;
+}
+
+.appBar a:hover::after {
+  width: 100%;
+  background: #a78a7f;
+}
+
+.appBar .active {
+  background-color: #1a73e8;
+}
+
+.appBar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  /*hamburger goes visible*/
+  .hamburger {
+    display: block;
+  }
+
+  .appBar a:hover::after {
+    width: 17%;
+    background: #a78a7f;
+  }
+
+  .appBar ul a {
+    padding: 12px;
+    width: 100%;
+  }
+
+  .appBar ul {
+    width: 100vw;
+  }
+
+  /*navbar links goes invisible*/
+  .appBarClosed ul {
+    display: none;
+  }
+}
