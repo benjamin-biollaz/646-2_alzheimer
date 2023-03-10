@@ -1,18 +1,14 @@
 import React from "react";
-import { styled } from "@mui/material/styles";
 import Navbar from "./Navbar";
 import "../CSS/Information.css";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Unstable_Grid2";
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+import Content1 from "./Grid_components/Content1";
+import Content2 from "./Grid_components/Content2";
+import Content3 from "./Grid_components/Content3";
+import Content4 from "./Grid_components/Content4";
+import Content5 from "./Grid_components/Content5";
+import Content6 from "./Grid_components/Content6";
+import Content7 from "./Grid_components/Content7";
+import Content8 from "./Grid_components/Content8";
 
 function Information() {
   return (
@@ -24,80 +20,36 @@ function Information() {
         <span className="patient_name">Emilie Teodoro</span>
         <span className="patient_name">24 ans</span>
       </div>
-      <Box sx={{ flexGrow: 1 }} backgroundColor="black">
-        <Grid container spacing={70} direction="row">
-          <Grid container spacing={10} item xs={12}>
-            <Grid xs={6} lg={7}>
-              <Item>
-                <Box
-                  id="category-a"
-                  sx={{ fontSize: "12px", textTransform: "uppercase" }}
-                >
-                  Passions
-                </Box>
-                <Box component="ul" aria-labelledby="category-a" sx={{ pl: 2 }}>
-                  <li>Musique</li>
-                  <li>Tricot</li>
-                  <li>Ski</li>
-                </Box>
-              </Item>
-            </Grid>
-            <Grid xs={6} lg={10}>
-              <Item>
-                <Box
-                  id="category-b"
-                  sx={{ fontSize: "12px", textTransform: "uppercase" }}
-                >
-                  Category B
-                </Box>
-                <Box component="ul" aria-labelledby="category-b" sx={{ pl: 2 }}>
-                  <li>Link 2.1</li>
-                  <li>Link 2.2</li>
-                  <li>Link 2.3</li>
-                </Box>
-              </Item>
-            </Grid>
-            <Grid xs={6} lg={7}>
-              <Item>
-                <Box
-                  id="category-c"
-                  sx={{ fontSize: "12px", textTransform: "uppercase" }}
-                >
-                  Category C
-                </Box>
-                <Box component="ul" aria-labelledby="category-c" sx={{ pl: 2 }}>
-                  <li>Link 3.1</li>
-                  <li>Link 3.2</li>
-                  <li>Link 3.3</li>
-                </Box>
-              </Item>
-            </Grid>
-            <Grid xs={6} lg={3} border={5} borderColor="red">
-              <Item>
-                <Box
-                  id="category-d"
-                  sx={{ fontSize: "12px", textTransform: "uppercase" }}
-                >
-                  Category D
-                </Box>
-                <Box component="ul" aria-labelledby="category-d" sx={{ pl: 2 }}>
-                  <li>Link 4.1</li>
-                  <li>Link 4.2</li>
-                  <li>Link 4.3</li>
-                </Box>
-              </Item>
-            </Grid>
-          </Grid>
-          <Grid
-            xs={12}
-            container
-            justifyContent="space-between"
-            alignItems="center"
-            flexDirection={{ xs: "column", sm: "row" }}
-            sx={{ fontSize: "12px" }}
-          ></Grid>
-        </Grid>
-      </Box>
+      <section>
+        <div className="layout text-2xl text-white">
+          <div className="content1 centered">
+            <Content1 />
+          </div>
+          <div className="content2 centered">
+            <Content2 />
+          </div>
+          <div className="content3 centered">
+            <Content3 />
+          </div>
+
+          <div className="content4 centered">
+            <Content4 />
+          </div>
+          {/* <div className="content5 centered">
+            <Content5 />
+          </div>
+          <div className="content6 centered">
+            <Content6 />
+          </div>
+
+          <div className="content7 centered">
+            <Content7 />
+          </div>
+          <div className="content8 centered">
+            <Content8 />
+          </div> */}
+        </div>
+      </section>
     </>
   );
 }
