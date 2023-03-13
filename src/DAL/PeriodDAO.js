@@ -31,8 +31,8 @@ class PeriodDAO {
      */
     async updatePeriod(timelineId, periodToChange, newStartDate, newEndDate, newName) {
         // access DB only if changes have been made 
-        if (periodToChange.startDate == newStartDate && periodToChange.endDate == newEndDate
-            && periodToChange.name == newName)
+        if (periodToChange.startDate === newStartDate && periodToChange.endDate === newEndDate
+            && periodToChange.name === newName)
             return;
 
         const eventRef =

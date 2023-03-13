@@ -1,4 +1,4 @@
-import {where, query, getDocs} from "firebase/firestore";
+import { where, query, getDocs } from "firebase/firestore";
 import { timelineRef } from "./FirebaseConf";
 import { TimelineWithId } from "../DTO/TimelineWithId";
 
@@ -12,4 +12,4 @@ class TimelineDAO {
     }
 }
 
-export {TimelineDAO};
+export { TimelineDAO };
