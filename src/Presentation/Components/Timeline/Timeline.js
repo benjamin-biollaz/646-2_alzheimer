@@ -16,6 +16,10 @@ import { EventDAO } from '../../../DAL/EventDAO';
 import { PeriodDAO } from '../../../DAL/PeriodDAO';
 import { LocationDAO } from '../../../DAL/LocationDAO';
 
+//popup 
+import Popup from 'reactjs-popup';
+import TimelineForm from "./TimelineForm";
+
 
 export function TimelineWidget(resident) {
 
@@ -151,7 +155,12 @@ export function TimelineWidget(resident) {
                 </TimelineMarkers>
             </Timeline>
             <br />
-            <button onClick={() => window.location.reload()}>Reset</button>
+            <div id='popup_div'>
+                <Popup trigger={<button> Open pop up</button>} position="center center">
+                    <TimelineForm events={events} periods={periods} locations={locations} />
+                </Popup>
+                <button onClick={() => window.location.reload()}>Reset</button>
+            </div>
         </div>
     );
 

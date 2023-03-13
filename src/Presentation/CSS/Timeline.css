@@ -106,3 +106,7 @@
   .react-calendar-timeline .rct-calendar-header {
     border: 1px solid #bbb; }
   
+  #popup_div {
+    display:flex;
+    justify-content: center;
+  }
