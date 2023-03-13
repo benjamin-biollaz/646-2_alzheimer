@@ -1,0 +1,40 @@
+.popup {
+    width: 75vw;
+    min-height: 50vh;
+    height: auto;
+    padding: 2vh;
+    background-color: #e9dac4;
+    border-radius: 1.5vh;
+    display: flex;
+    flex-direction: column;
+    border-width: 3px;
+    border: black;
+}
+
+.grid_item {
+    flex: 1;
+}
+
+.grid_container {
+    display: flex;
+}
+
+.header {
+    display: table;
+    margin: auto;
+}
+
+.sectionTitle {
+    display: inline;
+    margin-right: 1vw;
+}
+
+#eventsDiv {
+    min-height: 40vh;
+    border-right: 1px solid grey;
+}
+
+#periodsDiv {
+    min-height: 40vh;
+    border-right: 1px solid grey;
+}
