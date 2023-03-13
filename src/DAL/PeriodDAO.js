@@ -1,6 +1,7 @@
 import { doc, getDocs, collection, withConverter, setDoc } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { periodConverter, PeriodDTO } from "../DTO/PeriodDTO";
+import {PeriodWithId} from "../DTO/PeriodWithId";
 
 class PeriodDAO {
     /**
@@ -17,7 +18,7 @@ class PeriodDAO {
             "Periods").withConverter(periodConverter);
 
         const docSnapshot = await getDocs(periodsRef);
-        return docSnapshot.docs.map(e => e.data());
+        return docSnapshot.docs.map(e => new PeriodWithId(e.id, e.data));
     }
 
     /**
