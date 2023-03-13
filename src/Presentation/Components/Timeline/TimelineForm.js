@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import '../CSS/TimelineForm.css';
-import '../../Utilities/DateFormatter'
-import EventsForm from './timeline/EventsForm';
-import PeriodsForm from './timeline/PeriodsForm';
-import LocationsForm from './timeline/LocationsForm';
+import '../../../Utilities/DateFormatter'
+import EventsForm from './EventsForm';
+import PeriodsForm from './PeriodsForm';
+import LocationsForm from './LocationsForm';
 
 
 function TimelineForm({periods, events, locations}) {
