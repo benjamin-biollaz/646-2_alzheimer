@@ -33,19 +33,19 @@ class EventDAO {
      */
     async updateEvent(timelineId, eventToChange, date, name) {
         // access DB only if changes have been made 
-        if (eventToChange.date == date && eventToChange.name == name)
+        if (eventToChange.date === date && eventToChange.name === name)
             return;
 
-            const eventRef =
+        const eventRef =
             doc(
-            collection(
-                doc(collection(db, "Timelines"),timelineId),
-                "Events")
+                collection(
+                    doc(collection(db, "Timelines"), timelineId),
+                    "Events")
                 , eventToChange.id).withConverter(eventConverter);
-            
-            await setDoc(eventRef, new EventDTO(date, name));
+
+        await setDoc(eventRef, new EventDTO(date, name));
     }
-   
+
 }
 
 export { EventDAO };
