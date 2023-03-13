@@ -8,9 +8,9 @@ function LocationsForm({locations}) {
                 <h3 className='sectionTitle'>Locations</h3>
                 <button>+</button>
             </div>
-            {/*events.map((ev) => (
-                <p>{ev.eventDTO.name} - {DateFormatter.prototype.formatDate(ev.eventDTO.date)}</p>
-            ))*/}
+            {locations.map((loc) => (
+                <p>{loc.eventDTO.name} - {DateFormatter.prototype.formatDate(loc.eventDTO.date)}</p>
+            ))}
         </div>
     );
 }

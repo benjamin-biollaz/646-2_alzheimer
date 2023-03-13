@@ -8,9 +8,9 @@ function PeriodsForm({periods}) {
                 <h3 className='sectionTitle'>Periods</h3>
                 <button>+</button>
             </div>
-            {/*events.map((ev) => (
-                <p>{ev.eventDTO.name} - {DateFormatter.prototype.formatDate(ev.eventDTO.date)}</p>
-            ))*/}
+            {periods.map((per) => (
+                <p>{per.eventDTO.name} - {DateFormatter.prototype.formatDate(per.eventDTO.date)}</p>
+            ))}
         </div>
     );
 }

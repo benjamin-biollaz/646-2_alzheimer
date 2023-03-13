@@ -8,9 +8,9 @@ function EventsForm({events}) {
                 <h3 className='sectionTitle'>Events</h3>
                 <button>+</button>
             </div>
-            {/*events.map((ev) => (
+            {events.map((ev) => (
                 <p>{ev.eventDTO.name} - {DateFormatter.prototype.formatDate(ev.eventDTO.date)}</p>
-            ))*/}
+            ))}
         </div>
     );
 }
