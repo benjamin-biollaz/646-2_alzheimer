@@ -9,7 +9,8 @@ function LocationsForm({locations}) {
                 <button>+</button>
             </div>
             {locations.map((loc) => (
-                <p>{loc.eventDTO.name} - {DateFormatter.prototype.formatDate(loc.eventDTO.date)}</p>
+                   <p>{loc.locationDTO.name} - {DateFormatter.prototype.formatDate(loc.locationDTO.startDate)} 
+                   - {DateFormatter.prototype.formatDate(loc.locationDTO.endDate)}</p>
             ))}
         </div>
     );

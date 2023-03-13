@@ -9,7 +9,8 @@ function PeriodsForm({periods}) {
                 <button>+</button>
             </div>
             {periods.map((per) => (
-                <p>{per.eventDTO.name} - {DateFormatter.prototype.formatDate(per.eventDTO.date)}</p>
+                <p>{per.periodDTO.name} - {DateFormatter.prototype.formatDate(per.periodDTO.startDate)} 
+                - {DateFormatter.prototype.formatDate(per.periodDTO.endDate)}</p>
             ))}
         </div>
     );
