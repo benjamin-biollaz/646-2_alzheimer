@@ -1,3 +1,6 @@
+/**
+ * TimelineDTO contains the timeline properties and a converter from and to Firestore.
+ */
 class TimelineDTO {
     constructor(residentId, remark) {
         this.residentId = residentId;

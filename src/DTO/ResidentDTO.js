@@ -1,3 +1,6 @@
+/**
+ * ResidentDTO contains the resident properties and a converter from and to Firestore.
+ */
 class ResidentDTO {
     constructor(firstName, lastName) {
         this.firstName = firstName;
