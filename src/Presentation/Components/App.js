@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { ResidentDAO } from "../../DAL/ResidentDAO";
-import { ResidentDTO } from "../../DTO/ResidentDTO";
 import Home from "./Home.js";
 import Login from "../Components/Login";
 import Navbar from "../Components/Navbar";
 import Page404 from "./Page404";
 import "../CSS/App.css";
 import Information from "./Information";
-import Timeline from "./Timeline";
 
 function App() {
   const [resident, setResident] = React.useState(null);
@@ -24,7 +22,8 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/navbar" element={<Navbar />} />
-          <Route path="/timeline" element={<Timeline />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/navbar" element={<Navbar />} />
           <Route path="/infos" element={<Information />} />
           <Route path="/" element={<Home resident={resident} />} />
           <Route path="/home" element={<Home resident={resident} />} />

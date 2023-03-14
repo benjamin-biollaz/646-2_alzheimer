@@ -3,10 +3,10 @@
 .container_infos {
   display: grid;
   margin-right: 10px;
-  margin-left: 10px;
+  margin-left: 50px;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 0.6fr 0.5fr 1fr;
-  gap: 11px 5px;
+  gap: 11px 50px;
   grid-auto-flow: row;
   grid-template-areas:
     "passions habitudes croyances"
@@ -44,24 +44,39 @@
 
 .icon {
   display: flex;
-  font-size: 20px;
+  margin-top: 10px;
+  font-size: 35px;
+  color: #054a2f;
   justify-content: center;
 }
 
-.passion_list {
+.infos_list {
   display: flex;
   justify-content: center;
 }
 
-.passion_item {
+.infos_item {
+  margin-right: 10px;
   justify-content: center;
   align-items: center;
 }
 
-.preferences {
+.infos_religion {
+  margin-top: 2px;
   display: flex;
-  justify-content: center;
-  color: #a78a7f;
+  color: #054a2f;
+  margin-right: 35%;
+  font-size: 15px;
+}
+
+.categories {
+  margin-left: 10px;
+  margin-right: 10px;
+  flex: 1 1 auto;
+}
+
+.preferences {
+  color: black;
   font-size: 1rem;
   font-weight: bold;
   grid-area: preferences;
@@ -70,8 +85,8 @@
 }
 
 .evenements {
-  display: flex;
   justify-content: center;
+  margin-left: -30px;
   color: #a78a7f;
   font-size: 1rem;
   font-weight: bold;
@@ -82,25 +97,54 @@
 }
 
 .habitudes {
-  display: flex;
   justify-content: center;
   color: #a78a7f;
   font-size: 1rem;
   font-weight: bold;
   height: 250px;
+  width: 500px;
   grid-area: habitudes;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 10px;
 }
 
-.croyances {
-  display: flex;
-  justify-content: center;
-  color: #a78a7f;
+.habitudes_grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  color: black;
   font-size: 1rem;
   font-weight: bold;
+  grid-area: habitudes;
+}
+
+.categories_1 {
+  grid-area: 1 / 1 / 2 / 2;
+  margin-right: 10px;
+}
+.categories_2 {
+  grid-area: 1 / 2 / 2 / 3;
+  margin-right: 10px;
+}
+.categories_3 {
+  grid-area: 2 / 1 / 3 / 2;
+  margin-right: 10px;
+}
+.categories_4 {
+  grid-area: 2 / 2 / 3 / 3;
+  margin-right: 10px;
+}
+
+.croyances {
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 380px;
   height: 250px;
-  grid-area: croyances;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  color: black;
+  font-weight: bold;
+  grid-area: croyances;
   border-radius: 10px;
 }
