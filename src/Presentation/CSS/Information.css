@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200&display=swap");
+
+.container_infos {
+  display: grid;
+  margin-right: 10px;
+  margin-left: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.6fr 0.5fr 1fr;
+  gap: 11px 5px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "passions habitudes croyances"
+    "preferences habitudes croyances"
+    "evenements evenements evenements";
+}
+
+.personal_infos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+  margin-bottom: 20px;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: "Lexend Deca", sans-serif;
+}
+
+.label {
+  display: flex;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #a78a7f;
+}
+
+.passions {
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  grid-area: passions;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+
+.icon {
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+}
+
+.passion_list {
+  display: flex;
+  justify-content: center;
+}
+
+.passion_item {
+  justify-content: center;
+  align-items: center;
+}
+
+.preferences {
+  display: flex;
+  justify-content: center;
+  color: #a78a7f;
+  font-size: 1rem;
+  font-weight: bold;
+  grid-area: preferences;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+
+.evenements {
+  display: flex;
+  justify-content: center;
+  color: #a78a7f;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 250px;
+  grid-area: evenements;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+
+.habitudes {
+  display: flex;
+  justify-content: center;
+  color: #a78a7f;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 250px;
+  grid-area: habitudes;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+
+.croyances {
+  display: flex;
+  justify-content: center;
+  color: #a78a7f;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 250px;
+  grid-area: croyances;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}

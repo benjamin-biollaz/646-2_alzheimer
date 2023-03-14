@@ -11,6 +11,7 @@ export default function Home({ resident }) {
       <div className='divTimelineWidget'>
         <TimelineWidget resident={resident} />
       </div>
+
     </div>
   );
 
