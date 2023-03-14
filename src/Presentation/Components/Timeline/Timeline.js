@@ -63,6 +63,7 @@ export function TimelineWidget(resident) {
         console.warn("location use effect");
     }, [locations]);
 
+
     const fetchTimeline = async () => {
         const timeline = await timelineDAO.getTimelineByResidentId('HvrELV7MRnnJcV24ro1w');
         // const timeline = await timelineDAO.getTimelineByResidentId('resident.id');
@@ -77,8 +78,9 @@ export function TimelineWidget(resident) {
 
     const placeEvents = (events) => {
         const newItem = events.map((element) => ({
-            id: element.id,
+            id: parseInt(element.id, 36),
             group: 3,
+            // title: (element.eventDTO.name).split(/\s+/).slice(0, 1),
             title: element.eventDTO.name,
             tip: element.eventDTO.name,
             start_time: moment(element.eventDTO.date.toDate().toDateString()),
@@ -88,7 +90,7 @@ export function TimelineWidget(resident) {
                 'data-custom-attribute': 'Random content',
                 'aria-hidden': true,
                 style: {
-                    background: 'fuchsia',
+                    background: element.eventDTO.color,
                     color: 'black',
                 },
             },
@@ -98,26 +100,36 @@ export function TimelineWidget(resident) {
 
     const placePeriods = (periods) => {
         const newItem = periods.map((element) => ({
-            id: element.id,
+            id: parseInt(element.id, 36),
             group: 1,
             title: element.periodDTO.name,
             tip: element.periodDTO.name,
             start_time: moment(element.periodDTO.startDate.toDate().toDateString()),
             end_time: moment(element.periodDTO.endDate.toDate().toDateString()),
             canMove: false,
+            itemProps: {
+                style: {
+                    background: element.periodDTO.color,
+                },
+            },
         }));
         items.push(...newItem);
     };
 
     const placeLocations = (locations) => {
         const newItem = locations.map((element) => ({
-            id: element.id,
+            id: parseInt(element.id, 36),
             group: 2,
             title: element.locationDTO.name,
             tip: element.locationDTO.name,
             start_time: moment(element.locationDTO.startDate.toDate().toDateString()),
             end_time: moment(element.locationDTO.endDate.toDate().toDateString()),
             canMove: false,
+            itemProps: {
+                style: {
+                    background: element.locationDTO.color,
+                },
+            },
         }));
         items.push(...newItem);
     };
