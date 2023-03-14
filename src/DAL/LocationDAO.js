@@ -1,4 +1,4 @@
-import { doc, getDocs, collection, withConverter, updateDoc, setDoc } from "firebase/firestore";
+import { doc, getDocs, collection, withConverter, updateDoc, setDoc, addDoc } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { locationConverter, LocationDTO } from "../DTO/LocationDTO";
 import { LocationWithId } from "../DTO/LocationWithId";
@@ -48,6 +48,21 @@ class LocationDAO {
 
         // update document
         await setDoc(locationRef, new LocationDTO(newStartDate, newEndDate, newName));
+    }
+
+    async addLocation(timelineId, startDate, endDate, name) {
+        const location = new LocationDTO(startDate, endDate, name);
+
+        // point to the document in db
+        const locationRef =
+            collection(
+                doc(
+                    collection(db, "Timelines"),
+                    timelineId),
+                "Locations").withConverter(locationConverter);
+
+        // add to the document
+        await addDoc(locationRef, location);
     }
 
 }
