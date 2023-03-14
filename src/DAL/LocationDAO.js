@@ -37,7 +37,7 @@ class LocationDAO {
         if (locationToChange.startDate == newStartDate && locationToChange.endDate == newEndDate
             && locationToChange.name == newName)
             return;
-        
+
         // point to the document in db
         const locationRef =
             doc(
@@ -50,8 +50,8 @@ class LocationDAO {
         await setDoc(locationRef, new LocationDTO(newStartDate, newEndDate, newName));
     }
 
-    async addLocation(timelineId, startDate, endDate, name) {
-        const location = new LocationDTO(startDate, endDate, name);
+    async addLocation(timelineId, startDate, endDate, name, color) {
+        const location = new LocationDTO(startDate, endDate, name, color);
 
         // point to the document in db
         const locationRef =
