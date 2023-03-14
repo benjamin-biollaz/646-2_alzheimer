@@ -13,13 +13,11 @@ function TimelineForm({ periods, events, locations }) {
     const [eve, setEvents] = useState(events);
 
     return (
-        <div id='popup_content'>
             <div className='grid_container'>
                 <EventsForm events={eve}></EventsForm>
                 <PeriodsForm periods={per}></PeriodsForm>
                 <LocationsForm locations={loc}></LocationsForm>
             </div>
-        </div>
     );
 }
 

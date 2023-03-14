@@ -1,17 +1,18 @@
 import React from 'react'
 import { DateFormatter } from '../../../Utilities/DateFormatter';
+import GenericForm from './GenericForm';
 
 function EventsForm({events}) {
+    const renderEvents = (events) => {
+        return events.map((ev) => (
+            <p>{ev.eventDTO.name} - {DateFormatter.prototype.formatDate(ev.eventDTO.date)}</p>
+        ))
+    }
     return (
-        <div id='eventsDiv' className='grid_item'>
-            <div className='header'>
-                <h3 className='sectionTitle'>Events</h3>
-                <button>+</button>
-            </div>
-            {events.map((ev) => (
-                <p>{ev.eventDTO.name} - {DateFormatter.prototype.formatDate(ev.eventDTO.date)}</p>
-            ))}
-        </div>
+        <div className='flexDiv'>
+            <GenericForm divId='eventsDiv' title='Events' isEditable='false'
+             renderItems={renderEvents} items={events}></GenericForm>
+             </div>
     );
 }
 

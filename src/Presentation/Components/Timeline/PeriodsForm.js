@@ -1,18 +1,20 @@
 import React from 'react'
 import { DateFormatter } from '../../../Utilities/DateFormatter';
+import GenericForm from './GenericForm';
 
 function PeriodsForm({periods}) {
+    const renderPeriods = (periods) => {
+        return periods.map((per) => (
+            <p>{per.periodDTO.name} - {DateFormatter.prototype.formatDate(per.periodDTO.startDate)} 
+            - {DateFormatter.prototype.formatDate(per.periodDTO.endDate)}</p>
+        ))
+    }
     return (
-        <div id='periodsDiv' className='grid_item'>
-            <div className='header'>
-                <h3 className='sectionTitle'>Periods</h3>
-                <button>+</button>
+        <div className='flexDiv'>
+           <GenericForm divId='periodsDiv' isEditable='false' title='Periods'
+            renderItems={renderPeriods} items={periods
+            }></GenericForm>
             </div>
-            {periods.map((per) => (
-                <p>{per.periodDTO.name} - {DateFormatter.prototype.formatDate(per.periodDTO.startDate)} 
-                - {DateFormatter.prototype.formatDate(per.periodDTO.endDate)}</p>
-            ))}
-        </div>
     );
 }
 

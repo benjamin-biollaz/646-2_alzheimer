@@ -1,27 +1,30 @@
 /* Default popup properties override */
 .popup-content {
-    width: 60vw !important;
+    min-width: 60vw !important;
     min-height: 65vh !important;
-    height: auto !important;
-    padding: 2vh !important;
-    background-color: #f5e8d5 !important;
-    border-radius: 1.5vh !important;
+    padding: 0 !important;
+    background-color: white !important;
+    border-radius: 2vh !important;
     display: flex !important;
     flex-direction: column !important;
     border-width: 3px !important;
     border: black !important;
 }
 
-.grid_item {
-    flex: 1;
-    padding: 0.5vw;
-}
-
 .grid_container {
     display: flex;
 }
 
+.grid_item {
+    flex: 1;
+}
+
 .header {
+    background-color: #f5e8d5;
+    padding: 2vh;
+}
+
+.header_cell {
     display: table;
     margin: auto;
 }
@@ -31,13 +34,21 @@
     margin-right: 1vw;
 }
 
-#eventsDiv {
+.sectionDiv {
+    padding: 0.5vw;
     min-height: 60vh;
+}
+
+#eventsDiv {
     border-right: 1px solid grey;
 }
 
 #periodsDiv {
-    min-height: 40vh;
     border-right: 1px solid grey;
+}
+
+.flexDiv {
+    display: flex;
+    flex: 1;
 }
 
