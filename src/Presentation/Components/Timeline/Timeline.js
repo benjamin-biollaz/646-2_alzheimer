@@ -76,7 +76,7 @@ export function TimelineWidget(resident) {
 
     const placeEvents = (events) => {
         const newItem = events.map((element) => ({
-            id: items.length + 1,
+            id: element.id,
             group: 3,
             title: element.eventDTO.name,
             tip: element.eventDTO.name,
@@ -97,7 +97,7 @@ export function TimelineWidget(resident) {
 
     const placePeriods = (periods) => {
         const newItem = periods.map((element) => ({
-            id: items.length + 1,
+            id: element.id,
             group: 1,
             title: element.periodDTO.name,
             tip: element.periodDTO.name,
@@ -110,7 +110,7 @@ export function TimelineWidget(resident) {
 
     const placeLocations = (locations) => {
         const newItem = locations.map((element) => ({
-            id: items.length + 1,
+            id: element.id,
             group: 2,
             title: element.locationDTO.name,
             tip: element.locationDTO.name,
