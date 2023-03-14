@@ -1,4 +1,4 @@
-import {doc, getDoc, setDoc, updateDoc} from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { residentConverter } from "../DTO/ResidentDTO";
 
@@ -10,4 +10,4 @@ class ResidentDAO {
     }
 }
 
-export {ResidentDAO};
+export { ResidentDAO };
