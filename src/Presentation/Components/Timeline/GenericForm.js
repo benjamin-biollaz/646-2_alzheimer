@@ -4,8 +4,8 @@ import 'semantic-ui-css/semantic.min.css'
 import { Button, Icon } from 'semantic-ui-react'
 
 
-function GenericForm({ title, divId, isEditable, items, renderItems }) {
-    const [isReadOnly, setIsReadonly] = useState(isEditable);
+function GenericForm({ title, divId, isEditable, items, renderItemsEditable, renderItemsReadonly }) {
+    const [isReadOnly, setIsReadonly] = useState(!isEditable);
     const toggleView = () => {
         setIsReadonly(!isReadOnly);
     };
@@ -23,8 +23,8 @@ function GenericForm({ title, divId, isEditable, items, renderItems }) {
                     </Button>
                 </div>
             </div>
-            <div className={isReadOnly ? 'sectionDiv' : 'sectionDiv greyBackground'}>
-                {renderItems(items)}
+            <div className={isReadOnly ? 'sectionDiv greyBackground' : 'sectionDiv'}>
+                {isReadOnly ? renderItemsReadonly(items) : renderItemsEditable(items)}
             </div>
         </div>
     );

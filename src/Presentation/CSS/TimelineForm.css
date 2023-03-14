@@ -53,18 +53,22 @@
 }
 
 .greyBackground {
-    background-color: lightgray;
+    background-color: rgb(235, 233, 233);
 }
 
 .inputTimeline {
+    height: 4vh;
     width: 40%;
     background-color: white;
     display: inline;
     margin-right: 1vw;
     box-shadow: 0;
+    border-radius: 0.3vw;
 }
 
 .inputDiv {
     background-color: #f5e8d5;
     margin-bottom: 2vh;
+    border-radius: 1vw;
+    padding-left: 1vw;
 }

@@ -22,7 +22,7 @@ function EventsForm({ events }) {
     return (
         <div className='flexDiv'>
             <GenericForm divId='eventsDiv' title='Events' isEditable={false}
-                renderItems={renderEventsEdit} items={events}></GenericForm>
+                renderItemsEditable={renderEventsEdit} renderItemsReadonly={renderEventsReadOnly} items={events}></GenericForm>
         </div>
     );
 }
