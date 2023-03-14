@@ -19,6 +19,8 @@ import { LocationDAO } from '../../../DAL/LocationDAO';
 //popup 
 import Popup from 'reactjs-popup';
 import TimelineForm from "./TimelineForm";
+import 'reactjs-popup/dist/index.css';
+import '../../CSS/TimelineForm.css'
 
 
 export function TimelineWidget(resident) {
@@ -97,10 +99,10 @@ export function TimelineWidget(resident) {
         const newItem = periods.map((element) => ({
             id: items.length + 1,
             group: 1,
-            title: element.name,
-            tip: element.name,
-            start_time: moment(element.startDate.toDate().toDateString()),
-            end_time: moment(element.endDate.toDate().toDateString()).add(10, 'day'),
+            title: element.periodDTO.name,
+            tip: element.periodDTO.name,
+            start_time: moment(element.periodDTO.startDate.toDate().toDateString()),
+            end_time: moment(element.periodDTO.endDate.toDate().toDateString()).add(10, 'day'),
             canMove: false,
         }));
         items.push(...newItem);
@@ -155,8 +157,8 @@ export function TimelineWidget(resident) {
                 </TimelineMarkers>
             </Timeline>
             <br />
-            <div id='popup_div'>
-                <Popup trigger={<button> Open pop up</button>} position="center center">
+            <div>
+                <Popup trigger={<button> Open pop up</button>} closeOnDocumentClick modal position='center center'>
                     <TimelineForm events={events} periods={periods} locations={locations} />
                 </Popup>
                 <button onClick={() => window.location.reload()}>Reset</button>

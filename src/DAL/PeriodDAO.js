@@ -18,7 +18,7 @@ class PeriodDAO {
             "Periods").withConverter(periodConverter);
 
         const docSnapshot = await getDocs(periodsRef);
-        return docSnapshot.docs.map(e => new PeriodWithId(e.id, e.data));
+        return docSnapshot.docs.map(e => new PeriodWithId(e.id, e.data()));
     }
 
     /**

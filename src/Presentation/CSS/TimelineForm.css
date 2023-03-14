@@ -1,18 +1,20 @@
-#popup_content {
-    width: 75vw;
-    min-height: 50vh;
-    height: auto;
-    padding: 2vh;
-    background-color: #e9dac4;
-    border-radius: 1.5vh;
-    display: flex;
-    flex-direction: column;
-    border-width: 3px;
-    border: black;
+/* Default popup properties override */
+.popup-content {
+    width: 60vw !important;
+    min-height: 65vh !important;
+    height: auto !important;
+    padding: 2vh !important;
+    background-color: #f2e1ca !important;
+    border-radius: 1.5vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-width: 3px !important;
+    border: black !important;
 }
 
 .grid_item {
     flex: 1;
+    padding: 0.5vw;
 }
 
 .grid_container {
@@ -30,7 +32,7 @@
 }
 
 #eventsDiv {
-    min-height: 40vh;
+    min-height: 60vh;
     border-right: 1px solid grey;
 }
 
@@ -38,3 +40,4 @@
     min-height: 40vh;
     border-right: 1px solid grey;
 }
+
