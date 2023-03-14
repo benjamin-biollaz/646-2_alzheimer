@@ -65,6 +65,7 @@ export function TimelineWidget(resident) {
 
     const fetchTimeline = async () => {
         const timeline = await timelineDAO.getTimelineByResidentId('HvrELV7MRnnJcV24ro1w');
+        // const timeline = await timelineDAO.getTimelineByResidentId('resident.id');
         setTimeline(timeline);
         const periods = await periodDAO.getPeriodsByTimelineId(timeline.id);
         setPeriods(periods);
@@ -76,7 +77,7 @@ export function TimelineWidget(resident) {
 
     const placeEvents = (events) => {
         const newItem = events.map((element) => ({
-            id: items.length + 1,
+            id: element.id,
             group: 3,
             title: element.eventDTO.name,
             tip: element.eventDTO.name,
@@ -97,12 +98,12 @@ export function TimelineWidget(resident) {
 
     const placePeriods = (periods) => {
         const newItem = periods.map((element) => ({
-            id: items.length + 1,
+            id: element.id,
             group: 1,
             title: element.periodDTO.name,
             tip: element.periodDTO.name,
             start_time: moment(element.periodDTO.startDate.toDate().toDateString()),
-            end_time: moment(element.periodDTO.endDate.toDate().toDateString()).add(10, 'day'),
+            end_time: moment(element.periodDTO.endDate.toDate().toDateString()),
             canMove: false,
         }));
         items.push(...newItem);
@@ -110,12 +111,12 @@ export function TimelineWidget(resident) {
 
     const placeLocations = (locations) => {
         const newItem = locations.map((element) => ({
-            id: items.length + 1,
+            id: element.id,
             group: 2,
             title: element.locationDTO.name,
             tip: element.locationDTO.name,
             start_time: moment(element.locationDTO.startDate.toDate().toDateString()),
-            end_time: moment(element.locationDTO.endDate.toDate().toDateString()).add(10, 'day'),
+            end_time: moment(element.locationDTO.endDate.toDate().toDateString()),
             canMove: false,
         }));
         items.push(...newItem);
