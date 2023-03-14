@@ -14,6 +14,7 @@ import { GiNightSleep } from "react-icons/gi";
 import { BsFillSunriseFill, BsSunriseFill } from "react-icons/bs";
 import { TfiTimer } from "react-icons/tfi";
 import { GiMeal } from "react-icons/gi";
+import { TimelineWidget } from './Timeline/Timeline';
 
 function Information() {
   function MusicNoteIcon() {
@@ -118,6 +119,9 @@ function Information() {
         {/* //---------------- EVENTS ------------------// */}
         <div className="evenements">
           <h3 className="label">Évènements</h3>
+          <div className='divTimelineWidget'>
+            <TimelineWidget />
+          </div>
         </div>
 
         {/* //---------------- HABITUDES ------------------// */}
