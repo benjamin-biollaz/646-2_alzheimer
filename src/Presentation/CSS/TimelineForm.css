@@ -1,0 +1,54 @@
+/* Default popup properties override */
+.popup-content {
+    min-width: 60vw !important;
+    min-height: 65vh !important;
+    padding: 0 !important;
+    background-color: white !important;
+    border-radius: 2vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-width: 3px !important;
+    border: black !important;
+}
+
+.grid_container {
+    display: flex;
+}
+
+.grid_item {
+    flex: 1;
+}
+
+.header {
+    background-color: #f5e8d5;
+    padding: 2vh;
+}
+
+.header_cell {
+    display: table;
+    margin: auto;
+}
+
+.sectionTitle {
+    display: inline;
+    margin-right: 1vw;
+}
+
+.sectionDiv {
+    padding: 0.5vw;
+    min-height: 60vh;
+}
+
+#eventsDiv {
+    border-right: 1px solid grey;
+}
+
+#periodsDiv {
+    border-right: 1px solid grey;
+}
+
+.flexDiv {
+    display: flex;
+    flex: 1;
+}
+
