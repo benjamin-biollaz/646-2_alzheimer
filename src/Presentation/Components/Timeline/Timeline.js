@@ -65,6 +65,7 @@ export function TimelineWidget(resident) {
 
     const fetchTimeline = async () => {
         const timeline = await timelineDAO.getTimelineByResidentId('HvrELV7MRnnJcV24ro1w');
+        // const timeline = await timelineDAO.getTimelineByResidentId('resident.id');
         setTimeline(timeline);
         const periods = await periodDAO.getPeriodsByTimelineId(timeline.id);
         setPeriods(periods);
@@ -102,7 +103,7 @@ export function TimelineWidget(resident) {
             title: element.periodDTO.name,
             tip: element.periodDTO.name,
             start_time: moment(element.periodDTO.startDate.toDate().toDateString()),
-            end_time: moment(element.periodDTO.endDate.toDate().toDateString()).add(10, 'day'),
+            end_time: moment(element.periodDTO.endDate.toDate().toDateString()),
             canMove: false,
         }));
         items.push(...newItem);
@@ -115,7 +116,7 @@ export function TimelineWidget(resident) {
             title: element.locationDTO.name,
             tip: element.locationDTO.name,
             start_time: moment(element.locationDTO.startDate.toDate().toDateString()),
-            end_time: moment(element.locationDTO.endDate.toDate().toDateString()).add(10, 'day'),
+            end_time: moment(element.locationDTO.endDate.toDate().toDateString()),
             canMove: false,
         }));
         items.push(...newItem);
