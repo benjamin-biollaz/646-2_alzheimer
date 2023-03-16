@@ -14,6 +14,7 @@ import { GiNightSleep } from "react-icons/gi";
 import { BsFillSunriseFill, BsSunriseFill } from "react-icons/bs";
 import { TfiTimer } from "react-icons/tfi";
 import { GiMeal } from "react-icons/gi";
+import { FaWheelchair } from "react-icons/fa";
 
 function Information() {
   function MusicNoteIcon() {
@@ -26,9 +27,15 @@ function Information() {
         <Navbar />
       </div>
       <div className="personal_infos">
-        <span className="patient_name">Emilie Teodoro</span>
+        <span>Emilie Teodoro</span>
         &nbsp;
-        <span className="patient_name">24 ans</span>
+        <span>24 ans</span>
+        &nbsp;
+        <span className="moyens_aux">Moyens auxiliaire</span>
+        &nbsp;
+        <div className="icon">
+          <FaWheelchair />
+        </div>
       </div>
 
       <div className="container_infos">
