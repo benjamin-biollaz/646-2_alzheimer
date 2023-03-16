@@ -115,6 +115,10 @@ export function TimelineWidget(resident) {
                 }))
             ];
             setItems(allItems);
+            
+            setEvents(events);
+            setLocations(locations);
+            setPeriods(periods);
         };
 
         fetchData();
