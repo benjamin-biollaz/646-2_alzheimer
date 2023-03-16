@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { DateFormatter } from '../../../Utilities/DateFormatter';
+import FloatLabelInput from '../FloatLabelInput';
 function Location({ location, isEditable }) {
 
     const [locationState, setLocation] = useState(location);
@@ -19,14 +20,10 @@ function Location({ location, isEditable }) {
     return (
         isEditable ?
             <div className='inputDiv'>
-                <input className='inputTimeline' value={locationState.locationDTO.name}
-                    onChange={onInputChange} type="text"></input>
-
-                <input className='inputTimeline' value={DateFormatter.prototype.formatDate(locationState.locationDTO.startDate)}
-                    onChange={onInputChange} type="date"></input>
-
-                <input className='inputTimeline' value={DateFormatter.prototype.formatDate(locationState.locationDTO.endDate)}
-                    onChange={onInputChange} type="date"></input>
+                <FloatLabelInput label={"Ville"} value={locationState.locationDTO.name}/>
+                <FloatLabelInput label={"Début"} value={DateFormatter.prototype.formatDate(locationState.locationDTO.startDate)}/>
+                <FloatLabelInput label={"Fin"} value={DateFormatter.prototype.formatDate(locationState.locationDTO.endDate)}/>
+              
             </div>
             :
             <p>{locationState.locationDTO.name} - {DateFormatter.prototype.formatDate(locationState.locationDTO.startDate)}
