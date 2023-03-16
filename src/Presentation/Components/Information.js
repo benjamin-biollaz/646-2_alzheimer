@@ -14,7 +14,8 @@ import { GiNightSleep } from "react-icons/gi";
 import { BsFillSunriseFill, BsSunriseFill } from "react-icons/bs";
 import { TfiTimer } from "react-icons/tfi";
 import { GiMeal } from "react-icons/gi";
-import { TimelineWidget } from './Timeline/Timeline';
+import { TimelineWidget } from "./Timeline/Timeline";
+import { FaWheelchair } from "react-icons/fa";
 
 function Information() {
   function MusicNoteIcon() {
@@ -27,9 +28,15 @@ function Information() {
         <Navbar />
       </div>
       <div className="personal_infos">
-        <span className="patient_name">Emilie Teodoro</span>
+        <span>Emilie Teodoro</span>
         &nbsp;
-        <span className="patient_name">24 ans</span>
+        <span>24 ans</span>
+        &nbsp;
+        <span className="moyens_aux">Moyens auxiliaire</span>
+        &nbsp;
+        <div className="icon">
+          <FaWheelchair />
+        </div>
       </div>
 
       <div className="container_infos">
@@ -119,7 +126,7 @@ function Information() {
         {/* //---------------- EVENTS ------------------// */}
         <div className="evenements">
           <h3 className="label">Évènements</h3>
-          <div className='divTimelineWidget'>
+          <div className="divTimelineWidget">
             <TimelineWidget />
           </div>
         </div>

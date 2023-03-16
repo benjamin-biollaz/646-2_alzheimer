@@ -21,6 +21,7 @@
   left: auto;
   right: 0;
   float: right;
+  z-index: 1;
 }
 
 @media only screen and (min-width: 768px) {
@@ -52,6 +53,7 @@
 }
 
 .login_container {
+  position: relative;
   width: 400px;
   height: 400px;
   font-size: 15px;
@@ -60,11 +62,12 @@
   justify-content: center; /* center horizontally */
   align-items: center;
   flex-direction: column;
+  z-index: 2;
 }
 
 input {
   display: block;
-  background-color: #e9dac4;
+  background-color: #e7d7c1;
   margin-block: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   height: 45px;
@@ -75,14 +78,14 @@ input {
 }
 
 input::placeholder {
-  color: #224957;
+  color: #780000;
   opacity: 100;
   padding-left: 5px;
   font-weight: bold;
 }
 
 input:hover {
-  box-shadow: #054a2f 2px 2px 2px 2px;
+  box-shadow: #780000 2px 2px 2px 2px;
 }
 
 .btn_container {
