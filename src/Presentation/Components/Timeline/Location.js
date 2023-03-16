@@ -18,18 +18,23 @@ function Location({ location, isEditable }) {
 
   return isEditable ? (
     <div className="inputDiv">
-      <FloatLabelInput label={"Ville"} value={locationState.locationDTO.name} />
+      <FloatLabelInput
+        label={"Ville"}
+        value={locationState.name}
+        name={"name"}
+        onChange={onInputChange}
+      />
       <FloatLabelInput
         label={"Début"}
-        value={DateFormatter.prototype.formatDate(
-          locationState.locationDTO.startDate
-        )}
+        value={DateFormatter.prototype.formatDate(locationState.startDate)}
+        name={"startDate"}
+        onChange={onInputChange}
       />
       <FloatLabelInput
         label={"Fin"}
-        value={DateFormatter.prototype.formatDate(
-          locationState.locationDTO.endDate
-        )}
+        value={DateFormatter.prototype.formatDate(locationState.endDate)}
+        name={"endDate"}
+        onChange={onInputChange}
       />
     </div>
   ) : (

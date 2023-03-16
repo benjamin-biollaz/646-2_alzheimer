@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
+import FloatLabelInput from "../FloatLabelInput";
 
 function Period({ period, isEditable }) {
   const [periodState, setPeriod] = useState(period.periodDTO);
@@ -18,31 +19,31 @@ function Period({ period, isEditable }) {
 
   return isEditable ? (
     <div className="inputDiv">
-      <form>
-        <input
-          className="inputTimeline"
-          value={periodState.name}
-          onChange={onInputChange}
-          type="text"
-          name={"name"}
-        ></input>
+      <FloatLabelInput
+        label={"Période"}
+        value={periodState.name}
+        onChange={onInputChange}
+        type="text"
+        name={"name"}
+      />
 
-        <input
-          className="inputTimeline"
-          value={DateFormatter.prototype.formatDate(periodState.startDate)}
-          onChange={onInputChange}
-          type="date"
-          name={"startDate"}
-        ></input>
+      <FloatLabelInput
+        label={"Début"}
+        className="inputTimeline"
+        value={DateFormatter.prototype.formatDate(periodState.startDate)}
+        onChange={onInputChange}
+        type="date"
+        name={"startDate"}
+      />
 
-        <input
-          className="inputTimeline"
-          value={DateFormatter.prototype.formatDate(periodState.endDate)}
-          onChange={onInputChange}
-          type="date"
-          name={"endDate"}
-        ></input>
-      </form>
+      <FloatLabelInput
+        label={"Fin"}
+        className="inputTimeline"
+        value={DateFormatter.prototype.formatDate(periodState.endDate)}
+        onChange={onInputChange}
+        type="date"
+        name={"endDate"}
+      />
     </div>
   ) : (
     <p>

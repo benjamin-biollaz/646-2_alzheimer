@@ -21,12 +21,14 @@ function Event({ event, isEditable }) {
     <div className="inputDiv">
       <FloatLabelInput
         label="Évènement"
+        name={"name"}
         value={eventState.name}
         onChange={onInputChange}
         type={"text"}
       />
       <FloatLabelInput
         label="Date"
+        name={"date"}
         value={DateFormatter.prototype.formatDate(eventState.date)}
         onChange={onInputChange}
         type={"date"}
