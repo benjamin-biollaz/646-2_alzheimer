@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Timeline, {
     TimelineMarkers,
     CustomMarker,
@@ -21,6 +21,7 @@ import Popup from 'reactjs-popup';
 import TimelineForm from "./TimelineForm";
 import 'reactjs-popup/dist/index.css';
 import '../../CSS/TimelineForm.css'
+import { height, width } from '@mui/system';
 
 
 export function TimelineWidget(resident) {
@@ -39,6 +40,10 @@ export function TimelineWidget(resident) {
     const [events, setEvents] = useState([]);
     const [locations, setLocations] = useState([]);
     const [items, setItems] = useState([]);
+    const [toolTipText, setToolTipText] = useState("");
+
+    const ref = useRef();
+    const toggleTooltip = () => ref.current.toggle();
 
     //Default useEffect
     useEffect(() => {
@@ -89,6 +94,10 @@ export function TimelineWidget(resident) {
             itemProps: {
                 'data-custom-attribute': 'Random content',
                 'aria-hidden': true,
+                onDoubleClick: () => {
+                    setToolTipText(element.eventDTO.name);
+                    toggleTooltip()
+                },
                 style: {
                     background: element.eventDTO.color,
                     color: 'black',
@@ -136,6 +145,7 @@ export function TimelineWidget(resident) {
 
     return (
         <div>
+            <Popup className-popup={'info-popup-content'} ref={ref} position={'bottom left'} keepTooltipInside={true} trigger={<button disabled>ℹ️</button>}><div>{toolTipText}</div></Popup>
             <Timeline
                 groups={groups}
                 items={items}
@@ -171,7 +181,7 @@ export function TimelineWidget(resident) {
             </Timeline>
             <br />
             <div>
-                <Popup trigger={<button> Open pop up</button>} closeOnDocumentClick modal position='center center'>
+                <Popup className-content={'form-popup-content'} trigger={<button> Open pop up</button>} closeOnDocumentClick modal position='center center'>
                     <TimelineForm events={events} periods={periods} locations={locations} />
                 </Popup>
                 <button onClick={() => window.location.reload()}>Reset</button>
