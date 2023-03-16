@@ -2,20 +2,30 @@ import React, { useState } from "react";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
 import FloatLabelInput from "../FloatLabelInput";
 
-function Event({ event, isEditable }) {
+/**
+ * Event renders the details of a timeline event either an input or a text field 
+ * depending if the view is readonly or not.
+ */
+
+function Event({ event, isEditable, updateEventsList }) {
   const [eventState, setEvent] = useState(event.eventDTO);
 
-  const onInputChange = (event) => {
-    const target = event.target;
+  const onInputChange = (e) => {
+    const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const fieldName = target.name;
 
-    //update event state
+    //update event state for display
     setEvent((prevState) => ({
       ...prevState,
       [fieldName]: value, //es6 computed property syntax
-    }));
+    }))
+
   };
+
+  // update events list of parent component
+  // this is called at every render as setState renders the component again
+  updateEventsList(event.id, eventState);
 
   return isEditable ? (
     <div className="inputDiv">
