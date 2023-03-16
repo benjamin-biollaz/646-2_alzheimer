@@ -1,6 +1,6 @@
-import {initializeApp} from "firebase/app";
-import {getAuth} from "firebase/auth";
-import {collection, getFirestore} from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { collection, getFirestore } from "firebase/firestore";
 import { eventConverter } from "../DTO/EventDTO";
 import { periodConverter } from "../DTO/PeriodDTO";
 import { residentConverter } from "../DTO/ResidentDTO";
@@ -28,5 +28,5 @@ const eventRef = collection(db, "Events").withConverter(eventConverter);
 
 
 export const auth = getAuth(app);
-export {db};
-export {timelineRef, residentRef, periodRef, eventRef};
+export { db };
+export { timelineRef, residentRef, periodRef, eventRef };
