@@ -65,7 +65,7 @@
   z-index: 2;
 }
 
-input {
+.login_input {
   display: block;
   background-color: #e7d7c1;
   margin-block: 10px;
@@ -79,6 +79,7 @@ input {
 
 input::placeholder {
   color: #780000;
+  color: #224957;
   opacity: 100;
   padding-left: 5px;
   font-weight: bold;
@@ -86,6 +87,7 @@ input::placeholder {
 
 input:hover {
   box-shadow: #780000 2px 2px 2px 2px;
+  box-shadow: #054a2f 2px 2px 2px 2px;
 }
 
 .btn_container {
