@@ -3,19 +3,17 @@ import { DateFormatter } from "../../../Utilities/DateFormatter";
 import FloatLabelInput from "../FloatLabelInput";
 
 function Event({ event, isEditable }) {
-  const [eventState, setEvent] = useState(event);
+  const [eventState, setEvent] = useState(event.eventDTO);
 
   const onInputChange = (event) => {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const fieldName = target.name;
 
-    alert(fieldName);
-
     //update event state
     setEvent((prevState) => ({
       ...prevState,
-      [fieldName]: value,
+      [fieldName]: value, //es6 computed property syntax
     }));
   };
 
@@ -23,21 +21,20 @@ function Event({ event, isEditable }) {
     <div className="inputDiv">
       <FloatLabelInput
         label="Évènement"
-        value={eventState.eventDTO.name}
+        value={eventState.name}
         onChange={onInputChange}
         type={"text"}
       />
       <FloatLabelInput
         label="Date"
-        value={DateFormatter.prototype.formatDate(eventState.eventDTO.date)}
+        value={DateFormatter.prototype.formatDate(eventState.date)}
         onChange={onInputChange}
         type={"date"}
       />
     </div>
   ) : (
     <p>
-      {eventState.eventDTO.name} -{" "}
-      {DateFormatter.prototype.formatDate(eventState.eventDTO.date)}
+      {eventState.name} - {DateFormatter.prototype.formatDate(eventState.date)}
     </p>
   );
 }
