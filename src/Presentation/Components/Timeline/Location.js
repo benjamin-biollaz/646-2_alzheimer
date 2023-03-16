@@ -20,13 +20,13 @@ function Location({ location, isEditable }) {
         isEditable ?
             <div className='inputDiv'>
                 <input className='inputTimeline' value={locationState.locationDTO.name}
-                    onChange={onInputChange}></input>
+                    onChange={onInputChange} type="text"></input>
 
                 <input className='inputTimeline' value={DateFormatter.prototype.formatDate(locationState.locationDTO.startDate)}
-                    onChange={onInputChange}></input>
+                    onChange={onInputChange} type="date"></input>
 
                 <input className='inputTimeline' value={DateFormatter.prototype.formatDate(locationState.locationDTO.endDate)}
-                    onChange={onInputChange}></input>
+                    onChange={onInputChange} type="date"></input>
             </div>
             :
             <p>{locationState.locationDTO.name} - {DateFormatter.prototype.formatDate(locationState.locationDTO.startDate)}

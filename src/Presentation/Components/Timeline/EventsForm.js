@@ -7,14 +7,15 @@ function EventsForm({ events }) {
 
     const renderEvents = (events, isEditable) => {
         return events.map((ev) => (
-            <Event event={ev} isEditable={isEditable}></Event>
+            <Event key={ev.id} event={ev} isEditable={isEditable}></Event>
         ));
     }
 
     return (
         <div className='flexDiv'>
-            <GenericForm divId='eventsDiv' title='Events' isEditable={false}
-                renderItems={renderEvents} items={events}></GenericForm>
+            <GenericForm divId='eventsDiv' title='Events'
+                isEditable={false} renderItems={renderEvents}
+                items={events}></GenericForm>
         </div>
     );
 }

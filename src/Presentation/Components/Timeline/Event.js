@@ -6,9 +6,12 @@ function Event({ event, isEditable }) {
     const [eventState, setEvent] = useState(event);
 
     const onInputChange = (event) => {
+
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const fieldName = target.name;
+
+        alert(fieldName);
 
         //update event state
         setEvent((prevState) => ({

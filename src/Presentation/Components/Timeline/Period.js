@@ -22,13 +22,13 @@ function Period({ period, isEditable }) {
             <div className='inputDiv'>
                 <form>
                     <input className='inputTimeline' value={periodState.periodDTO.name}
-                    onChange={onInputChange}></input>
+                    onChange={onInputChange} type="text"></input>
 
                     <input className='inputTimeline' value={DateFormatter.prototype.formatDate(periodState.periodDTO.startDate)}
-                    onChange={onInputChange}></input>
+                    onChange={onInputChange} type="date"></input>
 
                     <input className='inputTimeline' value={DateFormatter.prototype.formatDate(periodState.periodDTO.endDate)}
-                    onChange={onInputChange}></input>
+                    onChange={onInputChange} type="date"></input>
                 </form>
             </div>
             :
