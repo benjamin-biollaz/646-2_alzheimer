@@ -65,7 +65,7 @@
   z-index: 2;
 }
 
-input {
+.login_input {
   display: block;
   background-color: #e7d7c1;
   margin-block: 10px;

@@ -26,7 +26,7 @@ function Login() {
       <div className="login">
         <div className="login_container">
           <input className="login_input" placeholder="Username"></input>
-          <input className="pswd_input" placeholder="Password"></input>
+          <input className="login_input" placeholder="Password"></input>
           <div className="btn_container">
             <Button />
           </div>
