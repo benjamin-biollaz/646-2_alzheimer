@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Timeline, {
     TimelineMarkers,
     CustomMarker,
@@ -21,6 +21,7 @@ import Popup from 'reactjs-popup';
 import TimelineForm from "./TimelineForm";
 import 'reactjs-popup/dist/index.css';
 import '../../CSS/TimelineForm.css'
+import { height, width } from '@mui/system';
 
 
 export function TimelineWidget(resident) {
@@ -39,103 +40,89 @@ export function TimelineWidget(resident) {
     const [events, setEvents] = useState([]);
     const [locations, setLocations] = useState([]);
     const [items, setItems] = useState([]);
+    const [toolTipText, setToolTipText] = useState("");
 
-    //Default useEffect
+    const ref = useRef();
+    const toggleTooltip = () => ref.current.toggle();
+
     useEffect(() => {
-        fetchTimeline();
-    }, [])
+        const fetchData = async () => {
+            const timeline = await timelineDAO.getTimelineByResidentId('HvrELV7MRnnJcV24ro1w');
+            // const timeline = await timelineDAO.getTimelineByResidentId(resident.id);
+            setTimeline(timeline);
 
-    // Place events
-    useEffect(() => {
-        placeEvents(events);
-        console.warn("event use effect");
-    }, [events]);
+            const periods = await periodDAO.getPeriodsByTimelineId(timeline.id);
+            const events = await eventDAO.getEventsByTimelineId(timeline.id);
+            const locations = await locationDAO.getLocationsByTimelineId(timeline.id);
 
-    // Place periods
-    useEffect(() => {
-        placePeriods(periods);
-        console.warn("period use effect");
-    }, [periods]);
+            // Combine items from all sources into a single array
+            const allItems = [
 
-    // Place locations
-    useEffect(() => {
-        placeLocations(locations);
-        console.warn("location use effect");
-    }, [locations]);
+                // Mapping event elements
+                ...events.map((element) => ({
+                    id: parseInt(element.id, 36),
+                    group: 3,
+                    // title: (element.eventDTO.name).split(/\s+/).slice(0, 1),
+                    title: element.eventDTO.name,
+                    tip: element.eventDTO.name,
+                    start_time: moment(element.eventDTO.date.toDate().toDateString()),
+                    end_time: moment(element.eventDTO.date.toDate().toDateString()).add(10, 'day'),
+                    canMove: false,
+                    itemProps: {
+                        'data-custom-attribute': 'Random content',
+                        'aria-hidden': true,
+                        onDoubleClick: () => {
+                            setToolTipText(element.eventDTO.name);
+                            toggleTooltip()
+                        },
+                        style: {
+                            background: element.eventDTO.color,
+                            color: 'black',
+                        },
+                    },
+                })),
 
+                // Mapping period elements
+                ...periods.map((element) => ({
+                    id: parseInt(element.id, 36),
+                    group: 1,
+                    title: element.periodDTO.name,
+                    tip: element.periodDTO.name,
+                    start_time: moment(element.periodDTO.startDate.toDate().toDateString()),
+                    end_time: moment(element.periodDTO.endDate.toDate().toDateString()),
+                    canMove: false,
+                    itemProps: {
+                        style: {
+                            background: element.periodDTO.color,
+                        },
+                    },
+                })),
 
-    const fetchTimeline = async () => {
-        const timeline = await timelineDAO.getTimelineByResidentId('HvrELV7MRnnJcV24ro1w');
-        // const timeline = await timelineDAO.getTimelineByResidentId('resident.id');
-        setTimeline(timeline);
-        const periods = await periodDAO.getPeriodsByTimelineId(timeline.id);
-        setPeriods(periods);
-        const events = await eventDAO.getEventsByTimelineId(timeline.id);
-        setEvents(events);
-        const locations = await locationDAO.getLocationsByTimelineId(timeline.id);
-        setLocations(locations);
-    }
+                // Mapping locations elements
+                ...locations.map((element) => ({
+                    id: parseInt(element.id, 36),
+                    group: 2,
+                    title: element.locationDTO.name,
+                    tip: element.locationDTO.name,
+                    start_time: moment(element.locationDTO.startDate.toDate().toDateString()),
+                    end_time: moment(element.locationDTO.endDate.toDate().toDateString()),
+                    canMove: false,
+                    itemProps: {
+                        style: {
+                            background: element.locationDTO.color,
+                        },
+                    },
+                }))
+            ];
+            setItems(allItems);
+        };
 
-    const placeEvents = (events) => {
-        const newItem = events.map((element) => ({
-            id: parseInt(element.id, 36),
-            group: 3,
-            // title: (element.eventDTO.name).split(/\s+/).slice(0, 1),
-            title: element.eventDTO.name,
-            tip: element.eventDTO.name,
-            start_time: moment(element.eventDTO.date.toDate().toDateString()),
-            end_time: moment(element.eventDTO.date.toDate().toDateString()).add(10, 'day'),
-            canMove: false,
-            itemProps: {
-                'data-custom-attribute': 'Random content',
-                'aria-hidden': true,
-                style: {
-                    background: element.eventDTO.color,
-                    color: 'black',
-                },
-            },
-        }));
-        items.push(...newItem);
-    };
-
-    const placePeriods = (periods) => {
-        const newItem = periods.map((element) => ({
-            id: parseInt(element.id, 36),
-            group: 1,
-            title: element.periodDTO.name,
-            tip: element.periodDTO.name,
-            start_time: moment(element.periodDTO.startDate.toDate().toDateString()),
-            end_time: moment(element.periodDTO.endDate.toDate().toDateString()),
-            canMove: false,
-            itemProps: {
-                style: {
-                    background: element.periodDTO.color,
-                },
-            },
-        }));
-        items.push(...newItem);
-    };
-
-    const placeLocations = (locations) => {
-        const newItem = locations.map((element) => ({
-            id: parseInt(element.id, 36),
-            group: 2,
-            title: element.locationDTO.name,
-            tip: element.locationDTO.name,
-            start_time: moment(element.locationDTO.startDate.toDate().toDateString()),
-            end_time: moment(element.locationDTO.endDate.toDate().toDateString()),
-            canMove: false,
-            itemProps: {
-                style: {
-                    background: element.locationDTO.color,
-                },
-            },
-        }));
-        items.push(...newItem);
-    };
+        fetchData();
+    }, []);
 
     return (
         <div>
+            <Popup className-popup={'info-popup-content'} ref={ref} position={'bottom left'} keepTooltipInside={true} trigger={<button disabled>ℹ️</button>}><div>{toolTipText}</div></Popup>
             <Timeline
                 groups={groups}
                 items={items}
@@ -171,7 +158,7 @@ export function TimelineWidget(resident) {
             </Timeline>
             <br />
             <div>
-                <Popup trigger={<button> Open pop up</button>} closeOnDocumentClick modal position='center center'>
+                <Popup className-content={'form-popup-content'} trigger={<button> Open pop up</button>} closeOnDocumentClick modal position='center center'>
                     <TimelineForm events={events} periods={periods} locations={locations} />
                 </Popup>
                 <button onClick={() => window.location.reload()}>Reset</button>
