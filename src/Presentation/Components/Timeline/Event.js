@@ -3,7 +3,7 @@ import { DateFormatter } from '../../../Utilities/DateFormatter';
 
 function Event({ event, isEditable }) {
 
-    const [eventState, setEvent] = useState(event);
+    const [eventState, setEvent] = useState(event.eventDTO);
 
     const onInputChange = (event) => {
 
@@ -11,28 +11,27 @@ function Event({ event, isEditable }) {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const fieldName = target.name;
 
-        alert(fieldName);
-
         //update event state
         setEvent((prevState) => ({
-            ...prevState,
-            [fieldName]: value,
+            ...prevState, [fieldName]: value, //es6 computed property syntax
         }));
+    
+
     }
 
     return (
         isEditable ?
             <div className='inputDiv'>
                 <form>
-                    <input className='inputTimeline' value={eventState.eventDTO.name}
+                    <input className='inputTimeline' value={eventState.name}
                         type="text" name={"name"} onChange={onInputChange}></input>
 
-                    <input className='inputTimeline' value={DateFormatter.prototype.formatDate(eventState.eventDTO.date)}
+                    <input className='inputTimeline' value={DateFormatter.prototype.formatDate(eventState.date)}
                         type="date" name={"date"} onChange={onInputChange}></input>
                 </form>
             </div>
             : 
-            <p>{eventState.eventDTO.name} - {DateFormatter.prototype.formatDate(eventState.eventDTO.date)}</p>
+            <p>{eventState.name} - {DateFormatter.prototype.formatDate(eventState.date)}</p>
     )
 }
 
