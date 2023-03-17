@@ -74,7 +74,7 @@ export function TimelineWidget(resident) {
                             toggleTooltip()
                         },
                         style: {
-                            background: element.eventDTO.color,
+                            // background: element.eventDTO.color,
                             color: 'black',
                         },
                     },
@@ -91,7 +91,7 @@ export function TimelineWidget(resident) {
                     canMove: false,
                     itemProps: {
                         style: {
-                            background: element.periodDTO.color,
+                            // background: element.periodDTO.color,
                         },
                     },
                 })),
@@ -107,7 +107,7 @@ export function TimelineWidget(resident) {
                     canMove: false,
                     itemProps: {
                         style: {
-                            background: element.locationDTO.color,
+                            // background: element.locationDTO.color,
                         },
                     },
                 })),

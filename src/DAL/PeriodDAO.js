@@ -1,7 +1,7 @@
 import { doc, getDocs, collection, withConverter, setDoc, addDoc } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { periodConverter, PeriodDTO } from "../DTO/PeriodDTO";
-import {PeriodWithId} from "../DTO/PeriodWithId";
+import { PeriodWithId } from "../DTO/PeriodWithId";
 
 class PeriodDAO {
     /**
@@ -43,7 +43,7 @@ class PeriodDAO {
                     "Periods")
                 , periodToChange.id).withConverter(periodConverter);
 
-        await setDoc(eventRef, new PeriodDTO(newName, newStartDate, newEndDate, '#c1121f'));
+        await setDoc(eventRef, new PeriodDTO(newName, newStartDate, newEndDate));
     }
 
     async addPeriod(timelineId, name, startDate, endDate) {
