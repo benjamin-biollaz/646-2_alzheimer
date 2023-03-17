@@ -35,7 +35,9 @@ function EventsForm({ events }) {
     }
 
     const renderEvents = (events, isEditable) => {
-        return events.map((ev) => (
+        return events
+        .sort((a, b) => new Date(a.eventDTO.date) - new Date(b.eventDTO.date)) 
+        .map((ev) => (
             <Event key={ev.id} event={ev} isEditable={isEditable}
                 updateEventsList={updateEventsList}></Event>
         ));
@@ -49,7 +51,7 @@ function EventsForm({ events }) {
 
     return (
         <div className='flexDiv'>
-            <GenericForm divId='eventsDiv' title='Events'
+            <GenericForm divId='eventsDiv' title='Evénements'
                 renderItems={renderEvents} renderAddForm={renderAdd}
                 items={events} submitModifications={updateEventsInDB}></GenericForm>
         </div>

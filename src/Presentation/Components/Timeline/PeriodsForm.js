@@ -32,7 +32,9 @@ function PeriodsForm({periods}) {
     }
 
     const renderPeriods = (periods, isEditable) => {
-        return periods.map((per) => (
+        return periods
+        .sort((a, b) => new Date(a.periodDTO.endDate) - new Date(b.periodDTO.endDate)) 
+        .map((per) => (
            <Period key={per.id} period={per} isEditable={isEditable} updatePeriodList={updatePeriodsList}></Period>
         ))}
 
@@ -44,7 +46,7 @@ function PeriodsForm({periods}) {
 
     return (
         <div className='flexDiv'>
-           <GenericForm divId='periodsDiv' title='Periods' renderItems={renderPeriods} renderAddForm={renderAdd}
+           <GenericForm divId='periodsDiv' title='Périodes' renderItems={renderPeriods} renderAddForm={renderAdd}
             items={periods} submitModifications={updatePeriodsInDB}></GenericForm>
             </div>
     );

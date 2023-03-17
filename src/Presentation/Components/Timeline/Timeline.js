@@ -23,7 +23,7 @@ import { DateFormatter } from '../../../Utilities/DateFormatter';
 
 export function TimelineWidget(resident) {
 
-    const groups = [{ id: 1, title: 'Périodes' }, { id: 2, title: 'Lieux' }, { id: 3, title: 'Evenements' }]
+    const groups = [{ id: 1, title: 'Périodes' }, { id: 2, title: 'Lieux' }, { id: 3, title: 'Evénements' }]
 
     // Create instances of DAO classes
     const timelineDAO = new TimelineDAO();

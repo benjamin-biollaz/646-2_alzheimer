@@ -32,7 +32,9 @@ function LocationsForm({ locations }) {
     }
 
     const renderLocations = (locations, isEditable) => {
-        return locations.map((loc) => (
+        return locations
+        .sort((a, b) => new Date(a.locationDTO.endDate) - new Date(b.locationDTO.endDate)) 
+        .map((loc) => (
             <Location key={loc.id} location={loc} isEditable={isEditable} updateLocationList={updateLocationsList}></Location>
         ));
     }
@@ -45,7 +47,7 @@ function LocationsForm({ locations }) {
 
     return (
         <div className='flexDiv'>
-            <GenericForm divId='locationsDiv' title='Locations'renderItems={renderLocations} renderAddForm={renderAdd} 
+            <GenericForm divId='locationsDiv' title='Lieux'renderItems={renderLocations} renderAddForm={renderAdd} 
             items={locations} submitModifications={updateLocationsInDB}></GenericForm>
         </div>
     );
