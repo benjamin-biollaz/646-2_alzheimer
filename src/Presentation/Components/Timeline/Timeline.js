@@ -41,6 +41,7 @@ export function TimelineWidget(resident) {
     const [locations, setLocations] = useState([]);
     const [items, setItems] = useState([]);
     const [toolTipText, setToolTipText] = useState("");
+    const [min, setMin] = useState("1900-01-01");
 
     const ref = useRef();
     const toggleTooltip = () => ref.current.toggle();
@@ -54,6 +55,7 @@ export function TimelineWidget(resident) {
             const periods = await periodDAO.getPeriodsByTimelineId(timeline.id);
             const events = await eventDAO.getEventsByTimelineId(timeline.id);
             const locations = await locationDAO.getLocationsByTimelineId(timeline.id);
+            
 
             // Combine items from all sources into a single array
             const allItems = [
@@ -65,8 +67,8 @@ export function TimelineWidget(resident) {
                     // title: (element.eventDTO.name).split(/\s+/).slice(0, 1),
                     title: element.eventDTO.name,
                     tip: element.eventDTO.name,
-                    start_time: moment(element.eventDTO.date.toDate().toDateString()),
-                    end_time: moment(element.eventDTO.date.toDate().toDateString()).add(10, 'day'),
+                    start_time: moment(element.eventDTO.date,"YYYYMMDD"),
+                    end_time: moment(element.eventDTO.date,"YYYYMMDD").add(10, 'day'),
                     canMove: false,
                     itemProps: {
                         'data-custom-attribute': 'Random content',
@@ -88,8 +90,8 @@ export function TimelineWidget(resident) {
                     group: 1,
                     title: element.periodDTO.name,
                     tip: element.periodDTO.name,
-                    start_time: moment(element.periodDTO.startDate.toDate().toDateString()),
-                    end_time: moment(element.periodDTO.endDate.toDate().toDateString()),
+                    start_time: moment(element.periodDTO.startDate,"YYYYMMDD"),
+                    end_time: moment(element.periodDTO.endDate,"YYYYMMDD"),
                     canMove: false,
                     itemProps: {
                         style: {
@@ -104,16 +106,24 @@ export function TimelineWidget(resident) {
                     group: 2,
                     title: element.locationDTO.name,
                     tip: element.locationDTO.name,
-                    start_time: moment(element.locationDTO.startDate.toDate().toDateString()),
-                    end_time: moment(element.locationDTO.endDate.toDate().toDateString()),
+                    start_time: moment(element.locationDTO.startDate,"YYYYMMDD"),
+                    end_time: moment(element.locationDTO.endDate,"YYYYMMDD"),
                     canMove: false,
                     itemProps: {
                         style: {
                             background: element.locationDTO.color,
                         },
                     },
-                }))
+                })),
+
             ];
+
+             //get min date
+             var tempmin=Math.min(...allItems.map(item => item.start_time));
+             setMin(tempmin);
+                        
+
+
             setItems(allItems);
             
             setEvents(events);
@@ -130,12 +140,12 @@ export function TimelineWidget(resident) {
             <Timeline
                 groups={groups}
                 items={items}
-                defaultTimeStart={moment("19600101", "YYYYMMDD")}
-                defaultTimeEnd={moment()}
+                defaultTimeStart={moment(min, "YYYYMMDD")}
+                defaultTimeEnd={moment().add(1,'month')}
                 maxZoom={70 * 365.24 * 86400 * 1000}
                 minZoom={60 * 60 * 1000 * 24 * 50}
-                canvasStartTime={moment("19600101", "YYYYMMDD")}
-                canvasEndTime={moment()}
+                canvasStartTime={moment(min, "YYYYMMDD")}
+                canvasEndTime={moment().add(1,'month')}
             >
                 <TimelineHeaders>
                     <SidebarHeader>

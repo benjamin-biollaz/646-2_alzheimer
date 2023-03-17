@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
 import FloatLabelInput from "../FloatLabelInput";
+import moment from "moment";
 
 function Period({ period, isEditable }) {
   const [periodState, setPeriod] = useState(period.periodDTO);
@@ -30,7 +31,7 @@ function Period({ period, isEditable }) {
       <FloatLabelInput
         label={"Début"}
         className="inputTimeline"
-        value={DateFormatter.prototype.formatDate(periodState.startDate)}
+        value={periodState.startDate}
         onChange={onInputChange}
         type="date"
         name={"startDate"}
@@ -39,7 +40,7 @@ function Period({ period, isEditable }) {
       <FloatLabelInput
         label={"Fin"}
         className="inputTimeline"
-        value={DateFormatter.prototype.formatDate(periodState.endDate)}
+        value={periodState.endDate}
         onChange={onInputChange}
         type="date"
         name={"endDate"}
@@ -48,8 +49,8 @@ function Period({ period, isEditable }) {
   ) : (
     <p>
       {periodState.name} -{" "}
-      {DateFormatter.prototype.formatDate(periodState.startDate)}-{" "}
-      {DateFormatter.prototype.formatDate(periodState.endDate)}
+      {moment(periodState.startDate).format("DD/MM/YYYY")}-{" "}
+      {moment(periodState.endDate).format("DD/MM/YYYY")}
     </p>
   );
 }
