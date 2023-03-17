@@ -39,6 +39,11 @@ export function TimelineWidget(resident) {
     const [toolTipText, setToolTipText] = useState("");
     const [min, setMin] = useState("1930-01-01");
 
+    // Colors
+    const periodsColors = ["#f48c06", "#e85d04", "#dc2f02", "#d00000", "#9d0208"];
+    const locationsColors = ["#00b4d8", "#0096c7", "#0077b6", "#90e0ef", "#caf0f8"];
+    const eventsColors = ["#3c096c", "#5a189a", "#7b2cbf", "#9d4edd", "#c77dff"];
+
     const ref = useRef();
     const toggleTooltip = () => ref.current.toggle();
 
@@ -51,13 +56,13 @@ export function TimelineWidget(resident) {
             const periods = await periodDAO.getPeriodsByTimelineId(timeline.id);
             const events = await eventDAO.getEventsByTimelineId(timeline.id);
             const locations = await locationDAO.getLocationsByTimelineId(timeline.id);
-
+            const random = Math.floor(Math.random() * periodsColors.length);
 
             // Combine items from all sources into a single array
             const allItems = [
 
                 // Mapping event elements
-                ...events.map((element) => ({
+                ...events.map((element, index) => ({
                     id: parseInt(element.id, 36),
                     group: 3,
                     // title: (element.eventDTO.name).split(/\s+/).slice(0, 1),
@@ -74,14 +79,15 @@ export function TimelineWidget(resident) {
                             toggleTooltip()
                         },
                         style: {
-                            // background: element.eventDTO.color,
+                            background: eventsColors[index % eventsColors.length],
                             color: 'black',
                         },
                     },
                 })),
+        
 
                 // Mapping period elements
-                ...periods.map((element) => ({
+                ...periods.map((element, index) => ({
                     id: parseInt(element.id, 36),
                     group: 1,
                     title: element.periodDTO.name,
@@ -91,13 +97,13 @@ export function TimelineWidget(resident) {
                     canMove: false,
                     itemProps: {
                         style: {
-                            // background: element.periodDTO.color,
+                            background: periodsColors[index % periodsColors.length],
                         },
                     },
                 })),
 
                 // Mapping locations elements
-                ...locations.map((element) => ({
+                ...locations.map((element, index) => ({
                     id: parseInt(element.id, 36),
                     group: 2,
                     title: element.locationDTO.name,
@@ -107,7 +113,7 @@ export function TimelineWidget(resident) {
                     canMove: false,
                     itemProps: {
                         style: {
-                            // background: element.locationDTO.color,
+                            background: locationsColors[index % locationsColors.length],
                         },
                     },
                 })),
