@@ -37,7 +37,7 @@ function GenericForm({ title, divId, isEditable, isAddable, items, renderItems, 
                                 <Icon name='check circle' size='small' color='green' />
                             </Button>
 
-                            <Button icon >
+                            <Button icon onClick={toggleAdd}>
                                 <Icon name='add' size='small' />
                             </Button>
                         </span>
