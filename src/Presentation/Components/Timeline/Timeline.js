@@ -1,16 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Timeline, {
     TimelineMarkers,
-    CustomMarker,
     TodayMarker,
     DateHeader,
     TimelineHeaders,
     SidebarHeader,
-    CursorMarker
 } from 'react-calendar-timeline'
 import '../../CSS/Timeline.css'
 import moment from 'moment'
-import { rightResizeStyle } from "react-calendar-timeline/lib/lib/items/styles";
 import { TimelineDAO } from '../../../DAL/TimelineDAO';
 import { EventDAO } from '../../../DAL/EventDAO';
 import { PeriodDAO } from '../../../DAL/PeriodDAO';
@@ -21,7 +18,6 @@ import Popup from 'reactjs-popup';
 import TimelineForm from "./TimelineForm";
 import 'reactjs-popup/dist/index.css';
 import '../../CSS/TimelineForm.css'
-import { height, width } from '@mui/system';
 
 
 export function TimelineWidget(resident) {

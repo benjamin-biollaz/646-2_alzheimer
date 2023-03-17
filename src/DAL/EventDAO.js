@@ -1,4 +1,4 @@
-import { doc, getDocs, collection, withConverter, updateDoc, setDoc, addDoc } from "firebase/firestore";
+import { doc, getDocs, collection, setDoc, addDoc } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { eventConverter, EventDTO } from "../DTO/EventDTO";
 import { EventWithId } from "../DTO/EventWithId";

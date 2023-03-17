@@ -1,11 +1,5 @@
 import React from 'react';
-import { TimelineWidget } from './Timeline/Timeline';
 import "../CSS/Home.css"
-import { Route, Routes, BrowserRouter } from "react-router-dom";
-import Information from "./Information";
-import { Link } from 'react-router-dom';
-import { EventDAO } from '../../DAL/EventDAO';
-import { EventDTO } from '../../DTO/EventDTO';
 
 export default function Home({ resident }) {
 

@@ -3,19 +3,19 @@ import Navbar from "./Navbar";
 import "../CSS/Information.css";
 import "../fonts/LexendDeca.ttf";
 import { GiMusicalNotes } from "react-icons/gi";
-import { GiFullPizza } from "react-icons/gi";
-import { GiNoodles } from "react-icons/gi";
-import { TbCarrotOff } from "react-icons/tb";
-import { TbPizzaOff } from "react-icons/tb";
-import { TbFishOff } from "react-icons/tb";
-import { FaBath } from "react-icons/fa";
-import { GiShower } from "react-icons/gi";
-import { GiNightSleep } from "react-icons/gi";
-import { BsFillSunriseFill, BsSunriseFill } from "react-icons/bs";
-import { TfiTimer } from "react-icons/tfi";
-import { GiMeal } from "react-icons/gi";
+// import { GiFullPizza } from "react-icons/gi";
+// import { GiNoodles } from "react-icons/gi";
+// import { TbCarrotOff } from "react-icons/tb";
+// import { TbPizzaOff } from "react-icons/tb";
+// import { TbFishOff } from "react-icons/tb";
+// import { FaBath } from "react-icons/fa";
+// import { GiShower } from "react-icons/gi";
+// import { GiNightSleep } from "react-icons/gi";
+// import { BsFillSunriseFill, BsSunriseFill } from "react-icons/bs";
+// import { TfiTimer } from "react-icons/tfi";
+// import { GiMeal } from "react-icons/gi";
 import { TimelineWidget } from "./Timeline/Timeline";
-import { FaWheelchair } from "react-icons/fa";
+// import { FaWheelchaikr } from "react-icons/fa";
 
 function Information() {
   function MusicNoteIcon() {
