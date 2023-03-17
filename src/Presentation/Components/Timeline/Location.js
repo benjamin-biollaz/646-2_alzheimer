@@ -3,7 +3,7 @@ import { DateFormatter } from "../../../Utilities/DateFormatter";
 import FloatLabelInput from "../FloatLabelInput";
 import moment from "moment";
 
-function Location({ location, isEditable }) {
+function Location({ location, isEditable, updateLocationList }) {
   const [locationState, setLocation] = useState(location.locationDTO);
 
   const onInputChange = (event) => {
@@ -18,6 +18,10 @@ function Location({ location, isEditable }) {
     }));
   };
 
+  // update locations list of parent component
+  // this is called at every render as setState renders the component again
+  updateLocationList(location.id, locationState);
+
   return isEditable ? (
     <div className="inputDiv">
       <FloatLabelInput
@@ -30,12 +34,14 @@ function Location({ location, isEditable }) {
         label={"Début"}
         value={locationState.startDate}
         name={"startDate"}
+        type={"date"}
         onChange={onInputChange}
       />
       <FloatLabelInput
         label={"Fin"}
         value={locationState.endDate}
         name={"endDate"}
+        type={"date"}
         onChange={onInputChange}
       />
     </div>

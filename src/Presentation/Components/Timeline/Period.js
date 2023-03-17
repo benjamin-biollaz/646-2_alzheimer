@@ -3,7 +3,7 @@ import { DateFormatter } from "../../../Utilities/DateFormatter";
 import FloatLabelInput from "../FloatLabelInput";
 import moment from "moment";
 
-function Period({ period, isEditable }) {
+function Period({ period, isEditable, updatePeriodList }) {
   const [periodState, setPeriod] = useState(period.periodDTO);
 
   const onInputChange = (event) => {
@@ -17,6 +17,10 @@ function Period({ period, isEditable }) {
       [fieldName]: value,
     }));
   };
+
+  // update periods list of parent component
+  // this is called at every render as setState renders the component again
+  updatePeriodList(period.id, periodState);
 
   return isEditable ? (
     <div className="inputDiv">

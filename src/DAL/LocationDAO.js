@@ -47,7 +47,7 @@ class LocationDAO {
                 , locationToChange.id).withConverter(locationConverter);
 
         // update document
-        await setDoc(locationRef, new LocationDTO(newStartDate, newEndDate, newName));
+        await setDoc(locationRef, new LocationDTO(newStartDate, newEndDate, newName, '#b08968'));
     }
 
     async addLocation(timelineId, startDate, endDate, name, color) {
