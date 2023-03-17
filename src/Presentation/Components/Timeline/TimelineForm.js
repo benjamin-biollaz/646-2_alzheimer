@@ -8,11 +8,15 @@ import LocationsForm from './LocationsForm';
 
 function TimelineForm({ periods, events, locations }) {
 
+    const [loc, setLocations] = useState(locations);
+    const [per, setPeriods] = useState(periods);
+    const [eve, setEvents] = useState(events);
+
     return (
             <div className='grid_container'>
-                <EventsForm events={periods}></EventsForm>
-                <PeriodsForm periods={events}></PeriodsForm>
-                <LocationsForm locations={locations}></LocationsForm>
+                <EventsForm events={eve}></EventsForm>
+                <PeriodsForm periods={per}></PeriodsForm>
+                <LocationsForm locations={loc}></LocationsForm>
             </div>
     );
 }
