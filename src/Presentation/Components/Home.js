@@ -9,15 +9,6 @@ import { EventDTO } from '../../DTO/EventDTO';
 
 export default function Home({ resident }) {
 
-  const addEvent = () => {
-    console.log("Add event ...")
-    const eventDAO = new EventDAO();
-
-    eventDAO.addEvent('X9mfzXVODmuErhLMbrj3', new Date(), 'from home')
-  }
-
- // addEvent();
-
   return (
     <div style={{ marginLeft: "10%", marginTop: "5%" }}>
       <h1 data-testid="1">Hello</h1>
