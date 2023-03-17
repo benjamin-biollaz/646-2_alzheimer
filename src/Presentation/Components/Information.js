@@ -32,14 +32,14 @@ function Information() {
         &nbsp;
         <span>24 ans</span>
         &nbsp;
-        <span className="moyens_aux">Moyens auxiliaire</span>
+        {/* <span className="moyens_aux">Moyens auxiliaire</span>
         &nbsp;
         <div className="icon">
           <FaWheelchair />
-        </div>
+        </div> */}
       </div>
 
-      <div className="container_infos">
+      {/* <div className="container_infos">
         <div className="passions">
           <h3 className="label">Passions</h3>
           <div className="infos_list">
@@ -122,16 +122,18 @@ function Information() {
               </div>
             </span>
           </div>
-        </div>
-        {/* //---------------- EVENTS ------------------// */}
+        </div> */}
+      {/* //---------------- EVENTS ------------------// */}
+      <div style={{marginLeft: "3%", marginRight: "3%"}}>
         <div className="evenements">
           <h3 className="label">Évènements</h3>
           <div className="divTimelineWidget">
             <TimelineWidget />
           </div>
         </div>
+      </div>
 
-        {/* //---------------- HABITUDES ------------------// */}
+      {/* //---------------- HABITUDES ------------------//
         <div className="habitudes">
           <h3 className="label">Habitudes</h3>
           <div className="habitudes_grid">
@@ -204,7 +206,7 @@ function Information() {
             &nbsp; &nbsp;
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

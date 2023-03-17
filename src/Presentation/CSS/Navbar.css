@@ -75,9 +75,9 @@
   background: #a78a7f;
 }
 
-.appBar .active {
+/* .appBar .active {
   background-color: #1a73e8;
-}
+} */
 
 .appBar ul {
   list-style-type: none;
