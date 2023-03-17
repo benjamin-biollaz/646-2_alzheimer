@@ -5,7 +5,7 @@ import { EventDTO } from "../../../DTO/EventDTO";
 
 export default function AddEvent() {
 
-    const [eventState, setEvent] = useState(new EventDTO('', '', '#fb6f92'));
+    const [eventState, setEvent] = useState(new EventDTO('', ''));
 
     const onInputChange = (e) => {
         const target = e.target;

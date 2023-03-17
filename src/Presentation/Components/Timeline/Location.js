@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { DateFormatter } from "../../../Utilities/DateFormatter";
 import FloatLabelInput from "../FloatLabelInput";
-import moment from "moment";
+import { DateFormatter } from "../../../Utilities/DateFormatter";
 
 function Location({ location, isEditable, updateLocationList }) {
   const [locationState, setLocation] = useState(location.locationDTO);
+
+  const df = new DateFormatter();
 
   const onInputChange = (event) => {
     const target = event.target;
@@ -48,8 +49,8 @@ function Location({ location, isEditable, updateLocationList }) {
   ) : (
     <p>
       {locationState.name} -{" "}
-      {moment(locationState.startDate).format("DD/MM/YYYY")}-{" "}
-      {moment(locationState.endDate).format("DD/MM/YYYY")}
+      {df.format_DDMMYYYY(locationState.startDate)}-{" "}
+      {df.format_DDMMYYYY(locationState.endDate)}
     </p>
   );
 }

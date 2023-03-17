@@ -18,6 +18,7 @@ import Popup from 'reactjs-popup';
 import TimelineForm from "./TimelineForm";
 import 'reactjs-popup/dist/index.css';
 import '../../CSS/TimelineForm.css'
+import { DateFormatter } from '../../../Utilities/DateFormatter';
 
 
 export function TimelineWidget(resident) {
@@ -44,6 +45,8 @@ export function TimelineWidget(resident) {
     const locationsColors = ["#00b4d8", "#0096c7", "#0077b6", "#90e0ef", "#caf0f8"];
     const eventsColors = ["#3c096c", "#5a189a", "#7b2cbf", "#9d4edd", "#c77dff"];
 
+    const df = new DateFormatter();
+
     const ref = useRef();
     const toggleTooltip = () => ref.current.toggle();
 
@@ -56,7 +59,6 @@ export function TimelineWidget(resident) {
             const periods = await periodDAO.getPeriodsByTimelineId(timeline.id);
             const events = await eventDAO.getEventsByTimelineId(timeline.id);
             const locations = await locationDAO.getLocationsByTimelineId(timeline.id);
-            const random = Math.floor(Math.random() * periodsColors.length);
 
             // Combine items from all sources into a single array
             const allItems = [
@@ -68,8 +70,8 @@ export function TimelineWidget(resident) {
                     // title: (element.eventDTO.name).split(/\s+/).slice(0, 1),
                     title: element.eventDTO.name,
                     tip: element.eventDTO.name,
-                    start_time: moment(element.eventDTO.date, "YYYYMMDD"),
-                    end_time: moment(element.eventDTO.date, "YYYYMMDD").add(10, 'day'),
+                    start_time: moment(df.format_YYYMMDD(element.eventDTO.date)),
+                    end_time: moment(df.format_YYYMMDD(element.eventDTO.date)).add(10, 'day'),
                     canMove: false,
                     itemProps: {
                         'data-custom-attribute': 'Random content',
@@ -92,8 +94,8 @@ export function TimelineWidget(resident) {
                     group: 1,
                     title: element.periodDTO.name,
                     tip: element.periodDTO.name,
-                    start_time: moment(element.periodDTO.startDate, "YYYYMMDD"),
-                    end_time: moment(element.periodDTO.endDate, "YYYYMMDD"),
+                    start_time: moment(df.format_YYYMMDD(element.periodDTO.startDate)),
+                    end_time: moment(df.format_YYYMMDD(element.periodDTO.endDate)),
                     canMove: false,
                     itemProps: {
                         style: {
@@ -108,8 +110,8 @@ export function TimelineWidget(resident) {
                     group: 2,
                     title: element.locationDTO.name,
                     tip: element.locationDTO.name,
-                    start_time: moment(element.locationDTO.startDate, "YYYYMMDD"),
-                    end_time: moment(element.locationDTO.endDate, "YYYYMMDD"),
+                    start_time: moment(df.format_YYYMMDD(element.locationDTO.startDate)),
+                    end_time: moment(df.format_YYYMMDD(element.locationDTO.endDate)),
                     canMove: false,
                     itemProps: {
                         style: {
@@ -140,11 +142,11 @@ export function TimelineWidget(resident) {
             <Timeline
                 groups={groups}
                 items={items}
-                defaultTimeStart={moment(min, "YYYYMMDD")}
+                defaultTimeStart={moment(df.format_YYYMMDD(min))}
                 defaultTimeEnd={moment().add(1, 'month')}
                 maxZoom={70 * 365.24 * 86400 * 1000}
                 minZoom={60 * 60 * 1000 * 24 * 50}
-                canvasStartTime={moment(min, "YYYYMMDD")}
+                canvasStartTime={moment(df.format_YYYMMDD(min))}
                 canvasEndTime={moment().add(1, 'month')}
             >
                 <TimelineHeaders>
