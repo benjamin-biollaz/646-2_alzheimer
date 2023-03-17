@@ -26,19 +26,21 @@ function GenericForm({ title, divId, isEditable, items, renderItems, submitModif
                     <h3 className='sectionTitle'>{title}</h3>
 
                     {isEditableState ?
-                        <Button icon onClick={sendModifications}>
-                            <Icon name='check circle' size='small' color='green'  />
-                        </Button>
-                        :
-                        ''
-                    }
-                    <Button icon onClick={toggleView}>
-                        <Icon name='edit' size='small' />
-                    </Button>
+                        <span>
+                            <Button icon onClick={sendModifications}>
+                                <Icon name='check circle' size='small' color='green' />
+                            </Button>
 
-                    <Button icon >
-                        <Icon name='add' size='small' />
-                    </Button>
+                            <Button icon >
+                                <Icon name='add' size='small' />
+                            </Button>
+                        </span>
+                        :
+                        <Button icon onClick={toggleView}>
+                            <Icon name='edit' size='small' />
+                        </Button>
+
+                    }
                 </div>
             </div>
             <div className={isEditableState ? 'sectionDiv' : 'sectionDiv greyBackground'}>
