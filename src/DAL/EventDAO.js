@@ -27,8 +27,8 @@ class EventDAO {
      * Update the event
      * @param {The timeline document id} timelineId 
      * @param {The old event, must be of type EventWithId.} eventToChange 
-     * @param {New date} date 
-     * @param {New name} name 
+     * @param {New date} new date 
+     * @param {New name} new name 
      * @returns Nothing
      */
     async updateEvent(timelineId, eventToChange, date, name) {
@@ -43,7 +43,7 @@ class EventDAO {
                     "Events")
                 , eventToChange.id).withConverter(eventConverter);
 
-        await setDoc(eventRef, new EventDTO(date, name));
+        await setDoc(eventRef, new EventDTO(date, name, eventToChange.eventDTO.color));
     }
 
     async addEvent(timelineId, date, name) {

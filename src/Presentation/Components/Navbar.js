@@ -1,6 +1,6 @@
 import * as React from "react";
 import { NavLink } from "react-router-dom";
-import icon from "../img/dark_green.png";
+import icon from "../img/logo_memorys.png";
 import "../CSS/Navbar.css";
 import { FiMenu } from "react-icons/fi";
 
