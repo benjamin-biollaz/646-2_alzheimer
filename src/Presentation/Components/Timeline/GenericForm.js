@@ -27,13 +27,11 @@ function GenericForm({ title, divId, isEditable, items, renderItems, submitModif
 
                     {isEditableState ?
                         <Button icon onClick={sendModifications}>
-                            <Icon name='send' size='small' />
+                            <Icon name='check circle' size='small' color='green'  />
                         </Button>
                         :
                         ''
                     }
-
-
                     <Button icon onClick={toggleView}>
                         <Icon name='edit' size='small' />
                     </Button>
