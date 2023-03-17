@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
 import FloatLabelInput from "../FloatLabelInput";
+import moment from "moment";
+
 function Location({ location, isEditable }) {
   const [locationState, setLocation] = useState(location.locationDTO);
 
@@ -26,13 +28,13 @@ function Location({ location, isEditable }) {
       />
       <FloatLabelInput
         label={"Début"}
-        value={DateFormatter.prototype.formatDate(locationState.startDate)}
+        value={locationState.startDate}
         name={"startDate"}
         onChange={onInputChange}
       />
       <FloatLabelInput
         label={"Fin"}
-        value={DateFormatter.prototype.formatDate(locationState.endDate)}
+        value={locationState.endDate}
         name={"endDate"}
         onChange={onInputChange}
       />
@@ -40,8 +42,8 @@ function Location({ location, isEditable }) {
   ) : (
     <p>
       {locationState.name} -{" "}
-      {DateFormatter.prototype.formatDate(locationState.startDate)}-{" "}
-      {DateFormatter.prototype.formatDate(locationState.endDate)}
+      {moment(locationState.startDate).format("DD/MM/YYYY")}-{" "}
+      {moment(locationState.endDate).format("DD/MM/YYYY")}
     </p>
   );
 }
