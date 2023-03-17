@@ -42,14 +42,9 @@ function EventsForm({ events }) {
         ));
     }
 
-    const saveEvent = (eventState) => {
-        const eventDAO = new EventDAO();
-        eventDAO.addEvent('X9mfzXVODmuErhLMbrj3', (eventState.date).getTime(), eventState.name);
-    }
-
     const renderAdd = () => {
         return(
-            <AddEvent saveEvent={saveEvent}/>
+            <AddEvent/>
         );
     }
 

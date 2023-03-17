@@ -4,8 +4,19 @@ import "../CSS/Home.css"
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Information from "./Information";
 import { Link } from 'react-router-dom';
+import { EventDAO } from '../../DAL/EventDAO';
+import { EventDTO } from '../../DTO/EventDTO';
 
 export default function Home({ resident }) {
+
+  const addEvent = () => {
+    console.log("Add event ...")
+    const eventDAO = new EventDAO();
+
+    eventDAO.addEvent('X9mfzXVODmuErhLMbrj3', new Date(), 'from home')
+  }
+
+ // addEvent();
 
   return (
     <div style={{ marginLeft: "10%", marginTop: "5%" }}>

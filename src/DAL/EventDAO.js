@@ -47,7 +47,7 @@ class EventDAO {
     }
 
     async addEvent(timelineId, date, name) {
-        const event = new EventDTO(date, name)
+        const event = new EventDTO(date, name, '#ffb3c6')
 
         // point to the document in db
         const eventRef = 
