@@ -42,21 +42,21 @@ function EventsForm({ events }) {
         ));
     }
 
+    const saveEvent = (eventState) => {
+        const eventDAO = new EventDAO();
+        eventDAO.addEvent('X9mfzXVODmuErhLMbrj3', (eventState.date).getTime(), eventState.name);
+    }
+
     const renderAdd = () => {
         return(
             <AddEvent saveEvent={saveEvent}/>
         );
     }
 
-    const saveEvent = (eventState) => {
-        const eventDAO = new EventDAO();
-        eventDAO.addEvent('X9mfzXVODmuErhLMbrj3', (eventState.date).getTime(), eventState.name);
-    }
-
     return (
         <div className='flexDiv'>
             <GenericForm divId='eventsDiv' title='Events'
-                isEditable={false} renderItems={renderEvents} isAddable={false} renderForm={renderAdd}
+                renderItems={renderEvents} renderAddForm={renderAdd}
                 items={events} submitModifications={updateEventsInDB}></GenericForm>
         </div>
     );

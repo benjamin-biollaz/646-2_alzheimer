@@ -3,7 +3,7 @@ import { Button } from "semantic-ui-react";
 import { EventDAO } from "../../../DAL/EventDAO";
 
 
-export default function AddEvent({isAddable, props}) {
+export default function AddEvent({saveEvent}) {
     
     const [eventState, setEvent] = useState({name: '', date: ''});
 
@@ -12,11 +12,10 @@ export default function AddEvent({isAddable, props}) {
     }
 
     const addEvent = () => {
-        props.saveEvent(eventState);
+        saveEvent(eventState);
     }
 
     return(
-        isAddable ??
         <div className="inputDiv">
             <form>
                 <input className="inputTimeline" name="name" value={eventState.name} 

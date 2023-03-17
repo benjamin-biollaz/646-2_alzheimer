@@ -12,7 +12,7 @@ function PeriodsForm({periods}) {
 
     return (
         <div className='flexDiv'>
-           <GenericForm divId='periodsDiv' isEditable={false} title='Periods'
+           <GenericForm divId='periodsDiv' title='Periods'
             renderItems={renderPeriods} items={periods}></GenericForm>
             </div>
     );

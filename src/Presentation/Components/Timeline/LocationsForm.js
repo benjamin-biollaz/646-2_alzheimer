@@ -12,7 +12,7 @@ function LocationsForm({ locations }) {
 
     return (
         <div className='flexDiv'>
-            <GenericForm divId='locationsDiv' isEditable={false} title='Locations'
+            <GenericForm divId='locationsDiv' title='Locations'
                 renderItems={renderLocations} items={locations}></GenericForm>
         </div>
     );
