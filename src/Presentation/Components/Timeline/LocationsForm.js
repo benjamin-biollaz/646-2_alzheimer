@@ -1,9 +1,9 @@
 import React from 'react'
-import { DateFormatter } from '../../../Utilities/DateFormatter';
 import GenericForm from './GenericForm';
 import Location from './Location';
 import {LocationWithId} from '../../../DTO/LocationWithId'
 import {LocationDAO} from '../../../DAL/LocationDAO'
+import AddLocation from './AddLocation';
 
 function LocationsForm({ locations }) {
 
@@ -37,9 +37,15 @@ function LocationsForm({ locations }) {
         ));
     }
 
+    const renderAdd = () => {
+        return (
+            <AddLocation />
+        );
+    }
+
     return (
         <div className='flexDiv'>
-            <GenericForm divId='locationsDiv' title='Locations'renderItems={renderLocations} 
+            <GenericForm divId='locationsDiv' title='Locations'renderItems={renderLocations} renderAddForm={renderAdd} 
             items={locations} submitModifications={updateLocationsInDB}></GenericForm>
         </div>
     );

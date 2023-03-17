@@ -31,10 +31,11 @@ export default function AddEvent() {
 
     return (
         <div className="inputDiv">
-            <form>
+            <form className="addGrid">
+                <label className="">Name</label>
                 <input className="inputTimeline" name="name" value={eventState.name}
                     type="text" onChange={onInputChange}></input>
-
+                <label className="">Date</label>
                 <input className="inputTimeline" name="date" value={eventState.date}
                     type="date" onChange={onInputChange}></input>
 

@@ -1,9 +1,9 @@
 import React from 'react'
-import { DateFormatter } from '../../../Utilities/DateFormatter';
 import GenericForm from './GenericForm';
 import Period from './Period';
 import {PeriodWithId} from '../../../DTO/PeriodWithId';
 import {PeriodDAO} from '../../../DAL/PeriodDAO'
+import AddPeriod from './AddPeriod';
 
 function PeriodsForm({periods}) {
     
@@ -36,9 +36,15 @@ function PeriodsForm({periods}) {
            <Period key={per.id} period={per} isEditable={isEditable} updatePeriodList={updatePeriodsList}></Period>
         ))}
 
+        const renderAdd = () => {
+            return (
+                <AddPeriod />
+            );
+        }
+
     return (
         <div className='flexDiv'>
-           <GenericForm divId='periodsDiv' title='Periods' renderItems={renderPeriods}
+           <GenericForm divId='periodsDiv' title='Periods' renderItems={renderPeriods} renderAddForm={renderAdd}
             items={periods} submitModifications={updatePeriodsInDB}></GenericForm>
             </div>
     );
