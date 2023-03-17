@@ -10,9 +10,9 @@ function TimelineForm({ periods, events, locations }) {
 
     return (
             <div className='grid_container'>
-                <EventsForm events={eve}></EventsForm>
-                <PeriodsForm periods={per}></PeriodsForm>
-                <LocationsForm locations={loc}></LocationsForm>
+                <EventsForm events={periods}></EventsForm>
+                <PeriodsForm periods={events}></PeriodsForm>
+                <LocationsForm locations={locations}></LocationsForm>
             </div>
     );
 }
