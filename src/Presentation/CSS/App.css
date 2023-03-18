@@ -4,7 +4,9 @@
   --h1-size: 35px;
   --h2-size: 20px;
   --h3-size: 15px;
+  --h4-size: 15px;
   --icon-size: 25px;
+  --small-icon-size: 20px;
   --title-color: #a78a7f;
 }
 
@@ -16,10 +18,12 @@
 
 h1 {
   font-size: var(--h1-size);
+  margin-top: 5px;
 }
 
 h2 {
   font-size: var(--h2-size);
+  margin-top: 5px;
 }
 
 h3 {
@@ -27,6 +31,15 @@ h3 {
   color: var(--title-color);
   display: flex;
   justify-content: center;
+}
+
+/* label */
+h3:first-child {
+  margin-top: 10px;
+}
+
+h4 {
+  font-size: var(--h4-size);
 }
 
 .icon {

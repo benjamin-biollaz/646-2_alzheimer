@@ -4,14 +4,12 @@
 }
 
 .logo_memorys {
-  margin-top: 20px;
+  margin-top: 2%;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
-  margin-left: 20px;
-  width: 250px;
-  height: 70px;
+  margin-left: 5vh;
 }
 
 .svg {
@@ -53,11 +51,13 @@
 }
 
 .login_container {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 400px;
   height: 400px;
   font-size: 15px;
-  margin: 130px auto;
+  margin: 130px 35%;
   display: flex; /* set display to flex */
   justify-content: center; /* center horizontally */
   align-items: center;

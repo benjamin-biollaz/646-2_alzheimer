@@ -32,34 +32,39 @@ function Information() {
         &nbsp;
         <span>24 ans</span>
         &nbsp;
-        <span className="moyens_aux">Moyens auxiliaire</span>
-        &nbsp;
-        <div className="icon">
-          <FaWheelchair />
-        </div>
       </div>
-
+      <span className="moyens_aux">
+        Moyens auxiliaire :
+        <span className="icon_aux">
+          {" "}
+          <FaWheelchair />
+        </span>
+      </span>
+      <span className="pictures_container">
+        <span className="patient_picture">{/* Insert picture here... */}</span>
+      </span>
+      &nbsp;
       <div className="container_infos">
         <div className="passions">
           <h3 className="label">Passions</h3>
           <div className="infos_list">
             <span className="infos_item">
               Musique
-              <div className="icon">
+              <div className="icon_passion">
                 <GiMusicalNotes />
               </div>
             </span>
             &nbsp; &nbsp; &nbsp;
             <span className="infos_item">
               Poterie
-              <div className="icon">
+              <div className="icon_passion">
                 <GiMusicalNotes />
               </div>
             </span>
             &nbsp; &nbsp; &nbsp;
             <span className="infos_item">
               Tricot
-              <div className="icon">
+              <div className="icon_passion">
                 <GiMusicalNotes />
               </div>
             </span>
@@ -183,7 +188,7 @@ function Information() {
           <div className="infos_list">
             <h4 className="categories">Religion</h4>
             <span className="infos_religion">
-              <h3>Christianisme</h3>
+              <h4 className="religion_item">Christianisme</h4>
             </span>
             &nbsp; &nbsp;
           </div>
@@ -191,7 +196,7 @@ function Information() {
           <div className="infos_list">
             <h4 className="categories">Pratique</h4>
             <span className="infos_religion">
-              <h3>Prière</h3>
+              <h4 className="religion_item">Prière</h4>
             </span>
             &nbsp; &nbsp;
           </div>
@@ -199,7 +204,7 @@ function Information() {
           <div className="infos_list">
             <h4 className="categories">Valeurs</h4>
             <span className="infos_religion">
-              <h3>Respect</h3>
+              <h4 className="religion_item">Respect</h4>
             </span>
             &nbsp; &nbsp;
           </div>
