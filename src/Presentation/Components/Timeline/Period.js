@@ -1,40 +1,57 @@
-import React, { useState } from 'react'
-import { DateFormatter } from '../../../Utilities/DateFormatter';
+import React, { useState } from "react";
+import { DateFormatter } from "../../../Utilities/DateFormatter";
+import FloatLabelInput from "../FloatLabelInput";
 
 function Period({ period, isEditable }) {
+  const [periodState, setPeriod] = useState(period.periodDTO);
 
-    const [periodState, setPeriod] = useState(period);
+  const onInputChange = (event) => {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const fieldName = target.name;
 
-    const onInputChange = (event) => {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const fieldName = target.name;
+    //update period state
+    setPeriod((prevState) => ({
+      ...prevState,
+      [fieldName]: value,
+    }));
+  };
 
-        //update event state
-        setPeriod((prevState) => ({
-            ...prevState,
-            [fieldName]: value,
-        }));
-    }
+  return isEditable ? (
+    <div className="inputDiv">
+      <FloatLabelInput
+        label={"Période"}
+        value={periodState.name}
+        onChange={onInputChange}
+        type="text"
+        name={"name"}
+      />
 
-    return (
-        isEditable ?
-            <div className='inputDiv'>
-                <form>
-                    <input className='inputTimeline' value={periodState.periodDTO.name}
-                    onChange={onInputChange}></input>
+      <FloatLabelInput
+        label={"Début"}
+        className="inputTimeline"
+        value={DateFormatter.prototype.formatDate(periodState.startDate)}
+        onChange={onInputChange}
+        type="date"
+        name={"startDate"}
+      />
 
-                    <input className='inputTimeline' value={DateFormatter.prototype.formatDate(periodState.periodDTO.startDate)}
-                    onChange={onInputChange}></input>
-
-                    <input className='inputTimeline' value={DateFormatter.prototype.formatDate(periodState.periodDTO.endDate)}
-                    onChange={onInputChange}></input>
-                </form>
-            </div>
-            :
-            <p>{periodState.periodDTO.name} - {DateFormatter.prototype.formatDate(periodState.periodDTO.startDate)}
-                - {DateFormatter.prototype.formatDate(periodState.periodDTO.endDate)}</p>
-    )
+      <FloatLabelInput
+        label={"Fin"}
+        className="inputTimeline"
+        value={DateFormatter.prototype.formatDate(periodState.endDate)}
+        onChange={onInputChange}
+        type="date"
+        name={"endDate"}
+      />
+    </div>
+  ) : (
+    <p>
+      {periodState.name} -{" "}
+      {DateFormatter.prototype.formatDate(periodState.startDate)}-{" "}
+      {DateFormatter.prototype.formatDate(periodState.endDate)}
+    </p>
+  );
 }
 
-export default Period
+export default Period;

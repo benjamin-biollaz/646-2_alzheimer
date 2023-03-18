@@ -11,13 +11,13 @@ test('should render hello world', () => {
     render(<Home></Home>)
     const homeElement = screen.getByTestId('1');
     expect(homeElement).toBeInTheDocument();
-    expect(homeElement).toHaveTextContent('Hello World!');
+    expect(homeElement).toHaveTextContent('Hello');
 });
 
 test('renders resident name', async () => {
-    const mockResident = { firstName: 'John' }
+    const mockResident = { firstName: 'Marc' }
     render(<Home resident={mockResident} />);
-    const residentName = await screen.findByText('John');
+    const residentName = await screen.findByText('Marc');
     expect(residentName).toBeInTheDocument();
 
 });

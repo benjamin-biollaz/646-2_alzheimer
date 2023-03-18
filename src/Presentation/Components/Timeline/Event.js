@@ -1,36 +1,54 @@
-import React, { useState } from 'react'
-import { DateFormatter } from '../../../Utilities/DateFormatter';
+import React, { useState } from "react";
+import { DateFormatter } from "../../../Utilities/DateFormatter";
+import FloatLabelInput from "../FloatLabelInput";
 
-function Event({ event, isEditable }) {
+/**
+ * Event renders the details of a timeline event either an input or a text field 
+ * depending if the view is readonly or not.
+ */
 
-    const [eventState, setEvent] = useState(event);
+function Event({ event, isEditable, updateEventsList }) {
+  const [eventState, setEvent] = useState(event.eventDTO);
 
-    const onInputChange = (event) => {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const fieldName = target.name;
+  const onInputChange = (e) => {
+    const target = e.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const fieldName = target.name;
 
-        //update event state
-        setEvent((prevState) => ({
-            ...prevState,
-            [fieldName]: value,
-        }));
-    }
+    //update event state for display
+    setEvent((prevState) => ({
+      ...prevState,
+      [fieldName]: value, //es6 computed property syntax
+    }))
 
-    return (
-        isEditable ?
-            <div className='inputDiv'>
-                <form>
-                    <input className='inputTimeline' value={eventState.eventDTO.name}
-                        type="text" name={"name"} onChange={onInputChange}></input>
+  };
 
-                    <input className='inputTimeline' value={DateFormatter.prototype.formatDate(eventState.eventDTO.date)}
-                        type="date" name={"date"} onChange={onInputChange}></input>
-                </form>
-            </div>
-            : 
-            <p>{eventState.eventDTO.name} - {DateFormatter.prototype.formatDate(eventState.eventDTO.date)}</p>
-    )
+  // update events list of parent component
+  // this is called at every render as setState renders the component again
+  updateEventsList(event.id, eventState);
+
+  return isEditable ? (
+    <div className="inputDiv">
+      <FloatLabelInput
+        label="Évènement"
+        name={"name"}
+        value={eventState.name}
+        onChange={onInputChange}
+        type={"text"}
+      />
+      <FloatLabelInput
+        label="Date"
+        name={"date"}
+        value={DateFormatter.prototype.formatDate(eventState.date)}
+        onChange={onInputChange}
+        type={"date"}
+      />
+    </div>
+  ) : (
+    <p>
+      {eventState.name} - {DateFormatter.prototype.formatDate(eventState.date)}
+    </p>
+  );
 }
 
-export default Event
+export default Event;

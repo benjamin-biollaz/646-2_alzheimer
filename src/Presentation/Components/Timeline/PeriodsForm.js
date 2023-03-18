@@ -7,7 +7,7 @@ function PeriodsForm({periods}) {
     
     const renderPeriods = (periods, isEditable) => {
         return periods.map((per) => (
-           <Period period={per} isEditable={isEditable}></Period>
+           <Period key={per.id} period={per} isEditable={isEditable}></Period>
         ))}
 
     return (

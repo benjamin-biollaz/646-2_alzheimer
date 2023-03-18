@@ -8342,6 +8342,7 @@ react-app-polyfill@^3.0.0:
 react-calendar-timeline@^0.28.0:
   version "0.28.0"
   resolved "https://registry.npmjs.org/react-calendar-timeline/-/react-calendar-timeline-0.28.0.tgz"
+  resolved "https://registry.yarnpkg.com/react-calendar-timeline/-/react-calendar-timeline-0.28.0.tgz#b9b0eb7845989773f642373b9aa6ef59d6375232"
   integrity sha512-uy/erjon2oZO6dRtpQri1Sc20w4AOlIOqwjOpD2QNiWZvWt19VzO8pqOFF6BcnkuE63TM1xGfLdMbzSnKBPfeA==
   dependencies:
     classnames "^2.2.6"

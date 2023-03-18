@@ -6,7 +6,7 @@ import Location from './Location';
 function LocationsForm({ locations }) {
     const renderLocations = (locations, isEditable) => {
         return locations.map((loc) => (
-            <Location location={loc} isEditable={isEditable}></Location>
+            <Location key={loc.id} location={loc} isEditable={isEditable}></Location>
         ));
     }
 
