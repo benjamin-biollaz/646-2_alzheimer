@@ -3,7 +3,7 @@ import { Button } from "semantic-ui-react";
 import {LocationDTO} from "../../../DTO/LocationDTO";
 import { LocationDAO } from "../../../DAL/LocationDAO";
 
-export default function AddLocation() {
+export default function AddLocation({id}) {
 
     const [locationState, setLocation] = useState(new LocationDTO('','','',''));
 
@@ -25,7 +25,7 @@ export default function AddLocation() {
             return;
 
         const locationDAO = new LocationDAO();
-        locationDAO.addLocation('X9mfzXVODmuErhLMbrj3',locationState.startDate,locationState.endDate,locationState.name);
+        locationDAO.addLocation(id,locationState.startDate,locationState.endDate,locationState.name);
     }
 
 

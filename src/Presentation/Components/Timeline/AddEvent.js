@@ -3,7 +3,7 @@ import { Button } from "semantic-ui-react";
 import { EventDAO } from "../../../DAL/EventDAO";
 import { EventDTO } from "../../../DTO/EventDTO";
 
-export default function AddEvent() {
+export default function AddEvent({id}) {
 
     const [eventState, setEvent] = useState(new EventDTO('', ''));
 
@@ -25,7 +25,7 @@ export default function AddEvent() {
             return;
 
         const eventDAO = new EventDAO();
-        eventDAO.addEvent('X9mfzXVODmuErhLMbrj3', eventState.date, eventState.name);
+        eventDAO.addEvent(id, eventState.date, eventState.name);
     }
 
 

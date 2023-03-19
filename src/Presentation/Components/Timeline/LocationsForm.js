@@ -5,7 +5,7 @@ import {LocationWithId} from '../../../DTO/LocationWithId'
 import {LocationDAO} from '../../../DAL/LocationDAO'
 import AddLocation from './AddLocation';
 
-function LocationsForm({ locations }) {
+function LocationsForm({ locations, id }) {
 
     // those two collections store locations before/after modifications
     // to access database only if changes have been made
@@ -23,7 +23,7 @@ function LocationsForm({ locations }) {
         for (const loc of locationsBeforeEdition) {
             // update each location
             const locationIndex = locationsEdited.findIndex(l => l.id == loc.id)
-            locationDAO.updateLocation('X9mfzXVODmuErhLMbrj3', loc, locationsEdited[locationIndex].locationDTO.startDate, 
+            locationDAO.updateLocation(id, loc, locationsEdited[locationIndex].locationDTO.startDate, 
             locationsEdited[locationIndex].locationDTO.endDate, locationsEdited[locationIndex].locationDTO.name)
         }
 
@@ -41,7 +41,7 @@ function LocationsForm({ locations }) {
 
     const renderAdd = () => {
         return (
-            <AddLocation />
+            <AddLocation id={id} />
         );
     }
 
