@@ -3,7 +3,7 @@ import { Button } from "semantic-ui-react";
 import {PeriodDTO} from "../../../DTO/PeriodDTO";
 import { PeriodDAO } from "../../../DAL/PeriodDAO";
 
-export default function AddPeriod() {
+export default function AddPeriod({id}) {
 
     const [periodState, setPeriod] = useState(new PeriodDTO('','','',''));
 
@@ -25,7 +25,7 @@ export default function AddPeriod() {
             return;
 
         const periodDAO = new PeriodDAO();
-        periodDAO.addPeriod('X9mfzXVODmuErhLMbrj3',periodState.name,periodState.startDate,periodState.endDate);
+        periodDAO.addPeriod(id,periodState.name,periodState.startDate,periodState.endDate);
     }
 
 

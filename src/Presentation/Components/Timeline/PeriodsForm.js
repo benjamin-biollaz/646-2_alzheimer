@@ -5,7 +5,7 @@ import {PeriodWithId} from '../../../DTO/PeriodWithId';
 import {PeriodDAO} from '../../../DAL/PeriodDAO'
 import AddPeriod from './AddPeriod';
 
-function PeriodsForm({periods}) {
+function PeriodsForm({periods, id}) {
     
      // those two collections store periods before/after modifications
     // to access database only if changes have been made
@@ -23,7 +23,7 @@ function PeriodsForm({periods}) {
         for (const per of periodsBeforeEdition) {
             // update each event
             const periodIndex = periodsEdited.findIndex(p => p.id == per.id)
-            periodDAO.updatePeriod('X9mfzXVODmuErhLMbrj3', per, periodsEdited[periodIndex].periodDTO.startDate, 
+            periodDAO.updatePeriod(id, per, periodsEdited[periodIndex].periodDTO.startDate, 
             periodsEdited[periodIndex].periodDTO.endDate, periodsEdited[periodIndex].periodDTO.name)
         }
 
@@ -40,7 +40,7 @@ function PeriodsForm({periods}) {
 
         const renderAdd = () => {
             return (
-                <AddPeriod />
+                <AddPeriod id={id} />
             );
         }
 

@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./Navbar";
+import { ResidentDAO } from "../../DAL/ResidentDAO";
+import moment from "moment";
 import "../CSS/Information.css";
 import "../fonts/LexendDeca.ttf";
 import { GiMusicalNotes } from "react-icons/gi";
@@ -15,22 +17,46 @@ import { GiMusicalNotes } from "react-icons/gi";
 // import { TfiTimer } from "react-icons/tfi";
 // import { GiMeal } from "react-icons/gi";
 import { TimelineWidget } from "./Timeline/Timeline";
+import { useParams } from "react-router";
 // import { FaWheelchaikr } from "react-icons/fa";
 
 function Information() {
+  const id = useParams();
+  const [resident, setResident] = React.useState(null);
+  const [age, setAge] = React.useState(null);
+ 
+
+  useEffect(() => {
+    getResident();
+    
+  }, []);
+  useEffect(() => {
+    ageCalculator();
+  }, [resident]);
+
+  async function getResident() {
+    const res = await ResidentDAO.prototype.getresidentById(id.id);
+    setResident(res);
+  }
+  function ageCalculator() {
+    var date = moment(resident?.birthDate);
+    var now = moment();
+    var age = now.diff(date, "years");
+    setAge(age);
+  }
+
   function MusicNoteIcon() {
     return <GiMusicalNotes />;
   }
-
   return (
     <>
       <div>
         <Navbar />
       </div>
       <div className="personal_infos">
-        <span>Emilie Teodoro</span>
+        <span>{resident?.firstName+" "+resident?.lastName}</span>
         &nbsp;
-        <span>24 ans</span>
+        <span>{age} ans</span>
         &nbsp;
         {/* <span className="moyens_aux">Moyens auxiliaire</span>
         &nbsp;
@@ -128,7 +154,7 @@ function Information() {
         <div className="evenements">
           <h3 className="label">Évènements</h3>
           <div className="divTimelineWidget">
-            <TimelineWidget />
+            <TimelineWidget id={id.id} />
           </div>
         </div>
       </div>

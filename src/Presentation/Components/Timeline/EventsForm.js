@@ -9,7 +9,7 @@ import { EventWithId } from '../../../DTO/EventWithId';
  * This component renders a list of event. 
  * Note that the display of indivual event is handled in the "Event" component.
  */
-function EventsForm({ events }) {
+function EventsForm({ events, id }) {
 
     // those two collections store events before/after modifications
     // to access database only if changes have been made
@@ -27,7 +27,7 @@ function EventsForm({ events }) {
         for (const ev of eventsBeforeEdition) {
             // update each event
             const eventIndex = eventsEdited.findIndex(e => e.id === ev.id)
-            eventDAO.updateEvent('X9mfzXVODmuErhLMbrj3', ev, eventsEdited[eventIndex].eventDTO.date, eventsEdited[eventIndex].eventDTO.name)
+            eventDAO.updateEvent(id, ev, eventsEdited[eventIndex].eventDTO.date, eventsEdited[eventIndex].eventDTO.name)
         }
 
         // eventsBeforeEdition is updated with the DB
@@ -45,7 +45,7 @@ function EventsForm({ events }) {
 
     const renderAdd = () => {
         return (
-            <AddEvent />
+            <AddEvent id={id} />
         );
     }
 

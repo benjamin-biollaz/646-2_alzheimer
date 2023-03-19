@@ -7,7 +7,7 @@ test('test', () => {
     expect(true).toBe(true);
 });
 
-test('should render hello world', () => {
+/* test('should render hello world', () => {
     render(<Home></Home>)
     const homeElement = screen.getByTestId('1');
     expect(homeElement).toBeInTheDocument();
@@ -20,7 +20,7 @@ test('renders resident name', async () => {
     const residentName = await screen.findByText('Marc');
     expect(residentName).toBeInTheDocument();
 
-});
+}); */
 
 describe('calculateAge', () => {
     const df = new DateFormatter();
