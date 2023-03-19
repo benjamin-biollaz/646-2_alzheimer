@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import "../CSS/Home.css"
+import { Link } from "react-router-dom";
 
 import { ResidentDAO } from '../../DAL/ResidentDAO';
 import { async } from '@firebase/util';
+import moment from 'moment';
 
 export default function Home({ resident }) {
 
@@ -35,8 +37,8 @@ useEffect(() => {
                   <tr>
                     <td>{resident.firstName}</td>
                     <td>{resident.lastName}</td>
-                    <td>{resident.birthDate.toDate().toDateString()}</td>
-                    <td><button>Informations</button></td>
+                    <td>{moment(resident.birthDate).format("DD MM YYYY")}</td>
+                    <td><Link to={`/infos/${resident.id}`}><button>Infos</button></Link></td>
                   </tr>
                 )
               })

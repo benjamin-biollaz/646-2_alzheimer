@@ -10,7 +10,10 @@ class ResidentDAO {
     }
     async getResidents() {
         const residents = await getDocs(collection(db, "Residents").withConverter(residentConverter));
-        return(residents.docs.map(doc => doc.data()));
+        //return with id
+        return residents.docs.map((doc) => {
+            return { id: doc.id, ...doc.data() }
+        });
     }
 }
 

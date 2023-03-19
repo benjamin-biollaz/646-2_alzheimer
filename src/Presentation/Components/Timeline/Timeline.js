@@ -21,7 +21,7 @@ import '../../CSS/TimelineForm.css'
 import { DateFormatter } from '../../../Utilities/DateFormatter';
 
 
-export function TimelineWidget(resident) {
+export function TimelineWidget({id}) {
 
     const groups = [{ id: 1, title: 'Périodes' }, { id: 2, title: 'Lieux' }, { id: 3, title: 'Evénements' }]
 
@@ -52,7 +52,7 @@ export function TimelineWidget(resident) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const timeline = await timelineDAO.getTimelineByResidentId('HvrELV7MRnnJcV24ro1w');
+            const timeline = await timelineDAO.getTimelineByResidentId(id);
             // const timeline = await timelineDAO.getTimelineByResidentId(resident.id);
             setTimeline(timeline);
 
