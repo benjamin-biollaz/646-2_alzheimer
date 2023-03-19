@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc, updateDoc, getDocs, collection } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc, getDocs, collection, addDoc } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { residentConverter } from "../DTO/ResidentDTO";
 
@@ -14,6 +14,11 @@ class ResidentDAO {
         return residents.docs.map((doc) => {
             return { id: doc.id, ...doc.data() }
         });
+    }
+    async addResident(resident) {
+        const residentRef = collection(db, "Residents").withConverter(residentConverter);
+         const r = await addDoc(residentRef, resident);
+         return r
     }
 }
 
