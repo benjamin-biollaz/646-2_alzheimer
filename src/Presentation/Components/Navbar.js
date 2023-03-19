@@ -27,12 +27,12 @@ class Nav extends React.Component {
     let graphs = null;
 
     graphs = (
-      <NavLink to="/information" onClick={() => this.closeNavBar()}>
+      <NavLink to="/infos" onClick={() => this.closeNavBar()}>
         Graphiques
       </NavLink>
     );
     information = (
-      <NavLink to="/information" onClick={() => this.closeNavBar()}>
+      <NavLink to="/infos" onClick={() => this.closeNavBar()}>
         Informations
       </NavLink>
     );

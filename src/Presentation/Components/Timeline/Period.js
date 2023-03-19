@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
 import FloatLabelInput from "../FloatLabelInput";
 
-function Period({ period, isEditable }) {
+function Period({ period, isEditable, updatePeriodList }) {
   const [periodState, setPeriod] = useState(period.periodDTO);
+
+  const df = new DateFormatter();
 
   const onInputChange = (event) => {
     const target = event.target;
@@ -16,6 +18,10 @@ function Period({ period, isEditable }) {
       [fieldName]: value,
     }));
   };
+
+  // update periods list of parent component
+  // this is called at every render as setState renders the component again
+  updatePeriodList(period.id, periodState);
 
   return isEditable ? (
     <div className="inputDiv">
@@ -30,7 +36,7 @@ function Period({ period, isEditable }) {
       <FloatLabelInput
         label={"Début"}
         className="inputTimeline"
-        value={DateFormatter.prototype.formatDate(periodState.startDate)}
+        value={periodState.startDate}
         onChange={onInputChange}
         type="date"
         name={"startDate"}
@@ -39,7 +45,7 @@ function Period({ period, isEditable }) {
       <FloatLabelInput
         label={"Fin"}
         className="inputTimeline"
-        value={DateFormatter.prototype.formatDate(periodState.endDate)}
+        value={periodState.endDate}
         onChange={onInputChange}
         type="date"
         name={"endDate"}
@@ -48,8 +54,8 @@ function Period({ period, isEditable }) {
   ) : (
     <p>
       {periodState.name} -{" "}
-      {DateFormatter.prototype.formatDate(periodState.startDate)}-{" "}
-      {DateFormatter.prototype.formatDate(periodState.endDate)}
+      {df.format_DDMMYYYY(periodState.startDate)}-{" "}
+      {df.format_DDMMYYYY(periodState.endDate)}
     </p>
   );
 }

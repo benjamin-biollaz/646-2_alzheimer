@@ -1,16 +1,18 @@
+import moment from 'moment';
+
 export class DateFormatter {
 
-formatDate(dateSeconds) {
+  formatDate(dateSeconds) {
     if (!dateSeconds || !dateSeconds.seconds) {
       return '';
     }
     let date = new Date(dateSeconds.seconds * 1000 + dateSeconds.nanoseconds / 1000000);
     //month in js goes from 0-11 that's why one is added for proper display
     return date.getDate() + "/" + (date.getMonth() + 1) + "/" +
-        date.getFullYear()
-}
+      date.getFullYear()
+  }
 
-calculateAge(birthDate) {
+  calculateAge(birthDate) {
     if (!birthDate || !birthDate.seconds) {
       return '';
     }
@@ -23,4 +25,14 @@ calculateAge(birthDate) {
     }
     return age;
   }
+
+  format_DDMMYYYY(date) {
+    return moment(date).format("DD/MM/YYYY");
+  }
+
+  format_YYYMMDD(date) {
+    return moment(date).format("YYYYMMDD");
+  }
+
 }
+

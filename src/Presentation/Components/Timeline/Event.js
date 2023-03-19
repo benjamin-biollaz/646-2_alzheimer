@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { DateFormatter } from "../../../Utilities/DateFormatter";
 import FloatLabelInput from "../FloatLabelInput";
+import { DateFormatter } from "../../../Utilities/DateFormatter";
 
 /**
  * Event renders the details of a timeline event either an input or a text field 
@@ -9,6 +9,8 @@ import FloatLabelInput from "../FloatLabelInput";
 
 function Event({ event, isEditable, updateEventsList }) {
   const [eventState, setEvent] = useState(event.eventDTO);
+
+  const df = new DateFormatter();
 
   const onInputChange = (e) => {
     const target = e.target;
@@ -39,14 +41,14 @@ function Event({ event, isEditable, updateEventsList }) {
       <FloatLabelInput
         label="Date"
         name={"date"}
-        value={DateFormatter.prototype.formatDate(eventState.date)}
+        value={eventState.date}
         onChange={onInputChange}
         type={"date"}
       />
     </div>
   ) : (
     <p>
-      {eventState.name} - {DateFormatter.prototype.formatDate(eventState.date)}
+      {eventState.name} - {df.format_DDMMYYYY(eventState.date)}
     </p>
   );
 }
