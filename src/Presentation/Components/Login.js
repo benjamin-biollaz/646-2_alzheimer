@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../Components/Button";
+import ButtonLogin from "./ButtonLogin";
 import "../CSS/Login.css";
 import logo from "../img/logo_memorys.png";
 
@@ -28,7 +28,7 @@ function Login() {
           <input className="login_input" placeholder="Username"></input>
           <input className="login_input" placeholder="Password"></input>
           <div className="btn_container">
-            <Button label={"Login"} />
+            <ButtonLogin label={"Login"} />
           </div>
         </div>
       </div>

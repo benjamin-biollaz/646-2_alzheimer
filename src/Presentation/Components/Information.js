@@ -1,96 +1,58 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Navbar from "./Navbar";
-import { ResidentDAO } from "../../DAL/ResidentDAO";
-import moment from "moment";
 import "../CSS/Information.css";
 import "../fonts/LexendDeca.ttf";
 import { GiMusicalNotes } from "react-icons/gi";
-// import { GiFullPizza } from "react-icons/gi";
-// import { GiNoodles } from "react-icons/gi";
-// import { TbCarrotOff } from "react-icons/tb";
-// import { TbPizzaOff } from "react-icons/tb";
-// import { TbFishOff } from "react-icons/tb";
-// import { FaBath } from "react-icons/fa";
-// import { GiShower } from "react-icons/gi";
-// import { GiNightSleep } from "react-icons/gi";
-// import { BsFillSunriseFill, BsSunriseFill } from "react-icons/bs";
-// import { TfiTimer } from "react-icons/tfi";
-// import { GiMeal } from "react-icons/gi";
+import { GiFullPizza } from "react-icons/gi";
+import { GiNoodles } from "react-icons/gi";
+import { TbCarrotOff } from "react-icons/tb";
+import { TbPizzaOff } from "react-icons/tb";
+import { TbFishOff } from "react-icons/tb";
+import { FaBath } from "react-icons/fa";
+import { GiShower } from "react-icons/gi";
+import { GiNightSleep } from "react-icons/gi";
+import { BsFillSunriseFill, BsSunriseFill } from "react-icons/bs";
+import { TfiTimer } from "react-icons/tfi";
+import { GiMeal } from "react-icons/gi";
 import { TimelineWidget } from "./Timeline/Timeline";
-import { useParams } from "react-router";
-// import { FaWheelchaikr } from "react-icons/fa";
 
 function Information() {
-  const id = useParams();
-  const [resident, setResident] = React.useState(null);
-  const [age, setAge] = React.useState(null);
- 
-
-  useEffect(() => {
-    getResident();
-    
-  }, []);
-  useEffect(() => {
-    ageCalculator();
-  }, [resident]);
-
-  async function getResident() {
-    const res = await ResidentDAO.prototype.getresidentById(id.id);
-    setResident(res);
-  }
-  function ageCalculator() {
-    var date = moment(resident?.birthDate);
-    var now = moment();
-    var age = now.diff(date, "years");
-    setAge(age);
-  }
-
   function MusicNoteIcon() {
     return <GiMusicalNotes />;
   }
+
   return (
     <>
       <div>
         <Navbar />
       </div>
       <div className="personal_infos">
-        <span>{resident?.firstName+" "+resident?.lastName}</span>
+        <span className="patient_name">Emilie Teodoro</span>
         &nbsp;
-        <span>{age} ans</span>
-        &nbsp;
+        <span className="patient_name">24 ans</span>
       </div>
-      <span className="moyens_aux">
-        Moyens auxiliaire :
-        <span className="icon_aux">
-          {" "}
-          <FaWheelchair />
-        </span>
-      </span>
-      <span className="pictures_container">
-        <span className="patient_picture">{/* Insert picture here... */}</span>
-      </span>
-      &nbsp;
+
       <div className="container_infos">
         <div className="passions">
           <h3 className="label">Passions</h3>
           <div className="infos_list">
             <span className="infos_item">
               Musique
-              <div className="icon_passion">
+              <div className="icon">
                 <GiMusicalNotes />
               </div>
             </span>
             &nbsp; &nbsp; &nbsp;
             <span className="infos_item">
               Poterie
-              <div className="icon_passion">
+              <div className="icon">
                 <GiMusicalNotes />
               </div>
             </span>
             &nbsp; &nbsp; &nbsp;
             <span className="infos_item">
               Tricot
-              <div className="icon_passion">
+              <div className="icon">
                 <GiMusicalNotes />
               </div>
             </span>
@@ -153,18 +115,16 @@ function Information() {
               </div>
             </span>
           </div>
-        </div> */}
-      {/* //---------------- EVENTS ------------------// */}
-      <div style={{marginLeft: "3%", marginRight: "3%"}}>
+        </div>
+        {/* //---------------- EVENTS ------------------// */}
         <div className="evenements">
           <h3 className="label">Évènements</h3>
           <div className="divTimelineWidget">
-            <TimelineWidget id={id.id} />
+            <TimelineWidget />
           </div>
         </div>
-      </div>
 
-      {/* //---------------- HABITUDES ------------------//
+        {/* //---------------- HABITUDES ------------------// */}
         <div className="habitudes">
           <h3 className="label">Habitudes</h3>
           <div className="habitudes_grid">
@@ -216,7 +176,7 @@ function Information() {
           <div className="infos_list">
             <h4 className="categories">Religion</h4>
             <span className="infos_religion">
-              <h4 className="religion_item">Christianisme</h4>
+              <h4>Christianisme</h4>
             </span>
             &nbsp; &nbsp;
           </div>
@@ -224,7 +184,7 @@ function Information() {
           <div className="infos_list">
             <h4 className="categories">Pratique</h4>
             <span className="infos_religion">
-              <h4 className="religion_item">Prière</h4>
+              <h4>Prière</h4>
             </span>
             &nbsp; &nbsp;
           </div>
@@ -232,12 +192,12 @@ function Information() {
           <div className="infos_list">
             <h4 className="categories">Valeurs</h4>
             <span className="infos_religion">
-              <h4 className="religion_item">Respect</h4>
+              <h4>Respect</h4>
             </span>
             &nbsp; &nbsp;
           </div>
         </div>
-      </div> */}
+      </div>
     </>
   );
 }
