@@ -20,18 +20,21 @@ export default function AddLocation({id}) {
 
     };
 
-    const addLocation = () => {
+    const addLocation = (e) => {
+        e.preventDefault();
         if (locationState.startDate === ''||locationState.endDate === '' || locationState.name === '')
             return;
 
         const locationDAO = new LocationDAO();
-        locationDAO.addLocation(id,locationState.startDate,locationState.endDate,locationState.name);
+        locationDAO.addLocation(id,locationState.startDate,locationState.endDate,locationState.name).then(() => {
+            window.location.reload(false)}
+            );
     }
 
 
     return (
         <div className="inputDiv">
-            <form className="addGrid">
+            <form className="addGrid" onSubmit={addLocation}>
                 <label className="">Name</label>
                 <input className="inputTimeline" name="name" value={locationState.name}
                     type="text" onChange={onInputChange}></input>
@@ -42,7 +45,7 @@ export default function AddLocation({id}) {
                 <input className="inputTimeline" name="endDate" value={locationState.endDate}
                                     type="date" onChange={onInputChange}></input>
 
-                <Button onClick={addLocation}>New event</Button>
+                <input type="submit" value="Ajouter lieu" />
             </form>
         </div>
     )
