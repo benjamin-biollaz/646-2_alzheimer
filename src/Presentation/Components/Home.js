@@ -47,8 +47,6 @@ useEffect(() => {
         <Navbar />
       </div>
     <div style={{ marginLeft: "10%", marginTop: "5%" }}>
-      <h1 data-testid="1">Hello</h1>
-      <h1 data-testid="2">{resident?.firstName}</h1>
       <table>
         <thead>
           <tr>
