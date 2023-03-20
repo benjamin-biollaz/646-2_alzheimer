@@ -11,6 +11,10 @@
   border: black !important;
 }
 
+.popup-content {
+  padding: 0px !important;
+}
+
 .grid_container {
   display: flex;
 }
@@ -87,7 +91,7 @@
   margin: auto;
   background: rgb(255, 255, 255);
   width: 50%;
-  padding: 5px;
+  padding: 0px;
 }
 [role="tooltip"].info-popup-content {
   width: 40px;
