@@ -174,10 +174,10 @@ export function TimelineWidget({id}) {
             </Timeline>
             <br />
             <div>
-                <Popup className-content={'form-popup-content'} trigger={<button> Open pop up</button>} closeOnDocumentClick modal position='center center'>
+                <Popup className-content={'form-popup-content'} trigger={<button>Modifier la timeline</button>} closeOnDocumentClick modal position='center center'>
                     <TimelineForm events={events} periods={periods} locations={locations}  id={timeline?.id} />
                 </Popup>
-                <button onClick={() => window.location.reload()}>Reset</button>
+                <button onClick={() => window.location.reload()}>Rafraîchir</button>
             </div>
         </div>
     );
