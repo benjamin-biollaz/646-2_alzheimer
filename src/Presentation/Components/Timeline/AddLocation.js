@@ -22,8 +22,10 @@ export default function AddLocation({id}) {
 
     const addLocation = (e) => {
         e.preventDefault();
-        if (locationState.startDate === ''||locationState.endDate === '' || locationState.name === '')
+        if (locationState.startDate === ''||locationState.endDate === '' || locationState.name === ''){
+            alert("Veuillez remplir tous les champs");
             return;
+        }
 
         const locationDAO = new LocationDAO();
         locationDAO.addLocation(id,locationState.startDate,locationState.endDate,locationState.name).then(() => {

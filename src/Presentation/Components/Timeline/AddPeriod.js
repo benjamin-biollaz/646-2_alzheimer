@@ -22,8 +22,10 @@ export default function AddPeriod({id}) {
 
     const addPeriod = (e) => {
         e.preventDefault();
-        if (periodState.startDate === ''||periodState.endDate === '' || periodState.name === '')
+        if (periodState.startDate === ''||periodState.endDate === '' || periodState.name === ''){
+            alert("Veuillez remplir tous les champs");
             return;
+        }
 
         const periodDAO = new PeriodDAO();
         periodDAO.addPeriod(id,periodState.name,periodState.startDate,periodState.endDate).then(() => {

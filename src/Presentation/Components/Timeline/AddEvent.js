@@ -22,8 +22,10 @@ export default function AddEvent({id}) {
 
     const addEvent = (e) => {
         e.preventDefault();
-        if (eventState.date === '' || eventState.name === '')
+        if (eventState.date === '' || eventState.name === ''){
+            alert("Veuillez remplir tous les champs");
             return;
+        }
 
         const eventDAO = new EventDAO();
         eventDAO.addEvent(id, eventState.date, eventState.name).then(() => {
