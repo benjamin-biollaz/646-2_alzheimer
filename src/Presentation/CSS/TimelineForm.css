@@ -13,6 +13,7 @@
 
 .grid_container {
   display: flex;
+  overflow-y: scroll;
 }
 
 .grid_item {
@@ -37,6 +38,8 @@
 .sectionDiv {
   padding: 0.5vw;
   min-height: 60vh;
+  max-height: 60vh;
+  overflow-y: scroll;
 }
 
 #eventsDiv {
