@@ -1,16 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Timeline, {
     TimelineMarkers,
-    CustomMarker,
     TodayMarker,
     DateHeader,
     TimelineHeaders,
     SidebarHeader,
-    CursorMarker
 } from 'react-calendar-timeline'
 import '../../CSS/Timeline.css'
 import moment from 'moment'
-import { rightResizeStyle } from "react-calendar-timeline/lib/lib/items/styles";
 import { TimelineDAO } from '../../../DAL/TimelineDAO';
 import { EventDAO } from '../../../DAL/EventDAO';
 import { PeriodDAO } from '../../../DAL/PeriodDAO';
@@ -21,12 +18,12 @@ import Popup from 'reactjs-popup';
 import TimelineForm from "./TimelineForm";
 import 'reactjs-popup/dist/index.css';
 import '../../CSS/TimelineForm.css'
-import { height, width } from '@mui/system';
+import { DateFormatter } from '../../../Utilities/DateFormatter';
 
 
-export function TimelineWidget(resident) {
+export function TimelineWidget({id}) {
 
-    const groups = [{ id: 1, title: 'Périodes' }, { id: 2, title: 'Lieux' }, { id: 3, title: 'Evenements' }]
+    const groups = [{ id: 1, title: 'Périodes' }, { id: 2, title: 'Lieux' }, { id: 3, title: 'Evénements' }]
 
     // Create instances of DAO classes
     const timelineDAO = new TimelineDAO();
@@ -41,13 +38,21 @@ export function TimelineWidget(resident) {
     const [locations, setLocations] = useState([]);
     const [items, setItems] = useState([]);
     const [toolTipText, setToolTipText] = useState("");
+    const [min, setMin] = useState("1930-01-01");
+
+    // Colors
+    const periodsColors = ["#f48c06", "#e85d04", "#dc2f02", "#d00000", "#9d0208"];
+    const locationsColors = ["#00b4d8", "#0096c7", "#0077b6", "#90e0ef", "#caf0f8"];
+    const eventsColors = ["#3c096c", "#5a189a", "#7b2cbf", "#9d4edd", "#c77dff"];
+
+    const df = new DateFormatter();
 
     const ref = useRef();
     const toggleTooltip = () => ref.current.toggle();
 
     useEffect(() => {
         const fetchData = async () => {
-            const timeline = await timelineDAO.getTimelineByResidentId('HvrELV7MRnnJcV24ro1w');
+            const timeline = await timelineDAO.getTimelineByResidentId(id);
             // const timeline = await timelineDAO.getTimelineByResidentId(resident.id);
             setTimeline(timeline);
 
@@ -59,14 +64,14 @@ export function TimelineWidget(resident) {
             const allItems = [
 
                 // Mapping event elements
-                ...events.map((element) => ({
+                ...events.map((element, index) => ({
                     id: parseInt(element.id, 36),
                     group: 3,
                     // title: (element.eventDTO.name).split(/\s+/).slice(0, 1),
                     title: element.eventDTO.name,
                     tip: element.eventDTO.name,
-                    start_time: moment(element.eventDTO.date.toDate().toDateString()),
-                    end_time: moment(element.eventDTO.date.toDate().toDateString()).add(10, 'day'),
+                    start_time: moment(df.format_YYYMMDD(element.eventDTO.date)),
+                    end_time: moment(df.format_YYYMMDD(element.eventDTO.date)).add(10, 'day'),
                     canMove: false,
                     itemProps: {
                         'data-custom-attribute': 'Random content',
@@ -76,46 +81,53 @@ export function TimelineWidget(resident) {
                             toggleTooltip()
                         },
                         style: {
-                            background: element.eventDTO.color,
+                            background: eventsColors[index % eventsColors.length],
                             color: 'black',
                         },
                     },
                 })),
+        
 
                 // Mapping period elements
-                ...periods.map((element) => ({
+                ...periods.map((element, index) => ({
                     id: parseInt(element.id, 36),
                     group: 1,
                     title: element.periodDTO.name,
                     tip: element.periodDTO.name,
-                    start_time: moment(element.periodDTO.startDate.toDate().toDateString()),
-                    end_time: moment(element.periodDTO.endDate.toDate().toDateString()),
+                    start_time: moment(df.format_YYYMMDD(element.periodDTO.startDate)),
+                    end_time: moment(df.format_YYYMMDD(element.periodDTO.endDate)),
                     canMove: false,
                     itemProps: {
                         style: {
-                            background: element.periodDTO.color,
+                            background: periodsColors[index % periodsColors.length],
                         },
                     },
                 })),
 
                 // Mapping locations elements
-                ...locations.map((element) => ({
+                ...locations.map((element, index) => ({
                     id: parseInt(element.id, 36),
                     group: 2,
                     title: element.locationDTO.name,
                     tip: element.locationDTO.name,
-                    start_time: moment(element.locationDTO.startDate.toDate().toDateString()),
-                    end_time: moment(element.locationDTO.endDate.toDate().toDateString()),
+                    start_time: moment(df.format_YYYMMDD(element.locationDTO.startDate)),
+                    end_time: moment(df.format_YYYMMDD(element.locationDTO.endDate)),
                     canMove: false,
                     itemProps: {
                         style: {
-                            background: element.locationDTO.color,
+                            background: locationsColors[index % locationsColors.length],
                         },
                     },
-                }))
+                })),
+
             ];
+
+            //get min date
+            var tempmin = Math.min(...allItems.map(item => item.start_time));
+            setMin(tempmin);
+
             setItems(allItems);
-            
+
             setEvents(events);
             setLocations(locations);
             setPeriods(periods);
@@ -130,12 +142,12 @@ export function TimelineWidget(resident) {
             <Timeline
                 groups={groups}
                 items={items}
-                defaultTimeStart={moment("19600101", "YYYYMMDD")}
-                defaultTimeEnd={moment()}
+                defaultTimeStart={moment(df.format_YYYMMDD(min))}
+                defaultTimeEnd={moment().add(1, 'month')}
                 maxZoom={70 * 365.24 * 86400 * 1000}
                 minZoom={60 * 60 * 1000 * 24 * 50}
-                canvasStartTime={moment("19600101", "YYYYMMDD")}
-                canvasEndTime={moment()}
+                canvasStartTime={moment(df.format_YYYMMDD(min))}
+                canvasEndTime={moment().add(1, 'month')}
             >
                 <TimelineHeaders>
                     <SidebarHeader>
@@ -147,7 +159,7 @@ export function TimelineWidget(resident) {
                 </TimelineHeaders>
                 <TimelineMarkers>
                     <TodayMarker>
-                        {({ styles, date }) => {
+                        {({ styles }) => {
                             const customStyles = {
                                 ...styles,
                                 backgroundColor: 'red',
@@ -163,7 +175,7 @@ export function TimelineWidget(resident) {
             <br />
             <div>
                 <Popup className-content={'form-popup-content'} trigger={<button> Open pop up</button>} closeOnDocumentClick modal position='center center'>
-                    <TimelineForm events={events} periods={periods} locations={locations} />
+                    <TimelineForm events={events} periods={periods} locations={locations}  id={timeline?.id} />
                 </Popup>
                 <button onClick={() => window.location.reload()}>Reset</button>
             </div>

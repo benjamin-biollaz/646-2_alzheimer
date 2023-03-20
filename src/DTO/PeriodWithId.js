@@ -3,10 +3,10 @@
  * This document id is needed in the program as a period doesn't have a unique identifier.
  */
 class PeriodWithId {
-    constructor (id, periodDTO) {
+    constructor(id, periodDTO) {
         this.id = id;
         this.periodDTO = periodDTO;
     }
 }
 
-export {PeriodWithId};
+export { PeriodWithId };

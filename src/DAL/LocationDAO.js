@@ -50,8 +50,8 @@ class LocationDAO {
         await setDoc(locationRef, new LocationDTO(newStartDate, newEndDate, newName));
     }
 
-    async addLocation(timelineId, startDate, endDate, name, color) {
-        const location = new LocationDTO(startDate, endDate, name, color);
+    async addLocation(timelineId, startDate, endDate, name) {
+        const location = new LocationDTO(startDate, endDate, name);
 
         // point to the document in db
         const locationRef =

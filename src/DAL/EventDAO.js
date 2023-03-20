@@ -1,4 +1,4 @@
-import { doc, getDocs, collection, withConverter, updateDoc, setDoc, addDoc } from "firebase/firestore";
+import { doc, getDocs, collection, setDoc, addDoc } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { eventConverter, EventDTO } from "../DTO/EventDTO";
 import { EventWithId } from "../DTO/EventWithId";
@@ -43,20 +43,20 @@ class EventDAO {
                     "Events")
                 , eventToChange.id).withConverter(eventConverter);
 
-        await setDoc(eventRef, new EventDTO(date, name, eventToChange.eventDTO.color));
+        await setDoc(eventRef, new EventDTO(date, name));
     }
 
     async addEvent(timelineId, date, name) {
         const event = new EventDTO(date, name)
 
         // point to the document in db
-        const eventRef = 
-        collection(
-            doc(
-                collection(db, "Timelines"),
-                timelineId),
-            "Events").withConverter(eventConverter);
-        
+        const eventRef =
+            collection(
+                doc(
+                    collection(db, "Timelines"),
+                    timelineId),
+                "Events").withConverter(eventConverter);
+
         // add to the document
         await addDoc(eventRef, event);
     }

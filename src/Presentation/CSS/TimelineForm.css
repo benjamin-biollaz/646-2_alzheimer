@@ -58,7 +58,7 @@
 
 .inputTimeline {
   height: 4vh;
-  width: 40%;
+  width: 100px;
   background-color: white;
   border: 2px solid #8c1c13;
   display: inline;
@@ -106,3 +106,14 @@
   color: #999;
   pointer-events: none;
 }
+
+.addGrid {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  gap: 5px 5px;
+  grid-auto-flow: dense;
+  padding: 10px;
+  width: 100%;
+}
+

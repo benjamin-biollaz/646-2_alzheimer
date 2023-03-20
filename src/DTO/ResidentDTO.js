@@ -27,5 +27,5 @@ const residentConverter = {
         return new ResidentDTO(data.firstName, data.lastName, data.birthDate);
     }
 };
-export {residentConverter};
-export {ResidentDTO}
+export { residentConverter };
+export { ResidentDTO }

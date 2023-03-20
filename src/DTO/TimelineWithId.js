@@ -3,10 +3,10 @@
  * This document id is needed because it has several subcollections.
  */
 class TimelineWithId {
-    constructor (id, timelineDTO) {
+    constructor(id, timelineDTO) {
         this.id = id;
         this.timelineDTO = timelineDTO;
     }
 }
 
-export {TimelineWithId};
+export { TimelineWithId };
