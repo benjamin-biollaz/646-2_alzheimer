@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import Timeline, {
     TimelineMarkers,
     TodayMarker,
@@ -20,8 +20,12 @@ import 'reactjs-popup/dist/index.css';
 import '../../CSS/TimelineForm.css'
 import { DateFormatter } from '../../../Utilities/DateFormatter';
 
+import { ResidentContext } from '../../../Context/ResidentContext';
+
 
 export function TimelineWidget({id}) {
+
+    const resContext = useContext(ResidentContext);
 
     const groups = [{ id: 1, title: 'Périodes' }, { id: 2, title: 'Lieux' }, { id: 3, title: 'Evénements' }]
 
@@ -55,6 +59,8 @@ export function TimelineWidget({id}) {
             const timeline = await timelineDAO.getTimelineByResidentId(id);
             // const timeline = await timelineDAO.getTimelineByResidentId(resident.id);
             setTimeline(timeline);
+
+            resContext.timelineId = timeline.id;
 
             const periods = await periodDAO.getPeriodsByTimelineId(timeline.id);
             const events = await eventDAO.getEventsByTimelineId(timeline.id);
