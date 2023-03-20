@@ -20,17 +20,20 @@ export default function AddEvent({id}) {
 
     };
 
-    const addEvent = () => {
+    const addEvent = (e) => {
+        e.preventDefault();
         if (eventState.date === '' || eventState.name === '')
             return;
 
         const eventDAO = new EventDAO();
-        eventDAO.addEvent(id, eventState.date, eventState.name);
+        eventDAO.addEvent(id, eventState.date, eventState.name).then(() => {
+            window.location.reload(false)}
+        );
     }
 
 
     return (
-        <div className="inputDiv">
+        <div className="inputDiv" onSubmit={addEvent}>
             <form className="addGrid">
                 <label className="">Name</label>
                 <input className="inputTimeline" name="name" value={eventState.name}
@@ -39,7 +42,7 @@ export default function AddEvent({id}) {
                 <input className="inputTimeline" name="date" value={eventState.date}
                     type="date" onChange={onInputChange}></input>
 
-                <Button onClick={addEvent}>New event</Button>
+                <input type="submit" value="Ajouter événement" />
             </form>
         </div>
     )

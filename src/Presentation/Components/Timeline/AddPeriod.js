@@ -20,18 +20,21 @@ export default function AddPeriod({id}) {
 
     };
 
-    const addPeriod = () => {
+    const addPeriod = (e) => {
+        e.preventDefault();
         if (periodState.startDate === ''||periodState.endDate === '' || periodState.name === '')
             return;
 
         const periodDAO = new PeriodDAO();
-        periodDAO.addPeriod(id,periodState.name,periodState.startDate,periodState.endDate);
+        periodDAO.addPeriod(id,periodState.name,periodState.startDate,periodState.endDate).then(() => {
+            window.location.reload(false)}
+            );
     }
 
 
     return (
         <div className="inputDiv">
-            <form className="addGrid">
+            <form className="addGrid" onSubmit={addPeriod}>
                 <label className="">Name</label>
                 <input className="inputTimeline" name="name" value={periodState.name}
                     type="text" onChange={onInputChange}></input>
@@ -42,7 +45,7 @@ export default function AddPeriod({id}) {
                 <input className="inputTimeline" name="endDate" value={periodState.endDate}
                                     type="date" onChange={onInputChange}></input>
 
-                <Button onClick={addPeriod}>New event</Button>
+                <input type="submit" value="Ajouter période" onClick={addPeriod}/>
             </form>
         </div>
     )
