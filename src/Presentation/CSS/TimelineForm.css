@@ -13,7 +13,6 @@
 
 .grid_container {
   display: flex;
-  overflow-y: scroll;
 }
 
 .grid_item {
