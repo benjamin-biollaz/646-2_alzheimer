@@ -17,7 +17,7 @@ const periodConverter = {
     toFirestore(period) {
         return {
             name: period.name, startDate: period.startDate,
-             endDate: period.endDate
+            endDate: period.endDate
         };
     },
     fromFirestore(
@@ -28,5 +28,5 @@ const periodConverter = {
         return new PeriodDTO(data.name, data.startDate, data.endDate);
     }
 };
-export {periodConverter};
-export {PeriodDTO}
+export { periodConverter };
+export { PeriodDTO }

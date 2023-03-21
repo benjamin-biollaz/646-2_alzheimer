@@ -15,7 +15,7 @@ class TimelineDTO {
 const timelineConverter = {
     toFirestore(timeline) {
         return {
-            residentId: timeline.residentId, remark: timeline.remark, 
+            residentId: timeline.residentId, remark: timeline.remark,
         };
     },
     fromFirestore(
@@ -26,5 +26,5 @@ const timelineConverter = {
         return new TimelineDTO(data.residentId, data.remark);
     }
 };
-export {timelineConverter};
-export {TimelineDTO}
+export { timelineConverter };
+export { TimelineDTO }

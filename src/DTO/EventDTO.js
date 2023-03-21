@@ -26,5 +26,5 @@ const eventConverter = {
         return new EventDTO(data.date, data.name);
     }
 };
-export {eventConverter};
-export {EventDTO}
+export { eventConverter };
+export { EventDTO }

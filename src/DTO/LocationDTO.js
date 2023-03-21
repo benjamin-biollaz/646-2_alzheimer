@@ -27,5 +27,5 @@ const locationConverter = {
         return new LocationDTO(data.startDate, data.endDate, data.name);
     }
 };
-export {locationConverter};
-export {LocationDTO}
+export { locationConverter };
+export { LocationDTO }

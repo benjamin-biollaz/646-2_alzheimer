@@ -1,6 +1,6 @@
 import * as React from "react";
 import { NavLink } from "react-router-dom";
-import icon from "../img/dark_green.png";
+import icon from "../img/logo_memorys.png";
 import "../CSS/Navbar.css";
 import { FiMenu } from "react-icons/fi";
 
@@ -27,12 +27,12 @@ class Nav extends React.Component {
     let graphs = null;
 
     graphs = (
-      <NavLink to="/information" onClick={() => this.closeNavBar()}>
+      <NavLink to="/infos" onClick={() => this.closeNavBar()}>
         Graphiques
       </NavLink>
     );
     information = (
-      <NavLink to="/information" onClick={() => this.closeNavBar()}>
+      <NavLink to="/infos" onClick={() => this.closeNavBar()}>
         Informations
       </NavLink>
     );

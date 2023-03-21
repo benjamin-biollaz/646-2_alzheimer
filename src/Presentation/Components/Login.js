@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../Components/Button";
 import "../CSS/Login.css";
-import logo_green from "../img/dark_green.png";
+import logo from "../img/logo_memorys.png";
 
 function Login() {
   return (
@@ -16,21 +16,17 @@ function Login() {
           viewBox="0 0 584 832"
         >
           <path
-            fill="#6B9080"
+            fill="#A78A7F"
             fill-opacity=".86"
             d="M1197.2 559.412c0 283.907-211.331 514.058-472.022 514.058C-318.715 1399.91-1.3 570.913 249.683 485.5c-99.631-472.408 394.751-141.161 165-544.5C675.374-59 1197.2 275.505 1197.2 559.412Z"
           />
         </svg>
-        <img
-          className="logo_memorys"
-          src={logo_green}
-          alt="Emilie Teodoro"
-        ></img>
+        <img className="logo_memorys" src={logo} alt="logo"></img>
       </div>
       <div className="login">
         <div className="login_container">
           <input className="login_input" placeholder="Username"></input>
-          <input className="pswd_input" placeholder="Password"></input>
+          <input className="login_input" placeholder="Password"></input>
           <div className="btn_container">
             <Button />
           </div>

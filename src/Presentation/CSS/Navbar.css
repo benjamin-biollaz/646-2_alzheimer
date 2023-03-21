@@ -1,6 +1,6 @@
 #navBarDiv {
   background-color: #e7d7c1;
-  opacity: 90%;
+  opacity: 100%;
   max-width: 100%;
   margin: 0 auto;
   margin-left: auto;
@@ -75,9 +75,9 @@
   background: #a78a7f;
 }
 
-.appBar .active {
+/* .appBar .active {
   background-color: #1a73e8;
-}
+} */
 
 .appBar ul {
   list-style-type: none;

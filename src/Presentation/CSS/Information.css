@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@200&display=swap");
+
+/* :root {
+  --h1-size: 23px;
+  --h2-size: 18px;
+  --h3-size: 15px;
+  --icon-size: 27px;
+} */
+
+.container_infos {
+  display: grid;
+  margin-right: 10px;
+  margin-left: 50px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.6fr 0.5fr 1fr;
+  gap: 5px 50px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "passions habitudes croyances"
+    "preferences habitudes croyances"
+    "evenements evenements evenements";
+}
+
+.personal_infos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8%;
+  margin-bottom: 20px;
+  color: black;
+  /* font-size: var(--h3-size); */
+  font-weight: bold;
+  font-family: "Lexend Deca", sans-serif;
+}
+
+.moyens_aux {
+  float: right;
+}
+
+.passions {
+  color: black;
+  /* font-size: var(--h3-size); */
+  font-weight: bold;
+  height: 140px;
+  grid-area: passions;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+
+.icon {
+  display: flex;
+  margin-top: 17px;
+  /* font-size: var(--icon-size); */
+  color: #054a2f;
+  justify-content: center;
+}
+
+.infos_list {
+  display: flex;
+  justify-content: center;
+}
+
+.infos_item {
+  margin-right: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.infos_religion {
+  margin-top: 2px;
+  display: flex;
+  color: #054a2f;
+  margin-right: 35%;
+  font-size: 15px;
+}
+
+.categories {
+  margin-left: 10px;
+  margin-right: 10px;
+  flex: 1 1 auto;
+}
+
+.preferences {
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 180px;
+  grid-area: preferences;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+
+.evenements {
+  justify-content: center;
+  margin-left: -30px;
+  color: #a78a7f;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 250px;
+  grid-area: evenements;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+
+.habitudes {
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 250px;
+  width: 500px;
+  grid-area: habitudes;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+
+.habitudes_grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  grid-area: habitudes;
+}
+
+.categories_1 {
+  grid-area: 1 / 1 / 2 / 2;
+  margin-right: 10px;
+}
+.categories_2 {
+  grid-area: 1 / 2 / 2 / 3;
+  margin-right: 10px;
+}
+.categories_3 {
+  grid-area: 2 / 1 / 3 / 2;
+  margin-right: 10px;
+}
+.categories_4 {
+  grid-area: 2 / 2 / 3 / 3;
+  margin-right: 10px;
+}
+
+.croyances {
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 380px;
+  height: 250px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  color: black;
+  font-weight: bold;
+  grid-area: croyances;
+  border-radius: 10px;
+}

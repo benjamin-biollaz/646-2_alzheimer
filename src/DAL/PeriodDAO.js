@@ -1,6 +1,7 @@
-import { doc, getDocs, collection, withConverter, setDoc } from "firebase/firestore";
+import { doc, getDocs, collection, withConverter, setDoc, addDoc } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { periodConverter, PeriodDTO } from "../DTO/PeriodDTO";
+import { PeriodWithId } from "../DTO/PeriodWithId";
 
 class PeriodDAO {
     /**
@@ -17,7 +18,7 @@ class PeriodDAO {
             "Periods").withConverter(periodConverter);
 
         const docSnapshot = await getDocs(periodsRef);
-        return docSnapshot.docs.map(e => e.data());
+        return docSnapshot.docs.map(e => new PeriodWithId(e.id, e.data()));
     }
 
     /**
@@ -31,8 +32,8 @@ class PeriodDAO {
      */
     async updatePeriod(timelineId, periodToChange, newStartDate, newEndDate, newName) {
         // access DB only if changes have been made 
-        if (periodToChange.startDate == newStartDate && periodToChange.endDate == newEndDate
-            && periodToChange.name == newName)
+        if (periodToChange.startDate === newStartDate && periodToChange.endDate === newEndDate
+            && periodToChange.name === newName)
             return;
 
         const eventRef =
@@ -43,6 +44,20 @@ class PeriodDAO {
                 , periodToChange.id).withConverter(periodConverter);
 
         await setDoc(eventRef, new PeriodDTO(newName, newStartDate, newEndDate));
+    }
+
+    async addPeriod(timelineId, name, startDate, endDate) {
+        const period = new PeriodDTO(name, startDate, endDate);
+
+        // point to the document in db
+        const periodRef = collection(
+            doc(
+                collection(db, "Timelines"),
+                timelineId),
+            "Periods").withConverter(periodConverter);
+
+        // add to the document
+        await addDoc(periodRef, period);
     }
 }
 

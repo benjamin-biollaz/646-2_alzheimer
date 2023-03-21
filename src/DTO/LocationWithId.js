@@ -3,10 +3,10 @@
  * This document id is needed in the program as a location doesn't have a unique identifier.
  */
 class LocationWithId {
-    constructor (id, locationDTO) {
+    constructor(id, locationDTO) {
         this.id = id;
         this.locationDTO = locationDTO;
     }
 }
 
-export {LocationWithId};
+export { LocationWithId };
