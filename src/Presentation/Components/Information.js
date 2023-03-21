@@ -16,6 +16,7 @@ import { TfiTimer } from "react-icons/tfi";
 import { GiMeal } from "react-icons/gi";
 import { TimelineWidget } from "./Timeline/Timeline";
 import { useParams } from "react-router";
+import PreferencesList from "./Preferences/PreferencesList";
 
 function Information() {
   function MusicNoteIcon() {
@@ -61,6 +62,9 @@ function Information() {
             </span>
           </div>
         </div>
+
+       
+       
         <div className="preferences">
           <h3 className="label">Préférences</h3>
 
@@ -119,6 +123,8 @@ function Information() {
             </span>
           </div>
         </div>
+
+
         {/* //---------------- EVENTS ------------------// */}
         <div className="evenements">
           <h3 className="label">Évènements</h3>
