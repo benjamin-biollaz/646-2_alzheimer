@@ -27,7 +27,7 @@ function EventsForm({ events, id }) {
         for (const ev of eventsBeforeEdition) {
             // update each event
             const eventIndex = eventsEdited.findIndex(e => e.id === ev.id)
-            eventDAO.updateEvent(id, ev, eventsEdited[eventIndex].eventDTO.date, eventsEdited[eventIndex].eventDTO.name)
+            eventDAO.updateEvent(id, ev, eventsEdited[eventIndex].eventDTO.startDate, eventsEdited[eventIndex].eventDTO.endDate,eventsEdited[eventIndex].eventDTO.name)
         }
 
         // eventsBeforeEdition is updated with the DB
@@ -36,7 +36,7 @@ function EventsForm({ events, id }) {
 
     const renderEvents = (events, isEditable) => {
         return events
-        .sort((a, b) => new Date(a.eventDTO.date) - new Date(b.eventDTO.date)) 
+        .sort((a, b) => new Date(a.eventDTO.startDate) - new Date(b.eventDTO.startDate)) 
         .map((ev) => (
             <Event key={ev.id} event={ev} isEditable={isEditable}
                 updateEventsList={updateEventsList}></Event>

@@ -22,13 +22,13 @@ export default function AddEvent({id}) {
 
     const addEvent = (e) => {
         e.preventDefault();
-        if (eventState.date === '' || eventState.name === ''){
+        if (eventState.startDate === '' || eventState.name === ''){
             alert("Veuillez remplir tous les champs");
             return;
         }
 
         const eventDAO = new EventDAO();
-        eventDAO.addEvent(id, eventState.date, eventState.name).then(() => {
+        eventDAO.addEvent(id, eventState.startDate,eventState.endDate, eventState.name).then(() => {
             window.location.reload(false)}
         );
     }
@@ -37,13 +37,15 @@ export default function AddEvent({id}) {
     return (
         <div className="inputDiv" onSubmit={addEvent}>
             <form className="addGrid">
-                <label className="">Name</label>
+                <label className="">Nom</label>
                 <input className="inputTimeline" name="name" value={eventState.name}
                     type="text" onChange={onInputChange}></input>
-                <label className="">Date</label>
-                <input className="inputTimeline" name="date" value={eventState.date}
+                <label className="">Date de début</label>
+                <input className="inputTimeline" name="startDate" value={eventState.startDate}
                     type="date" onChange={onInputChange}></input>
-
+                <label className="">Date de fin</label>
+                <input className="inputTimeline" name="endDate" value={eventState.endDate}
+                    type="date" onChange={onInputChange}></input>
                 <input type="submit" value="Ajouter événement" />
             </form>
         </div>

@@ -39,12 +39,20 @@ function Event({ event, isEditable, updateEventsList }) {
         type={"text"}
       />
       <FloatLabelInput
-        label="Date"
-        name={"date"}
-        value={eventState.date}
+        label="Date de début"
+        name={"startDate"}
+        value={eventState.startDate}
         onChange={onInputChange}
         type={"date"}
       />
+      <FloatLabelInput
+        label="Date de fin"
+        name={"endDate"}
+        value={eventState.endDate}
+        onChange={onInputChange}
+        type={"date"}
+      />
+
     </div>
   ) : (
     <p>

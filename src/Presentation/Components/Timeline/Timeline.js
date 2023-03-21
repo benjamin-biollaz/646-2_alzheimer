@@ -21,13 +21,14 @@ import '../../CSS/TimelineForm.css'
 import { DateFormatter } from '../../../Utilities/DateFormatter';
 
 import { ResidentContext } from '../../../Context/ResidentContext';
+import { border } from '@mui/system';
 
 
 export function TimelineWidget({id}) {
 
     const resContext = useContext(ResidentContext);
 
-    const groups = [{ id: 1, title: 'Périodes' }, { id: 2, title: 'Lieux' }, { id: 3, title: 'Evénements' }]
+    const groups = [{ id: 1, title: 'Périodes' }, { id: 2, title: 'Lieux' }, { id: 3, title: 'Evénements',stackItems:false, height:120}]
 
     // Create instances of DAO classes
     const timelineDAO = new TimelineDAO();
@@ -74,21 +75,23 @@ export function TimelineWidget({id}) {
                     id: parseInt(element.id, 36),
                     group: 3,
                     // title: (element.eventDTO.name).split(/\s+/).slice(0, 1),
-                    title: element.eventDTO.name,
+                    title: element.eventDTO.name+" ("+moment(element.eventDTO.startDate).format('DD/MM/YY')+(element.eventDTO.endDate ==''||element.eventDTO.endDate==element.eventDTO.startDate?'':'-'+moment(element.eventDTO.endDate).format('DD/MM/YY')) +")",
                     tip: element.eventDTO.name,
-                    start_time: moment(df.format_YYYMMDD(element.eventDTO.date)),
-                    end_time: moment(df.format_YYYMMDD(element.eventDTO.date)).add(10, 'day'),
+                    start_time: moment(df.format_YYYMMDD(element.eventDTO.startDate)),
+                    end_time: (element.eventDTO.endDate == '' ? moment(df.format_YYYMMDD(element.eventDTO.startDate)).add(1, 'days') : moment(df.format_YYYMMDD(element.eventDTO.endDate))),
                     canMove: false,
                     itemProps: {
                         'data-custom-attribute': 'Random content',
                         'aria-hidden': true,
                         onDoubleClick: () => {
-                            setToolTipText(element.eventDTO.name);
+                            setToolTipText(element.eventDTO.name + " " + element.eventDTO.date,
+                            );
                             toggleTooltip()
                         },
                         style: {
                             background: eventsColors[index % eventsColors.length],
                             color: 'black',
+                           'itemContext.maxheight': 60,
                         },
                     },
                 })),
@@ -98,7 +101,7 @@ export function TimelineWidget({id}) {
                 ...periods.map((element, index) => ({
                     id: parseInt(element.id, 36),
                     group: 1,
-                    title: element.periodDTO.name,
+                    title: element.periodDTO.name+"\u000D \u000A("+moment(element.periodDTO.startDate).format('DD/MM/YY')+" - "+moment(element.periodDTO.endDate).format('DD/MM/YY')+")",
                     tip: element.periodDTO.name,
                     start_time: moment(df.format_YYYMMDD(element.periodDTO.startDate)),
                     end_time: moment(df.format_YYYMMDD(element.periodDTO.endDate)),
@@ -114,7 +117,7 @@ export function TimelineWidget({id}) {
                 ...locations.map((element, index) => ({
                     id: parseInt(element.id, 36),
                     group: 2,
-                    title: element.locationDTO.name,
+                    title: element.locationDTO.name+ "\n (" + moment(element.locationDTO.startDate).format('DD/MM/YY') + " - " + moment(element.locationDTO.endDate).format('DD/MM/YY') + ")",
                     tip: element.locationDTO.name,
                     start_time: moment(df.format_YYYMMDD(element.locationDTO.startDate)),
                     end_time: moment(df.format_YYYMMDD(element.locationDTO.endDate)),
@@ -128,9 +131,7 @@ export function TimelineWidget({id}) {
 
             ];
 
-            //get min date
-            var tempmin = Math.min(...allItems.map(item => item.start_time));
-            setMin(tempmin);
+           
 
             setItems(allItems);
 
@@ -138,6 +139,8 @@ export function TimelineWidget({id}) {
             setLocations(locations);
             setPeriods(periods);
         };
+        //set min date of all Items
+        setMin(Math.min(...items.map(item => item.start_time)));
 
         fetchData();
     }, []);
@@ -149,11 +152,11 @@ export function TimelineWidget({id}) {
                 groups={groups}
                 items={items}
                 defaultTimeStart={moment(df.format_YYYMMDD(min))}
-                defaultTimeEnd={moment().add(1, 'month')}
-                maxZoom={70 * 365.24 * 86400 * 1000}
-                minZoom={60 * 60 * 1000 * 24 * 50}
+                defaultTimeEnd={moment().add(1, 'year')}
+                maxZoom={120 * 365.24 * 86400 * 1000}
+                minZoom={60 * 60 * 1000 * 24 * 365.24 *15}
                 canvasStartTime={moment(df.format_YYYMMDD(min))}
-                canvasEndTime={moment().add(1, 'month')}
+                canvasEndTime={moment().add(1, 'year')}
             >
                 <TimelineHeaders>
                     <SidebarHeader>
@@ -161,7 +164,27 @@ export function TimelineWidget({id}) {
                             return <div {...getRootProps()}></div>
                         }}
                     </SidebarHeader>
-                    <DateHeader unit="primaryHeader" />
+                    <DateHeader
+                        unit="year"
+                        labelFormat="YYYY"
+                        style={{ height: 50}}
+                        //set an interval of 10 years between each label
+                        intervalRenderer={({ getIntervalProps, intervalContext }) => {
+                            const intervalProps = getIntervalProps()
+                                {
+                                    if (intervalContext.intervalText % 10 == 0) {
+                                        intervalProps.style.textAlign = 'right'
+                                        intervalProps.style.borderLeft = '2px solid gray'
+                                        
+                                        return <div {...intervalProps}>{intervalContext.intervalText}</div>
+                                    }
+                                    
+                                        
+                                    }
+                                }
+                                
+                            }
+                        />
                 </TimelineHeaders>
                 <TimelineMarkers>
                     <TodayMarker>
