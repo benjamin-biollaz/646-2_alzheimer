@@ -1,5 +1,5 @@
 import React from 'react'
-import GenericForm from './GenericForm';
+import GenericForm from '../Form/GenericForm';
 import Event from './Event';
 import AddEvent from './AddEvent';
 import { EventDAO } from '../../../DAL/EventDAO';

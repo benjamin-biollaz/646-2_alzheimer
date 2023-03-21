@@ -9,7 +9,7 @@ import Popup from 'reactjs-popup';
 import { ResidentDTO } from '../../DTO/ResidentDTO';
 import Navbar from './Navbar';
 
-export default function Home({ resident }) {
+export default function Home() {
 
 
 const residentDAO = new ResidentDAO();
