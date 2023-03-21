@@ -11,6 +11,7 @@ export default function AddEvent({ id }) {
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const fieldName = target.name;
+    const [eventState, setEvent] = useState(new EventDTO("", ""));
 
     //update event state for display
     setEvent((prevState) => ({
