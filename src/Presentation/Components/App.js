@@ -7,13 +7,12 @@ import Navbar from "../Components/Navbar";
 import Page404 from "./Page404";
 import "../CSS/App.css";
 import Information from "./Information";
-import { PreferenceDAO } from "../../DAL/PreferenceDAO";
 
 function App() {
-  const [resident, setResident] = React.useState(null);
 
+  // for testing purpose only
   useEffect(() => {
-    getResident();
+    testDB();
   }, []);
 
   return (
@@ -34,12 +33,9 @@ function App() {
     </BrowserRouter>
   );
 
-  async function getResident() {
-
-    const prefDAO = new PreferenceDAO();
-    const preferences = await prefDAO.getPreferencesByResidentId("HvrELV7MRnnJcV24ro1w");
-    preferences.forEach(p => console.log(p));
-    
+  async function testDB() {
+    // write here test access to the database
+    // those are run when the app starts
   }
 }
 
