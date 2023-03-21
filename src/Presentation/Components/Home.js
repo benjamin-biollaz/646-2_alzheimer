@@ -60,7 +60,7 @@ useEffect(() => {
             {
               residents?.map((resident) => {
                 return (
-                  <tr>
+                  <tr key={resident.id}>
                     <td>{resident.firstName}</td>
                     <td>{resident.lastName}</td>
                     <td>{moment(resident.birthDate).format("DD MM YYYY")}</td>
