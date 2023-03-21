@@ -1,5 +1,5 @@
 import React from 'react'
-import GenericForm from './GenericForm';
+import GenericForm from '../Form/GenericForm';
 import Period from './Period';
 import {PeriodWithId} from '../../../DTO/PeriodWithId';
 import {PeriodDAO} from '../../../DAL/PeriodDAO'

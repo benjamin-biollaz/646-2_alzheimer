@@ -7,6 +7,7 @@ import Navbar from "../Components/Navbar";
 import Page404 from "./Page404";
 import "../CSS/App.css";
 import Information from "./Information";
+import { PreferenceDAO } from "../../DAL/PreferenceDAO";
 
 function App() {
   const [resident, setResident] = React.useState(null);
@@ -25,8 +26,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/navbar" element={<Navbar />} />
           <Route path="/infos/:id" element={<Information />} />
-          <Route path="/" element={<Home resident={resident} />} />
-          <Route path="/home" element={<Home resident={resident} />} />
+          <Route path="/" element={<Home/>} />
+          <Route path="/home" element={<Home/>} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </div>
@@ -34,10 +35,11 @@ function App() {
   );
 
   async function getResident() {
-    const res = await ResidentDAO.prototype.getresidentById(
-      "HvrELV7MRnnJcV24ro1w"
-    );
-    setResident(res);
+
+    const prefDAO = new PreferenceDAO();
+    const preferences = await prefDAO.getPreferencesByResidentId("HvrELV7MRnnJcV24ro1w");
+    preferences.forEach(p => console.log(p));
+    
   }
 }
 
