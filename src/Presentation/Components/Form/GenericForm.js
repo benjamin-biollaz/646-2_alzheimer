@@ -55,9 +55,6 @@ function GenericForm({
             </span>
           ) : (
             <FaEdit onClick={toggleView} color="grey" size={"20px"} />
-            // <Button icon onClick={toggleView}>
-            //   <Icon name="edit" size="small" />
-            // </Button>
           )}
         </div>
       </div>

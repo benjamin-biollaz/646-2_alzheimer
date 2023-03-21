@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "semantic-ui-react";
 import { EventDAO } from "../../../DAL/EventDAO";
 import { EventDTO } from "../../../DTO/EventDTO";
 import ButtonForm from "../ButtonForm";
@@ -11,7 +10,6 @@ export default function AddEvent({ id }) {
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const fieldName = target.name;
-    const [eventState, setEvent] = useState(new EventDTO("", ""));
 
     //update event state for display
     setEvent((prevState) => ({
@@ -20,21 +18,15 @@ export default function AddEvent({ id }) {
     }));
   };
 
-  const addEvent = (e) => {
-    e.preventDefault();
-    if (eventState.date === "" || eventState.name === "") {
-      alert("Veuillez remplir tous les champs");
-      return;
-    }
+  const addEvent = () => {
+    if (eventState.date === "" || eventState.name === "") return;
 
     const eventDAO = new EventDAO();
-    eventDAO.addEvent(id, eventState.date, eventState.name).then(() => {
-      window.location.reload(false);
-    });
+    eventDAO.addEvent(id, eventState.date, eventState.name);
   };
 
   return (
-    <div className="inputDiv" onSubmit={addEvent}>
+    <div className="inputDiv">
       <form className="addGrid">
         <label className="">Name</label>
         <input
@@ -53,7 +45,12 @@ export default function AddEvent({ id }) {
           onChange={onInputChange}
         ></input>
 
-        <ButtonForm onClick={addEvent} label={"Ajouter"}></ButtonForm>
+        <ButtonForm
+          label="Ajouter"
+          type="submit"
+          value="Ajouter évènement"
+          onClick={addEvent}
+        />
       </form>
     </div>
   );

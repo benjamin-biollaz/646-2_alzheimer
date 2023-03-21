@@ -12,6 +12,8 @@ import { TimelineDAO } from "../../../DAL/TimelineDAO";
 import { EventDAO } from "../../../DAL/EventDAO";
 import { PeriodDAO } from "../../../DAL/PeriodDAO";
 import { LocationDAO } from "../../../DAL/LocationDAO";
+import { FaEdit } from "react-icons/fa";
+import { TbReload } from "react-icons/tb";
 
 //popup
 import Popup from "reactjs-popup";
@@ -21,6 +23,7 @@ import "../../CSS/TimelineForm.css";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
 
 import { ResidentContext } from "../../../Context/ResidentContext";
+import { color } from "@mui/system";
 
 export function TimelineWidget({ id }) {
   const resContext = useContext(ResidentContext);
@@ -196,7 +199,7 @@ export function TimelineWidget({ id }) {
       <div>
         <Popup
           className-content={"form-popup-content"}
-          trigger={<button>Modifier la timeline</button>}
+          trigger={<FaEdit style={{ width: "25px" }} />}
           closeOnDocumentClick
           modal
           position="center center"
@@ -208,7 +211,10 @@ export function TimelineWidget({ id }) {
             id={timeline?.id}
           />
         </Popup>
-        <button onClick={() => window.location.reload()}>Rafraîchir</button>
+        <TbReload
+          onClick={() => window.location.reload()}
+          style={{ width: "25px", color: "#a78a7f" }}
+        ></TbReload>
       </div>
     </div>
   );
