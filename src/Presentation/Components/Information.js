@@ -63,8 +63,8 @@ function Information() {
           </div>
         </div>
 
-        <PreferencesList></PreferencesList>
-        {/** 
+       
+       
         <div className="preferences">
           <h3 className="label">Préférences</h3>
 
@@ -122,7 +122,7 @@ function Information() {
               </div>
             </span>
           </div>
-        </div>**/}
+        </div>
 
 
         {/* //---------------- EVENTS ------------------// */}
