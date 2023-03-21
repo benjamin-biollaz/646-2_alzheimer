@@ -12,7 +12,7 @@ import { PreferenceDAO } from '../../../DAL/PreferenceDAO';
 
 function PreferencesList() {
 
-    const [preferencesState, setPreferences] = useState([])
+    const [preferencesState, setPreferences] = useState(null)
 
     useEffect(() => {
         getPreferencesList();
@@ -20,29 +20,24 @@ function PreferencesList() {
 
     const getPreferencesList = async () => {
         const prefDAO = new PreferenceDAO();
-        setPreferences(await prefDAO.getPreferencesByResidentId("HvrELV7MRnnJcV24ro1w"));
+        const pref = await prefDAO.getPreferencesByResidentId("HvrELV7MRnnJcV24ro1w");
+        console.log(pref);
+        setPreferences(pref);
     }
 
     return (
         <div className="preferences">
             <h3 className="label">Préférences</h3>
-            <div>
-                {preferencesState.map(p => {
-                    <p key={p.label + p.iconName}></p>
-                })}
-            </div>
+            <span>
+                {preferencesState?.map((p) => 
+                    <span key={p.label + p.iconName}>{p.iconName}: {p.label}, </span>    
+                )}
+            </span>
             <div className="infos_list">
                 <h4 className="categories">Alimentation</h4>
                 <span className="infos_item">
                     <div className="icon">
                         <GiFullPizza />
-                    </div>
-                </span>
-                &nbsp; &nbsp;
-                <span className="infos_item">
-                    <div className="icon">
-                        <p></p>
-                        <GiNoodles />
                     </div>
                 </span>
                 &nbsp; &nbsp;
