@@ -17,6 +17,10 @@ import { GiMeal } from "react-icons/gi";
 import { TimelineWidget } from "./Timeline/Timeline";
 import { useParams } from "react-router";
 import PreferencesList from "./Preferences/PreferencesList";
+import PassionsList from "./Passions/PassionsList";
+import PersonalInfos from "./PersonalInfos";
+import HabitsList from "./Habits/HabitsList";
+import BeliefsList from "./Beliefs/BeliefsList";
 
 function Information() {
   function MusicNoteIcon() {
@@ -30,100 +34,13 @@ function Information() {
       <div>
         <Navbar />
       </div>
-      <div className="personal_infos">
-        <span className="patient_name">Emilie Teodoro</span>
-        &nbsp;
-        <span className="patient_name">24 ans</span>
-      </div>
+
+      <PersonalInfos></PersonalInfos>
 
       <div className="container_infos">
-        <div className="passions">
-          <h3 className="label">Passions</h3>
-          <div className="infos_list">
-            <span className="infos_item">
-              Musique
-              <div className="icon">
-                <GiMusicalNotes />
-              </div>
-            </span>
-            &nbsp; &nbsp; &nbsp;
-            <span className="infos_item">
-              Poterie
-              <div className="icon">
-                <GiMusicalNotes />
-              </div>
-            </span>
-            &nbsp; &nbsp; &nbsp;
-            <span className="infos_item">
-              Tricot
-              <div className="icon">
-                <GiMusicalNotes />
-              </div>
-            </span>
-          </div>
-        </div>
 
+      <PassionsList></PassionsList> 
        <PreferencesList></PreferencesList>
-       {/**
-        <div className="preferences">
-          <h3 className="label">Préférences</h3>
-
-          <div className="infos_list">
-            <h4 className="categories">Alimentation</h4>
-            <span className="infos_item">
-              <div className="icon">
-                <GiFullPizza />
-              </div>
-            </span>
-            &nbsp; &nbsp;
-            <span className="infos_item">
-              <div className="icon">
-                <GiNoodles />
-              </div>
-            </span>
-            &nbsp; &nbsp;
-            <span className="infos_item">
-              <div className="icon">
-                <GiNoodles />
-              </div>
-            </span>
-            &nbsp; &nbsp;
-            <span className="infos_item">
-              <div className="icon">
-                <TbCarrotOff />
-              </div>
-            </span>
-            &nbsp; &nbsp; &nbsp;
-            <span className="infos_item">
-              <div className="icon">
-                <TbPizzaOff />
-              </div>
-            </span>
-            &nbsp; &nbsp;
-            <span className="infos_item">
-              <div className="icon">
-                <TbFishOff />
-              </div>
-            </span>
-          </div>
-
-          <div className="infos_list">
-            {" "}
-            <h4 className="categories">Hygiène</h4>
-            <span className="infos_item">
-              <div className="icon">
-                <FaBath />
-              </div>
-            </span>
-            &nbsp; &nbsp; &nbsp;
-            <span className="infos_item">
-              <div className="icon">
-                <GiShower />
-              </div>
-            </span>
-          </div>
-  </div>**/}
-
 
         {/* //---------------- EVENTS ------------------// */}
         <div className="evenements">
@@ -132,80 +49,10 @@ function Information() {
             <TimelineWidget id={resId} />
           </div>
         </div>
+        
+        <HabitsList></HabitsList>
+        <BeliefsList></BeliefsList>
 
-        {/* //---------------- HABITUDES ------------------// */}
-        <div className="habitudes">
-          <h3 className="label">Habitudes</h3>
-          <div className="habitudes_grid">
-            <div className="infos_list">
-              {" "}
-              <h4 className="categories_1">Lever</h4>
-              <span className="infos_item">
-                <div className="icon">
-                  <BsSunriseFill />
-                </div>
-              </span>
-            </div>
-
-            <div className="infos_list">
-              {" "}
-              <h4 className="categories_2">Coucher</h4>
-              <span className="infos_item">
-                <div className="icon">
-                  <GiNightSleep />
-                </div>
-              </span>
-            </div>
-
-            <div className="infos_list">
-              {" "}
-              <h4 className="categories_3">Souper</h4>
-              <span className="infos_item">
-                <div className="icon">
-                  <GiMeal />
-                </div>
-              </span>
-            </div>
-
-            <div className="infos_list">
-              {" "}
-              <h4 className="categories_4">Sieste</h4>
-              <span className="infos_item">
-                <div className="icon">
-                  <TfiTimer />
-                </div>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="croyances">
-          <h3 className="label">Croyances</h3>
-
-          <div className="infos_list">
-            <h4 className="categories">Religion</h4>
-            <span className="infos_religion">
-              <h4>Christianisme</h4>
-            </span>
-            &nbsp; &nbsp;
-          </div>
-
-          <div className="infos_list">
-            <h4 className="categories">Pratique</h4>
-            <span className="infos_religion">
-              <h4 className="item">Prière</h4>
-            </span>
-            &nbsp; &nbsp;
-          </div>
-
-          <div className="infos_list">
-            <h4 className="categories">Valeurs</h4>
-            <span className="infos_religion">
-              <h4>Respect</h4>
-            </span>
-            &nbsp; &nbsp;
-          </div>
-        </div>
       </div>
     </>
   );
