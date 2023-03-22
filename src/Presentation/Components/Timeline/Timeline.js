@@ -24,15 +24,12 @@ import { DateFormatter } from "../../../Utilities/DateFormatter";
 
 import { ResidentContext } from "../../../Context/ResidentContext";
 import { color } from "@mui/system";
+import { border } from '@mui/system';
 
 export function TimelineWidget({ id }) {
   const resContext = useContext(ResidentContext);
 
-  const groups = [
-    { id: 1, title: "Périodes" },
-    { id: 2, title: "Lieux" },
-    { id: 3, title: "Evénements" },
-  ];
+    const groups = [{ id: 1, title: 'Périodes' }, { id: 2, title: 'Lieux' }, { id: 3, title: 'Evénements',stackItems:false, height:120}]
 
   // Create instances of DAO classes
   const timelineDAO = new TimelineDAO();
@@ -77,129 +74,151 @@ export function TimelineWidget({ id }) {
       const events = await eventDAO.getEventsByTimelineId(timeline.id);
       const locations = await locationDAO.getLocationsByTimelineId(timeline.id);
 
-      // Combine items from all sources into a single array
-      const allItems = [
-        // Mapping event elements
-        ...events.map((element, index) => ({
-          id: parseInt(element.id, 36),
-          group: 3,
-          // title: (element.eventDTO.name).split(/\s+/).slice(0, 1),
-          title: element.eventDTO.name,
-          tip: element.eventDTO.name,
-          start_time: moment(df.format_YYYMMDD(element.eventDTO.date)),
-          end_time: moment(df.format_YYYMMDD(element.eventDTO.date)).add(
-            10,
-            "day"
-          ),
-          canMove: false,
-          itemProps: {
-            "data-custom-attribute": "Random content",
-            "aria-hidden": true,
-            onDoubleClick: () => {
-              setToolTipText(element.eventDTO.name);
-              toggleTooltip();
-            },
-            style: {
-              background: eventsColors[index % eventsColors.length],
-              color: "black",
-            },
-          },
-        })),
+            // Combine items from all sources into a single array
+            const allItems = [
 
-        // Mapping period elements
-        ...periods.map((element, index) => ({
-          id: parseInt(element.id, 36),
-          group: 1,
-          title: element.periodDTO.name,
-          tip: element.periodDTO.name,
-          start_time: moment(df.format_YYYMMDD(element.periodDTO.startDate)),
-          end_time: moment(df.format_YYYMMDD(element.periodDTO.endDate)),
-          canMove: false,
-          itemProps: {
-            style: {
-              background: periodsColors[index % periodsColors.length],
-            },
-          },
-        })),
+                // Mapping event elements
+                ...events.map((element, index) => ({
+                    id: parseInt(element.id, 36),
+                    group: 3,
+                    // title: (element.eventDTO.name).split(/\s+/).slice(0, 1),
+                    title: element.eventDTO.name+" ("+moment(element.eventDTO.startDate).format('DD/MM/YY')+(element.eventDTO.endDate ==''||element.eventDTO.endDate==element.eventDTO.startDate?'':'-'+moment(element.eventDTO.endDate).format('DD/MM/YY')) +")",
+                    tip: element.eventDTO.name,
+                    start_time: moment(df.format_YYYMMDD(element.eventDTO.startDate)),
+                    end_time: (element.eventDTO.endDate == '' ? moment(df.format_YYYMMDD(element.eventDTO.startDate)).add(1, 'days') : moment(df.format_YYYMMDD(element.eventDTO.endDate))),
+                    canMove: false,
+                    itemProps: {
+                        'data-custom-attribute': 'Random content',
+                        'aria-hidden': true,
+                        onDoubleClick: () => {
+                            setToolTipText(element.eventDTO.name + " " + element.eventDTO.date,
+                            );
+                            toggleTooltip()
+                        },
+                        style: {
+                            background: eventsColors[index % eventsColors.length],
+                            color: 'black',
+                           'itemContext.maxheight': 60,
+                        },
+                    },
+                })),
+        
 
-        // Mapping locations elements
-        ...locations.map((element, index) => ({
-          id: parseInt(element.id, 36),
-          group: 2,
-          title: element.locationDTO.name,
-          tip: element.locationDTO.name,
-          start_time: moment(df.format_YYYMMDD(element.locationDTO.startDate)),
-          end_time: moment(df.format_YYYMMDD(element.locationDTO.endDate)),
-          canMove: false,
-          itemProps: {
-            style: {
-              background: locationsColors[index % locationsColors.length],
-            },
-          },
-        })),
-      ];
+                // Mapping period elements
+                ...periods.map((element, index) => ({
+                    id: parseInt(element.id, 36),
+                    group: 1,
+                    title: element.periodDTO.name+"\u000D \u000A("+moment(element.periodDTO.startDate).format('DD/MM/YY')+" - "+moment(element.periodDTO.endDate).format('DD/MM/YY')+")",
+                    tip: element.periodDTO.name,
+                    start_time: moment(df.format_YYYMMDD(element.periodDTO.startDate)),
+                    end_time: moment(df.format_YYYMMDD(element.periodDTO.endDate)),
+                    canMove: false,
+                    itemProps: {
+                        style: {
+                            background: periodsColors[index % periodsColors.length],
+                        },
+                    },
+                })),
 
-      //get min date
-      var tempmin = Math.min(...allItems.map((item) => item.start_time));
-      setMin(tempmin);
+                // Mapping locations elements
+                ...locations.map((element, index) => ({
+                    id: parseInt(element.id, 36),
+                    group: 2,
+                    title: element.locationDTO.name+ "\n (" + moment(element.locationDTO.startDate).format('DD/MM/YY') + " - " + moment(element.locationDTO.endDate).format('DD/MM/YY') + ")",
+                    tip: element.locationDTO.name,
+                    start_time: moment(df.format_YYYMMDD(element.locationDTO.startDate)),
+                    end_time: moment(df.format_YYYMMDD(element.locationDTO.endDate)),
+                    canMove: false,
+                    itemProps: {
+                        style: {
+                            background: locationsColors[index % locationsColors.length],
+                        },
+                    },
+                })),
+
+            ];
+
+           
 
       setItems(allItems);
 
-      setEvents(events);
-      setLocations(locations);
-      setPeriods(periods);
-    };
+            setEvents(events);
+            setLocations(locations);
+            setPeriods(periods);
+        };
+        //set min date of all Items
+        setMin(Math.min(...items.map(item => item.start_time)));
 
     fetchData();
   }, []);
 
-  return (
-    <div>
-      <Popup
-        className-popup={"info-popup-content"}
-        ref={ref}
-        position={"bottom left"}
-        keepTooltipInside={true}
-        trigger={<button disabled>ℹ️</button>}
-      >
-        <div>{toolTipText}</div>
-      </Popup>
-      <Timeline
-        groups={groups}
-        items={items}
-        defaultTimeStart={moment(df.format_YYYMMDD(min))}
-        defaultTimeEnd={moment().add(1, "month")}
-        maxZoom={70 * 365.24 * 86400 * 1000}
-        minZoom={60 * 60 * 1000 * 24 * 50}
-        canvasStartTime={moment(df.format_YYYMMDD(min))}
-        canvasEndTime={moment().add(1, "month")}
-      >
-        <TimelineHeaders>
-          <SidebarHeader>
-            {({ getRootProps }) => {
-              return <div {...getRootProps()}></div>;
-            }}
-          </SidebarHeader>
-          <DateHeader unit="primaryHeader" />
-        </TimelineHeaders>
-        <TimelineMarkers>
-          <TodayMarker>
-            {({ styles }) => {
-              const customStyles = {
-                ...styles,
-                backgroundColor: "red",
-                width: "2px",
-              };
-              return <div style={customStyles} />;
-            }}
-          </TodayMarker>
-        </TimelineMarkers>
-      </Timeline>
-      <br />
-      <div>
-        <Popup
+    return (
+        <div>
+            <Popup className-popup={'info-popup-content'} ref={ref} position={'bottom left'} keepTooltipInside={true} trigger={<button disabled>ℹ️</button>}><div>{toolTipText}</div></Popup>
+            <Timeline
+                groups={groups}
+                items={items}
+                defaultTimeStart={moment(df.format_YYYMMDD(min))}
+                defaultTimeEnd={moment().add(1, 'year')}
+                maxZoom={120 * 365.24 * 86400 * 1000}
+                minZoom={60 * 60 * 1000 * 24 * 365.24 *15}
+                canvasStartTime={moment(df.format_YYYMMDD(min))}
+                canvasEndTime={moment().add(1, 'year')}
+            >
+                <TimelineHeaders>
+                    <SidebarHeader>
+                        {({ getRootProps }) => {
+                            return <div {...getRootProps()}></div>
+                        }}
+                    </SidebarHeader>
+                    <DateHeader
+                        unit="year"
+                        labelFormat="YYYY"
+                        style={{ height: 50}}
+                        //set an interval of 10 years between each label
+                        intervalRenderer={({ getIntervalProps, intervalContext }) => {
+                            const intervalProps = getIntervalProps()
+                                {
+                                    if (intervalContext.intervalText % 10 == 0) {
+                                        intervalProps.style.textAlign = 'right'
+                                        intervalProps.style.borderLeft = '2px solid gray'
+                                        
+                                        return <div {...intervalProps}>{intervalContext.intervalText}</div>
+                                    }
+                                    
+                                        
+                                    }
+                                }
+                                
+                            }
+                        />
+                </TimelineHeaders>
+                <TimelineMarkers>
+                    <TodayMarker>
+                        {({ styles }) => {
+                            const customStyles = {
+                                ...styles,
+                                backgroundColor: 'red',
+                                width: '2px',
+                            }
+                            return (
+                                <div style={customStyles} />
+                            )
+                        }}
+                    </TodayMarker>
+                </TimelineMarkers>
+            </Timeline>
+            <br />
+            <div>
+            <Popup
           className-content={"form-popup-content"}
-          trigger={<FaEdit style={{ width: "25px" }} />}
+          trigger={
+          <button
+            style={{ backgroundColor: "transparent", border: "none" }}
+            >
+            <FaEdit style={{ width: "25px", color: "#a78a7f" }}></FaEdit>
+            </button>
+            }
           closeOnDocumentClick
           modal
           position="center center"
@@ -215,7 +234,8 @@ export function TimelineWidget({ id }) {
           onClick={() => window.location.reload()}
           style={{ width: "25px", color: "#a78a7f" }}
         ></TbReload>
-      </div>
-    </div>
-  );
+            </div>
+        </div>
+    );
+
 }

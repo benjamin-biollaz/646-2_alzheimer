@@ -18,40 +18,39 @@ export default function AddEvent({ id }) {
     }));
   };
 
-  const addEvent = () => {
-    if (eventState.date === "" || eventState.name === "") return;
+    const addEvent = (e) => {
+        e.preventDefault();
+        if (eventState.startDate === '' || eventState.name === ''){
+            alert("Veuillez remplir tous les champs");
+            return;
+        }
 
-    const eventDAO = new EventDAO();
-    eventDAO.addEvent(id, eventState.date, eventState.name);
-  };
+        const eventDAO = new EventDAO();
+        eventDAO.addEvent(id, eventState.startDate,eventState.endDate, eventState.name).then(() => {
+            window.location.reload(false)}
+        );
+    }
 
-  return (
-    <div className="inputDiv">
-      <form className="addGrid">
-        <label className="">Name</label>
-        <input
-          className="inputTimeline"
-          name="name"
-          value={eventState.name}
-          type="text"
-          onChange={onInputChange}
-        ></input>
-        <label className="">Date</label>
-        <input
-          className="inputTimeline"
-          name="date"
-          value={eventState.date}
-          type="date"
-          onChange={onInputChange}
-        ></input>
 
-        <ButtonForm
+    return (
+        <div className="inputDiv" >
+            <form className="addGrid" onSubmit={addEvent}>
+                <label className="">Nom</label>
+                <input className="inputTimeline" name="name" value={eventState.name}
+                    type="text" onChange={onInputChange}></input>
+                <label className="">Date de début</label>
+                <input className="inputTimeline" name="startDate" value={eventState.startDate}
+                    type="date" onChange={onInputChange}></input>
+                <label className="">Date de fin</label>
+                <input className="inputTimeline" name="endDate" value={eventState.endDate}
+                    type="date" onChange={onInputChange}></input>
+                 <ButtonForm
           label="Ajouter"
           type="submit"
           value="Ajouter évènement"
           onClick={addEvent}
         />
-      </form>
-    </div>
-  );
+            </form>
+        </div>
+    )
 }
