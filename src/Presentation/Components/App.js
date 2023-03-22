@@ -7,7 +7,6 @@ import Navbar from "../Components/Navbar";
 import Page404 from "./Page404";
 import "../CSS/App.css";
 import Information from "./Information";
-import { PreferenceDAO } from "../../DAL/PreferenceDAO";
 
 function App() {
   const [resident, setResident] = React.useState(null);
@@ -36,9 +35,7 @@ function App() {
 
   async function getResident() {
 
-    const prefDAO = new PreferenceDAO();
-    const preferences = await prefDAO.getPreferencesByResidentId("HvrELV7MRnnJcV24ro1w");
-    preferences.forEach(p => console.log(p));
+
     
   }
 }
