@@ -1,5 +1,5 @@
 import React from 'react'
-import GenericForm from './GenericForm';
+import GenericForm from '../Form/GenericForm';
 import Location from './Location';
 import {LocationWithId} from '../../../DTO/LocationWithId'
 import {LocationDAO} from '../../../DAL/LocationDAO'

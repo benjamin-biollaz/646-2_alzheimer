@@ -1,24 +1,22 @@
-import React, { useState } from "react"
-import { Button } from "semantic-ui-react";
+import React, { useState } from "react";
 import { EventDAO } from "../../../DAL/EventDAO";
 import { EventDTO } from "../../../DTO/EventDTO";
+import ButtonForm from "../ButtonForm";
 
-export default function AddEvent({id}) {
+export default function AddEvent({ id }) {
+  const [eventState, setEvent] = useState(new EventDTO("", ""));
 
-    const [eventState, setEvent] = useState(new EventDTO('', ''));
+  const onInputChange = (e) => {
+    const target = e.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const fieldName = target.name;
 
-    const onInputChange = (e) => {
-        const target = e.target;
-        const value = target.type === "checkbox" ? target.checked : target.value;
-        const fieldName = target.name;
-
-        //update event state for display
-        setEvent((prevState) => ({
-            ...prevState,
-            [fieldName]: value, //es6 computed property syntax
-        }))
-
-    };
+    //update event state for display
+    setEvent((prevState) => ({
+      ...prevState,
+      [fieldName]: value, //es6 computed property syntax
+    }));
+  };
 
     const addEvent = (e) => {
         e.preventDefault();
@@ -35,8 +33,8 @@ export default function AddEvent({id}) {
 
 
     return (
-        <div className="inputDiv" onSubmit={addEvent}>
-            <form className="addGrid">
+        <div className="inputDiv" >
+            <form className="addGrid" onSubmit={addEvent}>
                 <label className="">Nom</label>
                 <input className="inputTimeline" name="name" value={eventState.name}
                     type="text" onChange={onInputChange}></input>
@@ -46,7 +44,12 @@ export default function AddEvent({id}) {
                 <label className="">Date de fin</label>
                 <input className="inputTimeline" name="endDate" value={eventState.endDate}
                     type="date" onChange={onInputChange}></input>
-                <input type="submit" value="Ajouter événement" />
+                 <ButtonForm
+          label="Ajouter"
+          type="submit"
+          value="Ajouter évènement"
+          onClick={addEvent}
+        />
             </form>
         </div>
     )

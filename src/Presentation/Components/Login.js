@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../Components/Button";
+import Button from "../Components/ButtonLogin";
 import "../CSS/Login.css";
 import logo from "../img/logo_memorys.png";
 

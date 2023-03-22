@@ -9,7 +9,7 @@ import Popup from 'reactjs-popup';
 import { ResidentDTO } from '../../DTO/ResidentDTO';
 import Navbar from './Navbar';
 
-export default function Home({ resident }) {
+export default function Home() {
 
 
 const residentDAO = new ResidentDAO();
@@ -60,7 +60,7 @@ useEffect(() => {
             {
               residents?.map((resident) => {
                 return (
-                  <tr>
+                  <tr key={resident.id}>
                     <td>{resident.firstName}</td>
                     <td>{resident.lastName}</td>
                     <td>{moment(resident.birthDate).format("DD MM YYYY")}</td>

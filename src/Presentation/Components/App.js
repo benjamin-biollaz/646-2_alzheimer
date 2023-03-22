@@ -25,8 +25,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/navbar" element={<Navbar />} />
           <Route path="/infos/:id" element={<Information />} />
-          <Route path="/" element={<Home resident={resident} />} />
-          <Route path="/home" element={<Home resident={resident} />} />
+          <Route path="/" element={<Home/>} />
+          <Route path="/home" element={<Home/>} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </div>
@@ -34,10 +34,9 @@ function App() {
   );
 
   async function getResident() {
-    const res = await ResidentDAO.prototype.getresidentById(
-      "HvrELV7MRnnJcV24ro1w"
-    );
-    setResident(res);
+
+
+    
   }
 }
 
