@@ -210,10 +210,30 @@ export function TimelineWidget({ id }) {
             </Timeline>
             <br />
             <div>
-                <Popup className-content={'form-popup-content'} trigger={<button>Modifier la timeline</button>} closeOnDocumentClick modal position='center center'>
-                    <TimelineForm events={events} periods={periods} locations={locations}  id={timeline?.id} />
-                </Popup>
-                <button onClick={() => window.location.reload()}>Rafraîchir</button>
+            <Popup
+          className-content={"form-popup-content"}
+          trigger={
+          <button
+            style={{ backgroundColor: "transparent", border: "none" }}
+            >
+            <FaEdit style={{ width: "25px", color: "#a78a7f" }}></FaEdit>
+            </button>
+            }
+          closeOnDocumentClick
+          modal
+          position="center center"
+        >
+          <TimelineForm
+            events={events}
+            periods={periods}
+            locations={locations}
+            id={timeline?.id}
+          />
+        </Popup>
+        <TbReload
+          onClick={() => window.location.reload()}
+          style={{ width: "25px", color: "#a78a7f" }}
+        ></TbReload>
             </div>
         </div>
     );
