@@ -9,10 +9,10 @@ import "../CSS/App.css";
 import Information from "./Information";
 
 function App() {
-  const [resident, setResident] = React.useState(null);
 
+  // for testing purpose only
   useEffect(() => {
-    getResident();
+    testDB();
   }, []);
 
   return (
@@ -33,10 +33,9 @@ function App() {
     </BrowserRouter>
   );
 
-  async function getResident() {
-
-
-    
+  async function testDB() {
+    // write here test access to the database
+    // those are run when the app starts
   }
 }
 
