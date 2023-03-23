@@ -7,6 +7,9 @@ import Navbar from "../Components/Navbar";
 import Page404 from "./Page404";
 import "../CSS/App.css";
 import Information from "./Information";
+import { PreferenceDAO } from "../../DAL/PreferenceDAO";
+import { PreferenceWithId } from "../../DTO/PreferenceWithId";
+import { PreferenceDTO } from "../../DTO/PreferenceDTO";
 
 function App() {
 
@@ -36,6 +39,16 @@ function App() {
   async function testDB() {
     // write here test access to the database
     // those are run when the app starts
+    const prefDAo = new PreferenceDAO();
+    const resId = "HvrELV7MRnnJcV24ro1w";
+    const preference = await prefDAo.getPreferencesByResidentId(resId);
+
+    const newPref = new PreferenceWithId(null, new PreferenceDTO("TEst", "are you sure", "Alimentation"));
+
+    console.log(preference[0])
+    console.log(newPref)
+
+    await prefDAo.updatePreference(resId, preference[0], newPref);
   }
 }
 
