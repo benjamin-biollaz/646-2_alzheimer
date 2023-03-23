@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { ResidentContext } from '../../../Context/ResidentContext';
 import GenericForm from '../Form/GenericForm';
 import Event from './Event';
 import AddEvent from './AddEvent';
@@ -10,7 +11,7 @@ import { EventWithId } from '../../../DTO/EventWithId';
  * Note that the display of indivual event is handled in the "Event" component.
  */
 function EventsForm({ events, id }) {
-
+    const context = useContext(ResidentContext);
     // those two collections store events before/after modifications
     // to access database only if changes have been made
     var eventsBeforeEdition = [...events];
@@ -27,7 +28,7 @@ function EventsForm({ events, id }) {
         for (const ev of eventsBeforeEdition) {
             // update each event
             const eventIndex = eventsEdited.findIndex(e => e.id === ev.id)
-            eventDAO.updateEvent(id, ev, eventsEdited[eventIndex].eventDTO.startDate, eventsEdited[eventIndex].eventDTO.endDate,eventsEdited[eventIndex].eventDTO.name)
+            eventDAO.updateEvent(context.residentId, ev, eventsEdited[eventIndex].eventDTO.startDate, eventsEdited[eventIndex].eventDTO.endDate,eventsEdited[eventIndex].eventDTO.name)
         }
 
         // eventsBeforeEdition is updated with the DB
@@ -45,7 +46,7 @@ function EventsForm({ events, id }) {
 
     const renderAdd = () => {
         return (
-            <AddEvent id={id} />
+            <AddEvent />
         );
     }
 

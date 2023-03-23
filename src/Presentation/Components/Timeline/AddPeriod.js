@@ -1,10 +1,12 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { Button } from "semantic-ui-react";
 import {PeriodDTO} from "../../../DTO/PeriodDTO";
 import { PeriodDAO } from "../../../DAL/PeriodDAO";
+import {ResidentContext} from "../../../Context/ResidentContext";
 
-export default function AddPeriod({id}) {
+export default function AddPeriod() {
 
+    const context = useContext(ResidentContext);
     const [periodState, setPeriod] = useState(new PeriodDTO('','','',''));
 
     const onInputChange = (e) => {
@@ -28,7 +30,7 @@ export default function AddPeriod({id}) {
         }
 
         const periodDAO = new PeriodDAO();
-        periodDAO.addPeriod(id,periodState.name,periodState.startDate,periodState.endDate).then(() => {
+        periodDAO.addPeriod(context.residentId,periodState.name,periodState.startDate,periodState.endDate).then(() => {
             window.location.reload(false)}
             );
     }

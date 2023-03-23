@@ -27,7 +27,7 @@ import { ResidentContext } from "../../../Context/ResidentContext";
 import { color } from "@mui/system";
 import { border } from '@mui/system';
 
-export function TimelineWidget({ id }) {
+export function TimelineWidget() {
     const resContext = useContext(ResidentContext);
 
     const groups = [{ id: 1, title: 'Périodes' }, { id: 2, title: 'Lieux' }, { id: 3, title: 'Evénements', stackItems: false, height: 120 }]
@@ -65,7 +65,7 @@ export function TimelineWidget({ id }) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const timeline = await timelineDAO.getTimelineByResidentId(id);
+            const timeline = await timelineDAO.getTimelineByResidentId(resContext.residentId);
             // const timeline = await timelineDAO.getTimelineByResidentId(resident.id);
             setTimeline(timeline);
 

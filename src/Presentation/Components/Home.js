@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import "../CSS/Home.css"
 import { Link } from "react-router-dom";
 
@@ -8,10 +8,11 @@ import moment from 'moment';
 import Popup from 'reactjs-popup';
 import { ResidentDTO } from '../../DTO/ResidentDTO';
 import Navbar from './Navbar';
+import {ResidentContext} from '../../Context/ResidentContext';
 
 export default function Home() {
 
-
+const context = useContext(ResidentContext);
 const residentDAO = new ResidentDAO();
 const [newRes, setResident] = React.useState(new ResidentDTO('','',''));
 const [residents, setResidents] = React.useState(null);
@@ -35,6 +36,11 @@ const addResident = async () => {
      var r = await residentDAO.addResident(newRes);
     console.log(r.id);
     window.location.href = `/infos/${r.id}`;
+}
+
+const setContext = (id, resident) => {
+  context.residentId = id;
+  context.resident = resident
 }
 
 
@@ -64,7 +70,7 @@ useEffect(() => {
                     <td>{resident.firstName}</td>
                     <td>{resident.lastName}</td>
                     <td>{moment(resident.birthDate).format("DD MM YYYY")}</td>
-                    <td><Link to={`/infos/${resident.id}`}><button>Infos</button></Link></td>
+                    <td><Link to={`/infos`} onClick={()=>setContext(resident.id, resident)}><button>Infos</button></Link></td>
                   </tr>
                 )
               })
