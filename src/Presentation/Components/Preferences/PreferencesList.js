@@ -12,10 +12,13 @@ import { PreferenceDAO } from '../../../DAL/PreferenceDAO';
 import EditButton from "../Buttons/EditButton"
 import Preference from './Preference';
 import SectionHeader from '../SectionHeader';
+import PrefPopUPContent from './PrefPopUPContent';
 
 function PreferencesList() {
 
-    const [preferencesState, setPreferences] = useState(null)
+    const [prefAlimState, setPrefAlim] = useState(null);
+    const [prefSleepState, setPrefSleep] = useState(null);
+    const [prefHygieneState, setPrefHygiene] = useState(null);
 
     useEffect(() => {
         getPreferencesList();
@@ -24,16 +27,19 @@ function PreferencesList() {
     const getPreferencesList = async () => {
         const prefDAO = new PreferenceDAO();
         const pref = await prefDAO.getPreferencesByResidentId("HvrELV7MRnnJcV24ro1w");
-        setPreferences(pref);
+        setPrefAlim(pref.filter((p) => p.category == "Alimentation"));
+        setPrefSleep(pref.filter((p) => p.category == "Sommeil"));
+        setPrefHygiene(pref.filter((p) => p.category == "Hygiène"));
+
     }
 
-    const renderFilteredPreferences = (category) => {
+    const renderPreferences = (category, preferencesState) => {
         return (
             <div className="infos_list">
                 {" "}
                 <h4 className="categories">{category}</h4>
                 <span className="infos_item">
-                    {preferencesState?.filter((pf) => pf.category == category).map((p) =>
+                    {preferencesState?.map((p) =>
                         <Preference preferenceDTO={p} key={p.label + p.iconName}></Preference>
                     )}
                 </span>
@@ -43,10 +49,20 @@ function PreferencesList() {
 
     return (
         <div className="preferences">
-            <SectionHeader sectionTitle={"Préférences"}></SectionHeader>
-            {renderFilteredPreferences("Alimentation")}
-            {renderFilteredPreferences("Hygiène")}
-            {renderFilteredPreferences("Sommeil")}
+            <SectionHeader sectionTitle={"Préférences"}
+                popupContent={
+                    // popup content takes the three list as props
+                    <PrefPopUPContent
+                        prefAlim={prefAlimState}
+                        prefSleep={prefSleepState}
+                        prefHygiene={prefHygieneState}>
+                    </PrefPopUPContent>} >
+            </SectionHeader>
+            {
+            // readonly preferences
+            renderPreferences("Alimentation", prefAlimState)}
+            {renderPreferences("Sommeil", prefSleepState)}
+            {renderPreferences("Hygiène", prefHygieneState)}
         </div>
     )
 }
