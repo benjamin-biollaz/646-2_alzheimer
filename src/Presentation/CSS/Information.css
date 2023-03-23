@@ -161,3 +161,10 @@
 .label:first-child {
   margin-top: 1vh;
 }
+
+@media print {
+  html, body {
+    height: initial !important;
+    overflow: initial !important;
+  }
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Navbar from "./Navbar";
 import "../CSS/Information.css";
 import "../fonts/LexendDeca.ttf";
@@ -21,6 +21,9 @@ import PassionsList from "./Passions/PassionsList";
 import PersonalInfos from "./PersonalInfos";
 import HabitsList from "./Habits/HabitsList";
 import BeliefsList from "./Beliefs/BeliefsList";
+import ReactToPrint from "react-to-print";
+import moment from "moment";
+import { DateFormatter } from "../../Utilities/DateFormatter";
 
 function Information() {
   function MusicNoteIcon() {
@@ -28,13 +31,16 @@ function Information() {
   }
 
   const resId = useParams().id;
+  const componentRef = useRef();
 
   return (
     <>
       <div>
         <Navbar />
+        
       </div>
 
+      <div ref={componentRef}>
       <PersonalInfos></PersonalInfos>
 
       <div className="container_infos">
@@ -54,6 +60,11 @@ function Information() {
         <BeliefsList></BeliefsList>
 
       </div>
+      </div>
+      <ReactToPrint
+        trigger={() => <button>Print</button>}
+        content={() => componentRef.current}
+      />
     </>
   );
 }

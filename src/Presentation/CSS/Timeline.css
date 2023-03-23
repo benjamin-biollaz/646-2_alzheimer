@@ -120,3 +120,9 @@
     display:flex;
     justify-content: center;
   }
+
+  @media print {
+    .react-calendar-timeline .rct-scroll {
+      overflow-x: auto !important;
+    }
+  }
