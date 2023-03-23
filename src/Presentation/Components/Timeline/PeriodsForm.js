@@ -1,12 +1,13 @@
 import React from 'react'
+import { useContext } from 'react';
 import GenericForm from '../Form/GenericForm';
 import Period from './Period';
 import {PeriodWithId} from '../../../DTO/PeriodWithId';
 import {PeriodDAO} from '../../../DAL/PeriodDAO'
 import AddPeriod from './AddPeriod';
+import {ResidentContext} from '../../../Context/ResidentContext';
 
-function PeriodsForm({periods, id}) {
-    
+function PeriodsForm({periods}) {
      // those two collections store periods before/after modifications
     // to access database only if changes have been made
     var periodsBeforeEdition = [...periods];
@@ -23,7 +24,7 @@ function PeriodsForm({periods, id}) {
         for (const per of periodsBeforeEdition) {
             // update each event
             const periodIndex = periodsEdited.findIndex(p => p.id == per.id)
-            periodDAO.updatePeriod(id, per, periodsEdited[periodIndex].periodDTO.startDate, 
+            periodDAO.updatePeriod(localStorage.getItem("timelineId"), per, periodsEdited[periodIndex].periodDTO.startDate, 
             periodsEdited[periodIndex].periodDTO.endDate, periodsEdited[periodIndex].periodDTO.name)
         }
 
@@ -40,7 +41,7 @@ function PeriodsForm({periods, id}) {
 
         const renderAdd = () => {
             return (
-                <AddPeriod id={id} />
+                <AddPeriod />
             );
         }
 

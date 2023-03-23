@@ -3,7 +3,7 @@ import { Button } from "semantic-ui-react";
 import {PeriodDTO} from "../../../DTO/PeriodDTO";
 import { PeriodDAO } from "../../../DAL/PeriodDAO";
 
-export default function AddPeriod({id}) {
+export default function AddPeriod() {
 
     const [periodState, setPeriod] = useState(new PeriodDTO('','','',''));
 
@@ -28,7 +28,7 @@ export default function AddPeriod({id}) {
         }
 
         const periodDAO = new PeriodDAO();
-        periodDAO.addPeriod(id,periodState.name,periodState.startDate,periodState.endDate).then(() => {
+        periodDAO.addPeriod(localStorage.getItem("timelineId"),periodState.name,periodState.startDate,periodState.endDate).then(() => {
             window.location.reload(false)}
             );
     }

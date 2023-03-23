@@ -70,7 +70,7 @@
   color: #a78a7f;
   font-size: 1rem;
   font-weight: bold;
-  height: 270px;
+  height: fit-content;
   grid-area: evenements;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 2vh;

@@ -9,8 +9,7 @@ import { EventWithId } from '../../../DTO/EventWithId';
  * This component renders a list of event. 
  * Note that the display of indivual event is handled in the "Event" component.
  */
-function EventsForm({ events, id }) {
-
+function EventsForm({ events}) {
     // those two collections store events before/after modifications
     // to access database only if changes have been made
     var eventsBeforeEdition = [...events];
@@ -27,16 +26,17 @@ function EventsForm({ events, id }) {
         for (const ev of eventsBeforeEdition) {
             // update each event
             const eventIndex = eventsEdited.findIndex(e => e.id === ev.id)
-            eventDAO.updateEvent(id, ev, eventsEdited[eventIndex].eventDTO.date, eventsEdited[eventIndex].eventDTO.name)
+            eventDAO.updateEvent(localStorage.getItem("timelineId"), ev, eventsEdited[eventIndex].eventDTO.startDate, eventsEdited[eventIndex].eventDTO.endDate,eventsEdited[eventIndex].eventDTO.name)
         }
 
         // eventsBeforeEdition is updated with the DB
         eventsBeforeEdition = eventsEdited;
+        localStorage.setItem("update",false)
     }
 
     const renderEvents = (events, isEditable) => {
         return events
-        .sort((a, b) => new Date(a.eventDTO.date) - new Date(b.eventDTO.date)) 
+        .sort((a, b) => new Date(a.eventDTO.startDate) - new Date(b.eventDTO.startDate)) 
         .map((ev) => (
             <Event key={ev.id} event={ev} isEditable={isEditable}
                 updateEventsList={updateEventsList}></Event>
@@ -45,7 +45,7 @@ function EventsForm({ events, id }) {
 
     const renderAdd = () => {
         return (
-            <AddEvent id={id} />
+            <AddEvent />
         );
     }
 

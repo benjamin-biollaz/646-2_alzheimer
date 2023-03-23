@@ -11,10 +11,11 @@ import IconApi from "./IconApi";
 import IconPicker from "./IconApi";
 
 function App() {
-  const [resident, setResident] = React.useState(null);
+  localStorage.setItem("update", "false");
 
+  // for testing purpose only
   useEffect(() => {
-    getResident();
+    testDB();
   }, []);
 
   const [selectedIcon, setSelectedIcon] = useState(null);
@@ -39,18 +40,18 @@ function App() {
           <Route path="/infos/:id" element={<Information />} />
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/infos" element={<Information />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </div>
     </BrowserRouter>
   );
 
-  async function getResident() {
-    const prefDAO = new PreferenceDAO();
-    const preferences = await prefDAO.getPreferencesByResidentId(
-      "HvrELV7MRnnJcV24ro1w"
-    );
-    preferences.forEach((p) => console.log(p));
+  async function testDB() {
+    // write here test access to the database
+    // those are run when the app starts
   }
 }
 
