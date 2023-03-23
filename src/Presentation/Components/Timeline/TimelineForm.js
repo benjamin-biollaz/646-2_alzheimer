@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../../CSS/TimelineForm.css';
+import '../../CSS/GenericForm.css';
 import '../../../Utilities/DateFormatter'
 import EventsForm from './EventsForm';
 import PeriodsForm from './PeriodsForm';

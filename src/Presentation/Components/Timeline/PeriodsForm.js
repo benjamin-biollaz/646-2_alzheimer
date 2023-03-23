@@ -46,7 +46,7 @@ function PeriodsForm({periods, id}) {
 
     return (
         <div className='flexDiv'>
-           <GenericForm divId='periodsDiv' title='Périodes' renderItems={renderPeriods} renderAddForm={renderAdd}
+           <GenericForm className='middle_section' title='Périodes' renderItems={renderPeriods} renderAddForm={renderAdd}
             items={periods} submitModifications={updatePeriodsInDB}></GenericForm>
             </div>
     );
