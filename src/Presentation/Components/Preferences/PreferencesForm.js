@@ -32,7 +32,7 @@ function PreferencesForm({ preferences, category }) {
         for (const pr of preferencesBeforeEdition) {
             const prefIndex = preferencesEdited.findIndex(p => p.id === pr.id)
             // update each event
-            prefDAO.updatePreference("HvrELV7MRnnJcV24ro1w", pr, preferencesEdited[pr]);
+            prefDAO.updatePreference("HvrELV7MRnnJcV24ro1w", pr, preferencesEdited[prefIndex]);
         }
 
         // preferencesBeforeEdition is updated with the DB
@@ -42,7 +42,7 @@ function PreferencesForm({ preferences, category }) {
 
     const renderPreferences = (pref, isEditable) => {
         return pref.map((pr) => (
-                <Preference key={pr.id} prefWithId={pr} isEditable={false} fabio={"fbio"}></Preference>
+                <Preference key={pr.id} prefWithId={pr} isEditable={isEditable} updatePrefList={updatePrefList}></Preference>
             ));
     }
 

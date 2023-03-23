@@ -6,7 +6,7 @@ import "../../CSS/Preferences.css"
  * Display a preference properties. This component will either render an input
  * or a text box depending on the "idEditable" argument.
  */
-function Preference({isEditable, prefWithId }) {
+function Preference({ prefWithId, isEditable, updatePrefList }) {
 
     const [prefState, setPrefState] = useState(prefWithId.preferenceDTO);
 
@@ -24,15 +24,15 @@ function Preference({isEditable, prefWithId }) {
 
     // update events list of parent component
     // this is called at every render as setState renders the component again
-
-
+    if (updatePrefList !== undefined)
+        updatePrefList(prefWithId.id, prefState);
 
     return (
         isEditable ?
             <div className="inputDiv">
                 <FloatLabelInput
                     label="Label"
-                    name={"name"}
+                    name={"label"}
                     value={prefState.label}
                     onChange={onInputChange}
                     type={"text"}
@@ -40,7 +40,7 @@ function Preference({isEditable, prefWithId }) {
 
                 <FloatLabelInput
                     label="Icône"
-                    name={"name"}
+                    name={"iconName"}
                     value={prefState.iconName}
                     onChange={onInputChange}
                     type={"text"}
