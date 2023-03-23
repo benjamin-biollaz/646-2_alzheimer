@@ -25,8 +25,8 @@ function Event({ event, isEditable, updateEventsList }) {
 
   };
 
-  // update events list of parent component
-  // this is called at every render as setState renders the component again
+    // update events list of parent component
+    // this is called at every render as setState renders the component again
   updateEventsList(event.id, eventState);
 
   return isEditable ? (

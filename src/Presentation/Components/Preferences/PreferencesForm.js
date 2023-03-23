@@ -6,6 +6,7 @@ import { EventDAO } from '../../../DAL/EventDAO';
 import { EventWithId } from '../../../DTO/EventWithId';
 import Preference from './Preference';
 import { PreferenceDAO } from '../../../DAL/PreferenceDAO';
+import { PreferenceWithId } from '../../../DTO/PreferenceWithId';
 
 /**
  * This components renders a list of preferences in a form.
@@ -17,6 +18,13 @@ function PreferencesForm({ preferences, category }) {
     // to access database only if changes have been made
     var preferencesBeforeEdition = [...preferences];
     const preferencesEdited = [...preferences];
+
+      // this functions is passed to the child to keep tack of changes
+      const updatePrefList = (prefId, prefDTO) => {
+        var foundIndex = preferencesEdited.findIndex(p => p.id === prefId);
+        preferencesEdited[foundIndex] = new PreferenceWithId(prefId, prefDTO);
+    }
+
 
     // triggered when someone valdiate their changes
     const updatePreferencesInDB = () => {
@@ -31,17 +39,10 @@ function PreferencesForm({ preferences, category }) {
         preferencesBeforeEdition = preferencesEdited;
     }
 
-    // this functions is passed to the child to keep tack of changes
-    const updatePreferencesList = (id, prefDTO) => {
-        var foundIndex = preferencesEdited.findIndex(p => p.id === id);
-        preferencesEdited[foundIndex] = new EventWithId(id, prefDTO);
-    }
 
     const renderPreferences = (pref, isEditable) => {
-        return pref
-            .map((pr) => (
-                <Preference key={pr.id} prefWithId={pr} isEditable={isEditable}
-                updatePreferencesList={updatePreferencesList}></Preference>
+        return pref.map((pr) => (
+                <Preference key={pr.id} prefWithId={pr} isEditable={false} fabio={"fbio"}></Preference>
             ));
     }
 

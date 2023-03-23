@@ -6,7 +6,7 @@ import "../../CSS/Preferences.css"
  * Display a preference properties. This component will either render an input
  * or a text box depending on the "idEditable" argument.
  */
-function Preference({ prefWithId, isEditable, updatePreferencesList }) {
+function Preference({isEditable, prefWithId }) {
 
     const [prefState, setPrefState] = useState(prefWithId.preferenceDTO);
 
@@ -24,7 +24,8 @@ function Preference({ prefWithId, isEditable, updatePreferencesList }) {
 
     // update events list of parent component
     // this is called at every render as setState renders the component again
-    updatePreferencesList(prefWithId.id, prefState);
+
+
 
     return (
         isEditable ?
