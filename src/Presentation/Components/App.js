@@ -12,6 +12,7 @@ import { PreferenceWithId } from "../../DTO/PreferenceWithId";
 import { PreferenceDTO } from "../../DTO/PreferenceDTO";
 
 function App() {
+  localStorage.setItem("update", "false");
 
   // for testing purpose only
   useEffect(() => {
@@ -27,7 +28,7 @@ function App() {
           <Route path="/navbar" element={<Navbar />} />
           <Route path="/login" element={<Login />} />
           <Route path="/navbar" element={<Navbar />} />
-          <Route path="/infos/:id" element={<Information />} />
+          <Route path="/infos" element={<Information />} />
           <Route path="/" element={<Home/>} />
           <Route path="/home" element={<Home/>} />
           <Route path="*" element={<Page404 />} />

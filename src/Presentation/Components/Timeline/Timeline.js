@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Timeline, {
     TimelineMarkers,
     TodayMarker,
@@ -22,13 +22,10 @@ import TimelineForm from "./TimelineForm";
 import "reactjs-popup/dist/index.css";
 import "../../CSS/TimelineForm.css";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
-
-import { ResidentContext } from "../../../Context/ResidentContext";
 import { color } from "@mui/system";
 import { border } from '@mui/system';
 
-export function TimelineWidget({ id }) {
-    const resContext = useContext(ResidentContext);
+export function TimelineWidget() {
 
     const groups = [{ id: 1, title: 'Périodes' }, { id: 2, title: 'Lieux' }, { id: 3, title: 'Evénements', stackItems: false, height: 120 }]
 
@@ -65,11 +62,11 @@ export function TimelineWidget({ id }) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const timeline = await timelineDAO.getTimelineByResidentId(id);
+            const timeline = await timelineDAO.getTimelineByResidentId(localStorage.getItem("residentId"));
             // const timeline = await timelineDAO.getTimelineByResidentId(resident.id);
             setTimeline(timeline);
 
-            resContext.timelineId = timeline.id;
+            localStorage.setItem("timelineId",timeline.id);
 
             const periods = await periodDAO.getPeriodsByTimelineId(timeline.id);
             const events = await eventDAO.getEventsByTimelineId(timeline.id);
@@ -151,7 +148,7 @@ export function TimelineWidget({ id }) {
         setMin(Math.min(...items.map(item => item.start_time)));
 
         fetchData();
-    }, []);
+    }, [,localStorage.getItem("update")]);
 
     return (
         <div className="evenements">

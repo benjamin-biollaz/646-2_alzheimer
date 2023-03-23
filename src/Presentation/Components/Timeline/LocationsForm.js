@@ -6,7 +6,6 @@ import {LocationDAO} from '../../../DAL/LocationDAO'
 import AddLocation from './AddLocation';
 
 function LocationsForm({ locations, id }) {
-
     // those two collections store locations before/after modifications
     // to access database only if changes have been made
     var locationsBeforeEdition = [...locations];
@@ -23,7 +22,7 @@ function LocationsForm({ locations, id }) {
         for (const loc of locationsBeforeEdition) {
             // update each location
             const locationIndex = locationsEdited.findIndex(l => l.id == loc.id)
-            locationDAO.updateLocation(id, loc, locationsEdited[locationIndex].locationDTO.startDate, 
+            locationDAO.updateLocation(localStorage.getItem("timelineId"), loc, locationsEdited[locationIndex].locationDTO.startDate, 
             locationsEdited[locationIndex].locationDTO.endDate, locationsEdited[locationIndex].locationDTO.name)
         }
 

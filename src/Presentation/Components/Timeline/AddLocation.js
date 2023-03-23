@@ -1,9 +1,9 @@
-import React, { useState } from "react"
+import React, { useState} from "react"
 import { Button } from "semantic-ui-react";
 import {LocationDTO} from "../../../DTO/LocationDTO";
 import { LocationDAO } from "../../../DAL/LocationDAO";
 
-export default function AddLocation({id}) {
+export default function AddLocation() {
 
     const [locationState, setLocation] = useState(new LocationDTO('','','',''));
 
@@ -28,7 +28,7 @@ export default function AddLocation({id}) {
         }
 
         const locationDAO = new LocationDAO();
-        locationDAO.addLocation(id,locationState.startDate,locationState.endDate,locationState.name).then(() => {
+        locationDAO.addLocation(localStorage.getItem("timelineId"),locationState.startDate,locationState.endDate,locationState.name).then(() => {
             window.location.reload(false)}
             );
     }

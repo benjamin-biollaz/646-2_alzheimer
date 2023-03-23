@@ -3,7 +3,7 @@ import { EventDAO } from "../../../DAL/EventDAO";
 import { EventDTO } from "../../../DTO/EventDTO";
 import ButtonForm from "../ButtonForm";
 
-export default function AddEvent({ id }) {
+export default function AddEvent() {
   const [eventState, setEvent] = useState(new EventDTO("", ""));
 
   const onInputChange = (e) => {
@@ -26,7 +26,7 @@ export default function AddEvent({ id }) {
         }
 
         const eventDAO = new EventDAO();
-        eventDAO.addEvent(id, eventState.startDate,eventState.endDate, eventState.name).then(() => {
+        eventDAO.addEvent(localStorage.getItem("timelineId"), eventState.startDate,eventState.endDate, eventState.name).then(() => {
             window.location.reload(false)}
         );
     }

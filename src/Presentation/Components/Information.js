@@ -28,8 +28,6 @@ function Information() {
     return <GiMusicalNotes />;
   }
 
-  const resId = useParams().id;
-
   return (
     <>
       <div>
@@ -44,7 +42,7 @@ function Information() {
        <PreferencesList></PreferencesList>
 
         {/* //---------------- EVENTS ------------------// */}
-        <TimelineWidget id={resId} />
+        <TimelineWidget/>
         
         <HabitsList></HabitsList>
         <BeliefsList></BeliefsList>
