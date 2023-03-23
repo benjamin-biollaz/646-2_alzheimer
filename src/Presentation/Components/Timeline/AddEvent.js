@@ -1,12 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { EventDAO } from "../../../DAL/EventDAO";
 import { EventDTO } from "../../../DTO/EventDTO";
 import ButtonForm from "../ButtonForm";
-import { ResidentContext } from "../../../Context/ResidentContext";
 
 export default function AddEvent() {
   const [eventState, setEvent] = useState(new EventDTO("", ""));
-    const context = useContext(ResidentContext);
 
   const onInputChange = (e) => {
     const target = e.target;
@@ -28,7 +26,7 @@ export default function AddEvent() {
         }
 
         const eventDAO = new EventDAO();
-        eventDAO.addEvent(context.residentId, eventState.startDate,eventState.endDate, eventState.name).then(() => {
+        eventDAO.addEvent(localStorage.getItem("timelineId"), eventState.startDate,eventState.endDate, eventState.name).then(() => {
             window.location.reload(false)}
         );
     }

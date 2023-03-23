@@ -39,8 +39,10 @@ const addResident = async () => {
 }
 
 const setContext = (id, resident) => {
-  context.residentId = id;
-  context.resident = resident
+  localStorage.setItem('residentId', id);
+  localStorage.setItem('residentFirstName', resident.firstName);
+  localStorage.setItem('residentLastName', resident.lastName);
+  localStorage.setItem('residentBirthDate', resident.birthDate);
 }
 
 

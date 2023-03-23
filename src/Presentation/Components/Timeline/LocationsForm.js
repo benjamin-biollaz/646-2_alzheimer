@@ -1,14 +1,11 @@
 import React from 'react'
-import { useContext } from 'react';
 import GenericForm from '../Form/GenericForm';
 import Location from './Location';
 import {LocationWithId} from '../../../DTO/LocationWithId'
 import {LocationDAO} from '../../../DAL/LocationDAO'
 import AddLocation from './AddLocation';
-import {ResidentContext} from '../../../Context/ResidentContext'
 
 function LocationsForm({ locations, id }) {
-    const context = useContext(ResidentContext);
     // those two collections store locations before/after modifications
     // to access database only if changes have been made
     var locationsBeforeEdition = [...locations];
@@ -25,7 +22,7 @@ function LocationsForm({ locations, id }) {
         for (const loc of locationsBeforeEdition) {
             // update each location
             const locationIndex = locationsEdited.findIndex(l => l.id == loc.id)
-            locationDAO.updateLocation(context.residentId, loc, locationsEdited[locationIndex].locationDTO.startDate, 
+            locationDAO.updateLocation(localStorage.getItem("timelineId"), loc, locationsEdited[locationIndex].locationDTO.startDate, 
             locationsEdited[locationIndex].locationDTO.endDate, locationsEdited[locationIndex].locationDTO.name)
         }
 

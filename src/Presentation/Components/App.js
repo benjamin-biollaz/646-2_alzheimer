@@ -9,6 +9,7 @@ import "../CSS/App.css";
 import Information from "./Information";
 
 function App() {
+  localStorage.setItem("update", "false");
 
   // for testing purpose only
   useEffect(() => {

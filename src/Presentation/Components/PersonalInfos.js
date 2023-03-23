@@ -1,14 +1,14 @@
 import moment from 'moment';
-import React, {useContext} from 'react'
-import {ResidentContext} from '../../Context/ResidentContext';
+import React from 'react'
 
 
-function PersonalInfos(resident) {
-    const context = useContext(ResidentContext);
-    const age = moment().diff(context.resident.birthDate, 'years');
+
+function PersonalInfos() {
+ 
+    const age = moment().diff(localStorage.getItem("residentBirthDate"), 'years');
     return (
         <div className="personal_infos">
-            <span className="patient_name">{context.resident.firstName+" "+context.resident.lastName}</span>
+            <span className="patient_name">{localStorage.getItem("residentFirstName")+" "+localStorage.getItem("residentLastName")}</span>
             &nbsp; - &nbsp;
             <span className="patient_name">{age} ans</span>
         

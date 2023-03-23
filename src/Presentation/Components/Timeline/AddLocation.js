@@ -1,12 +1,10 @@
-import React, { useState, useContext } from "react"
+import React, { useState} from "react"
 import { Button } from "semantic-ui-react";
 import {LocationDTO} from "../../../DTO/LocationDTO";
 import { LocationDAO } from "../../../DAL/LocationDAO";
-import {ResidentContext} from "../../../Context/ResidentContext";
 
 export default function AddLocation() {
 
-    const context = useContext(ResidentContext);
     const [locationState, setLocation] = useState(new LocationDTO('','','',''));
 
     const onInputChange = (e) => {
@@ -30,7 +28,7 @@ export default function AddLocation() {
         }
 
         const locationDAO = new LocationDAO();
-        locationDAO.addLocation(context.residentId,locationState.startDate,locationState.endDate,locationState.name).then(() => {
+        locationDAO.addLocation(localStorage.getItem("timelineId"),locationState.startDate,locationState.endDate,locationState.name).then(() => {
             window.location.reload(false)}
             );
     }
