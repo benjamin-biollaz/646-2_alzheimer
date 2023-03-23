@@ -22,18 +22,26 @@ function PreferencesForm({ preferences, category }) {
     const updatePreferencesInDB = () => {
         const prefDAO = new PreferenceDAO();
         for (const pr of preferencesBeforeEdition) {
+            const prefIndex = preferencesEdited.findIndex(p => p.id === pr.id)
             // update each event
-           
+            prefDAO.updatePreference("HvrELV7MRnnJcV24ro1w", pr, preferencesEdited[pr]);
         }
 
         // preferencesBeforeEdition is updated with the DB
         preferencesBeforeEdition = preferencesEdited;
     }
 
+    // this functions is passed to the child to keep tack of changes
+    const updatePreferencesList = (id, prefDTO) => {
+        var foundIndex = preferencesEdited.findIndex(p => p.id === id);
+        preferencesEdited[foundIndex] = new EventWithId(id, prefDTO);
+    }
+
     const renderPreferences = (pref, isEditable) => {
         return pref
             .map((pr) => (
-                <Preference key={pr.id} preferenceDTO={pr} isEditable={isEditable}></Preference>
+                <Preference key={pr.id} prefWithId={pr} isEditable={isEditable}
+                updatePreferencesList={updatePreferencesList}></Preference>
             ));
     }
 

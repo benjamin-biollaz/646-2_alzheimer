@@ -53,8 +53,10 @@ class PreferenceDAO {
      * @returns 
      */
     async updatePreference(residentId, preferenceToChange, newPreference) {
+
         // access DB only if changes have been made 
-        if (preferenceToChange.label === newPreference.label && preferenceToChange.iconName == preferenceToChange.iconName)
+        if (preferenceToChange.preferenceDTO.label === newPreference.preferenceDTO.label && 
+            preferenceToChange.preferenceDTO.iconName === newPreference.preferenceDTO.iconName)
             return;
 
         const prefRef =

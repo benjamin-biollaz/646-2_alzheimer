@@ -3,11 +3,10 @@
  */
 class PreferenceDTO {
 
-    constructor(label, iconName, category, documentId) {
+    constructor(label, iconName, category) {
         this.label = label;
         this.iconName = iconName;
         this.category = category;
-        this.documentId = documentId;
     }
 
 

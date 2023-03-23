@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import FloatLabelInput from "../Form/FloatLabelInput";
 import "../../CSS/Preferences.css"
 
@@ -6,22 +6,25 @@ import "../../CSS/Preferences.css"
  * Display a preference properties. This component will either render an input
  * or a text box depending on the "idEditable" argument.
  */
-function Preference({ preferenceDTO, isEditable }) {
+function Preference({ prefWithId, isEditable, updatePreferencesList }) {
 
-    const [prefState, setPrefState] = useState(preferenceDTO);
+    const [prefState, setPrefState] = useState(prefWithId.preferenceDTO);
 
     const onInputChange = (e) => {
         const target = e.target;
         const value = target.type === "checkbox" ? target.checked : target.value;
         const fieldName = target.name;
-    
+
         //update event state for display
         setPrefState((prevState) => ({
-          ...prevState,
-          [fieldName]: value, //es6 computed property syntax
+            ...prevState,
+            [fieldName]: value, //es6 computed property syntax
         }))
-    
-      };
+    };
+
+    // update events list of parent component
+    // this is called at every render as setState renders the component again
+    updatePreferencesList(prefWithId.id, prefState);
 
     return (
         isEditable ?
@@ -44,7 +47,7 @@ function Preference({ preferenceDTO, isEditable }) {
             </div>
             :
             <div className="preferenceDiv">
-                {preferenceDTO.iconName}: {preferenceDTO.label}  &nbsp;
+                {prefState.iconName}: {prefState.label}  &nbsp;
             </div>
     )
 }

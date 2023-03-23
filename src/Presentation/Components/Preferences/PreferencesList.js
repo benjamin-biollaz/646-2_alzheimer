@@ -30,9 +30,9 @@ function PreferencesList() {
     const getPreferencesList = async () => {
         const prefDAO = new PreferenceDAO();
         const pref = await prefDAO.getPreferencesByResidentId("HvrELV7MRnnJcV24ro1w");
-        setPrefAlim(pref.filter((p) => p.category == "Alimentation"));
-        setPrefSleep(pref.filter((p) => p.category == "Sommeil"));
-        setPrefHygiene(pref.filter((p) => p.category == "Hygiène"));
+        setPrefAlim(pref.filter((p) => p.preferenceDTO.category == "Alimentation"));
+        setPrefSleep(pref.filter((p) => p.preferenceDTO.category == "Sommeil"));
+        setPrefHygiene(pref.filter((p) => p.preferenceDTO.category == "Hygiène"));
 
     }
 
@@ -44,7 +44,7 @@ function PreferencesList() {
                 <h4 className="categories">{category}</h4>
                 <span className="infos_item">
                     {preferencesState?.map((p) =>
-                        <Preference preferenceDTO={p} key={p.label + p.iconName}></Preference>
+                        <Preference prefWithId={p} key={p.preferenceDTO.label + p.preferenceDTO.iconName}></Preference>
                     )}
                 </span>
             </div>
