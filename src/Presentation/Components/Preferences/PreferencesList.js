@@ -16,14 +16,17 @@ import PrefPopUPContent from './PrefPopUPContent';
 
 function PreferencesList() {
 
+    // states for the preference categories
     const [prefAlimState, setPrefAlim] = useState(null);
     const [prefSleepState, setPrefSleep] = useState(null);
     const [prefHygieneState, setPrefHygiene] = useState(null);
 
+    //read preferences from db during the first render
     useEffect(() => {
         getPreferencesList();
     }, []);
 
+    // access db and set the lists in the state
     const getPreferencesList = async () => {
         const prefDAO = new PreferenceDAO();
         const pref = await prefDAO.getPreferencesByResidentId("HvrELV7MRnnJcV24ro1w");
@@ -33,6 +36,7 @@ function PreferencesList() {
 
     }
 
+    // renders a list of preferences as readonly
     const renderPreferences = (category, preferencesState) => {
         return (
             <div className="infos_list">

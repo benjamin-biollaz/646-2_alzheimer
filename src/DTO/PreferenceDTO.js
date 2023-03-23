@@ -2,11 +2,14 @@
  * PreferenceDTO contains the icon name and a label to define the preferences of a paitent.
  */
 class PreferenceDTO {
-    constructor(label, iconName, category) {
+
+    constructor(label, iconName, category, documentId) {
         this.label = label;
         this.iconName = iconName;
         this.category = category;
+        this.documentId = documentId;
     }
+
 
     toString() {
         return this.label + " " + this.iconName + " " + this.category;

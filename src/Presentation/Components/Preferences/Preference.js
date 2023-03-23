@@ -2,6 +2,10 @@ import React, {useState} from 'react'
 import FloatLabelInput from "../Form/FloatLabelInput";
 import "../../CSS/Preferences.css"
 
+/**
+ * Display a preference properties. This component will either render an input
+ * or a text box depending on the "idEditable" argument.
+ */
 function Preference({ preferenceDTO, isEditable }) {
 
     const [prefState, setPrefState] = useState(preferenceDTO);
