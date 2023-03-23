@@ -3,11 +3,12 @@ import { GiNightSleep } from "react-icons/gi";
 import { BsFillSunriseFill, BsSunriseFill } from "react-icons/bs";
 import { GiMeal } from "react-icons/gi";
 import { TfiTimer } from "react-icons/tfi";
+import SectionHeader from '../SectionHeader';
 
 function HabitsList() {
     return (
         <div className="habitudes">
-            <h3 className="label">Habitudes</h3>
+           <SectionHeader sectionTitle={"Habitudes"}></SectionHeader>
             <div className="habitudes_grid">
                 <div className="infos_list">
                     {" "}

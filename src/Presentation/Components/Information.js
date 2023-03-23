@@ -21,6 +21,7 @@ import PassionsList from "./Passions/PassionsList";
 import PersonalInfos from "./PersonalInfos";
 import HabitsList from "./Habits/HabitsList";
 import BeliefsList from "./Beliefs/BeliefsList";
+import SectionHeader from "./SectionHeader";
 
 function Information() {
   function MusicNoteIcon() {
@@ -43,12 +44,7 @@ function Information() {
        <PreferencesList></PreferencesList>
 
         {/* //---------------- EVENTS ------------------// */}
-        <div className="evenements">
-          <h3 className="label">Évènements</h3>
-          <div className="divTimelineWidget">
-            <TimelineWidget id={resId} />
-          </div>
-        </div>
+        <TimelineWidget id={resId} />
         
         <HabitsList></HabitsList>
         <BeliefsList></BeliefsList>
