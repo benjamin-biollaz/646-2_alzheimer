@@ -58,3 +58,9 @@
 .form_button {
   background-color: #8c1c13;
 }
+
+.edit_button {
+  float: right;
+  background-color: transparent;
+  border: none;
+}

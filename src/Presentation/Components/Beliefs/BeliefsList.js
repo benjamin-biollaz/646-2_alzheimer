@@ -1,9 +1,10 @@
 import React from 'react'
+import SectionHeader from '../SectionHeader'
 
 function BeliefsList() {
     return (
         <div className="croyances">
-            <h3 className="label">Croyances</h3>
+            <SectionHeader sectionTitle={"Croyances"}></SectionHeader>
 
             <div className="infos_list">
                 <h4 className="categories">Religion</h4>
