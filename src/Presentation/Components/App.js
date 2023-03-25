@@ -7,8 +7,10 @@ import Page404 from "./Page404";
 import "../CSS/App.css";
 import Information from "./Information";
 import { PreferenceDAO } from "../../DAL/PreferenceDAO";
-import IconApi from "./IconApi";
 import IconPicker from "./IconApi";
+import { PreferenceDAO } from "../../DAL/PreferenceDAO";
+import { PreferenceWithId } from "../../DTO/PreferenceWithId";
+import { PreferenceDTO } from "../../DTO/PreferenceDTO";
 
 function App() {
   localStorage.setItem("update", "false");

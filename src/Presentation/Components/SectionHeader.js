@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import EditButton from './Buttons/EditButton'
 import { FaEdit } from "react-icons/fa";
 
@@ -12,7 +12,7 @@ import Popup from "reactjs-popup";
  * @returns 
  */
 
-function SectionHeader({ sectionTitle, popupContent }) {
+function SectionHeader({ sectionTitle, popupContent, onClose }) {
     return (
         <div className="section_header">
             <div className='center_content'>
@@ -20,6 +20,7 @@ function SectionHeader({ sectionTitle, popupContent }) {
             </div>
             <Popup
                 className-content={"form-popup-content"}
+                onClose={useCallback(() => onClose(), [])}
                 trigger={
                     <button className="edit_button">
                     <FaEdit style={{ width: "25px", color: "#a78a7f" }}></FaEdit>

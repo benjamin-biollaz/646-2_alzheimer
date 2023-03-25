@@ -11,7 +11,7 @@ import { AiFillCheckCircle } from "react-icons/ai";
  */
 function GenericForm({
   title,
-  divId,
+  className,
   items,
   renderItems,
   renderAddForm,
@@ -33,7 +33,7 @@ function GenericForm({
   };
 
   return (
-    <div id={divId} className="grid_item">
+    <div className={"grid_item " + {className}}>
       <div className="header">
         <div className="header_cell">
           <h3 className="sectionTitle">{title}</h3>

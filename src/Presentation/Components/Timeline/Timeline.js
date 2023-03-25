@@ -59,6 +59,7 @@ export function TimelineWidget() {
 
     const ref = useRef();
     const toggleTooltip = () => ref.current.toggle();
+    function doRender(){window.location.reload(false)};
 
     useEffect(() => {
         const fetchData = async () => {
@@ -148,11 +149,11 @@ export function TimelineWidget() {
         setMin(Math.min(...items.map(item => item.start_time)));
 
         fetchData();
-    }, [,localStorage.getItem("update")]);
+    }, []);
 
     return (
         <div className="evenements">
-            <SectionHeader sectionTitle={"Évènements"} popupContent={
+            <SectionHeader onClose={doRender.bind(this)} sectionTitle={"Évènements"} popupContent={
                  <TimelineForm
                  events={events}
                  periods={periods}
