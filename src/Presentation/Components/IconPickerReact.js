@@ -6,16 +6,14 @@ import {
   FaPizzaSlice,
   FaCarrot,
   FaFish,
-  GiMeat,
-  GiChickenOven,
-  GiFruitBowl,
   FaCoffee,
   FaBeer,
   FaBath,
   FaChessKnight,
   FaMusic,
-  FaGamepad,
-  FaShower,
+  FaSkiing,
+  FaPumpSoap,
+  FaPlaneDeparture,
 } from "react-icons/fa";
 import {
   GiShower,
@@ -23,65 +21,97 @@ import {
   GiBasketballBall,
   GiBaseballBat,
   GiTennisRacket,
+  GiCardAceHearts,
+  GiMeal,
+  GiMeat,
+  GiFruitBowl,
+  GiNoodles,
   GiWool,
   GiPaintBrush,
 } from "react-icons/gi";
-import { RiAlarmFill } from "react-icons/ri";
 import { BsFillSunriseFill, BsFillSunsetFill } from "react-icons/bs";
-import { MdFitnessCenter, MdPets, MdDirectionsRun } from "react-icons/md";
+import { TbYoga } from "react-icons/tb";
+import { MdPets, MdDirectionsRun } from "react-icons/md";
 import "../CSS/IconPicker.css";
 
 const iconSets = [
   {
-    name: "Food",
+    name: "Nourriture",
     icons: [
       { name: "Pizza", icon: <FaPizzaSlice /> },
-      { name: "Carrot", icon: <FaCarrot /> },
+      { name: "Légumes", icon: <FaCarrot /> },
       { name: "Poisson", icon: <FaFish /> },
-      { name: "Coffee", icon: <FaCoffee /> },
-      { name: "Beer", icon: <FaBeer /> },
+      { name: "Viande", icon: <GiMeat /> },
+      { name: "Fruit", icon: <GiFruitBowl /> },
+      { name: "Soupe", icon: <GiNoodles /> },
+      { name: "Cafe", icon: <FaCoffee /> },
+      { name: "Biere", icon: <FaBeer /> },
     ],
   },
   {
-    name: "Preferences",
+    name: "Préférences",
     icons: [
-      { name: "Douche", icon: <FaShower /> },
+      { name: "Douche", icon: <GiShower /> },
       { name: "Bain", icon: <FaBath /> },
       { name: "Lever", icon: <BsFillSunriseFill /> },
       { name: "Coucher", icon: <BsFillSunsetFill /> },
-      { name: "Beer", icon: <FaBeer /> },
+      { name: "Lotion", icon: <FaPumpSoap /> },
+      { name: "Souper", icon: <GiMeal /> },
     ],
   },
   {
     name: "Hobbies",
     icons: [
-      { name: "Music", icon: <FaMusic /> },
-      { name: "Gaming", icon: <FaGamepad /> },
-      { name: "Sports", icon: <GiSoccerBall /> },
-      { name: "Basketball", icon: <GiBasketballBall /> },
-      { name: "Baseball", icon: <GiBaseballBat /> },
-      { name: "Tennis", icon: <GiTennisRacket /> },
-      { name: "Fitness", icon: <MdFitnessCenter /> },
-      { name: "Pets", icon: <MdPets /> },
-      { name: "Running", icon: <MdDirectionsRun /> },
+      { name: "Musique", icon: <FaMusic /> },
+      { name: "Echec", icon: <FaChessKnight /> },
+      { name: "Tricot", icon: <GiWool /> },
+      { name: "Sport", icon: <GiSoccerBall /> },
+      { name: "Yoga", icon: <TbYoga /> },
+      { name: "Peinture", icon: <GiPaintBrush /> },
+      { name: "Jeux", icon: <GiCardAceHearts /> },
+      //   { name: "Basketball", icon: <GiBasketballBall /> },
+      //   { name: "Tennis", icon: <GiTennisRacket /> },
+      { name: "Course", icon: <MdDirectionsRun /> },
+      { name: "Ski", icon: <FaSkiing /> },
+      //   { name: "Fitness", icon: <MdFitnessCenter /> },
+    ],
+  },
+  {
+    name: "Intérêt",
+    icons: [
+      { name: "Animaux", icon: <MdPets /> },
+      { name: "Voyager", icon: <FaPlaneDeparture /> },
     ],
   },
 ];
 
 function IconPicker({ onSelect }) {
   const [activeSet, setActiveSet] = useState(iconSets[0]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedIcon, setSelectedIcon] = useState(null);
+
+  const handleIconClick = (icon) => {
+    onSelect(icon.icon);
+    setSelectedIcon(icon.icon);
+    setSearchQuery("");
+    console.log("Icon selected");
+  };
 
   const handleSetChange = (set) => {
     setActiveSet(set);
   };
 
-  const handleIconClick = (icon) => {
-    onSelect(icon.icon);
-  };
-
   return (
     <div className="icon-picker">
       <div className="icon-picker__sets">
+        <div className="icon-picker__search">
+          <input
+            type="text"
+            placeholder="Search icons"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
         {iconSets.map((set, index) => (
           <button
             key={index}
@@ -94,17 +124,28 @@ function IconPicker({ onSelect }) {
       </div>
       <div className="icon-picker__icons">
         <IconContext.Provider value={{ size: "30px" }}>
-          {activeSet.icons.map((icon, index) => (
-            <button
-              key={index}
-              className="icon-picker__icon"
-              onClick={() => handleIconClick(icon)}
-            >
-              {icon.icon}
-              <span className="icon-picker__icon-name">{icon.name}</span>
-            </button>
-          ))}
+          {activeSet.icons
+            .filter((icon) =>
+              icon.name.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            .map((icon, index) => (
+              <button
+                key={index}
+                className="icon-picker__icon"
+                onClick={() => handleIconClick(icon)}
+              >
+                {icon.icon}
+                <span className="icon-picker__icon-name">{icon.name}</span>
+              </button>
+            ))}
         </IconContext.Provider>
+      </div>
+      <div>
+        {selectedIcon && (
+          <div className="icon-picker__selected">
+            <span className="icon-picker__selected-icon">{selectedIcon}</span>
+          </div>
+        )}
       </div>
     </div>
   );
