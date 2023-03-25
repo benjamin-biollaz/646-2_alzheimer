@@ -6,11 +6,7 @@ import Navbar from "../Components/Navbar";
 import Page404 from "./Page404";
 import "../CSS/App.css";
 import Information from "./Information";
-import { PreferenceDAO } from "../../DAL/PreferenceDAO";
-import IconPicker from "./IconApi";
-import { PreferenceDAO } from "../../DAL/PreferenceDAO";
-import { PreferenceWithId } from "../../DTO/PreferenceWithId";
-import { PreferenceDTO } from "../../DTO/PreferenceDTO";
+import IconPicker from "./IconPickerReact";
 
 function App() {
   localStorage.setItem("update", "false");
