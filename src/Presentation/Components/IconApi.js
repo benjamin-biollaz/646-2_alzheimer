@@ -1,19 +1,27 @@
-import React from "react";
-import { Icon, InlineIcon } from "@iconify/react";
-import iconList from "@iconify-icons/icon-sets";
+import React, { useState } from "react";
+import { FaStar, FaHeart, FaSmile, FaThumbsUp } from "react-icons/fa";
 
 const IconPicker = ({ onSelect }) => {
-  const handleClick = (icon) => {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleIconClick = (icon) => {
     onSelect(icon);
+    setShowPopup(false);
   };
 
   return (
-    <div>
-      {iconList.map((icon, index) => (
-        <div key={index} onClick={() => handleClick(icon)}>
-          <Icon icon={icon} width="24" height="24" />
+    <div className="icon-picker">
+      <button onClick={() => setShowPopup(true)}>
+        Select an icon <FaSmile />
+      </button>
+      {showPopup && (
+        <div className="icon-picker-popup">
+          <FaStar onClick={() => handleIconClick("star")} />
+          <FaHeart onClick={() => handleIconClick("heart")} />
+          <FaSmile onClick={() => handleIconClick("smile")} />
+          <FaThumbsUp onClick={() => handleIconClick("thumbs-up")} />
         </div>
-      ))}
+      )}
     </div>
   );
 };

@@ -41,8 +41,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/infos" element={<Information />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </div>
