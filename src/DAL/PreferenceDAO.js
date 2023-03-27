@@ -30,8 +30,8 @@ class PreferenceDAO {
      * @param {The label of the preference (e.g., vegetarian)} label 
      * @param {The icon name of the preference (e.g., "meat" for meat icon)} iconName 
      */
-    async addPreference(residentId, label, iconName) {
-        const preference = new PreferenceDTO(label, iconName);
+    async addPreference(residentId, label, iconName, category) {
+        const preference = new PreferenceDTO(label, iconName, category);
 
         // point to the document in db
         const prefRef = collection(
@@ -41,7 +41,8 @@ class PreferenceDAO {
             "Preferences").withConverter(preferenceConverter);
 
         // add the documents
-        await addDoc(prefRef, preference);
+        const docRef = await addDoc(prefRef, preference);
+        return docRef.id; // the freshly created document's id
     }
 
     /**
