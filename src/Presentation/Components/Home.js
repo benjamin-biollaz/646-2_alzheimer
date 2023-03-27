@@ -36,7 +36,7 @@ export default function Home() {
   const addResident = async () => {
     if (newRes.firstName === '' || newRes.lastName === '' || newRes.birthDate === '') {
       alert("Veuillez remplir tous les champs");
-      return;
+      return; 
     }
     var r = await residentDAO.addResident(newRes);
     console.log(r.id);
