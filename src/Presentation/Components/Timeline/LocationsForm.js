@@ -3,7 +3,6 @@ import GenericForm from '../Form/GenericForm';
 import Location from './Location';
 import { LocationWithId } from '../../../DTO/LocationWithId'
 import { LocationDAO } from '../../../DAL/LocationDAO'
-import AddLocation from './AddLocation';
 import { LocationDTO } from '../../../DTO/LocationDTO';
 
 function LocationsForm({ locations, id }) {
@@ -70,12 +69,6 @@ function LocationsForm({ locations, id }) {
         const elements = [...locationState];
         elements[foundIndex].id = firestoreId;
         setLocationState(elements);
-    }
-
-    const renderAdd = () => {
-        return (
-            <AddLocation id={id} />
-        );
     }
 
     return (

@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
 import GenericForm from '../Form/GenericForm';
-import Event from '../Timeline/Event';
-import AddEvent from '../Timeline/AddEvent';
-import { EventDAO } from '../../../DAL/EventDAO';
-import { EventWithId } from '../../../DTO/EventWithId';
 import Preference from './Preference';
 import { PreferenceDAO } from '../../../DAL/PreferenceDAO';
 import { PreferenceWithId } from '../../../DTO/PreferenceWithId';

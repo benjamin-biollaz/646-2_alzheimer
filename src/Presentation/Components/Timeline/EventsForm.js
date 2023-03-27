@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import GenericForm from '../Form/GenericForm';
 import Event from './Event';
-import AddEvent from './AddEvent';
 import { EventDAO } from '../../../DAL/EventDAO';
 import { EventWithId } from '../../../DTO/EventWithId';
 import { EventDTO } from '../../../DTO/EventDTO';
@@ -77,12 +76,6 @@ function EventsForm({ events }) {
                 <Event key={ev.id} event={ev} isEditable={isEditable}
                     updateEventsList={updateEventsList}></Event>
             ));
-    }
-
-    const renderAdd = () => {
-        return (
-            <AddEvent />
-        );
     }
 
     return (

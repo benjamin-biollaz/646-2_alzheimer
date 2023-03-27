@@ -4,7 +4,6 @@ import GenericForm from '../Form/GenericForm';
 import Period from './Period';
 import { PeriodWithId } from '../../../DTO/PeriodWithId';
 import { PeriodDAO } from '../../../DAL/PeriodDAO'
-import AddPeriod from './AddPeriod';
 import { ResidentContext } from '../../../Context/ResidentContext';
 import { async } from '@firebase/util';
 import { PeriodDTO } from '../../../DTO/PeriodDTO';
@@ -75,12 +74,6 @@ function PeriodsForm({ periods }) {
             .map((per) => (
                 <Period key={per.id} period={per} isEditable={isEditable} updatePeriodList={updatePeriodsList}></Period>
             ))
-    }
-
-    const renderAdd = () => {
-        return (
-            <AddPeriod />
-        );
     }
 
     return (
