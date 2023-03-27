@@ -7,6 +7,7 @@ import Page404 from "./Page404";
 import "../CSS/App.css";
 import Information from "./Information";
 import IconPicker from "./IconPickerReact";
+import IconPopup from "./IconPopup/IconPopup.js";
 
 function App() {
   localStorage.setItem("update", "false");
@@ -34,6 +35,7 @@ function App() {
             path="/icon"
             element={<IconPicker onSelect={handleIconSelect} />}
           />
+          <Route path="/icon_pop" element={<IconPopup />} />
           <Route path="/navbar" element={<Navbar />} />
           <Route path="/infos/:id" element={<Information />} />
           <Route path="/" element={<Home />} />
