@@ -58,8 +58,10 @@
   height: 400px;
   font-size: 15px;
   margin: 130px auto;
-  display: flex; /* set display to flex */
-  justify-content: center; /* center horizontally */
+  display: flex;
+  /* set display to flex */
+  justify-content: center;
+  /* center horizontally */
   align-items: center;
   flex-direction: column;
   z-index: 2;
@@ -73,6 +75,7 @@
   height: 45px;
   width: 300px;
   border: transparent;
+  margin-bottom: 3vh;
   padding-left: 10px;
   border-radius: 10px;
 }
@@ -80,8 +83,6 @@
 input::placeholder {
   color: #780000;
   opacity: 100;
-  padding-left: 5px;
-  font-weight: bold;
 }
 
 input:hover {
@@ -90,4 +91,28 @@ input:hover {
 
 .btn_container {
   margin-top: 30px;
+}
+
+.button_login {
+  margin-top: 5vh;
+  color: white;
+  background-color: #780000;
+  border-radius: 10px;
+  border-color: transparent;
+  box-shadow: 5px 0 0 0 grey;
+  /* Border right */
+  box-shadow: 0 2px 0 0 grey;
+  /* Border bottom */
+  padding-left: 6vh;
+  padding-right: 6vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  transition: .3s;
+  letter-spacing: 1.5px;
+}
+
+.button_login:hover {
+  background-color: #c40000;
+  box-shadow: 0 0 0 5px #78000061;
+  color: #fff;
 }
