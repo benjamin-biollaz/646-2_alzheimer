@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FloatLabelInput from "../FloatLabelInput";
+import FloatLabelInput from "../Form/FloatLabelInput";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
 
 /**
@@ -25,8 +25,8 @@ function Event({ event, isEditable, updateEventsList }) {
 
   };
 
-  // update events list of parent component
-  // this is called at every render as setState renders the component again
+    // update events list of parent component
+    // this is called at every render as setState renders the component again
   updateEventsList(event.id, eventState);
 
   return isEditable ? (
@@ -39,12 +39,20 @@ function Event({ event, isEditable, updateEventsList }) {
         type={"text"}
       />
       <FloatLabelInput
-        label="Date"
-        name={"date"}
-        value={eventState.date}
+        label="Date de début"
+        name={"startDate"}
+        value={eventState.startDate}
         onChange={onInputChange}
         type={"date"}
       />
+      <FloatLabelInput
+        label="Date de fin"
+        name={"endDate"}
+        value={eventState.endDate}
+        onChange={onInputChange}
+        type={"date"}
+      />
+
     </div>
   ) : (
     <p>

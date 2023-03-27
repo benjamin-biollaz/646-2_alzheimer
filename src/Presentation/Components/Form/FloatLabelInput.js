@@ -1,5 +1,5 @@
 import React from "react";
-import "../CSS/TimelineForm.css";
+import "../../CSS/TimelineForm.css";
 
 const FloatLabelInput = ({ label, value, name, onChange, type }) => {
   return (

@@ -1,0 +1,10 @@
+   
+.section_header {
+     margin-bottom: 1vh;
+     padding: 1vh;
+     text-align: center;
+}
+
+.center_content {
+     display: inline-block;
+}
