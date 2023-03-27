@@ -25,6 +25,7 @@ class Nav extends React.Component {
   render() {
     let information = null;
     let graphs = null;
+    let logout = null;
 
     graphs = (
       <NavLink to="/infos" onClick={() => this.closeNavBar()}>
@@ -34,6 +35,11 @@ class Nav extends React.Component {
     information = (
       <NavLink to="/infos" onClick={() => this.closeNavBar()}>
         Informations
+      </NavLink>
+    );
+    logout = (
+      <NavLink to="/logout" onClick={() => this.closeNavBar()}>
+        Logout
       </NavLink>
     );
 
@@ -55,7 +61,8 @@ class Nav extends React.Component {
         >
           <div className="container-fluid">
             <ul className="nav navbar-nav">
-              {graphs}
+              {logout}
+              {/* {graphs} */}
               {information}
             </ul>
           </div>
