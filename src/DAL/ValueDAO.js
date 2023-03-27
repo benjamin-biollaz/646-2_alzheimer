@@ -1,29 +1,42 @@
 import { db } from "./FirebaseConf";
-import { doc, getDoc, setDoc, updateDoc, getDocs, collection } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc, getDocs, collection, arrayUnion } from "firebase/firestore";
 import {ValuesWithId} from "../DTO/ValuesWithId";
 
 import {valueConverter} from "../DTO/ValueDTO"
 
 class ValueDAO {
 
-  
+    /**
+     * Add one or more value to the resident's list.
+     * @param {} residentId 
+     * @param {*} valueId 
+     */
     async assignValueToResident(residentId, valueId) {
         const residentRef = doc(collection(db, "Residents"), residentId);
         await updateDoc(residentRef, {
-            valuesIds: religionId
+            valuesIds: arrayUnion(valueId)
         });
     }
 
-    async addPatientToDoctor(doctorId, patientId) {
-        await updateDoc(doc(db, "Doctor", doctorId), {Patients: arrayUnion(patientId)});
-    }
-
- 
+    /**
+     * Get the values corresponding to the array of ids.
+     * @param {An array of ids.} valuesIds 
+     * @returns  a list of ValueWithId
+     */
     async getValuesByIds(valuesIds) {
-        const v = await getDocs((db, "Values").withConverter(valueConverter));
-        return new ReligionWithId(v.id, v.data());
+        //get all values
+        const v = await getDocs(collection(db, "Values").withConverter(valueConverter));
+
+        //filter them
+        const docs = v.docs;
+        const filtered = docs.filter(doc => valuesIds.includes(doc.id))
+        return filtered.map(value => new ValuesWithId(value.id, value.data()))
     }
 
+    /**
+     * Get all values.
+     * @returns an array of ValueWithId
+     */
     async getAllValues() {
         const values = await getDocs(collection(db, "Values").withConverter(valueConverter));
         //return with id
@@ -33,6 +46,6 @@ class ValueDAO {
     }
 }
 
-export {ValueDAO as ReligionDAO}
+export {ValueDAO}
 
 
