@@ -1,86 +1,54 @@
 import React from 'react'
-import { useContext, useState } from 'react';
-import GenericForm from '../Form/GenericForm';
+import GenericForm from './GenericForm';
 import Period from './Period';
-import { PeriodWithId } from '../../../DTO/PeriodWithId';
-import { PeriodDAO } from '../../../DAL/PeriodDAO'
-import { ResidentContext } from '../../../Context/ResidentContext';
-import { async } from '@firebase/util';
-import { PeriodDTO } from '../../../DTO/PeriodDTO';
+import {PeriodWithId} from '../../../DTO/PeriodWithId';
+import {PeriodDAO} from '../../../DAL/PeriodDAO'
+import AddPeriod from './AddPeriod';
 
-function PeriodsForm({ periods }) {
-
-    const [periodState, setPeriodState] = useState(periods);
-    var addedItemsCount = 0; // used to generate ids
-
-    // those two collections store periods before/after modifications
+function PeriodsForm({periods, id}) {
+    
+     // those two collections store periods before/after modifications
     // to access database only if changes have been made
     var periodsBeforeEdition = [...periods];
+    const periodsEdited = [...periods];
 
     // this functions is passed to the child to keep tack of changes
     const updatePeriodsList = (periodId, periodDTO) => {
-        var foundIndex = periodState.findIndex(p => p.id == periodId);
-        const elements = periodState;
-        elements[foundIndex] = new PeriodWithId(periodId, periodDTO);
-        setPeriodState(elements);
+        var foundIndex = periodsEdited.findIndex(p => p.id == periodId);
+        periodsEdited[foundIndex] = new PeriodWithId(periodId, periodDTO);
     }
 
-    const updatePeriodsInDB = async () => {
+    const updatePeriodsInDB = () => {
         const periodDAO = new PeriodDAO();
-        const timelineId = localStorage.getItem("timelineId");
-
-        for (const per of periodState) {
-
-            // the id of type int are the newly added one because Firestore
-            // generates only String id
-            if (typeof (per.id) === "number") {
-                // add the new event
-                console.log(per);   
-                const newId = await periodDAO.addPeriod(timelineId, per.periodDTO.startDate,
-                    per.periodDTO.endDate, per.periodDTO.name);
-                setNewItemId(newId, per.id);
-                continue;
-            }
-
+        for (const per of periodsBeforeEdition) {
             // update each event
-            const periodIndex = periodsBeforeEdition.findIndex(p => p.id == per.id)
-            periodDAO.updatePeriod(timelineId, periodsBeforeEdition[periodIndex], per.periodDTO.startDate,
-                per.periodDTO.endDate, per.periodDTO.name)
+            const periodIndex = periodsEdited.findIndex(p => p.id == per.id)
+            periodDAO.updatePeriod(id, per, periodsEdited[periodIndex].periodDTO.startDate, 
+            periodsEdited[periodIndex].periodDTO.endDate, periodsEdited[periodIndex].periodDTO.name)
         }
 
         // periodsBeforeEdition is updated with the DB
-        periodsBeforeEdition = periodState;
+        periodsBeforeEdition = periodsEdited;
     }
-
-    const setNewItemId = (firestoreId, generatedId) => {
-        var foundIndex = periodState.findIndex(per => per.id === generatedId);
-        const elements = [...periodState];
-        elements[foundIndex].id = firestoreId;
-        setPeriodState(elements);
-    }
-
-        // add an empty period to the list
-        const addNewPeriod = () => {
-            const newPeriod = new PeriodWithId(addedItemsCount, new PeriodDTO("nouveau", "", ""));
-            const elements = periodState;
-            elements.unshift(newPeriod)
-            setPeriodState(elements);
-            addedItemsCount++;
-        }
 
     const renderPeriods = (periods, isEditable) => {
         return periods
-            .sort((a, b) => new Date(a.periodDTO.endDate) - new Date(b.periodDTO.endDate))
-            .map((per) => (
-                <Period key={per.id} period={per} isEditable={isEditable} updatePeriodList={updatePeriodsList}></Period>
-            ))
-    }
+        .sort((a, b) => new Date(a.periodDTO.endDate) - new Date(b.periodDTO.endDate)) 
+        .map((per) => (
+           <Period key={per.id} period={per} isEditable={isEditable} updatePeriodList={updatePeriodsList}></Period>
+        ))}
+
+        const renderAdd = () => {
+            return (
+                <AddPeriod id={id} />
+            );
+        }
 
     return (
         <div className='flexDiv'>
-            <GenericForm className='middle_section' title='Périodes' renderItems={renderPeriods} addNewItem={addNewPeriod}
-                items={periods} submitModifications={updatePeriodsInDB}></GenericForm>
-        </div>
+           <GenericForm divId='periodsDiv' title='Périodes' renderItems={renderPeriods} renderAddForm={renderAdd}
+            items={periods} submitModifications={updatePeriodsInDB}></GenericForm>
+            </div>
     );
 }
 

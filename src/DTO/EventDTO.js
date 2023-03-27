@@ -2,21 +2,20 @@
  * EventDTO contains the event properties and a converter from and to Firestore.
  */
 class EventDTO {
-    constructor(startDate,endDate, name) {
-        this.startDate = startDate;
-        this.endDate = endDate;
+    constructor(date, name) {
+        this.date = date;
         this.name = name;
     }
 
     toString() {
-        return this.startDate+" "+this.endDate+ " " + this.name;
+        return this.date + " " + this.name;
     }
 }
 
 const eventConverter = {
     toFirestore(event) {
         return {
-            startDate: event.startDate,endDate: event.endDate, name: event.name
+            date: event.date, name: event.name
         };
     },
     fromFirestore(
@@ -24,7 +23,7 @@ const eventConverter = {
         options
     ) {
         const data = snapshot.data(options);
-        return new EventDTO(data.startDate,data.endDate, data.name);
+        return new EventDTO(data.date, data.name);
     }
 };
 export { eventConverter };

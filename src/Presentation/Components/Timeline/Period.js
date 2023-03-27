@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
-import FloatLabelInput from "../Form/FloatLabelInput";
+import FloatLabelInput from "../FloatLabelInput";
 
 function Period({ period, isEditable, updatePeriodList }) {
   const [periodState, setPeriod] = useState(period.periodDTO);

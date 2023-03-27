@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import '../../CSS/GenericForm.css';
+import '../../CSS/TimelineForm.css';
 import '../../../Utilities/DateFormatter'
 import EventsForm from './EventsForm';
 import PeriodsForm from './PeriodsForm';
 import LocationsForm from './LocationsForm';
 
 
-function TimelineForm({ periods, events, locations}) {
+function TimelineForm({ periods, events, locations, id }) {
 
     const [loc, setLocations] = useState(locations);
     const [per, setPeriods] = useState(periods);
@@ -14,9 +14,9 @@ function TimelineForm({ periods, events, locations}) {
 
     return (
             <div className='grid_container'>
-                <EventsForm events={eve}></EventsForm>
-                <PeriodsForm periods={per} ></PeriodsForm>
-                <LocationsForm locations={loc} ></LocationsForm>
+                <EventsForm events={eve} id={id}></EventsForm>
+                <PeriodsForm periods={per} id={id}></PeriodsForm>
+                <LocationsForm locations={loc} id={id}></LocationsForm>
             </div>
     );
 }

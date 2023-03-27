@@ -57,8 +57,7 @@ class PeriodDAO {
             "Periods").withConverter(periodConverter);
 
         // add to the document
-        const docRef = await addDoc(periodRef, period);
-        return docRef.id;
+        await addDoc(periodRef, period);
     }
 }
 

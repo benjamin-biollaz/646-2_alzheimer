@@ -27,14 +27,13 @@ class EventDAO {
      * Update the event
      * @param {The timeline document id} timelineId 
      * @param {The old event, must be of type EventWithId.} eventToChange 
-     * @param {New startDate} new startDate
-     * @param {New endDate} new endDate 
+     * @param {New date} new date 
      * @param {New name} new name 
      * @returns Nothing
      */
-    async updateEvent(timelineId, eventToChange, startDate,endDate, name) {
+    async updateEvent(timelineId, eventToChange, date, name) {
         // access DB only if changes have been made 
-        if (eventToChange.startDate === startDate && eventToChange.name === name && eventToChange.endDate === endDate)
+        if (eventToChange.date === date && eventToChange.name === name)
             return;
 
         const eventRef =
@@ -44,11 +43,11 @@ class EventDAO {
                     "Events")
                 , eventToChange.id).withConverter(eventConverter);
 
-        await setDoc(eventRef, new EventDTO(startDate,endDate,name));
+        await setDoc(eventRef, new EventDTO(date, name));
     }
 
-    async addEvent(timelineId, startDate,endDate, name) {
-        const event = new EventDTO(startDate,endDate, name)
+    async addEvent(timelineId, date, name) {
+        const event = new EventDTO(date, name)
 
         // point to the document in db
         const eventRef =
@@ -59,8 +58,7 @@ class EventDAO {
                 "Events").withConverter(eventConverter);
 
         // add to the document
-        const docRef = await addDoc(eventRef, event);
-        return docRef.id;
+        await addDoc(eventRef, event);
     }
 
 }

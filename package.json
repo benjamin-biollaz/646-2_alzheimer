@@ -21,7 +21,6 @@
     "reactjs-popup": "^2.0.5",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.4",
-    "sweetalert": "^2.1.2",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
