@@ -59,7 +59,8 @@ class EventDAO {
                 "Events").withConverter(eventConverter);
 
         // add to the document
-        await addDoc(eventRef, event);
+        const docRef = await addDoc(eventRef, event);
+        return docRef.id;
     }
 
 }

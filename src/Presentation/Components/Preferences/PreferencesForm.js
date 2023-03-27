@@ -1,12 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import GenericForm from '../Form/GenericForm';
-import Event from '../Timeline/Event';
-import AddEvent from '../Timeline/AddEvent';
-import { EventDAO } from '../../../DAL/EventDAO';
-import { EventWithId } from '../../../DTO/EventWithId';
 import Preference from './Preference';
 import { PreferenceDAO } from '../../../DAL/PreferenceDAO';
 import { PreferenceWithId } from '../../../DTO/PreferenceWithId';
+import { PreferenceDTO } from '../../../DTO/PreferenceDTO';
 
 /**
  * This components renders a list of preferences in a form.
@@ -14,43 +11,74 @@ import { PreferenceWithId } from '../../../DTO/PreferenceWithId';
  */
 function PreferencesForm({ preferences, category }) {
 
-    // those two collections store preferences before/after modifications
+    const [prefState, setPrefState] = useState(preferences);
+    var addedItemsCount = 0; // used to generate ids
+
+    // this collection stores preferences before
     // to access database only if changes have been made
     var preferencesBeforeEdition = [...preferences];
-    const preferencesEdited = [...preferences];
 
-      // this functions is passed to the child to keep tack of changes
-      const updatePrefList = (prefId, prefDTO) => {
-        var foundIndex = preferencesEdited.findIndex(p => p.id === prefId);
-        preferencesEdited[foundIndex] = new PreferenceWithId(prefId, prefDTO);
+    // this functions is passed to the child to keep tack of changes
+    const updatePrefList = (prefId, prefDTO) => {
+        var foundIndex = prefState.findIndex(p => p.id === prefId);
+        const elements = prefState;
+        elements[foundIndex] = new PreferenceWithId(prefId, prefDTO);
+        setPrefState(elements);
     }
 
 
     // triggered when someone valdiate their changes
-    const updatePreferencesInDB = () => {
+    const updatePreferencesInDB = async () => {
         const prefDAO = new PreferenceDAO();
-        for (const pr of preferencesBeforeEdition) {
-            const prefIndex = preferencesEdited.findIndex(p => p.id === pr.id)
+        const residentId = localStorage.getItem("residentId")
+        for (const pr of prefState) {
+
+            // the id of type int are the newly added one because Firestore
+            // generates only String id
+            if (typeof(pr.id) === "number" ) {
+                // add the new preference
+                const newId = await prefDAO.addPreference(residentId, pr.preferenceDTO.label, pr.preferenceDTO.iconName, category);
+                setNewItemId(newId, pr.id);
+                continue;
+            }
+
             // update each event
-            prefDAO.updatePreference("HvrELV7MRnnJcV24ro1w", pr, preferencesEdited[prefIndex]);
+            const prefIndex = preferencesBeforeEdition.findIndex(p => p.id === pr.id)
+            prefDAO.updatePreference(residentId, preferencesBeforeEdition[prefIndex], pr);
         }
 
         // preferencesBeforeEdition is updated with the DB
-        preferencesBeforeEdition = preferencesEdited;
+        preferencesBeforeEdition = [...prefState];
+    }
+
+    const setNewItemId = (firestoreId, generatedId) => {
+        var foundIndex = prefState.findIndex(p => p.id === generatedId);
+        const elements = [...prefState];
+        elements[foundIndex].id = firestoreId;
+        setPrefState(elements);
+    }
+
+    // add an empty preference to the list
+    const addNewPreference = () => {
+        const newPref = new PreferenceWithId(addedItemsCount, new PreferenceDTO("nouveau", "", category));
+        const elements = prefState;
+        elements.unshift(newPref)
+        setPrefState(elements);
+        addedItemsCount++;
     }
 
 
     const renderPreferences = (pref, isEditable) => {
         return pref.map((pr) => (
-                <Preference key={pr.id} prefWithId={pr} isEditable={isEditable} updatePrefList={updatePrefList}></Preference>
-            ));
+            <Preference key={pr.id} prefWithId={pr} isEditable={isEditable} updatePrefList={updatePrefList}></Preference>
+        ));
     }
 
     return (
         <div className='flexDiv'>
             <GenericForm divId='left_section' title={category}
-                renderItems={renderPreferences} items={preferences}
-                submitModifications={updatePreferencesInDB}></GenericForm>
+                renderItems={renderPreferences} items={prefState}
+                submitModifications={updatePreferencesInDB} addNewItem={addNewPreference}></GenericForm>
         </div>
     );
 }
