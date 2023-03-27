@@ -30,20 +30,21 @@ function PreferencesForm({ preferences, category }) {
     // triggered when someone valdiate their changes
     const updatePreferencesInDB = async () => {
         const prefDAO = new PreferenceDAO();
+        const residentId = localStorage.getItem("residentId")
         for (const pr of prefState) {
 
             // the id of type int are the newly added one because Firestore
             // generates only String id
             if (typeof(pr.id) === "number" ) {
                 // add the new preference
-                const newId = await prefDAO.addPreference("HvrELV7MRnnJcV24ro1w", pr.preferenceDTO.label, pr.preferenceDTO.iconName, category);
+                const newId = await prefDAO.addPreference(residentId, pr.preferenceDTO.label, pr.preferenceDTO.iconName, category);
                 setNewItemId(newId, pr.id);
                 continue;
             }
 
             // update each event
             const prefIndex = preferencesBeforeEdition.findIndex(p => p.id === pr.id)
-            prefDAO.updatePreference("HvrELV7MRnnJcV24ro1w", preferencesBeforeEdition[prefIndex], pr);
+            prefDAO.updatePreference(residentId, preferencesBeforeEdition[prefIndex], pr);
         }
 
         // preferencesBeforeEdition is updated with the DB
