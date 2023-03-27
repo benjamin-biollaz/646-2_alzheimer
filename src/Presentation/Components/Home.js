@@ -43,10 +43,6 @@ export default function Home() {
     window.location.href = `/infos/${r.id}`;
   }
 
-  const navigateLogout = () => {
-    navigate('/logout');
-  }
-
   const setContext = (id, resident) => {
     localStorage.setItem('residentId', id);
     localStorage.setItem('residentFirstName', resident.firstName);
@@ -95,10 +91,6 @@ export default function Home() {
             <button onClick={addResident}>Ajouter</button>
           </div>
         </Popup>
-        <div>
-          <button style={{ marginTop: "100px" }} onClick={navigateLogout}>Se déconnecter</button>
-        </div>
-
       </div>
     </>
   );
