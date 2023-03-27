@@ -70,14 +70,12 @@ function App() {
         {/* <Navbar /> */}
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/navbar" element={<Navbar />} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/icon"
             element={<IconPicker onSelect={handleIconSelect} />}
           />
           <Route path="/icon_pop" element={<IconPopup />} />
-          <Route path="/navbar" element={<Navbar />} />
           <Route path="/infos/:id" element={<Information />} />
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
