@@ -1,12 +1,12 @@
 .login_btn {
   background-color: #8c1c13;
-  width: 150px;
+  width: 10vw;
   border: 0;
   border-radius: 12px;
   color: #ffffff;
   cursor: pointer;
   display: inline-block;
-  font-size: 16px;
+  font-size: var(--h3-size);
   font-weight: 500;
   line-height: 2.5;
   outline: transparent;
@@ -19,12 +19,48 @@
   touch-action: manipulation;
   white-space: nowrap;
 }
+.login_btn:hover {
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5), -0.125rem -0.125rem 1rem #e7d7c1,
+    0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
+  color: aqua;
+}
 .login_btn:focus {
   box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5), -0.125rem -0.125rem 1rem #e7d7c1,
     0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
 }
 
-.login_btn::hover {
+.form_btn {
+  background-color: #8c1c13;
+  width: 4vw;
+  margin-right: 1vh;
+  margin-top: -1vh;
+  height: 4vh;
+  border: 0;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  outline: transparent;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.form_btn:hover {
   box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5), -0.125rem -0.125rem 1rem #e7d7c1,
     0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.form_button {
+  background-color: #8c1c13;
+}
+
+.edit_button {
+  float: right;
+  background-color: transparent;
+  border: none;
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FloatLabelInput from "../FloatLabelInput";
+import FloatLabelInput from "../Form/FloatLabelInput";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
 
 function Location({ location, isEditable, updateLocationList }) {
