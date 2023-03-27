@@ -62,7 +62,8 @@ class LocationDAO {
                 "Locations").withConverter(locationConverter);
 
         // add to the document
-        await addDoc(locationRef, location);
+        const docRef = await addDoc(locationRef, location);
+        return docRef.id;
     }
 
 }
