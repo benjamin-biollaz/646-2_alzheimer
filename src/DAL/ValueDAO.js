@@ -9,13 +9,15 @@ class ValueDAO {
     /**
      * Add one or more value to the resident's list.
      * @param {} residentId 
-     * @param {*} valueId 
+     * @param {An array of firestore ids} valueId 
      */
-    async assignValueToResident(residentId, valueId) {
+    async assignValueToResident(residentId, valueIds) {
         const residentRef = doc(collection(db, "Residents"), residentId);
-        await updateDoc(residentRef, {
-            valuesIds: arrayUnion(valueId)
-        });
+        for (const va of valueIds) {
+            await updateDoc(residentRef, {
+                valuesIds: arrayUnion(va)
+            });
+        }
     }
 
     /**

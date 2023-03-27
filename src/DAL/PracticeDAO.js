@@ -9,13 +9,16 @@ class PracticeDAO {
     /**
      * Add one or more practice to the resident's list.
      * @param {} residentId 
-     * @param {*} valueId 
+     * @param {An array of firestore ids} valueId 
      */
-    async assignPracticeToResident(residentId, practiceId) {
+    async assignPracticeToResident(residentId, practiceIds) {
         const residentRef = doc(collection(db, "Residents"), residentId);
-        await updateDoc(residentRef, {
-            practiceIds: arrayUnion(practiceId)
-        });
+        for (const pr of practiceIds) {
+            await updateDoc(residentRef, {
+                practiceIds: arrayUnion(pr)
+            });
+        }
+       
     }
 
 
@@ -39,7 +42,7 @@ class PracticeDAO {
      * @returns a list of PracticeWithId instances.
      */
     async getAllPractices() {
-        const practices = await getDocs(collection(db, "Practices").withConverter(valueConverter));
+        const practices = await getDocs(collection(db, "Practices").withConverter(practiceConverter));
         //return with id
         return practices.docs.map((doc) => {
             return new PracticeWithId(doc.id, doc.data());
@@ -47,6 +50,6 @@ class PracticeDAO {
     }
 }
 
-export {PracticeDAO as ValueDAO}
+export {PracticeDAO}
 
 
