@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import IconPicker from "../IconPickerReact";
+import IconPicker from "./IconPickerReact";
+import { IconContext } from "react-icons";
 import Popup from "reactjs-popup";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 function IconPopup() {
   const [selectedIcon, setSelectedIcon] = useState(null);
@@ -14,8 +16,10 @@ function IconPopup() {
       <Popup trigger={<button>Open IconPicker</button>} modal>
         {(close) => (
           <div className="icon-picker-popup">
+            <IconContext.Provider value={{ size: "25px", color: "#a78a7f" }}>
+              <AiFillCloseCircle onClick={close} />
+            </IconContext.Provider>
             <IconPicker onSelect={handleSelectIcon} />
-            <button onClick={close}>Close</button>
           </div>
         )}
       </Popup>

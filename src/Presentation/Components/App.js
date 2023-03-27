@@ -6,7 +6,7 @@ import Navbar from "../Components/Navbar";
 import Page404 from "./Page404";
 import "../CSS/App.css";
 import Information from "./Information";
-import IconPicker from "./IconPickerReact";
+import IconPicker from "./IconPopup/IconPickerReact";
 import IconPopup from "./IconPopup/IconPopup.js";
 
 function App() {

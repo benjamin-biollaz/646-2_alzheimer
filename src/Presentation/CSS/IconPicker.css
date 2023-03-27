@@ -1,10 +1,16 @@
+.popup-content {
+  margin: auto;
+  background-color: whitesmoke;
+  border: none;
+  border-radius: 8px;
+  width: 30vw;
+}
+
 .icon-picker {
   display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  background-color: #f7f7f7;
+  height: 50vh;
+  background-color: transparent;
+  border: none;
   border-radius: 8px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
   padding: 16px;
@@ -12,7 +18,7 @@
 
 .icon-picker__sets {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   margin-bottom: 16px;
 }
@@ -20,25 +26,26 @@
 .icon-picker__set {
   background-color: transparent;
   border: none;
-  color: #555;
   font-size: 1.2rem;
   margin-right: 16px;
-  padding: 8px;
+  padding: 3px;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .icon-picker__set.active {
-  background-color: #555;
-  color: white;
+  color: #8c1c13;
+  font-weight: bolder;
 }
 
 .icon-picker__icons {
   display: flex;
+  flex-basis: calc(100% / 1);
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  overflow: auto;
 }
 
 .icon-picker__icon {
@@ -52,9 +59,10 @@
   border-radius: 8px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
   margin: 8px;
-  padding: 16px;
+  padding: 10px;
   cursor: pointer;
   transition: all 0.2s ease;
+  width: max-content;
 }
 
 .icon-picker__icon:hover {
@@ -64,7 +72,7 @@
 
 .icon-picker__icon-name {
   margin-top: 8px;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: #555;
 }
 
@@ -92,4 +100,27 @@
 .icon-picker__selected-name {
   font-size: 14px;
   font-weight: bold;
+}
+
+.inputIcon {
+  display: block;
+  height: 4vh;
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  background-color: whitesmoke;
+  margin-bottom: 3%;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.inputIcon::placeholder {
+  color: grey;
+}
+
+.inputIcon:hover {
+  border-color: #a78a7f;
+  box-shadow: 0 0 0 2px #6e9feb20;
 }

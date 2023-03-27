@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IconContext } from "react-icons";
-import "../CSS/IconPicker.css";
+import "../../CSS/IconPicker.css";
 
 import {
   FaPizzaSlice,
@@ -19,7 +19,12 @@ import {
   GiShower,
   GiSoccerBall,
   GiBasketballBall,
+  GiBread,
   GiBaseballBat,
+  GiPeanut,
+  GiHoneypot,
+  GiPig,
+  GiCow,
   GiTennisRacket,
   GiCurlingStone,
   GiCardAceHearts,
@@ -29,24 +34,33 @@ import {
   GiNoodles,
   GiWool,
   GiPaintBrush,
+  GiSheep,
 } from "react-icons/gi";
 import { BsFillSunriseFill, BsFillSunsetFill } from "react-icons/bs";
-import { TbYoga } from "react-icons/tb";
+import { TbYoga, TbMilk, TbTeapot, TbSalad } from "react-icons/tb";
 import { MdPets, MdDirectionsRun } from "react-icons/md";
-import "../CSS/IconPicker.css";
+import { IoIosWine } from "react-icons/io";
 
 const iconSets = [
   {
     name: "Nourriture",
     icons: [
-      { name: "Pizza", icon: <FaPizzaSlice /> },
+      { name: "Noix / Arachide", icon: <GiPeanut /> },
+      { name: "Miel / Confiture", icon: <GiHoneypot /> },
       { name: "Légumes", icon: <FaCarrot /> },
       { name: "Poisson", icon: <FaFish /> },
       { name: "Viande", icon: <GiMeat /> },
+      { name: "Porc", icon: <GiPig /> },
+      { name: "Boeuf", icon: <GiCow /> },
+      { name: "Agneau", icon: <GiSheep /> },
+      { name: "Salade", icon: <TbSalad /> },
       { name: "Fruit", icon: <GiFruitBowl /> },
       { name: "Soupe", icon: <GiNoodles /> },
+      { name: "Pain", icon: <GiBread /> },
       { name: "Cafe", icon: <FaCoffee /> },
-      { name: "Biere", icon: <FaBeer /> },
+      { name: "Lait", icon: <TbMilk /> },
+      { name: "Thé", icon: <TbTeapot /> },
+      { name: "Vin", icon: <IoIosWine /> },
     ],
   },
   {
@@ -75,7 +89,6 @@ const iconSets = [
       { name: "Tennis", icon: <GiTennisRacket /> },
       { name: "Course", icon: <MdDirectionsRun /> },
       { name: "Ski", icon: <FaSkiing /> },
-      //   { name: "Fitness", icon: <MdFitnessCenter /> },
     ],
   },
   {
@@ -108,8 +121,9 @@ function IconPicker({ onSelect }) {
       <div className="icon-picker__sets">
         <div className="icon-picker__search">
           <input
+            className="inputIcon"
             type="text"
-            placeholder="Search icons"
+            placeholder="Rechercher"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -142,13 +156,13 @@ function IconPicker({ onSelect }) {
             ))}
         </IconContext.Provider>
       </div>
-      <div>
+      {/* <div>
         {selectedIcon && (
           <div className="icon-picker__selected">
             <span className="icon-picker__selected-icon">{selectedIcon}</span>
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }
