@@ -40,12 +40,10 @@ function EventsForm({ events }) {
                 const newId = await eventDAO.addEvent(timelineId, ev.eventDTO.startDate,
                     ev.eventDTO.endDate, ev.eventDTO.name);
                 setNewItemId(newId, ev.id);
-                console.log("added ...")
                 continue;
             }
 
             // update each event
-            console.log(ev);
             const eventIndex = eventsBeforeEdition.findIndex(e => e.id === ev.id)
             eventDAO.updateEvent(timelineId, eventsBeforeEdition[eventIndex], ev.eventDTO.startDate,
                 ev.eventDTO.endDate, ev.eventDTO.name)
@@ -70,7 +68,6 @@ function EventsForm({ events }) {
         elements.unshift(newEvent)
         setEventState(elements);
         addedItemsCount++;
-        console.log(eventState)
     }
 
     const renderEvents = (events, isEditable) => {

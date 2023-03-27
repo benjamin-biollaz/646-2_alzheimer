@@ -1,41 +1,75 @@
-import React from 'react'
+import React, { useState } from 'react'
 import GenericForm from '../Form/GenericForm';
 import Location from './Location';
-import {LocationWithId} from '../../../DTO/LocationWithId'
-import {LocationDAO} from '../../../DAL/LocationDAO'
+import { LocationWithId } from '../../../DTO/LocationWithId'
+import { LocationDAO } from '../../../DAL/LocationDAO'
 import AddLocation from './AddLocation';
+import { LocationDTO } from '../../../DTO/LocationDTO';
 
 function LocationsForm({ locations, id }) {
+
+    const [locationState, setLocationState] = useState(locations);
+    var addedItemsCount = 0; // used to generate ids
+
     // those two collections store locations before/after modifications
     // to access database only if changes have been made
     var locationsBeforeEdition = [...locations];
-    const locationsEdited = [...locations];
 
     // this functions is passed to the child to keep tack of changes
     const updateLocationsList = (locationId, locationDTO) => {
-        var foundIndex = locationsEdited.findIndex(l => l.id == locationId);
-        locationsEdited[foundIndex] = new LocationWithId(locationId, locationDTO);
+        var foundIndex = locationState.findIndex(l => l.id == locationId);
+        const elements = locationState;
+        elements[foundIndex] = new LocationWithId(locationId, locationDTO);
+        setLocationState(elements);
     }
 
-    const updateLocationsInDB = () => {
+    const updateLocationsInDB = async () => {
         const locationDAO = new LocationDAO();
-        for (const loc of locationsBeforeEdition) {
+        const timelineId = localStorage.getItem("timelineId");
+        for (const loc of locationState) {
+
+            // the id of type int are the newly added one because Firestore
+            // generates only String id
+            if (typeof (loc.id) === "number") {
+                // add the new event
+                const newId = await locationDAO.addLocation(timelineId, loc.locationDTO.startDate,
+                    loc.locationDTO.endDate, loc.locationDTO.name);
+                setNewItemId(newId, loc.id);
+                continue;
+            }
+
             // update each location
-            const locationIndex = locationsEdited.findIndex(l => l.id == loc.id)
-            locationDAO.updateLocation(localStorage.getItem("timelineId"), loc, locationsEdited[locationIndex].locationDTO.startDate, 
-            locationsEdited[locationIndex].locationDTO.endDate, locationsEdited[locationIndex].locationDTO.name)
+            const locationIndex = locationState.findIndex(l => l.id == loc.id)
+            locationDAO.updateLocation(timelineId, locationsBeforeEdition[locationIndex],
+                loc.locationDTO.startDate, loc.locationDTO.endDate, loc.locationDTO.name)
         }
 
         // eventsBeforeEdition is updated with the DB
-        locationsBeforeEdition = locationsEdited;
+        locationsBeforeEdition = locationState;
+    }
+
+       // add an empty location to the list
+       const addNewLocation = () => {
+        const newLocation = new LocationWithId(addedItemsCount, new LocationDTO("", "", "nouveau"));
+        const elements = locationState;
+        elements.unshift(newLocation)
+        setLocationState(elements);
+        addedItemsCount++;
     }
 
     const renderLocations = (locations, isEditable) => {
         return locations
-        .sort((a, b) => new Date(a.locationDTO.endDate) - new Date(b.locationDTO.endDate)) 
-        .map((loc) => (
-            <Location key={loc.id} location={loc} isEditable={isEditable} updateLocationList={updateLocationsList}></Location>
-        ));
+            .sort((a, b) => new Date(a.locationDTO.endDate) - new Date(b.locationDTO.endDate))
+            .map((loc) => (
+                <Location key={loc.id} location={loc} isEditable={isEditable} updateLocationList={updateLocationsList}></Location>
+            ));
+    }
+
+    const setNewItemId = (firestoreId, generatedId) => {
+        var foundIndex = locationState.findIndex(loc => loc.id === generatedId);
+        const elements = [...locationState];
+        elements[foundIndex].id = firestoreId;
+        setLocationState(elements);
     }
 
     const renderAdd = () => {
@@ -46,8 +80,8 @@ function LocationsForm({ locations, id }) {
 
     return (
         <div className='flexDiv'>
-            <GenericForm className='right_section' title='Lieux'renderItems={renderLocations} renderAddForm={renderAdd} 
-            items={locations} submitModifications={updateLocationsInDB}></GenericForm>
+            <GenericForm className='right_section' title='Lieux' renderItems={renderLocations} addNewItem={addNewLocation}
+                items={locations} submitModifications={updateLocationsInDB}></GenericForm>
         </div>
     );
 }
