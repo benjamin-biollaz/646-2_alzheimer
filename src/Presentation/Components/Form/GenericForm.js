@@ -4,6 +4,7 @@ import "semantic-ui-css/semantic.min.css";
 import { FaEdit } from "react-icons/fa";
 import { IoIosAddCircle } from "react-icons/io";
 import { AiFillCheckCircle } from "react-icons/ai";
+import swal from "sweetalert";
 
 /**
  * This component is used by all sections to display a form.
@@ -41,6 +42,7 @@ function GenericForm({
   const sendModifications = () => {
     submitModifications();
     toggleView();
+    swal({ timer: 1500, type: "success", icon: 'success', title: "Sauvegardé!" });
   };
 
   return (

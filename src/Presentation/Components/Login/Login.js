@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import swal from 'sweetalert';
 import LoginForm from "./LoginForm";
+import logoSwal from "../../img/logo_swal.png";
 import logo from "../../img/logo_memorys.png";
 import "../../CSS/Login.css";
 
@@ -16,8 +17,7 @@ export default function Login() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/home");
-      swal({ timer: 1500, type: "success", title: "Bienvenue!" }
-      );
+      swal({ timer: 1500, type: "success", icon: logoSwal, title: "Bienvenue!" });
     } catch (e) {
       swal("Email ou mot de passe invalide", "Veuillez contrôler vos informations de connection", "error");
     }

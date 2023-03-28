@@ -36,15 +36,11 @@ export default function Home() {
   const addResident = async () => {
     if (newRes.firstName === '' || newRes.lastName === '' || newRes.birthDate === '') {
       alert("Veuillez remplir tous les champs");
-      return;
+      return; 
     }
     var r = await residentDAO.addResident(newRes);
     console.log(r.id);
     window.location.href = `/infos/${r.id}`;
-  }
-
-  const navigateLogout = () => {
-    navigate('/logout');
   }
 
   const setContext = (id, resident) => {
@@ -95,10 +91,6 @@ export default function Home() {
             <button onClick={addResident}>Ajouter</button>
           </div>
         </Popup>
-        <div>
-          <button style={{ marginTop: "100px" }} onClick={navigateLogout}>Se déconnecter</button>
-        </div>
-
       </div>
     </>
   );
