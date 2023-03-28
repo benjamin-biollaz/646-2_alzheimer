@@ -63,7 +63,7 @@ function Information() {
         </div>
       <div className="divMain">
         
-      <BiPrinter onClick={() => window.print()} className="printButton"></BiPrinter>
+      <BiPrinter onClick={() => handlePrint()} className="printButton"></BiPrinter>
         <div>
           <PersonalInfos></PersonalInfos>
 
@@ -76,7 +76,7 @@ function Information() {
               <div className="evenements">
                 <h3 className="label">Évènements</h3>
                 {imageData ? (
-      <img src={imageData} alt="Information" className="imageTimeline"/>
+      <img src={imageData} alt="Information" className="divTimelineWidget"/>
       ) : (
                     <div className="divTimelineWidget" ref={infoRef}>
                       <TimelineWidget id={resId} />

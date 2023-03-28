@@ -74,6 +74,7 @@
   grid-area: evenements;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 2vh;
+  margin-top: 2%;
 }
 
 .habitudes {
@@ -219,4 +220,5 @@
 }
 
 .html2canvas-container { width: 100vw !important; height: 100vh !important; }
+
 
