@@ -14,6 +14,7 @@ import { GiNightSleep } from "react-icons/gi";
 import { BsFillSunriseFill, BsSunriseFill } from "react-icons/bs";
 import { TfiTimer } from "react-icons/tfi";
 import { GiMeal } from "react-icons/gi";
+import { BiPrinter } from "react-icons/bi";
 import { TimelineWidget } from "./Timeline/Timeline";
 import { useParams } from "react-router";
 import PreferencesList from "./Preferences/PreferencesList";
@@ -36,7 +37,7 @@ function Information() {
         <Navbar />
         
       </div>
-
+      <BiPrinter onClick={() => window.print()} className="printButton"></BiPrinter>
       <div>
       <PersonalInfos></PersonalInfos>
 
@@ -58,11 +59,7 @@ function Information() {
 
       </div>
       </div>
-      {/*<ReactToPrint
-        trigger={() => <button>Print</button>}
-        content={() => componentRef.current}
-        />*/}
-      <button onClick={() => window.print()} className="hideOnPrint">Print</button>
+      
     </>
   );
 }
