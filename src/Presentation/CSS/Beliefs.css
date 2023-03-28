@@ -1,0 +1,21 @@
+.input_checkbox_div {
+    padding: 0.5vh;
+    display: flex;
+}
+
+.input_checkbox {
+    vertical-align: -2px;
+    transform: scale(1.5);
+    accent-color: #8c1c13;
+}
+
+.checkbox_div {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+}
+
+.input_label {
+    display: inline;
+    flex: 1;
+}

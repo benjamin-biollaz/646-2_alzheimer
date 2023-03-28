@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import CheckboxInput from '../Form/CheckboxInput';
 
 function Value({ valueWithId, isEditable, updateValuesList, isInTheList }) {
 
@@ -13,14 +14,12 @@ function Value({ valueWithId, isEditable, updateValuesList, isInTheList }) {
     return (
         isEditable ?
 
-            <span>
-                {/* input */}
-                <div>
-                    {valueWithId.valueDTO.name}
-                    <input type={"checkbox"} checked={isInTheListState} onChange={onInputChange}
-                    value={isInTheListState}></input>
-                </div>
-            </span>
+            <CheckboxInput
+                checkedState={isInTheListState}
+                onChange={onInputChange}
+                value={isInTheListState}
+                label={valueWithId.valueDTO.name}>
+            </CheckboxInput>
 
             :
             isInTheListState ?

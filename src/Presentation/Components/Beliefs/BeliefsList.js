@@ -16,7 +16,6 @@ function BeliefsList() {
     }, []);
 
     const [resident, setResident] = useState(null)
-    const [religionState, setreligionState] = useState(null);
     const [allReligions, setAllReligions] = useState([]);
     const [allValues, setvalueState] = useState([]);
     const [allPractices, setpracticeState] = useState([]);
@@ -37,7 +36,7 @@ function BeliefsList() {
                     resident={resident}
                     allValues={allValues}
                     allPractices={allPractices}
-                    allReligions={religionState}>
+                    allReligions={allReligions}>
                 </BeliefPopUpContent>}
                 sectionTitle={"Croyances"}></SectionHeader>
 

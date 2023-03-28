@@ -43,7 +43,7 @@ function PracticesForm({ allPractices, residentPracticesIds }) {
 
     return (
         <div className='flexDiv'>
-            <GenericForm className='right_section' title='Pratiques'
+            <GenericForm className='middle_section' title='Pratiques'
                 renderItems={renderPractices} items={allPractices}
                 submitModifications={updatePracticesInDB}
                 doNotDisplayAddButton={true}></GenericForm>

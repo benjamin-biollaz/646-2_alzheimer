@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import '../../CSS/Beliefs.css'
+import CheckboxInput from '../Form/CheckboxInput';
 
 function Practice({ practiceWithId, isEditable, updatePracticesList, isInTheList }) {
 
@@ -12,15 +14,12 @@ function Practice({ practiceWithId, isEditable, updatePracticesList, isInTheList
 
     return (
         isEditable ?
-
-            <span>
-                {/* input */}
-                <div>
-                    {practiceWithId.practiceDTO.name}
-                    <input type={"checkbox"} checked={isInTheListState} onChange={onInputChange}
-                    value={isInTheListState}></input>
-                </div>
-            </span>
+            <CheckboxInput
+                checkedState={isInTheListState}
+                onChange={onInputChange}
+                value={isInTheListState}
+                label={practiceWithId.practiceDTO.name}>
+            </CheckboxInput>
 
             :
             isInTheListState ?

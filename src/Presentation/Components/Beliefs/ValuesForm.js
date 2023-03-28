@@ -44,7 +44,7 @@ function ValuesForm({ allValues, residentValuesIds }) {
 
     return (
         <div className='flexDiv'>
-            <GenericForm className='left_section' title='Valeurs'
+            <GenericForm className='right_section' title='Valeurs'
                 renderItems={renderValues} items={allValues}
                 submitModifications={updateValuesInDB}
                 doNotDisplayAddButton={true}></GenericForm>
