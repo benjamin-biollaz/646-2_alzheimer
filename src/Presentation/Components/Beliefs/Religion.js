@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { ReligionDTO } from '../../../DTO/ReligionDTO';
+import { ReligionWithId } from '../../../DTO/ReligionWithId';
+import FloatLabelInput from "../Form/FloatLabelInput"
 
-function Religion({ religionWithId, isEditable, updateReligionList }) {
+function Religion({ religionWithId, isEditable, updateReligionList, allReligions }) {
 
-    const [religionState, setReligionSate] = useState(religionWithId.religionDTO);
+    const [religionState, setReligionSate] = useState();
 
     const onInputChange = (e) => {
         const target = e.target;
@@ -21,10 +24,14 @@ function Religion({ religionWithId, isEditable, updateReligionList }) {
     if (updateReligionList !== undefined)
         updateReligionList(religionWithId.id, religionState);
 
-
     return (
         isEditable ?
             <div className="inputDiv">
+                <select>
+                    {allReligions?.map((r) =>
+                        <option>{r.religionDTO.name}</option>
+                    )}
+                </select>
                 <FloatLabelInput
                     label="Label"
                     name={"label"}
@@ -34,7 +41,10 @@ function Religion({ religionWithId, isEditable, updateReligionList }) {
                 />
             </div>
             :
-            <p>{religionState.name}</p>
+            <span className="infos_religion">
+                <h4>{religionState.name}</h4>
+            </span>
+
     )
 }
 

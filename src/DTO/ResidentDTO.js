@@ -29,8 +29,8 @@ const residentConverter = {
         options
     ) {
         const data = snapshot.data(options);
-        return new ResidentDTO(data.firstName, data.lastName, data.birthDate, data.religionId, data.valueIds,
-            data.practiceIds);
+        return new ResidentDTO(data.firstName, data.lastName, data.birthDate,
+            data.religionId, data.valueIds, data.practiceIds);
     }
 };
 export { residentConverter };

@@ -1,9 +1,12 @@
 import React from 'react'
+import PracticesForm from './PracticesForm'
+import ValuesForm from './ValuesForm'
 
-function BeliefPopUpContent() {
+function BeliefPopUpContent({ resident, allValues, allPractices, allReligions }) {
     return (
-        <div>
-            <h1>BeliefPopUpContent</h1>
+        <div className='grid_container'>
+            <ValuesForm allValues={allValues} residentValuesIds={resident.valueIds}></ValuesForm>
+            <PracticesForm allPractices={allPractices} residentPracticesIds={resident.practiceIds}></PracticesForm>
         </div>
     )
 }

@@ -1,8 +1,8 @@
 import { db } from "./FirebaseConf";
 import { doc, getDoc, setDoc, updateDoc, getDocs, collection, arrayUnion } from "firebase/firestore";
-import {PracticeWithId} from "../DTO/PracticeWithId";
+import { PracticeWithId } from "../DTO/PracticeWithId";
 
-import {practiceConverter} from "../DTO/PracticeDTO"
+import { practiceConverter } from "../DTO/PracticeDTO"
 
 class PracticeDAO {
 
@@ -13,12 +13,9 @@ class PracticeDAO {
      */
     async assignPracticeToResident(residentId, practiceIds) {
         const residentRef = doc(collection(db, "Residents"), residentId);
-        for (const pr of practiceIds) {
-            await updateDoc(residentRef, {
-                practiceIds: arrayUnion(pr)
-            });
-        }
-       
+        await updateDoc(residentRef, {
+            practiceIds: practiceIds
+        });
     }
 
 
@@ -50,6 +47,6 @@ class PracticeDAO {
     }
 }
 
-export {PracticeDAO}
+export { PracticeDAO }
 
 

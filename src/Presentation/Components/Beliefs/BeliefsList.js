@@ -1,71 +1,65 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import SectionHeader from '../SectionHeader'
 import BeliefPopUpContent from './BeliefPopUpContent'
-import {ReligionDAO} from "../../../DAL/ReligionDAO"
-import {ValueDAO} from "../../../DAL/ValueDAO";
-import {PracticeDAO} from "../../../DAL/PracticeDAO";
-import {ResidentDAO} from "../../../DAL/ResidentDAO"
+import { ReligionDAO } from "../../../DAL/ReligionDAO"
+import { ValueDAO } from "../../../DAL/ValueDAO";
+import { PracticeDAO } from "../../../DAL/PracticeDAO";
+import { ResidentDAO } from "../../../DAL/ResidentDAO"
 import { ReligionWithId } from '../../../DTO/ReligionWithId';
+import Religion from './Religion';
+import { ReligionDTO } from '../../../DTO/ReligionDTO';
 
 function BeliefsList() {
-
-    const [religionState, setreligionState] = useState(null);
-    const [valueState, setvalueState] = useState(null);
-    const [practiceState, setpracticeState] = useState(null);
 
     useEffect(() => {
         fetchBeliefs();
     }, []);
 
+    const [resident, setResident] = useState(null)
+    const [religionState, setreligionState] = useState(null);
+    const [allReligions, setAllReligions] = useState([]);
+    const [allValues, setvalueState] = useState([]);
+    const [allPractices, setpracticeState] = useState([]);
+
     const fetchBeliefs = async () => {
         const res = await ResidentDAO.prototype.getresidentById(localStorage.getItem("residentId"));
-        setReligion(res);
-        setValues(res);
-        setPractices(res);
+        setResident(res);
+        
+        setvalueState(await ValueDAO.prototype.getAllValues());
+        setpracticeState(await PracticeDAO.prototype.getAllPractices());
+        setAllReligions(await ReligionDAO.prototype.getAllReligions());
     }
-
-    const setReligion = async (res) => {
-        const relDAO = new ReligionDAO();
-        setreligionState(await relDAO.getReligionById(res.religionId));
-    }
-
-    const setValues = async (res) => {
-        if (res.valueIds === null || res.valueIds === undefined){
-            setvalueState([]) // empty values
-            return;
-        }
-        const valDAO = new ValueDAO();
-        setvalueState(await valDAO.getValuesByIds(res.valueIds)); // access db
-    }
-
-    const setPractices = async (res) => {
-        const prDAO = new PracticeDAO();
-        if (res.practiceIds === null || res.practiceIds === undefined) {
-            setpracticeState([]); // empty practices
-            return;
-        }
-        setpracticeState(prDAO.getPracticesByIds(res.practiceIds)); // access db
-    }
-    
 
     return (
         <div className="croyances">
             <SectionHeader popupContent={
-            <BeliefPopUpContent></BeliefPopUpContent>} 
-            sectionTitle={"Croyances"}></SectionHeader>
+                <BeliefPopUpContent
+                    resident={resident}
+                    allValues={allValues}
+                    allPractices={allPractices}
+                    allReligions={religionState}>
+                </BeliefPopUpContent>}
+                sectionTitle={"Croyances"}></SectionHeader>
 
             <div className="infos_list">
                 <h4 className="categories">Religion</h4>
                 <span className="infos_religion">
-                    <h4>Christianisme</h4>
+                {allReligions?.filter((r) => resident.religionId == r.id)
+                    .map((p) =>
+                        <p key={p.id} className="item">{p.religionDTO.name} &nbsp;</p>
+                    )}
+                   
                 </span>
-                &nbsp; &nbsp;
+
             </div>
 
             <div className="infos_list">
                 <h4 className="categories">Pratique</h4>
                 <span className="infos_religion">
-                    <h4 className="item">Prière</h4>
+                    {allPractices?.filter((pr) => resident.practiceIds.includes(pr.id))
+                    .map((p) =>
+                        <p key={p.id} className="item">{p.practiceDTO.name} &nbsp;</p>
+                    )}
                 </span>
                 &nbsp; &nbsp;
             </div>
@@ -73,7 +67,10 @@ function BeliefsList() {
             <div className="infos_list">
                 <h4 className="categories">Valeurs</h4>
                 <span className="infos_religion">
-                    <h4>Respect</h4>
+                {allValues?.filter((va) => resident.valueIds.includes(va.id))
+                    .map((v) =>
+                        <p key={v.id} className="item">{v.valueDTO.name} &nbsp;</p>
+                    )}
                 </span>
                 &nbsp; &nbsp;
             </div>

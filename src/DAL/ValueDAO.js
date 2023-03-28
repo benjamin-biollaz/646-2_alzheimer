@@ -1,8 +1,8 @@
 import { db } from "./FirebaseConf";
 import { doc, getDoc, setDoc, updateDoc, getDocs, collection, arrayUnion } from "firebase/firestore";
-import {ValuesWithId} from "../DTO/ValuesWithId";
+import { ValuesWithId } from "../DTO/ValuesWithId";
 
-import {valueConverter} from "../DTO/ValueDTO"
+import { valueConverter } from "../DTO/ValueDTO"
 
 class ValueDAO {
 
@@ -13,11 +13,9 @@ class ValueDAO {
      */
     async assignValueToResident(residentId, valueIds) {
         const residentRef = doc(collection(db, "Residents"), residentId);
-        for (const va of valueIds) {
-            await updateDoc(residentRef, {
-                valuesIds: arrayUnion(va)
-            });
-        }
+        await updateDoc(residentRef, {
+            valueIds: valueIds
+        });
     }
 
     /**
@@ -48,6 +46,6 @@ class ValueDAO {
     }
 }
 
-export {ValueDAO}
+export { ValueDAO }
 
 
