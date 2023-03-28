@@ -109,7 +109,7 @@ function IconPicker({ onSelect }) {
     onSelect(icon.icon);
     setSelectedIcon(icon.icon);
     setSearchQuery("");
-    console.log("Icon selected " + icon.name);
+    console.log("Icon selected from IconPicker " + icon.name);
   };
 
   const handleSetChange = (set) => {

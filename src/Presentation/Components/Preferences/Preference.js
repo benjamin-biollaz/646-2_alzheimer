@@ -18,7 +18,7 @@ function Preference({ prefWithId, isEditable, updatePrefList, onSelect }) {
 
   const handleSelectIcon = (icon) => {
     setSelectedIcon(icon);
-    console.log("Icon selected " + icon.name);
+    console.log("Icon selected from Preference " + selectedIcon.name);
   };
 
   const handleSetChange = (set) => {
@@ -74,7 +74,10 @@ function Preference({ prefWithId, isEditable, updatePrefList, onSelect }) {
     </div>
   ) : (
     <div className="preferenceDiv">
-      <IconPicker onSelect={handleSelectIcon} />
+      <IconPicker
+        onSelect={handleSelectIcon}
+        setSelectedIcon={handleSelectIcon}
+      />
       <div className="selected-icon">
         {selectedIcon && (
           <IconContext.Provider value={{ className: "icon" }}>
