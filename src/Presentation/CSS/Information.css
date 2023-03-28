@@ -163,8 +163,39 @@
 }
 
 @media print {
+
   html, body {
     height: initial !important;
     overflow: initial !important;
+  }
+
+  @page {
+    size: auto;
+    margin: 0;
+  }
+
+  @page :first {
+    margin-top: 0;
+  }
+
+  @page :last {
+    margin-bottom: 0;
+  }
+
+  body::after {
+    content: none !important;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+  }
+
+  .hideOnPrint {
+    display: none;
+  }
+
+  .divTimelineWidget {
+    width: 100%;
+    max-width: 100%;
   }
 }

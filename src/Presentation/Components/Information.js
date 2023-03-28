@@ -21,9 +21,7 @@ import PassionsList from "./Passions/PassionsList";
 import PersonalInfos from "./PersonalInfos";
 import HabitsList from "./Habits/HabitsList";
 import BeliefsList from "./Beliefs/BeliefsList";
-import ReactToPrint from "react-to-print";
-import moment from "moment";
-import { DateFormatter } from "../../Utilities/DateFormatter";
+
 
 function Information() {
   function MusicNoteIcon() {
@@ -31,16 +29,15 @@ function Information() {
   }
 
   const resId = useParams().id;
-  const componentRef = useRef();
-
+  
   return (
     <>
-      <div>
+      <div className="hideOnPrint">
         <Navbar />
         
       </div>
 
-      <div ref={componentRef}>
+      <div>
       <PersonalInfos></PersonalInfos>
 
       <div className="container_infos">
@@ -61,10 +58,11 @@ function Information() {
 
       </div>
       </div>
-      <ReactToPrint
+      {/*<ReactToPrint
         trigger={() => <button>Print</button>}
         content={() => componentRef.current}
-      />
+        />*/}
+      <button onClick={() => window.print()} className="hideOnPrint">Print</button>
     </>
   );
 }
