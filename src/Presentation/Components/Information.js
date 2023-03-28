@@ -21,6 +21,7 @@ import PassionsList from "./Passions/PassionsList";
 import PersonalInfos from "./PersonalInfos";
 import HabitsList from "./Habits/HabitsList";
 import BeliefsList from "./Beliefs/BeliefsList";
+import html2canvas from "html2canvas";
 
 
 function Information() {
@@ -29,42 +30,72 @@ function Information() {
   }
 
   const resId = useParams().id;
+  const infoRef = useRef(null);
+  const [imageData, setImageData] = useState(null);
+
+  async function handlePrint() {
+    window.scrollTo(0,0);
+    await html2canvas(infoRef.current,{
+      useCORS: true,
+      allowTaint: true,
+      foreignObjectRendering: false,
+    }).then((canvas) => {
+      setImageData(canvas.toDataURL());
+    }).then(() => {
+        setTimeout(() => {
+          window.print();
+          });
+        }, 1000);
+      //reload after print
+      window.onafterprint = function() {
+        window.location.reload();
+      };
+    };
+    
+  
   
   return (
-    <>
-      <div className="hideOnPrint">
-        <Navbar />
+    <div >
+      <div className="hideOnPrint" data-html2canvas-ignore>
+          <Navbar />
+          
+        </div>
+      <div className="divMain">
         
-      </div>
 
-      <div>
-      <PersonalInfos></PersonalInfos>
+        <div>
+          <PersonalInfos></PersonalInfos>
 
-      <div className="container_infos">
+          <div className="container_infos">
 
-      <PassionsList></PassionsList> 
-       <PreferencesList></PreferencesList>
+            <PassionsList></PassionsList> 
+            <PreferencesList></PreferencesList>
 
-        {/* //---------------- EVENTS ------------------// */}
-        <div className="evenements">
-          <h3 className="label">Évènements</h3>
-          <div className="divTimelineWidget">
-            <TimelineWidget id={resId} />
+        
+              <div className="evenements">
+                <h3 className="label">Évènements</h3>
+                {imageData ? (
+      <img src={imageData} alt="Information" className="imageTimeline"/>
+      ) : (
+                    <div className="divTimelineWidget" ref={infoRef}>
+                      <TimelineWidget id={resId} />
+                    </div>
+      )}
+          </div>
+            <HabitsList></HabitsList>
+            <BeliefsList></BeliefsList>
+
           </div>
         </div>
-        
-        <HabitsList></HabitsList>
-        <BeliefsList></BeliefsList>
-
+        {/*<ReactToPrint
+          trigger={() => <button>Print</button>}
+          content={() => componentRef.current}
+          />*/}
+        <button onClick={() => handlePrint()} className="hideOnPrint"  data-html2canvas-ignore>Print</button>
       </div>
-      </div>
-      {/*<ReactToPrint
-        trigger={() => <button>Print</button>}
-        content={() => componentRef.current}
-        />*/}
-      <button onClick={() => window.print()} className="hideOnPrint">Print</button>
-    </>
+    </div>
   );
+  
 }
 
 export default Information;

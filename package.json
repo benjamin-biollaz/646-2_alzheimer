@@ -8,6 +8,7 @@
     "@mui/material": "^5.11.12",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/user-event": "^13.2.1",
+    "html2canvas": "^1.4.1",
     "interactjs": "^1.10.17",
     "moment": "^2.29.4",
     "primeicons": "^6.0.1",

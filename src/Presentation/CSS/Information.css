@@ -198,4 +198,10 @@
     width: 100%;
     max-width: 100%;
   }
+  .imageTimeline{
+    max-width: 100%;
+  }
 }
+
+.html2canvas-container { width: 100vw !important; height: 100vh !important; }
+
