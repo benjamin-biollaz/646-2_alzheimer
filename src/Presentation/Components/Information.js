@@ -14,6 +14,7 @@ import { GiNightSleep } from "react-icons/gi";
 import { BsFillSunriseFill, BsSunriseFill } from "react-icons/bs";
 import { TfiTimer } from "react-icons/tfi";
 import { GiMeal } from "react-icons/gi";
+import { BiPrinter } from "react-icons/bi";
 import { TimelineWidget } from "./Timeline/Timeline";
 import { useParams } from "react-router";
 import PreferencesList from "./Preferences/PreferencesList";
@@ -55,14 +56,14 @@ function Information() {
   
   
   return (
-    <div >
+    <div>
       <div className="hideOnPrint" data-html2canvas-ignore>
           <Navbar />
           
         </div>
       <div className="divMain">
         
-
+      <BiPrinter onClick={() => window.print()} className="printButton"></BiPrinter>
         <div>
           <PersonalInfos></PersonalInfos>
 
@@ -85,17 +86,14 @@ function Information() {
             <HabitsList></HabitsList>
             <BeliefsList></BeliefsList>
 
-          </div>
-        </div>
-        {/*<ReactToPrint
-          trigger={() => <button>Print</button>}
-          content={() => componentRef.current}
-          />*/}
-        <button onClick={() => handlePrint()} className="hideOnPrint"  data-html2canvas-ignore>Print</button>
       </div>
+      </div>
+      
+    </div>
     </div>
   );
-  
 }
+  
+
 
 export default Information;

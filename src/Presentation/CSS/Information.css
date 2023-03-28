@@ -162,6 +162,16 @@
   margin-top: 1vh;
 }
 
+.printButton {
+  width: 30px;
+  color: #a78a7f;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 70px;
+  margin-right: 40px;
+}
+
 @media print {
 
   html, body {
@@ -187,10 +197,15 @@
   }
 
   body {
+    print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
 
   .hideOnPrint {
+    display: none;
+  }
+
+  .printButton {
     display: none;
   }
 
