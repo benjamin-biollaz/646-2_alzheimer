@@ -13,6 +13,7 @@ function BeliefsList() {
 
     useEffect(() => {
         fetchBeliefs();
+        console.log("fetch beliefs")
     }, []);
 
     const [resident, setResident] = useState(null)
