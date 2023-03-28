@@ -166,11 +166,11 @@ export function TimelineWidget() {
             <Timeline
                 groups={groups}
                 items={items}
-                defaultTimeStart={moment(df.format_YYYMMDD(min))}
+                defaultTimeStart={moment(df.format_YYYMMDD(localStorage.getItem("residentBirthDate")))}
                 defaultTimeEnd={moment().add(1, 'year')}
                 maxZoom={120 * 365.24 * 86400 * 1000}
                 minZoom={60 * 60 * 1000 * 24 * 365.24 * 15}
-                canvasStartTime={moment(df.format_YYYMMDD(min))}
+                canvasStartTime={moment(df.format_YYYMMDD(localStorage.getItem("residentBirthDate")))}
                 canvasEndTime={moment().add(1, 'year')}
             >
                 <TimelineHeaders>
