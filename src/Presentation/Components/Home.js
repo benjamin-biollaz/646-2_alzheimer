@@ -15,7 +15,7 @@ export default function Home() {
   const navigate = useNavigate();
   const context = useContext(ResidentContext);
   const residentDAO = new ResidentDAO();
-  const [newRes, setResident] = React.useState(new ResidentDTO('', '', '', null, [], []));
+  const [newRes, setResident] = React.useState(new ResidentDTO('', '', '', "qSBOgadePITwLn1HYZbW", [], []));
   const [residents, setResidents] = React.useState(null);
 
   useEffect(() => {
