@@ -41,7 +41,7 @@ import { TbYoga, TbMilk, TbTeapot, TbSalad } from "react-icons/tb";
 import { MdPets, MdDirectionsRun } from "react-icons/md";
 import { IoIosWine } from "react-icons/io";
 
-const iconSets = [
+export const iconSets = [
   {
     name: "Nourriture",
     icons: [
@@ -109,7 +109,7 @@ function IconPicker({ onSelect }) {
     onSelect(icon.icon);
     setSelectedIcon(icon.icon);
     setSearchQuery("");
-    console.log("Icon selected");
+    console.log("Icon selected " + icon.name);
   };
 
   const handleSetChange = (set) => {
