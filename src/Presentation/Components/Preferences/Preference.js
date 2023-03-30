@@ -21,9 +21,16 @@ function Preference({ prefWithId, isEditable, updatePrefList, onSelect }) {
     console.log("Icon selected from Preference " + selectedIcon.name);
   };
 
-  const handleSetChange = (set) => {
-    setActiveSet(set);
+  const getIconByName = (iconName) => {
+    for (const category of iconSets) {
+      for (const icons of category.icons) {
+        if (icons.name === iconName) return icons;
+      }
+    }
   };
+
+  const icon = getIconByName("Viande");
+  console.log(icon.icon);
 
   const onInputChange = (e) => {
     const target = e.target;
@@ -51,14 +58,6 @@ function Preference({ prefWithId, isEditable, updatePrefList, onSelect }) {
         type={"text"}
       />
 
-      <FloatLabelInput
-        label="Icône"
-        name={"iconName"}
-        value={selectedIcon}
-        onChange={handleSelectIcon}
-        type={"text"}
-      />
-
       <div>
         <Popup trigger={<button>Icônes</button>} modal>
           {(close) => (
@@ -74,7 +73,9 @@ function Preference({ prefWithId, isEditable, updatePrefList, onSelect }) {
     </div>
   ) : (
     <div className="preferenceDiv">
-      <IconPicker
+      &nbsp;{selectedIcon}
+      {getIconByName(prefState.iconName).icon}
+      {/* <IconPicker
         onSelect={handleSelectIcon}
         setSelectedIcon={handleSelectIcon}
       />
@@ -84,7 +85,7 @@ function Preference({ prefWithId, isEditable, updatePrefList, onSelect }) {
             {selectedIcon}
           </IconContext.Provider>
         )}
-      </div>
+      </div> */}
       &nbsp;{prefState.label}
     </div>
   );
