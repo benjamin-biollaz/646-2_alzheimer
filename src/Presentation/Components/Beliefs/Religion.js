@@ -19,7 +19,8 @@ function Religion({ religionWithId, isEditable, updateReligion, isSelected }) {
                 inputName={"religion"}
                 label={religionWithId.religionDTO.name}
                 onChange={onInputChange}
-                value={religionWithId.religionDTO.name}>
+                value={religionWithId.religionDTO.name}
+                checked = {isSelected}>
             </RadioButtonInput>
             :
             isSelected ?
