@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import GenericForm from '../Form/GenericForm';
 import { ValueDAO } from "../../../DAL/ValueDAO";
-import { ValuesWithId } from '../../../DTO/ValuesWithId';
-import { ValueDTO } from '../../../DTO/ValueDTO';
 import Value from './Value';
 
 /**

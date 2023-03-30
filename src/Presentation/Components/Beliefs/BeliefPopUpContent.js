@@ -3,6 +3,10 @@ import PracticesForm from './PracticesForm'
 import ReligionForm from './ReligionForm'
 import ValuesForm from './ValuesForm'
 
+/**
+ * The content of the belief section pop up.
+ */
+
 function BeliefPopUpContent({ resident, allValues, allPractices, allReligions }) {
     return (
         <div className='grid_container'>

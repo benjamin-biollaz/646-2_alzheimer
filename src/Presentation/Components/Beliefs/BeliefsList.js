@@ -5,9 +5,10 @@ import { ReligionDAO } from "../../../DAL/ReligionDAO"
 import { ValueDAO } from "../../../DAL/ValueDAO";
 import { PracticeDAO } from "../../../DAL/PracticeDAO";
 import { ResidentDAO } from "../../../DAL/ResidentDAO"
-import { ReligionWithId } from '../../../DTO/ReligionWithId';
-import Religion from './Religion';
-import { ReligionDTO } from '../../../DTO/ReligionDTO';
+
+/**
+ * The belief section
+ */
 
 function BeliefsList() {
 

@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import CheckboxInput from '../Form/CheckboxInput';
 
+/**
+ * Practice renders the details of a resident value either as an input or a text field 
+ * depending if the view is readonly or not.
+ */
+
 function Value({ valueWithId, isEditable, updateValuesList, isInTheList }) {
 
     const [isInTheListState, setisInTheListState] = useState(isInTheList)
