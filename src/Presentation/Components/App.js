@@ -1,42 +1,73 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { ResidentDAO } from "../../DAL/ResidentDAO";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../DAL/FirebaseConf";
 import Home from "./Home.js";
-import Login from "../Components/Login";
-import Navbar from "../Components/Navbar";
+import Login from "../Components/Login/Login";
 import Page404 from "./Page404";
-import "../CSS/App.css";
 import Information from "./Information";
+import Logout from "../Components/Login/Logout";
+import "../CSS/App.css";
 
 function App() {
-  const [resident, setResident] = React.useState(null);
 
+  const [resident, setResident] = useState(undefined);
+  var routes;
+
+  /* Watch for authentication state changes */
   useEffect(() => {
-    getResident();
+    const unsubscribe = onAuthStateChanged(auth, (resident) => {
+      setResident(resident);
+    });
+    // Unsubscribe from changes when App is unmounted
+    return () => {
+      unsubscribe();
+    };
   }, []);
+
+  localStorage.setItem("update", "false");
+
+  // for testing purpose only
+  useEffect(() => {
+    testDB();
+  }, []);
+
+  if (auth.currentUser) {
+    routes =
+      <Routes>
+        {/* Default route */}
+        <Route path="/" element={<Home />} />
+
+        {/* Routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/infos" element={<Information />} />
+        <Route path="/logout" element={<Logout />} />
+
+        {/* No route found - 404 page */}
+        <Route path="*" element={<Page404 />} />
+      </Routes>
+  }
+  else {
+    routes =
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="*" element={<Login />} />
+      </Routes>
+  }
 
   return (
     <BrowserRouter>
       <div className="App">
-        {/* <Navbar /> */}
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/navbar" element={<Navbar />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/navbar" element={<Navbar />} />
-          <Route path="/infos/:id" element={<Information />} />
-          <Route path="/" element={<Home/>} />
-          <Route path="/home" element={<Home/>} />
-          <Route path="*" element={<Page404 />} />
-        </Routes>
+        {routes}
       </div>
     </BrowserRouter>
   );
 
-  async function getResident() {
+  async function testDB() {
+    // write here test access to the database
+    // those are run when the app starts
 
-
-    
   }
 }
 

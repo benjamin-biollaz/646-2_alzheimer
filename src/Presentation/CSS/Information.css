@@ -14,6 +14,12 @@
     "evenements evenements evenements";
 }
 
+.container_timeline {
+  margin-right: 10px;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
 .personal_infos {
   display: flex;
   align-items: center;

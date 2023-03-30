@@ -1,10 +1,11 @@
 import React from 'react'
 import { GiMusicalNotes } from "react-icons/gi";
+import SectionHeader from '../SectionHeader';
 
 function PassionsList() {
   return (
     <div className="passions">
-          <h3 className="label">Passions</h3>
+          <SectionHeader sectionTitle={"Passions"}></SectionHeader>
           <div className="infos_list">
             <span className="infos_item">
               Musique

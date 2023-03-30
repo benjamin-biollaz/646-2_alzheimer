@@ -4,42 +4,53 @@ import "semantic-ui-css/semantic.min.css";
 import { FaEdit } from "react-icons/fa";
 import { IoIosAddCircle } from "react-icons/io";
 import { AiFillCheckCircle } from "react-icons/ai";
+import swal from "sweetalert";
 
 /**
- * This component is used to display the periods, locations and events of a timeline.
- * It takes several functions as props to be flexible enough
+ * This component is used by all sections to display a form.
+ * It takes several functions as props to be flexible enough.
+ * Those functions are triggered by the GenericForm buttons.
  */
 function GenericForm({
   title,
-  divId,
+  className,
   items,
   renderItems,
-  renderAddForm,
+  addNewItem,
   submitModifications,
 }) {
+  // readonly/edit mode
   const [isEditableState, setIsEditable] = useState(false);
-  const [isAddableState, setIsAddable] = useState(false);
+  
+  // this state is used to force rerender when an item is added
+  const [emptyState, setEmptyState] = useState(false); 
 
+  const add = () => {
+    // add a new item at the beginning of the list
+    addNewItem();
+
+    // force re-render
+    setEmptyState(!emptyState);
+  }
+    
+  // toggle readonly / edit view
   const toggleView = () => {
     setIsEditable(!isEditableState);
   };
-  const toggleAdd = () => {
-    setIsAddable(!isAddableState);
-  };
 
+  // update the edited items and add the new ones
   const sendModifications = () => {
     submitModifications();
     toggleView();
+    swal({ timer: 1500, type: "success", icon: 'success', title: "Sauvegardé!" });
   };
 
   return (
-    <div id={divId} className="grid_item">
+    <div className={"grid_item " + {className}}>
       <div className="header">
         <div className="header_cell">
           <h3 className="sectionTitle">{title}</h3>
-          {isAddableState ? (
-            <FaEdit onClick={toggleView} color="grey" size={"20px"} />
-          ) : isEditableState ? (
+          {isEditableState ? (
             <span>
               <AiFillCheckCircle
                 onClick={sendModifications}
@@ -48,7 +59,7 @@ function GenericForm({
               />
 
               <IoIosAddCircle
-                onClick={toggleAdd}
+                onClick={add}
                 color="#A78A7F"
                 size={"20px"}
               />
@@ -58,17 +69,16 @@ function GenericForm({
           )}
         </div>
       </div>
-      {isAddableState ? (
-        <div className="sectionDiv">{renderAddForm()}</div>
-      ) : (
+      
         <div
           className={
+            // grey background to mark readonly mode
             isEditableState ? "sectionDiv" : "sectionDiv greyBackground"
           }
         >
           {renderItems(items, isEditableState)}
         </div>
-      )}
+      
     </div>
   );
 }
