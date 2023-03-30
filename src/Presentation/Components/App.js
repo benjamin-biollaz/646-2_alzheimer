@@ -88,6 +88,7 @@ function App() {
   async function testDB() {
     // write here test access to the database
     // those are run when the app starts
+  
   }
 }
 
