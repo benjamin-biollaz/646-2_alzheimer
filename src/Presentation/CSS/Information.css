@@ -5,8 +5,8 @@
   margin-right: 10px;
   margin-left: 50px;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.6fr 0.5fr 1fr;
-  gap: 0px 50px;
+  grid-template-rows: 0.6fr 0.5fr;
+  gap: 20px 50px;
   grid-auto-flow: row;
   grid-template-areas:
     "passions habitudes croyances"
@@ -46,10 +46,11 @@
   font-size: var(--h3-size);
   font-weight: bold;
   margin-top: 2vh;
-  height: 75%;
+  height: fit-content;
   grid-area: passions;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 2vh;
+  margin-bottom: 2vh;
 }
 
 .categories {
@@ -72,14 +73,14 @@
 
 .evenements {
   justify-content: center;
-  margin-left: -30px;
+  margin-left: 10px;
   color: #a78a7f;
   font-size: 1rem;
   font-weight: bold;
   height: fit-content;
-  grid-area: evenements;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 2vh;
+  margin-right: 10px;
+  max-width: 100%;
 }
 
 .habitudes {
@@ -167,3 +168,70 @@
 .label:first-child {
   margin-top: 1vh;
 }
+
+.printButton {
+  width: 30px;
+  color: #a78a7f;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 70px;
+  margin-right: 40px;
+}
+
+@media print {
+
+  html, body {
+    height: initial !important;
+    overflow: initial !important;
+  }
+
+  @page {
+    size: auto;
+    margin: 0;
+  }
+
+  @page :first {
+    margin-top: 0;
+  }
+
+  @page :last {
+    margin-bottom: 0;
+  }
+
+  body::after {
+    content: none !important;
+  }
+
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .hideOnPrint {
+    display: none;
+  }
+
+  .printButton {
+    display: none;
+  }
+
+  .divTimelineWidget {
+    width: 100%;
+    max-width: 100%;
+  }
+  .imageTimeline{
+    max-width: 100%;
+    margin-right: 5px;
+  }
+  .evenements{
+    /* no box shadow */
+    box-shadow: none;
+  }
+ 
+}
+
+.html2canvas-container { width: 100vw !important; height: 100vh !important; }
+
+
+
