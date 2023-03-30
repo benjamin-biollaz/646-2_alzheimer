@@ -106,7 +106,7 @@ function IconPicker({ onSelect }) {
   const [selectedIcon, setSelectedIcon] = useState(null);
 
   const handleIconClick = (icon) => {
-    onSelect(icon.icon);
+    onSelect(icon);
     setSelectedIcon(icon.icon);
     setSearchQuery("");
     console.log("Icon selected from IconPicker " + icon.name);
@@ -156,13 +156,6 @@ function IconPicker({ onSelect }) {
             ))}
         </IconContext.Provider>
       </div>
-      {/* <div>
-        {selectedIcon && (
-          <div className="icon-picker__selected">
-            <span className="icon-picker__selected-icon">{selectedIcon}</span>
-          </div>
-        )}
-      </div> */}
     </div>
   );
 }

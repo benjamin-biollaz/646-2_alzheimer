@@ -19,6 +19,7 @@ function SectionHeader({ sectionTitle, popupContent, onClose }) {
         <h3 className="label">{sectionTitle}</h3>
       </div>
       <Popup
+        nested
         className-content={"form-popup-content"}
         onClose={useCallback(() => onClose(), [])}
         trigger={

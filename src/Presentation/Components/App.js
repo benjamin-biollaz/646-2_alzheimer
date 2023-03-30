@@ -8,8 +8,7 @@ import Page404 from "./Page404";
 import Information from "./Information";
 import Logout from "../Components/Login/Logout";
 import "../CSS/App.css";
-import IconPicker from "./IconPopup/IconPickerReact";
-import IconPopup from "./IconPopup/IconPopup.js";
+import IconPicker from "./IconPopup/IconPicker";
 
 function App() {
   const [resident, setResident] = useState(undefined);
@@ -75,7 +74,7 @@ function App() {
             path="/icon"
             element={<IconPicker onSelect={handleIconSelect} />}
           />
-          <Route path="/icon_pop" element={<IconPopup />} />
+
           <Route path="/infos/:id" element={<Information />} />
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />

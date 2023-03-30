@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FloatLabelInput from "../Form/FloatLabelInput";
-import IconPicker from "../IconPopup/IconPickerReact";
-import { iconSets } from "../IconPopup/IconPickerReact";
+import IconPicker from "../IconPopup/IconPicker";
+import { iconSets } from "../IconPopup/IconPicker";
 import { IconContext } from "react-icons";
 import Popup from "reactjs-popup";
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -11,14 +11,14 @@ import "../../CSS/Preferences.css";
  * Display a preference properties. This component will either render an input
  * or a text box depending on the "idEditable" argument.
  */
-function Preference({ prefWithId, isEditable, updatePrefList, onSelect }) {
+function Preference({ prefWithId, isEditable, updatePrefList }) {
   const [prefState, setPrefState] = useState(prefWithId.preferenceDTO);
-  const [activeSet, setActiveSet] = useState(iconSets[0]);
-  const [selectedIcon, setSelectedIcon] = useState(null);
 
   const handleSelectIcon = (icon) => {
-    setSelectedIcon(icon);
-    console.log("Icon selected from Preference " + selectedIcon.name);
+    setPrefState((prevState) => ({
+      ...prevState,
+      iconName: icon.name, //es6 computed property syntax
+    }));
   };
 
   const getIconByName = (iconName) => {
@@ -28,9 +28,6 @@ function Preference({ prefWithId, isEditable, updatePrefList, onSelect }) {
       }
     }
   };
-
-  const icon = getIconByName("Viande");
-  console.log(icon.icon);
 
   const onInputChange = (e) => {
     const target = e.target;
@@ -59,7 +56,13 @@ function Preference({ prefWithId, isEditable, updatePrefList, onSelect }) {
       />
 
       <div>
-        <Popup trigger={<button>Icônes</button>} modal>
+        {getIconByName(prefState.iconName).icon}
+        <Popup
+          trigger={<button>Icônes</button>}
+          nested
+          modal
+          closeOnDocumentClick={false}
+        >
           {(close) => (
             <div className="icon-picker-popup">
               <IconContext.Provider value={{ size: "25px", color: "#a78a7f" }}>
@@ -73,19 +76,7 @@ function Preference({ prefWithId, isEditable, updatePrefList, onSelect }) {
     </div>
   ) : (
     <div className="preferenceDiv">
-      &nbsp;{selectedIcon}
       {getIconByName(prefState.iconName).icon}
-      {/* <IconPicker
-        onSelect={handleSelectIcon}
-        setSelectedIcon={handleSelectIcon}
-      />
-      <div className="selected-icon">
-        {selectedIcon && (
-          <IconContext.Provider value={{ className: "icon" }}>
-            {selectedIcon}
-          </IconContext.Provider>
-        )}
-      </div> */}
       &nbsp;{prefState.label}
     </div>
   );

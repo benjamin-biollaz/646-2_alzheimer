@@ -3,7 +3,7 @@ import "../../CSS/Information.css";
 import { PreferenceDAO } from "../../../DAL/PreferenceDAO";
 import EditButton from "../Buttons/EditButton";
 import Preference from "./Preference";
-import SectionHeader from "../SectionHeader";
+import NestedHeader from "../NestedHeader";
 import PrefPopUPContent from "./PrefPopUPContent";
 
 function PreferencesList() {
@@ -16,6 +16,10 @@ function PreferencesList() {
   useEffect(() => {
     getPreferencesList();
   }, []);
+
+  function doRender() {
+    window.location.reload(false);
+  }
 
   // access db and set the lists in the state
   const getPreferencesList = async () => {
@@ -48,7 +52,8 @@ function PreferencesList() {
 
   return (
     <div className="preferences">
-      <SectionHeader
+      <NestedHeader
+        onClose={doRender.bind(this)}
         sectionTitle={"Préférences"}
         popupContent={
           // popup content takes the three list as props
@@ -58,7 +63,7 @@ function PreferencesList() {
             prefHygiene={prefHygieneState}
           ></PrefPopUPContent>
         }
-      ></SectionHeader>
+      ></NestedHeader>
       {
         // readonly preferences
         renderPreferences("Alimentation", prefAlimState)
