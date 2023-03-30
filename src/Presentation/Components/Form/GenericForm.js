@@ -18,12 +18,13 @@ function GenericForm({
   renderItems,
   addNewItem,
   submitModifications,
+  doNotDisplayAddButton
 }) {
   // readonly/edit mode
   const [isEditableState, setIsEditable] = useState(false);
-  
+
   // this state is used to force rerender when an item is added
-  const [emptyState, setEmptyState] = useState(false); 
+  const [emptyState, setEmptyState] = useState(false);
 
   const add = () => {
     // add a new item at the beginning of the list
@@ -32,7 +33,7 @@ function GenericForm({
     // force re-render
     setEmptyState(!emptyState);
   }
-    
+
   // toggle readonly / edit view
   const toggleView = () => {
     setIsEditable(!isEditableState);
@@ -46,7 +47,7 @@ function GenericForm({
   };
 
   return (
-    <div className={"grid_item " + {className}}>
+    <div className={"grid_item " + { className }}>
       <div className="header">
         <div className="header_cell">
           <h3 className="sectionTitle">{title}</h3>
@@ -58,27 +59,31 @@ function GenericForm({
                 size={"20px"}
               />
 
-              <IoIosAddCircle
-                onClick={add}
-                color="#A78A7F"
-                size={"20px"}
-              />
+              {doNotDisplayAddButton ?
+                ""
+                :
+                <IoIosAddCircle
+                  onClick={add}
+                  color="#A78A7F"
+                  size={"20px"}
+                />}
+
             </span>
           ) : (
             <FaEdit onClick={toggleView} color="grey" size={"20px"} />
           )}
         </div>
       </div>
-      
-        <div
-          className={
-            // grey background to mark readonly mode
-            isEditableState ? "sectionDiv" : "sectionDiv greyBackground"
-          }
-        >
-          {renderItems(items, isEditableState)}
-        </div>
-      
+
+      <div
+        className={
+          // grey background to mark readonly mode
+          isEditableState ? "sectionDiv" : "sectionDiv greyBackground"
+        }
+      >
+        {renderItems(items, isEditableState)}
+      </div>
+
     </div>
   );
 }

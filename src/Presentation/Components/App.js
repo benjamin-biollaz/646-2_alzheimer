@@ -8,6 +8,8 @@ import Page404 from "./Page404";
 import Information from "./Information";
 import Logout from "../Components/Login/Logout";
 import "../CSS/App.css";
+import { ReligionDAO } from "../../DAL/ReligionDAO";
+import { ValueDAO } from "../../DAL/ValueDAO";
 
 function App() {
 
@@ -67,7 +69,7 @@ function App() {
   async function testDB() {
     // write here test access to the database
     // those are run when the app starts
-
+  
   }
 }
 
