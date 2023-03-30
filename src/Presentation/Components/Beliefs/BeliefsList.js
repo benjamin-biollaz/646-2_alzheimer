@@ -5,6 +5,7 @@ import { ReligionDAO } from "../../../DAL/ReligionDAO"
 import { ValueDAO } from "../../../DAL/ValueDAO";
 import { PracticeDAO } from "../../../DAL/PracticeDAO";
 import { ResidentDAO } from "../../../DAL/ResidentDAO"
+import '../../CSS/Beliefs.css'
 
 /**
  * The belief section
@@ -46,7 +47,7 @@ function BeliefsList() {
 
             <div className="infos_list">
                 <h4 className="categories">Religion</h4>
-                <span className="infos_religion">
+                <span className="infos_religion religion_div">
                 {allReligions?.filter((r) => resident.religionId == r.id)
                     .map((p) =>
                         <p key={p.id} className="item">{p.religionDTO.name} &nbsp;</p>
