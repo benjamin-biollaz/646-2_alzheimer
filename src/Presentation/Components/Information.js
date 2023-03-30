@@ -23,7 +23,7 @@ function Information() {
 
       <PersonalInfos></PersonalInfos>
 
-      <div className="container_timeline">
+      <div className="container_infos">
 
         {/*<PassionsList></PassionsList>
         <PreferencesList></PreferencesList>*/}
@@ -31,8 +31,8 @@ function Information() {
         {/* //---------------- EVENTS ------------------// */}
         <TimelineWidget />
 
-        {/*<HabitsList></HabitsList>
-        <BeliefsList></BeliefsList>*/}
+        {/*<HabitsList></HabitsList>*/}
+        <BeliefsList></BeliefsList>
 
       </div>
     </>

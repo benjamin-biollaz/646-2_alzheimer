@@ -15,7 +15,7 @@ export default function Home() {
   const navigate = useNavigate();
   const context = useContext(ResidentContext);
   const residentDAO = new ResidentDAO();
-  const [newRes, setResident] = React.useState(new ResidentDTO('', '', ''));
+  const [newRes, setResident] = React.useState(new ResidentDTO('', '', '', "qSBOgadePITwLn1HYZbW", [], []));
   const [residents, setResidents] = React.useState(null);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function Home() {
   const addResident = async () => {
     if (newRes.firstName === '' || newRes.lastName === '' || newRes.birthDate === '') {
       alert("Veuillez remplir tous les champs");
-      return;
+      return; 
     }
     var r = await residentDAO.addResident(newRes);
     console.log(r.id);
