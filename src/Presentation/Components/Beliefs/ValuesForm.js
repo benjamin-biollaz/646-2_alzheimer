@@ -6,8 +6,8 @@ import { ValueDTO } from '../../../DTO/ValueDTO';
 import Value from './Value';
 
 /**
- * This component renders a list of event. 
- * Note that the display of indivual event is handled in the "Event" component.
+ * This component renders a list of values. 
+ * Note that the display of indivual value is handled in the "Value" component.
  */
 function ValuesForm({ allValues, residentValuesIds }) {
 

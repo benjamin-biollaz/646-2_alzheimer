@@ -4,8 +4,8 @@ import { PracticeDAO } from "../../../DAL/PracticeDAO";
 import Practice from './Practice';
 
 /**
- * This component renders a list of event. 
- * Note that the display of indivual event is handled in the "Event" component.
+ * This component renders a list of practices. 
+ * Note that the display of indivual practice is handled in the "Practice" component.
  */
 function PracticesForm({ allPractices, residentPracticesIds }) {
 

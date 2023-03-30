@@ -11,9 +11,10 @@ import { ReligionDTO } from '../../../DTO/ReligionDTO';
 
 function BeliefsList() {
 
+    function doRender(){window.location.reload(false)};
+
     useEffect(() => {
         fetchBeliefs();
-        console.log("fetch beliefs")
     }, []);
 
     const [resident, setResident] = useState(null)
@@ -38,7 +39,8 @@ function BeliefsList() {
                     allValues={allValues}
                     allPractices={allPractices}
                     allReligions={allReligions}>
-                </BeliefPopUpContent>}
+                </BeliefPopUpContent>} 
+                onClose={doRender.bind(this)}
                 sectionTitle={"Croyances"}></SectionHeader>
 
             <div className="infos_list">

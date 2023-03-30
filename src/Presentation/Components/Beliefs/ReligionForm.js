@@ -24,8 +24,6 @@ function ReligionForm({ allReligions, residentReligionId }) {
             ));
     }
 
-    console.log(resReligionIdState);
-
     return (
         <div className='flexDiv'>
             <GenericForm className='left_section' title='Religions'
