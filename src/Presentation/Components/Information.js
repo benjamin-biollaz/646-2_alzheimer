@@ -21,65 +21,67 @@ function Information() {
   const [imageData, setImageData] = useState(null);
 
   async function handlePrint() {
-    window.scrollTo(0,0);
-    await html2canvas(infoRef.current,{
+    window.scrollTo(0, 0);
+    await html2canvas(infoRef.current, {
       useCORS: true,
       allowTaint: true,
       foreignObjectRendering: false,
     }).then((canvas) => {
       setImageData(canvas.toDataURL());
     }).then(() => {
-        setTimeout(() => {
-          window.print();
-          });
-        }, 1000);
-      //reload after print
-      window.onafterprint = function() {
-        window.location.reload();
-      };
+      setTimeout(() => {
+        window.print();
+      });
+    }, 1000);
+    //reload after print
+    window.onafterprint = function () {
+      window.location.reload();
     };
-    
-  
-  
-  return (
-    <div>
-      <div className="hideOnPrint" data-html2canvas-ignore>
-          <Navbar />
-          
-        </div>
-      <div className="divMain">
-        
-      <BiPrinter onClick={() => handlePrint()} className="printButton"></BiPrinter>
-        <div>
-          <PersonalInfos></PersonalInfos>
+  };
+  function print(){
+    window.print();
+    window.onafterprint = function () {
+      window.location.reload();
+    }
+  }
 
-          <div className="container_infos">
+
+
+  return (
+    <>
+      <div className="hideOnPrint" data-html2canvas-ignore>
+        <Navbar />
+
+      </div>
+
+      <BiPrinter onClick={() => handlePrint()} className="printButton"></BiPrinter>
+      <PersonalInfos></PersonalInfos>
+
+
+      <div className="container_infos">
 
         <PassionsList></PassionsList>
         <PreferencesList></PreferencesList>
 
-        
-              <div className="evenements">
-                <h3 className="label">Évènements</h3>
-                {imageData ? (
-      <img src={imageData} alt="Information" className="divTimelineWidget"/>
-      ) : (
-                    <div className="divTimelineWidget" ref={infoRef}>
-                      <TimelineWidget/>
-                    </div>
-      )}
-          </div>
-            <HabitsList></HabitsList>
-            <BeliefsList></BeliefsList>
 
+       
+
+        <HabitsList></HabitsList>
+        <BeliefsList></BeliefsList>
       </div>
-      </div>
-      
-    </div>
-    </div>
+      <div className="evenements divTimelineWidget">
+      {imageData ? (
+          <img src={imageData} alt="Information" className="imageTimeline"/>
+        ) : (
+          <div ref={infoRef}>
+            <TimelineWidget />
+          </div>
+        )}
+        </div>
+    </>
   );
 }
-  
+
 
 
 export default Information;
