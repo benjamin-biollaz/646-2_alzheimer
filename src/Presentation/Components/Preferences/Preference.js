@@ -56,9 +56,11 @@ function Preference({ prefWithId, isEditable, updatePrefList }) {
       />
 
       <div>
-        {getIconByName(prefState.iconName).icon}
+        <span className="icon-wrapper">
+          {getIconByName(prefState.iconName).icon}
+        </span>
         <Popup
-          trigger={<button>Icônes</button>}
+          trigger={<button className="form_btn">Icônes</button>}
           nested
           modal
           closeOnDocumentClick={false}
@@ -68,7 +70,7 @@ function Preference({ prefWithId, isEditable, updatePrefList }) {
               <IconContext.Provider value={{ size: "25px", color: "#a78a7f" }}>
                 <AiFillCloseCircle onClick={close} />
               </IconContext.Provider>
-              <IconPicker onSelect={handleSelectIcon} />
+              <IconPicker onSelect={handleSelectIcon} onClick={close} />
             </div>
           )}
         </Popup>
@@ -76,8 +78,10 @@ function Preference({ prefWithId, isEditable, updatePrefList }) {
     </div>
   ) : (
     <div className="preferenceDiv">
-      {getIconByName(prefState.iconName).icon}
-      &nbsp;{prefState.label}
+      <div className="icon-wrapper">
+        {getIconByName(prefState.iconName).icon}
+      </div>
+      <div className="label-wrapper">&nbsp;{prefState.label}</div>
     </div>
   );
 }

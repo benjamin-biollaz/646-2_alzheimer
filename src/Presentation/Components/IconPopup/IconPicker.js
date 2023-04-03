@@ -100,7 +100,7 @@ export const iconSets = [
   },
 ];
 
-function IconPicker({ onSelect }) {
+function IconPicker({ onSelect, onClick }) {
   const [activeSet, setActiveSet] = useState(iconSets[0]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIcon, setSelectedIcon] = useState(null);
