@@ -6,3 +6,65 @@
     margin: 10px 10px 10px 10px;
     padding: 10px;
 }
+
+th {
+    text-align: left;
+}
+
+tr {
+    height: 3vh;
+}
+
+table {
+    margin-top: 15vh;
+    width: 40%;
+}
+
+#popup_button,
+#add_button {
+    margin-top: 5vh;
+    color: white;
+    background-color: #780000;
+    border-radius: 10px;
+    border-color: transparent;
+    box-shadow: 5px 0 0 0 grey;
+    box-shadow: 0 2px 0 0 grey;
+    padding-left: 6vh;
+    padding-right: 6vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    transition: .3s;
+}
+
+#info_button {
+    background-color: transparent;
+    border-color: transparent;
+    text-decoration: underline;
+}
+#info_button:hover {
+    background-color: #780000;
+    color: white;
+    border-radius: 5px;
+    border-color: transparent;
+    text-decoration: underline;
+}
+
+.popup_div {
+    display: grid;
+    grid-column: auto auto;
+    margin: 10px;
+    gap: 5px;
+}
+
+.my-popup {
+    width: 100px;
+}
+
+.my-popup-content {
+    width: 10%;
+}
+
+label {
+    font-weight: bold;
+    color: #780000;
+}

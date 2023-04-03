@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import "../CSS/Home.css"
 import { Link, useNavigate } from "react-router-dom";
 import { ResidentDAO } from '../../DAL/ResidentDAO';
@@ -9,6 +9,7 @@ import Navbar from './Navbar';
 import { ResidentContext } from '../../Context/ResidentContext';
 import logout from "../Components/Login/Logout";
 import { margin } from '@mui/system';
+import { Card, Button } from 'react-bootstrap'
 
 export default function Home() {
 
@@ -17,9 +18,12 @@ export default function Home() {
   const residentDAO = new ResidentDAO();
   const [newRes, setResident] = React.useState(new ResidentDTO('', '', '', "qSBOgadePITwLn1HYZbW", [], []));
   const [residents, setResidents] = React.useState(null);
+  const [toggleViewMode, setToggleViewMode] = useState(false);
+  const [list, setList] = useState(null);
 
   useEffect(() => {
     getResidents();
+    // mapList();
   }, []);
 
   const handleChange = (e) => {
@@ -36,7 +40,7 @@ export default function Home() {
   const addResident = async () => {
     if (newRes.firstName === '' || newRes.lastName === '' || newRes.birthDate === '') {
       alert("Veuillez remplir tous les champs");
-      return; 
+      return;
     }
     var r = await residentDAO.addResident(newRes);
     console.log(r.id);
@@ -50,11 +54,32 @@ export default function Home() {
     localStorage.setItem('residentBirthDate', resident.birthDate);
   }
 
+  // function mapList(){
+  //   setList(residents?.map((resident) => {
+  //     return (
+  //       <Card style={{ width: '18rem' }}>
+  //       {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+  //       <Card.Body>
+  //         <Card.Title>{resident.firstName} {resident.lastName}</Card.Title>
+  //         <Card.Text>
+  //           {resident.birthDate}
+  //         </Card.Text>
+  //         <Button variant="primary">Go somewhere</Button>
+  //       </Card.Body>
+  //     </Card>)
+  //     }))
+  // }
+
+
+
+
+
   return (
     <>
       <div>
         <Navbar />
       </div>
+      {/* {toggleViewMode ? <div className='list'>{list}</div> : <div className='grid'>{list}</div>} */}
       <div style={{ marginLeft: "10%", marginTop: "5%" }}>
         <table>
           <thead>
@@ -70,17 +95,19 @@ export default function Home() {
               residents?.map((resident) => {
                 return (
                   <tr key={resident.id}>
+                    <Link to={`/infos`} onClick={() => setContext(resident.id, resident)}>
                     <td>{resident.firstName}</td>
                     <td>{resident.lastName}</td>
                     <td>{moment(resident.birthDate).format("DD MM YYYY")}</td>
-                    <td><Link to={`/infos`} onClick={() => setContext(resident.id, resident)}><button>Infos</button></Link></td>
+                    <td><button id="info_button">Infos</button></td>
+                    </Link>
                   </tr>
                 )
               })
             }
           </tbody>
         </table>
-        <Popup trigger={<button>Ajouter un résident</button>}>
+        <Popup trigger={<button id="add_button">Ajouter un résident</button>}>
           <div>
             <label>Prénom</label>
             <input type="text" onChange={handleChange} name={'firstName'} value={newRes.firstName} />
