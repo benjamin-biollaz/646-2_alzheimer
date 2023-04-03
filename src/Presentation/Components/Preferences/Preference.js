@@ -61,7 +61,7 @@ function Preference({ prefWithId, isEditable, updatePrefList }) {
           {getIconByName(prefState.iconName).icon}
         </span>
         <Popup
-          className-popup={"icon-popup-content"}
+          className={"icon-popup"}
           trigger={<button className="form_btn">Icônes</button>}
           nested
           modal
