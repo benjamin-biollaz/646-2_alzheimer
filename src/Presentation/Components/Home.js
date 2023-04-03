@@ -9,6 +9,9 @@ import Navbar from './Navbar';
 import { ResidentContext } from '../../Context/ResidentContext';
 import logout from "../Components/Login/Logout";
 import { margin } from '@mui/system';
+import { NurseDAO } from '../../DAL/NurseDAO';
+import { auth } from '../../DAL/FirebaseConf';
+import { EstablishmentDAO } from '../../DAL/EstablishmentDAO';
 
 export default function Home() {
 
@@ -95,7 +98,9 @@ export default function Home() {
     </>
   );
   async function getResidents() {
-    const res = await residentDAO.getResidents();
+    const nurse = await NurseDAO.prototype.getNurseById(auth.currentUser.uid);
+    const establishment = await EstablishmentDAO.prototype.getEstablishmentById(nurse.establishmentId);
+    const res = await residentDAO.getResidents(establishment.residentsId);
     setResidents(res);
   }
 
