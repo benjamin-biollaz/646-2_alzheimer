@@ -6,6 +6,7 @@ import { IconContext } from "react-icons";
 import Popup from "reactjs-popup";
 import { AiFillCloseCircle } from "react-icons/ai";
 import "../../CSS/Preferences.css";
+import "../../CSS/IconPicker.css"
 
 /**
  * Display a preference properties. This component will either render an input
@@ -60,6 +61,7 @@ function Preference({ prefWithId, isEditable, updatePrefList }) {
           {getIconByName(prefState.iconName).icon}
         </span>
         <Popup
+          className-popup={"icon-popup-content"}
           trigger={<button className="form_btn">Icônes</button>}
           nested
           modal

@@ -1,10 +1,10 @@
-.popup-content {
+.icon-popup-content {
   margin: auto;
   background-color: whitesmoke;
   border: none;
   border-radius: 8px;
-  width: 30vw;
-}
+  width: 30vw !important;
+} 
 
 .icon-picker {
   display: flex;
