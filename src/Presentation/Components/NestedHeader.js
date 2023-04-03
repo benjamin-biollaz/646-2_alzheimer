@@ -12,7 +12,7 @@ import Popup from "reactjs-popup";
  * @returns
  */
 
-function SectionHeader({ sectionTitle, popupContent, onClose }) {
+function NestedHeader({ sectionTitle, popupContent, onClose }) {
   return (
     <div className="section_header">
       <div className="center_content">
@@ -37,4 +37,4 @@ function SectionHeader({ sectionTitle, popupContent, onClose }) {
   );
 }
 
-export default SectionHeader;
+export default NestedHeader;
