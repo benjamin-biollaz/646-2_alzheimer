@@ -82,7 +82,7 @@ function EventsForm({ events }) {
         <div className='flexDiv'>
             <GenericForm className='left_section' title='Evénements'
                 renderItems={renderEvents} addNewItem={addNewEvent}
-                items={events} submitModifications={updateEventsInDB}></GenericForm>
+                items={eventState} submitModifications={updateEventsInDB}></GenericForm>
         </div>
     );
 }

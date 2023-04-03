@@ -24,8 +24,13 @@ import "../../CSS/TimelineForm.css";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
 import { color } from "@mui/system";
 import { border } from '@mui/system';
+import { useNavigate } from "react-router";
 
 export function TimelineWidget() {
+
+    const navigate = useNavigate();
+    var alerted = false;
+    //check local storage is not empty and alert if empty
 
     const groups = [{ id: 1, title: 'Périodes' }, { id: 2, title: 'Lieux' }, { id: 3, title: 'Evénements', stackItems: false, height: 120 }]
 
@@ -62,6 +67,13 @@ export function TimelineWidget() {
     function doRender(){window.location.reload(false)};
 
     useEffect(() => {
+        if (localStorage.getItem("residentId") == null) {
+            navigate("/home");
+            if(!alerted){
+                alert("Veuillez sélectionner un résident");
+                alerted = true;
+            }
+        }
         const fetchData = async () => {
             const timeline = await timelineDAO.getTimelineByResidentId(localStorage.getItem("residentId"));
             // const timeline = await timelineDAO.getTimelineByResidentId(resident.id);
