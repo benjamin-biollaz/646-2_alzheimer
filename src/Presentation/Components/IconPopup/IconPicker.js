@@ -105,8 +105,9 @@ function IconPicker({ onSelect, onClick }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIcon, setSelectedIcon] = useState(null);
 
-  const handleIconClick = (icon) => {
+  const handleIconClick = (icon, close) => {
     onSelect(icon);
+    onClick(close);
     setSelectedIcon(icon.icon);
     setSearchQuery("");
     console.log("Icon selected from IconPicker " + icon.name);
