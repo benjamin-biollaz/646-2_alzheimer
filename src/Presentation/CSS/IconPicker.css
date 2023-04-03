@@ -1,0 +1,126 @@
+.icon-popup-content {
+  margin: auto;
+  background-color: whitesmoke;
+  border: none;
+  border-radius: 8px;
+  width: 30vw !important;
+} 
+
+.icon-picker {
+  display: flex;
+  height: 50vh;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+}
+
+.icon-picker__sets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.icon-picker__set {
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  margin-right: 16px;
+  padding: 3px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon-picker__set.active {
+  color: #8c1c13;
+  font-weight: bolder;
+}
+
+.icon-picker__icons {
+  display: flex;
+  flex-basis: calc(100% / 1);
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+
+.icon-picker__icon {
+  color: var(--title-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  margin: 8px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: max-content;
+}
+
+.icon-picker__icon:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.icon-picker__icon-name {
+  margin-top: 8px;
+  font-size: 0.7rem;
+  color: #555;
+}
+
+.icon-picker__icon.active {
+  background-color: #ddd;
+}
+
+.icon-picker__icon.active svg {
+  color: #333;
+}
+
+.icon-picker__selected {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.icon-picker__selected-icon {
+  color: var(--logo-color);
+  margin-left: 2vh;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.icon-picker__selected-name {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.inputIcon {
+  display: block;
+  height: 4vh;
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  background-color: whitesmoke;
+  margin-bottom: 3%;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.inputIcon::placeholder {
+  color: grey;
+}
+
+.inputIcon:hover {
+  border-color: #a78a7f;
+  box-shadow: 0 0 0 2px #6e9feb20;
+}
