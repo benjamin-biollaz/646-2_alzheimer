@@ -84,6 +84,7 @@ function Preference({ prefWithId, isEditable, updatePrefList }) {
         {getIconByName(prefState.iconName).icon}
       </div>
       <div className="label-wrapper">&nbsp;{prefState.label}</div>
+      <br></br>
     </div>
   );
 }
