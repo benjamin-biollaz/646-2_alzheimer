@@ -69,10 +69,11 @@ export default function Home() {
                 .map((resident) => {
                   return (
                     <tr key={resident.id}>
-                      <td>{resident.firstName}</td>
-                      <td>{resident.lastName}</td>
-                      <td>{moment(resident.birthDate).format("DD MM YYYY")}</td>
-                      <td><Link to={`/infos`} onClick={() => setContext(resident.id, resident)}><button>Infos</button></Link></td>
+                      <Link id='link' to={"/infos"} onClick={() => setContext(resident.id, resident)}>
+                        < span className='data'>{resident.firstName}</span>
+                        <span className='data'>{resident.lastName}</span>
+                        <span className='data'>{moment(resident.birthDate).format("DD.MM.YYYY")}</span>
+                      </Link>
                     </tr>
                   )
                 })
