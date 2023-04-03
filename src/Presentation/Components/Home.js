@@ -1,9 +1,10 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import "../CSS/Home.css"
 import { Link, useNavigate } from "react-router-dom";
 import { ResidentDAO } from '../../DAL/ResidentDAO';
 import moment from 'moment';
 import Popup from 'reactjs-popup';
+import swal from 'sweetalert';
 import { ResidentDTO } from '../../DTO/ResidentDTO';
 import Navbar from './Navbar';
 import { ResidentContext } from '../../Context/ResidentContext';
@@ -20,6 +21,7 @@ export default function Home() {
   const residentDAO = new ResidentDAO();
   const [newRes, setResident] = React.useState(new ResidentDTO('', '', '', "qSBOgadePITwLn1HYZbW", [], []));
   const [residents, setResidents] = React.useState(null);
+  const [establishment, setEstablishment] = React.useState(null);
 
   useEffect(() => {
     getResidents();
@@ -38,7 +40,7 @@ export default function Home() {
 
   const addResident = async () => {
     if (newRes.firstName === '' || newRes.lastName === '' || newRes.birthDate === '') {
-      alert("Veuillez remplir tous les champs");
+      swal("", "Veuillez remplir tous les champs", "error");
       return;
     }
     var r = await residentDAO.addResident(newRes);
@@ -58,41 +60,35 @@ export default function Home() {
       <div>
         <Navbar />
       </div>
-      <div style={{ marginLeft: "10%", marginTop: "5%" }}>
+      <div style={{ marginLeft: "10%", marginTop: "15vh" }}>
+        <h2>Liste des résidents au {establishment?.name}</h2>
         <table>
-          <thead>
-            <tr>
-              <th>Prénom</th>
-              <th>Nom</th>
-              <th>Date de Naissance</th>
-              <th></th>
-            </tr>
-          </thead>
           <tbody>
             {
-              residents?.sort(function(a, b) {return a.lastName.localeCompare(b.lastName)})
+              residents?.sort(function (a, b) { return a.lastName.localeCompare(b.lastName) })
                 .map((resident) => {
                   return (
                     <tr key={resident.id}>
-                      <td>{resident.firstName}</td>
-                      <td>{resident.lastName}</td>
-                      <td>{moment(resident.birthDate).format("DD MM YYYY")}</td>
-                      <td><Link to={`/infos`} onClick={() => setContext(resident.id, resident)}><button>Infos</button></Link></td>
+                      <Link id='link' to={"/infos"} onClick={() => setContext(resident.id, resident)}>
+                        < span className='data'>{resident.firstName}</span>
+                        <span className='data'>{resident.lastName}</span>
+                        <span className='data'>{moment(resident.birthDate).format("DD.MM.YYYY")}</span>
+                      </Link>
                     </tr>
                   )
                 })
             }
           </tbody>
         </table>
-        <Popup trigger={<button>Ajouter un résident</button>}>
-          <div>
+        <Popup trigger={<button id="popup_button">Ajouter un résident</button>}>
+          <div id="my_popup">
             <label>Prénom</label>
             <input type="text" onChange={handleChange} name={'firstName'} value={newRes.firstName} />
             <label>Nom</label>
             <input type="text" onChange={handleChange} name={'lastName'} value={newRes.lastName} />
             <label>Date de naissance</label>
             <input type="date" onChange={handleChange} name={'birthDate'} value={newRes.birthDate} />
-            <button onClick={addResident}>Ajouter</button>
+            <button id="add_button" onClick={addResident}>Ajouter</button>
           </div>
         </Popup>
       </div>
@@ -104,6 +100,7 @@ export default function Home() {
     const establishment = await EstablishmentDAO.prototype.getEstablishmentById(nurse.establishmentId);
     const res = await residentDAO.getResidents(establishment.residentsId);
     setResidents(res);
+    setEstablishment(establishment);
   }
 
 }
