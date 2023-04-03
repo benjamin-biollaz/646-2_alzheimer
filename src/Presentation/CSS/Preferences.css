@@ -1,4 +1,12 @@
 .preferenceDiv {
-    display: inline;
-    font: small;
+  /* display: flex; */
+  columns: 100px 3;
+  font: small;
+}
+
+.pref_icon {
+  display: flex;
+  font-size: 1.7rem;
+  justify-content: space-between;
+  color: var(--logo-color);
 }
