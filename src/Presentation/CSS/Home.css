@@ -16,7 +16,6 @@ tr {
 }
 
 table {
-    margin-top: 15vh;
     width: 40%;
 }
 
@@ -36,35 +35,33 @@ table {
     transition: .3s;
 }
 
-#info_button {
-    background-color: transparent;
+#link {
     border-color: transparent;
-    text-decoration: underline;
+    text-decoration: none;
+    color: black;
+    display: flex;
 }
-#info_button:hover {
-    background-color: #780000;
-    color: white;
+
+#link:hover {
+    color: #780000;
+    font-weight: bold;
     border-radius: 5px;
     border-color: transparent;
-    text-decoration: underline;
 }
 
-.popup_div {
-    display: grid;
-    grid-column: auto auto;
-    margin: 10px;
-    gap: 5px;
+.data {
+    width: 30%;
 }
 
-.my-popup {
-    width: 100px;
-}
-
-.my-popup-content {
-    width: 10%;
+#my_popup {
+    padding: 5%;
 }
 
 label {
     font-weight: bold;
     color: #780000;
+}
+
+input {
+    width: 100%;
 }
