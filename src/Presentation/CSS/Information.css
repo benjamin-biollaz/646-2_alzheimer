@@ -47,6 +47,7 @@
   font-weight: bold;
   margin-top: 2vh;
   height: fit-content;
+  padding-bottom: 2vh;
   grid-area: passions;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 2vh;
@@ -107,6 +108,7 @@
   font-weight: bold;
   grid-area: croyances;
   border-radius: 2vh;
+  padding-bottom: 7vh;
 }
 
 .habitudes_grid {
