@@ -9,6 +9,9 @@ import Navbar from './Navbar';
 import { ResidentContext } from '../../Context/ResidentContext';
 import logout from "../Components/Login/Logout";
 import { margin } from '@mui/system';
+import { NurseDAO } from '../../DAL/NurseDAO';
+import { auth } from '../../DAL/FirebaseConf';
+import { EstablishmentDAO } from '../../DAL/EstablishmentDAO';
 
 export default function Home() {
 
@@ -36,7 +39,7 @@ export default function Home() {
   const addResident = async () => {
     if (newRes.firstName === '' || newRes.lastName === '' || newRes.birthDate === '') {
       alert("Veuillez remplir tous les champs");
-      return; 
+      return;
     }
     var r = await residentDAO.addResident(newRes);
     console.log(r.id);
@@ -67,16 +70,17 @@ export default function Home() {
           </thead>
           <tbody>
             {
-              residents?.map((resident) => {
-                return (
-                  <tr key={resident.id}>
-                    <td>{resident.firstName}</td>
-                    <td>{resident.lastName}</td>
-                    <td>{moment(resident.birthDate).format("DD MM YYYY")}</td>
-                    <td><Link to={`/infos`} onClick={() => setContext(resident.id, resident)}><button>Infos</button></Link></td>
-                  </tr>
-                )
-              })
+              residents?.sort(function(a, b) {return a.lastName.localeCompare(b.lastName)})
+                .map((resident) => {
+                  return (
+                    <tr key={resident.id}>
+                      <td>{resident.firstName}</td>
+                      <td>{resident.lastName}</td>
+                      <td>{moment(resident.birthDate).format("DD MM YYYY")}</td>
+                      <td><Link to={`/infos`} onClick={() => setContext(resident.id, resident)}><button>Infos</button></Link></td>
+                    </tr>
+                  )
+                })
             }
           </tbody>
         </table>
@@ -94,8 +98,11 @@ export default function Home() {
       </div>
     </>
   );
+
   async function getResidents() {
-    const res = await residentDAO.getResidents();
+    const nurse = await NurseDAO.prototype.getNurseById(auth.currentUser.uid);
+    const establishment = await EstablishmentDAO.prototype.getEstablishmentById(nurse.establishmentId);
+    const res = await residentDAO.getResidents(establishment.residentsId);
     setResidents(res);
   }
 
