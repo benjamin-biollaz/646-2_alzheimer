@@ -62,25 +62,11 @@ function App() {
   const handleIconSelect = (icon) => {
     setSelectedIcon(icon);
   };
-
+  
   return (
     <BrowserRouter>
       <div className="App">
-        {/* <Navbar /> */}
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/icon"
-            element={<IconPicker onSelect={handleIconSelect} />}
-          />
-
-          <Route path="/infos/:id" element={<Information />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/infos" element={<Information />} />
-          <Route path="*" element={<Page404 />} />
-        </Routes>
+        {routes}
       </div>
     </BrowserRouter>
   );
