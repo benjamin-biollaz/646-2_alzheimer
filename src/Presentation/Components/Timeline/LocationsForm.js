@@ -74,7 +74,7 @@ function LocationsForm({ locations, id }) {
     return (
         <div className='flexDiv'>
             <GenericForm className='right_section' title='Lieux' renderItems={renderLocations} addNewItem={addNewLocation}
-                items={locations} submitModifications={updateLocationsInDB}></GenericForm>
+                items={locationState} submitModifications={updateLocationsInDB}></GenericForm>
         </div>
     );
 }
