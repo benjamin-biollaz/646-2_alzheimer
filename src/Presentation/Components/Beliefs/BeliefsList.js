@@ -59,7 +59,7 @@ function BeliefsList() {
             <div className="infos_list">
                 <h4 className="categories">Religion</h4>
                 <span className="infos_religion religion_div">
-                    {resident?.religionInputted === "" ?
+                    {resident?.religionInputted === "" || resident?.religionInputted === undefined ?
                         allReligions?.filter((r) => resident.religionId == r.id)
                             .map((p) =>
                                 <p key={p.id} className="item">{p.religionDTO.name} &nbsp;</p>
