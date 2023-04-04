@@ -2,10 +2,19 @@
  * ResidentDTO contains the resident properties and a converter from and to Firestore.
  */
 class ResidentDTO {
-    constructor(firstName, lastName, birthDate, religionId, valueIds, practiceIds) {
+    constructor(firstName, lastName, birthDate,
+        religionInputted, valuesInputted, practicesInputted,
+        religionId, valueIds, practiceIds) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate
+
+        //inputted by the nurse
+        this.religionInputted = religionInputted;
+        this.valuesInputted = valuesInputted;
+        this.practicesInputted = practicesInputted;
+
+        //references
         this.religionId = religionId;
         this.valueIds = valueIds;
         this.practiceIds = practiceIds;
@@ -18,10 +27,11 @@ class ResidentDTO {
 }
 
 const residentConverter = {
-    toFirestore(resident) {
+    toFirestore(res) {
         return {
-            firstName: resident.firstName, lastName: resident.lastName, birthDate: resident.birthDate,
-            religionId: resident.religionId, valueIds: resident.valueIds, practiceIds: resident.practiceIds
+            firstName: res.firstName, lastName: res.lastName, birthDate: res.birthDate,
+            religionInputted: res.religionInputted, valuesInputted: res.valuesInputted, practicesInputted: res.practicesInputted,
+            religionId: res.religionId, valueIds: res.valueIds, practiceIds: res.practiceIds
         };
     },
     fromFirestore(
@@ -30,6 +40,7 @@ const residentConverter = {
     ) {
         const data = snapshot.data(options);
         return new ResidentDTO(data.firstName, data.lastName, data.birthDate,
+            data.religionInputted, data.valuesInputted, data.practicesInputted,
             data.religionId, data.valueIds, data.practiceIds);
     }
 };

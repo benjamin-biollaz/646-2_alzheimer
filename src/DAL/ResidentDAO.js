@@ -1,10 +1,9 @@
-import { doc, getDoc, setDoc, updateDoc, getDocs, collection, addDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc, getDocs, collection, addDoc, arrayUnion } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { residentConverter } from "../DTO/ResidentDTO";
 import { TimelineDAO } from "./TimelineDAO";
 
 class ResidentDAO {
-
 
     async getresidentById(residentId) {
         const r = await getDoc(doc(db, "Residents", residentId).withConverter(residentConverter));
@@ -24,6 +23,27 @@ class ResidentDAO {
         const timelineDAO = new TimelineDAO();
         timelineDAO.addTimeline(r.id);
         return r
+    }
+
+    async updateInputtedReligion(residentId, religion) {
+        const residentRef = doc(collection(db, "Residents"), residentId);
+        await updateDoc(residentRef, {
+            religionInputted: religion
+        });
+    }
+
+    async updateInputtedValue(residentId, value) {
+        const residentRef = doc(collection(db, "Residents"), residentId);
+        await updateDoc(residentRef, {
+            valuesInputted: arrayUnion(value)
+        });
+    }
+
+    async updateInputtedPractice(residentId, practice) {
+        const residentRef = doc(collection(db, "Residents"), residentId);
+        await updateDoc(residentRef, {
+            practicesInputted: arrayUnion(practice)
+        });
     }
 }
 

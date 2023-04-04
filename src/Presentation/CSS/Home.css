@@ -1,67 +1,103 @@
 .divTimelineWidget {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    margin: 10px 10px 10px 10px;
-    padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin: 10px 10px 10px 10px;
+  padding: 10px;
 }
 
 th {
-    text-align: left;
+  text-align: left;
 }
 
 tr {
-    height: 3vh;
+  height: 3vh;
 }
 
 table {
-    width: 40%;
+  width: 40%;
 }
 
 #popup_button,
 #add_button {
-    margin-top: 5vh;
-    color: white;
-    background-color: #780000;
-    border-radius: 10px;
-    border-color: transparent;
-    box-shadow: 5px 0 0 0 grey;
-    box-shadow: 0 2px 0 0 grey;
-    padding-left: 6vh;
-    padding-right: 6vh;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    transition: .3s;
+  margin-top: 5vh;
+  color: white;
+  background-color: #780000;
+  border-radius: 10px;
+  border-color: transparent;
+  box-shadow: 5px 0 0 0 grey;
+  box-shadow: 0 2px 0 0 grey;
+  padding-left: 6vh;
+  padding-right: 6vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  transition: 0.3s;
 }
 
 #link {
-    border-color: transparent;
-    text-decoration: none;
-    color: black;
-    display: flex;
+  border-color: transparent;
+  text-decoration: none;
+  color: black;
+  display: flex;
 }
 
 #link:hover {
-    color: #780000;
-    font-weight: bold;
-    border-radius: 5px;
-    border-color: transparent;
+  color: #780000;
+  font-weight: bold;
+  border-radius: 5px;
+  border-color: transparent;
 }
 
 .data {
-    width: 30%;
+  width: 30%;
 }
 
 #my_popup {
-    padding: 5%;
+  padding: 5%;
 }
 
 label {
-    font-weight: bold;
-    color: #780000;
+  font-weight: bold;
+  color: #780000;
 }
 
-input {
-    width: 100%;
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.input {
+  padding: 10px 10px 10px 22px; /* add some padding on the left to make space for the icon */
+  width: 2vh;
+  height: 5vh;
+  background: none;
+  border: 4px solid var(--title-color);
+  border-radius: 30px;
+  box-sizing: border-box;
+  font-size: 13px;
+  color: black;
+  outline: none;
+  transition: 0.5s;
+  margin-bottom: 2vh;
+}
+
+.box:hover .input {
+  width: 12vw;
+}
+
+.box i {
+  position: absolute;
+  top: 40%;
+  left: 3vh; /* move the icon to the left */
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: var(--logo-color);
+  transition: 0.2s;
+}
+
+.box:hover i {
+  opacity: 0;
+  z-index: -1;
 }
