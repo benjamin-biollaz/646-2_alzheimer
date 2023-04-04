@@ -6,3 +6,62 @@
     margin: 10px 10px 10px 10px;
     padding: 10px;
 }
+
+th {
+    text-align: left;
+}
+
+tr {
+    height: 3vh;
+}
+
+table {
+    width: 40%;
+}
+
+#popup_button,
+#add_button {
+    margin-top: 5vh;
+    color: white;
+    background-color: #780000;
+    border-radius: 10px;
+    border-color: transparent;
+    box-shadow: 5px 0 0 0 grey;
+    box-shadow: 0 2px 0 0 grey;
+    padding-left: 6vh;
+    padding-right: 6vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    transition: .3s;
+}
+
+#link {
+    border-color: transparent;
+    text-decoration: none;
+    color: black;
+    display: flex;
+}
+
+#link:hover {
+    color: #780000;
+    font-weight: bold;
+    border-radius: 5px;
+    border-color: transparent;
+}
+
+.data {
+    width: 30%;
+}
+
+#my_popup {
+    padding: 5%;
+}
+
+label {
+    font-weight: bold;
+    color: #780000;
+}
+
+input {
+    width: 100%;
+}

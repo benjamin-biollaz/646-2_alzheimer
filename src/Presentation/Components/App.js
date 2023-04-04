@@ -8,11 +8,9 @@ import Page404 from "./Page404";
 import Information from "./Information";
 import Logout from "../Components/Login/Logout";
 import "../CSS/App.css";
-import { ReligionDAO } from "../../DAL/ReligionDAO";
-import { ValueDAO } from "../../DAL/ValueDAO";
+import IconPicker from "./IconPopup/IconPicker";
 
 function App() {
-
   const [resident, setResident] = useState(undefined);
   var routes;
 
@@ -35,7 +33,7 @@ function App() {
   }, []);
 
   if (auth.currentUser) {
-    routes =
+    routes = (
       <Routes>
         {/* Default route */}
         <Route path="/" element={<Home />} />
@@ -49,15 +47,22 @@ function App() {
         {/* No route found - 404 page */}
         <Route path="*" element={<Page404 />} />
       </Routes>
-  }
-  else {
-    routes =
+    );
+  } else {
+    routes = (
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="*" element={<Login />} />
       </Routes>
+    );
   }
 
+  const [selectedIcon, setSelectedIcon] = useState(null);
+
+  const handleIconSelect = (icon) => {
+    setSelectedIcon(icon);
+  };
+  
   return (
     <BrowserRouter>
       <div className="App">

@@ -1,4 +1,60 @@
 .preferenceDiv {
-    display: inline;
-    font: small;
+  display: flex;
+  float: left;
+  /* columns: 100px 3; */
+  font: 1.5rem;
+}
+
+.pref_icon {
+  display: flex;
+  font-size: 1.7rem;
+  justify-content: space-between;
+  color: var(--logo-color);
+}
+
+.icon-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 10px;
+  font-size: 1.7rem;
+  color: var(--logo-color);
+}
+
+.label-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 2vh;
+  font-size: 1rem;
+  color: black;
+}
+
+.form_btn {
+  background-color: #8c1c13;
+  margin-left: 15%;
+  width: 4vw;
+  margin-right: 1vh;
+  margin-top: -1vh;
+  height: 4vh;
+  border: 0;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  outline: transparent;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.form_btn:hover {
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5), -0.125rem -0.125rem 1rem #e7d7c1,
+    0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.form_button {
+  background-color: #8c1c13;
 }
