@@ -7,7 +7,7 @@ import Practice from './Practice';
  * This component renders a list of practices. 
  * Note that the display of indivual practice is handled in the "Practice" component.
  */
-function PracticesForm({ allPractices, residentPracticesIds }) {
+function PracticesForm({ allPractices, residentPracticesIds, practicesInputted }) {
 
     const [resPracticesIdsState, setPracticesIdsState] = useState(residentPracticesIds)
 
