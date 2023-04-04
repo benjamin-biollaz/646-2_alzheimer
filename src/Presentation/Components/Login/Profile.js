@@ -5,6 +5,7 @@ import { updatePassword, reauthenticateWithCredential, EmailAuthProvider } from 
 import swal from "sweetalert";
 import Navbar from "../../../Presentation/Components/Navbar";
 import "../../../Presentation/CSS/Profile.css";
+import profile from "../../img/profile.png";
 
 function Profile() {
 
@@ -57,11 +58,14 @@ function Profile() {
         <>
             <Navbar />
             <div className="div_profile">
-                <h3>{user.email}</h3>
+                <div className="div_header">
+                    <img style={{ width: "30px" }} src={profile} />
+                    <span>Connecté en tant que: {user.email}</span>
+                </div>
                 <form onSubmit={handlePasswordUpdate}>
                     <div className="account-group">
                         <input
-                            className="account_password"
+                            className="input_profile"
                             placeholder="Ancien mot de passe"
                             type="password"
                             value={oldPassword}
@@ -71,7 +75,7 @@ function Profile() {
                     </div>
                     <div className="account-group">
                         <input
-                            className="account_password"
+                            className="input_profile"
                             placeholder="Nouveau mot de passe"
                             type="password"
                             value={password}
@@ -81,7 +85,7 @@ function Profile() {
                     </div>
                     <div className="input-group">
                         <input
-                            className="account_confirmPassword"
+                            className="input_profile"
                             placeholder="Confirmez le mot de passe"
                             type="password"
                             value={confirmPassword}
