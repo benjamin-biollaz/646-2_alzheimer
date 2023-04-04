@@ -76,6 +76,9 @@ function BeliefsList() {
                         .map((p) =>
                             <p key={p.id} className="item">{p.practiceDTO.name} &nbsp;</p>
                         )}
+                    {resident?.practicesInputted.map((p) =>
+                        <p key={p} className='item'>{p}</p>
+                    )}
                 </span>
                 &nbsp; &nbsp;
             </div>
@@ -87,6 +90,9 @@ function BeliefsList() {
                         .map((v) =>
                             <p key={v.id} className="item">{v.valueDTO.name} &nbsp;</p>
                         )}
+                    {resident?.valuesInputted.map((v) =>
+                        <p key={v} className='item'>{v}</p>
+                    )}
                 </span>
                 &nbsp; &nbsp;
             </div>
