@@ -1,0 +1,43 @@
+h3 {
+    padding-bottom: 2vh;
+}
+
+.div_profile {
+    margin-top: 15vh;
+    margin-left: 30%;
+    margin-right: 30%;
+    background-color: #e7d7c1;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    border-radius: 10px;
+}
+
+.account-group {
+    padding-bottom: 3vh;
+}
+
+.button_profile {
+    margin-top: 5vh;
+    color: white;
+    background-color: #780000;
+    border-radius: 10px;
+    border-color: transparent;
+    box-shadow: 5px 0 0 0 grey;
+    /* Border right */
+    box-shadow: 0 2px 0 0 grey;
+    /* Border bottom */
+    padding-left: 6vh;
+    padding-right: 6vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    transition: .3s;
+    letter-spacing: 1.5px;
+}
+
+.button_profile:hover {
+    background-color: #c40000;
+    box-shadow: 0 0 0 5px #78000061;
+    color: #fff;
+}
