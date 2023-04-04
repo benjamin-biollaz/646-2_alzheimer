@@ -12,6 +12,7 @@
 .belief_input_span {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .input_belief {

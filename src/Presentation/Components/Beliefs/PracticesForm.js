@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import GenericForm from '../Form/GenericForm';
 import { PracticeDAO } from "../../../DAL/PracticeDAO";
 import Practice from './Practice';
+import PracticeInput from './PracticeInput';
 
 /**
  * This component renders a list of practices. 
@@ -10,7 +11,7 @@ import Practice from './Practice';
 function PracticesForm({ allPractices, residentPracticesIds, practicesInputted }) {
 
     const [resPracticesIdsState, setPracticesIdsState] = useState(residentPracticesIds)
-
+    const [practiceInputtedState, setpracticeInputtedState] = useState(practicesInputted)
 
     // this functions is passed to the child to keep tack of changes
     const updatePracticesList = (practiceId, checked) => {
@@ -33,12 +34,26 @@ function PracticesForm({ allPractices, residentPracticesIds, practicesInputted }
         practiceDAO.assignPracticeToResident(localStorage.getItem("residentId"), resPracticesIdsState);
     }
 
+    const updatePracticesInputtedList = () => {
+
+    }
+
     const renderPractices = (practices, isEditable) => {
-        return practices
-            .map((pr) => (
+        return <span>
+            {practices.map((pr) => (
                 <Practice key={pr.id} practiceWithId={pr} isEditable={isEditable}
                     updatePracticesList={updatePracticesList} isInTheList={residentPracticesIds.includes(pr.id)}></Practice>
-            ));
+            ))}
+            {practiceInputtedState.map((pr) => (
+                <PracticeInput key={pr} isEditable={isEditable}updatePracticesList={updatePracticesInputtedList}
+                practiceName={pr} isInTheList={practiceInputtedState.includes(pr)}></PracticeInput>
+            ))}
+
+        </span>
+    }
+
+    const addNewPractice = () => {
+        setpracticeInputtedState(prevPractices => ["", ...prevPractices]);
     }
 
     return (
@@ -46,7 +61,7 @@ function PracticesForm({ allPractices, residentPracticesIds, practicesInputted }
             <GenericForm className='middle_section' title='Pratiques'
                 renderItems={renderPractices} items={allPractices}
                 submitModifications={updatePracticesInDB}
-                doNotDisplayAddButton={true}></GenericForm>
+                addNewItem={addNewPractice}></GenericForm>
         </div>
     );
 }
