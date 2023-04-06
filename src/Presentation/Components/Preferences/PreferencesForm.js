@@ -5,6 +5,7 @@ import { PreferenceDAO } from "../../../DAL/PreferenceDAO";
 import { PreferenceWithId } from "../../../DTO/PreferenceWithId";
 import { PreferenceDTO } from "../../../DTO/PreferenceDTO";
 import { AiFillEdit } from "react-icons/ai";
+import swal from 'sweetalert';
 
 /**
  * This components renders a list of preferences in a form.
@@ -86,8 +87,48 @@ function PreferencesForm({ preferences, category }) {
         prefWithId={pr}
         isEditable={isEditable}
         updatePrefList={updatePrefList}
+        onDelete={deletePreference.bind(this, pr.id)}
       ></Preference>
     ));
+  };
+  //delete preference from the list and from the database if id is not empty
+  const deletePreference = async (id) => {
+    
+    const prefDAO = new PreferenceDAO();
+    const residentId = localStorage.getItem("residentId");
+    const prefIndex = prefState.findIndex((p) => p.id === id);
+    if (typeof id === "number") {
+      // delete the new preference and rerender the list
+      const elements = prefState;
+      elements.splice(prefIndex, 1);
+      setPrefState(elements);
+      swal({ type: "success", title: "Je passe dans le if" });
+      return;     
+    }
+    prefDAO.deletePreference(residentId, id);
+    const elements = prefState;
+    elements.splice(prefIndex, 1);
+    setPrefState(elements);
+    console.log("delete "+id);
+    // swal.fire({
+    //   title: 'Are you sure?',
+    //   text: "You won't be able to revert this!",
+    //   icon: 'warning',
+    //   showCancelButton: true,
+    //   confirmButtonColor: '#3085d6',
+    //   cancelButtonColor: '#d33',
+    //   confirmButtonText: 'Yes, delete it!'
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     swal.fire(
+    //       'Deleted!',
+    //       'Your file has been deleted.',
+    //       'success'
+    //     )
+    //   }
+      // })
+    swal({ type: "success", title: "Supprimé!" });
+
   };
 
   return (

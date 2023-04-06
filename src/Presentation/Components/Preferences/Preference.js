@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import FloatLabelInput from "../Form/FloatLabelInput";
 import IconPicker from "../IconPopup/IconPicker";
 import { iconSets } from "../IconPopup/IconPicker";
@@ -12,8 +12,9 @@ import "../../CSS/IconPicker.css"
  * Display a preference properties. This component will either render an input
  * or a text box depending on the "idEditable" argument.
  */
-function Preference({ prefWithId, isEditable, updatePrefList }) {
+function Preference({ prefWithId, isEditable, updatePrefList, onDelete}) {
   const [prefState, setPrefState] = useState(prefWithId.preferenceDTO);
+  const callback = useCallback(() => onDelete(prefWithId.id), []);
 
   const handleSelectIcon = (icon) => {
     setPrefState((prevState) => ({
@@ -77,6 +78,7 @@ function Preference({ prefWithId, isEditable, updatePrefList }) {
           )}
         </Popup>
       </div>
+      <button className="form_btn" onClick={callback}> Supprimer </button>
     </div>
   ) : (
     <div className="preferenceDiv">
