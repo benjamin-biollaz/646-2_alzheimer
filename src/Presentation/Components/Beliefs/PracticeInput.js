@@ -7,21 +7,18 @@ import CheckboxInput from '../Form/CheckboxInput';
  * the list.
  */
 
-function PracticeInput({ practiceName, isEditable, updatePracticesList, isInTheList }) {
+function PracticeInput({ practiceName, isEditable, updatePracticesList, isInTheList, removeFromList }) {
 
-    const [isInTheListState, setisInTheListState] = useState(isInTheList)
     const [practiceState, setPracticeState] = useState(practiceName);
 
     const onChecked = (e) => {
-        const value = e.target.checked;
-        setisInTheListState(value);
-        updatePracticesList(practiceName, value);
+        removeFromList(practiceState);
     };
 
     const onPracticeInput = (e) => {
         const value = e.target.value;
         setPracticeState(value);
-        updatePracticesList(value)
+        updatePracticesList(practiceState, value)
     };
 
     return (
@@ -36,17 +33,15 @@ function PracticeInput({ practiceName, isEditable, updatePracticesList, isInTheL
                     type={"text"}
                 ></input>
                 <CheckboxInput
-                    checkedState={isInTheListState}
+                    checkedState={isInTheList}
                     onChange={onChecked}
-                    value={isInTheListState}
-                    label={practiceName}>
+                    value={isInTheList}
+                    label={""}>
                 </CheckboxInput>
             </span>
             :
-            isInTheListState ?
-                < p > {practiceName /*readonly*/}</p >
-                :
-                ""
+            < p > {practiceState /*readonly*/}</p >
+
     )
 }
 

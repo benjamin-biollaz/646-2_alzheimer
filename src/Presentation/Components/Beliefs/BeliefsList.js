@@ -21,10 +21,6 @@ function BeliefsList() {
 
     const [resident, setResident] = useState(null)
 
-    const [religionInputted, setreligionInputted] = useState(null);
-    const [valuesInputted, setvaluesInputted] = useState([]);
-    const [practicesInputted, setpracticesInputted] = useState([]);
-
     const [allReligions, setAllReligions] = useState([]);
     const [allValues, setvalueState] = useState([]);
     const [allPractices, setpracticeState] = useState([]);
@@ -32,9 +28,6 @@ function BeliefsList() {
     const fetchBeliefs = async () => {
         const res = await ResidentDAO.prototype.getresidentById(localStorage.getItem("residentId"));
         setResident(res);
-        setreligionInputted(res.religionInputted);
-        setvaluesInputted(res.valuesInputted);
-        setpracticeState(res.practicesInputted);
 
         setvalueState(await ValueDAO.prototype.getAllValues());
         setpracticeState(await PracticeDAO.prototype.getAllPractices());
@@ -48,10 +41,7 @@ function BeliefsList() {
                     resident={resident}
                     allValues={allValues}
                     allPractices={allPractices}
-                    allReligions={allReligions}
-                    religionInputted={religionInputted}
-                    valuesInputted={valuesInputted}
-                    practicesInputted={practicesInputted}>
+                    allReligions={allReligions}>
                 </BeliefPopUpContent>}
                 onClose={doRender.bind(this)}
                 sectionTitle={"Croyances"}></SectionHeader>
@@ -76,8 +66,8 @@ function BeliefsList() {
                         .map((p) =>
                             <p key={p.id} className="item">{p.practiceDTO.name} &nbsp;</p>
                         )}
-                    {resident?.practicesInputted.map((p) =>
-                        <p key={p} className='item'>{p}</p>
+                    {resident?.practicesInputted.map((p, index) =>
+                        <p key={index} className='item'>{p}</p>
                     )}
                 </span>
                 &nbsp; &nbsp;
@@ -90,8 +80,8 @@ function BeliefsList() {
                         .map((v) =>
                             <p key={v.id} className="item">{v.valueDTO.name} &nbsp;</p>
                         )}
-                    {resident?.valuesInputted.map((v) =>
-                        <p key={v} className='item'>{v}</p>
+                    {resident?.valuesInputted.map((v, index) =>
+                        <p key={index} className='item'>{v}</p>
                     )}
                 </span>
                 &nbsp; &nbsp;

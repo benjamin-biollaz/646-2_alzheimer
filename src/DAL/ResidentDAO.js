@@ -32,17 +32,17 @@ class ResidentDAO {
         });
     }
 
-    async updateInputtedValue(residentId, value) {
+    async updateInputtedValue(residentId, values) {
         const residentRef = doc(collection(db, "Residents"), residentId);
         await updateDoc(residentRef, {
-            valuesInputted: arrayUnion(value)
+            valuesInputted: values
         });
     }
 
-    async updateInputtedPractice(residentId, practice) {
+    async updateInputtedPractice(residentId, practices) {
         const residentRef = doc(collection(db, "Residents"), residentId);
         await updateDoc(residentRef, {
-            practicesInputted: arrayUnion(practice)
+            practicesInputted: practices
         });
     }
 }
