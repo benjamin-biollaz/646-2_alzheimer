@@ -1,4 +1,4 @@
-import { doc, getDocs, collection, setDoc, addDoc } from "firebase/firestore";
+import { doc, getDocs, collection, setDoc, addDoc, deleteDoc } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { eventConverter, EventDTO } from "../DTO/EventDTO";
 import { EventWithId } from "../DTO/EventWithId";
@@ -61,6 +61,23 @@ class EventDAO {
         // add to the document
         const docRef = await addDoc(eventRef, event);
         return docRef.id;
+    }
+
+    /**
+     * Delete an event by id.
+     * @param {The timeline document id} timelineId 
+     * @param {The event id to delete} eventId 
+     * @returns Nothing
+     */
+    async deleteEvent(timelineId, eventId) {
+        const eventRef =
+            doc(
+                collection(
+                    doc(collection(db, "Timelines"), timelineId),
+                    "Events")
+                , eventId);
+
+        await deleteDoc(eventRef);
     }
 
 }

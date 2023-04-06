@@ -1,4 +1,4 @@
-import { doc, getDocs, collection, withConverter, updateDoc, setDoc, addDoc } from "firebase/firestore";
+import { doc, getDocs, collection, withConverter, updateDoc, setDoc, addDoc, deleteDoc } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { locationConverter, LocationDTO } from "../DTO/LocationDTO";
 import { LocationWithId } from "../DTO/LocationWithId";
@@ -64,6 +64,23 @@ class LocationDAO {
         // add to the document
         const docRef = await addDoc(locationRef, location);
         return docRef.id;
+    }
+
+    /**
+     * Delete an event by id.
+     * @param {The timeline document id} timelineId 
+     * @param {The location id to delete} locationId 
+     * @returns Nothing
+     */
+    async deleteLocation(timelineId, locationId) {
+        const locationRef =
+            doc(
+                collection(
+                    doc(collection(db, "Timelines"), timelineId),
+                    "Locations")
+                , locationId);
+
+        await deleteDoc(locationRef);
     }
 
 }

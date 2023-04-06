@@ -2,33 +2,55 @@ import React, { useState } from 'react'
 import GenericForm from '../Form/GenericForm';
 import { ReligionDAO } from "../../../DAL/ReligionDAO";
 import Religion from './Religion';
+import ReligionInput from './ReligionInput'
+import { ResidentDAO } from '../../../DAL/ResidentDAO';
 
 /**
  * This component renders the religion of a resident. 
  * Note that the display of indivual religion is handled in the "Religion" component.
  */
-function ReligionForm({ allReligions, residentReligionId }) {
+function ReligionForm({ allReligions, residentReligionId, religionInputted }) {
 
-    const [resReligionIdState, setReligionIdState] = useState(residentReligionId)
+    // if the religionId is empty, it means the religion selected is the one inputted
+    const [resReligionIdState, setReligionIdState] = useState(residentReligionId === "" ? religionInputted : residentReligionId)
 
-    const updatePracticesInDB = async () => {
+    const updateReligionsInDB = async () => {
         const religionDAO = new ReligionDAO();
-        religionDAO.assignReligionToResident(localStorage.getItem("residentId"), resReligionIdState);
+        const resId = localStorage.getItem("residentId");
+        if (allReligions.some(r => r.id === resReligionIdState)) {
+            //empty inputted religion, set religion reference
+            religionDAO.assignReligionToResident(resId, resReligionIdState);
+            ResidentDAO.prototype.updateInputtedReligion(resId, "");
+        } else {
+            // empty religion reference, set inputted religion 
+            religionDAO.assignReligionToResident(resId, "");
+            ResidentDAO.prototype.updateInputtedReligion(resId, resReligionIdState);
+        }
     }
 
     const renderReligions = (religions, isEditable) => {
-        return religions
-            .map((r) => (
-                <Religion key={r.id} religionWithId={r} isEditable={isEditable}
-                    updateReligion={setReligionIdState} isSelected={resReligionIdState == r.id}></Religion>
-            ));
+        return <div>
+            {religions
+                .map((r) => (
+                    <Religion key={r.id} religionWithId={r} isEditable={isEditable}
+                        updateReligion={setReligionIdState} isSelected={resReligionIdState == r.id}
+                    ></Religion>
+                ))}
+            {/* To enter a religion that doesn't figure in the list */}
+            <div className='left_div'>
+                {isEditable ? <h3>Autre</h3> : ""}
+            </div>
+            <ReligionInput key={religionInputted} isEditable={isEditable}
+                isSelected={!allReligions.some(r => r.id === resReligionIdState)}
+                religionName={resReligionIdState} updateReligion={setReligionIdState}></ReligionInput>
+        </div>
     }
 
     return (
         <div className='flexDiv'>
             <GenericForm className='left_section' title='Religions'
                 renderItems={renderReligions} items={allReligions}
-                submitModifications={updatePracticesInDB}
+                submitModifications={updateReligionsInDB}
                 doNotDisplayAddButton={true}></GenericForm>
         </div>
     );
