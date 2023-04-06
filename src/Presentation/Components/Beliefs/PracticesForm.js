@@ -44,13 +44,15 @@ function PracticesForm({ allPractices, residentPracticesIds, practicesInputted }
 
     const renderPractices = (practices, isEditable) => {
         return <span>
-            {/*Default practices*/}
+
             {practices.map((pr) => (
                 <Practice key={pr.id} practiceWithId={pr} isEditable={isEditable}
                     updatePracticesList={updatePracticesList} isInTheList={residentPracticesIds.includes(pr.id)}></Practice>
             ))}
 
-            {/*Inputted practices */}
+            <div className='left_div'>
+                {isEditable ? <h3>Autre</h3> : ""}
+            </div>
             {practiceInputtedState.map((pr, index) => (
                 <PracticeInput key={index} isEditable={isEditable} updatePracticesList={updatePracticesInputtedList}
                     practiceName={pr} isInTheList={practiceInputtedState.includes(pr)} removeFromList={removeInputtedPracticeFromList}></PracticeInput>
