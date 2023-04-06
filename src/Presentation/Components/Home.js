@@ -72,7 +72,6 @@ export default function Home() {
     var r = await residentDAO.addResident(newRes);
     setContext(r.id, newRes);
     navigate("/infos");
-    console.log(r);
   };
 
   const setContext = (id, resident) => {

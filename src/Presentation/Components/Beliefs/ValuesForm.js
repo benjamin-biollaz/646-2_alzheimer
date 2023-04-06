@@ -11,7 +11,7 @@ import { ResidentDAO } from '../../../DAL/ResidentDAO';
  */
 function ValuesForm({ allValues, residentValuesIds, valuesInputted }) {
 
-    const [resValuesIdsState, setresValuesIdsState] = useState(residentValuesIds)
+    const [resValuesIdsState, setresValuesIdsState] = useState([...residentValuesIds])
     const [valueInputtedState, setValueInputtedState] = useState([...valuesInputted])
 
     /*
@@ -21,6 +21,7 @@ function ValuesForm({ allValues, residentValuesIds, valuesInputted }) {
     // this functions is passed to the child to keep tack of changes
     const updateValuesList = (valueId, checked) => {
         const items = resValuesIdsState;
+       
         if (checked) {
             if (!resValuesIdsState.includes(valueId)) {
                 items.push(valueId);

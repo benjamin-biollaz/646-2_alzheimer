@@ -11,7 +11,7 @@ import { ResidentDAO } from '../../../DAL/ResidentDAO';
  */
 function PracticesForm({ allPractices, residentPracticesIds, practicesInputted }) {
 
-    const [resPracticesIdsState, setPracticesIdsState] = useState(residentPracticesIds)
+    const [resPracticesIdsState, setPracticesIdsState] = useState([...residentPracticesIds])
     const [practiceInputtedState, setpracticeInputtedState] = useState([...practicesInputted])
 
     /*
