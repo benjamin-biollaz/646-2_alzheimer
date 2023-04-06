@@ -1,4 +1,4 @@
-import { doc, getDocs, collection, withConverter, setDoc, addDoc } from "firebase/firestore";
+import { doc, getDocs, collection, withConverter, setDoc, addDoc, deleteDoc } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { periodConverter, PeriodDTO } from "../DTO/PeriodDTO";
 import { PeriodWithId } from "../DTO/PeriodWithId";
@@ -59,6 +59,23 @@ class PeriodDAO {
         // add to the document
         const docRef = await addDoc(periodRef, period);
         return docRef.id;
+    }
+
+    /**
+     * Delete an event by id.
+     * @param {The timeline document id} timelineId 
+     * @param {The period id to delete} periodId 
+     * @returns Nothing
+     */
+    async deletePeriod(timelineId, periodId) {
+        const periodRef =
+            doc(
+                collection(
+                    doc(collection(db, "Timelines"), timelineId),
+                    "Periods")
+                , periodId);
+
+        await deleteDoc(periodRef);
     }
 }
 
