@@ -71,8 +71,8 @@ function PracticesForm({ allPractices, residentPracticesIds, practicesInputted }
 
     const updatePracticesInputtedList = (oldString, newString) => {
         const i = practiceInputtedState.indexOf(oldString);
-        const newPractices = [... practiceInputtedState];
-        if (i ===-1)
+        const newPractices = [...practiceInputtedState];
+        if (i === -1)
             newPractices.push(newString)
         else
             newPractices[newPractices.indexOf(oldString)] = newString;
