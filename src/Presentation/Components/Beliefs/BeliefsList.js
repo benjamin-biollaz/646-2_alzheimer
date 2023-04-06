@@ -66,7 +66,7 @@ function BeliefsList() {
                         .map((p) =>
                             <p key={p.id} className="item">{p.practiceDTO.name} &nbsp;</p>
                         )}
-                    {resident?.practicesInputted.map((p, index) =>
+                    {resident?.practicesInputted?.map((p, index) =>
                         <p key={index} className='item'>{p}</p>
                     )}
                 </span>
@@ -80,7 +80,7 @@ function BeliefsList() {
                         .map((v) =>
                             <p key={v.id} className="item">{v.valueDTO.name} &nbsp;</p>
                         )}
-                    {resident?.valuesInputted.map((v, index) =>
+                    {resident?.valuesInputted?.map((v, index) =>
                         <p key={index} className='item'>{v}</p>
                     )}
                 </span>

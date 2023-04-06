@@ -8,11 +8,15 @@ import ValuesForm from './ValuesForm'
  */
 
 function BeliefPopUpContent({ resident, allValues, allPractices, allReligions}) {
+    
+    const practicesIn = Array.isArray(resident.practicesInputted) ? resident.practicesInputted : [];
+    const valuesIn = Array.isArray(resident.valuesInputted) ? resident.valuesInputted : [];
+    
     return (
         <div className='grid_container'>
             <ReligionForm allReligions={allReligions} residentReligionId={resident.religionId} religionInputted={resident.religionInputted}></ReligionForm>
-            <PracticesForm allPractices={allPractices} residentPracticesIds={resident.practiceIds} practicesInputted={resident.practicesInputted}></PracticesForm>
-            <ValuesForm allValues={allValues} residentValuesIds={resident.valueIds} valuesInputted={resident.valuesInputted}></ValuesForm>
+            <PracticesForm allPractices={allPractices} residentPracticesIds={resident.practiceIds} practicesInputted={practicesIn}></PracticesForm>
+            <ValuesForm allValues={allValues} residentValuesIds={resident.valueIds} valuesInputted={valuesIn}></ValuesForm>
         </div>
     )
 }
