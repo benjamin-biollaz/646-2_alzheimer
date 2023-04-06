@@ -35,3 +35,9 @@
 .religion_div {
    margin-right: 2vw;
 }
+
+.left_div {
+    margin-top: 2vh;
+    display: flex;
+    justify-content: flex-start;
+}

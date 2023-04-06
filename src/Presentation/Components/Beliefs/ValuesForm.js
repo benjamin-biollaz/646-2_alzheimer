@@ -43,12 +43,15 @@ function ValuesForm({ allValues, residentValuesIds, valuesInputted }) {
 
     const renderValues = (values, isEditable) => {
         return <span>
+
             {values.map((va) => (
                 <Value key={va.id} valueWithId={va} isEditable={isEditable}
                     updateValuesList={updateValuesList} isInTheList={residentValuesIds.includes(va.id)}></Value>
             ))}
 
-            {/*Inputted practices */}
+            <div className='left_div'>
+                {isEditable ? <h3>Autre</h3> : ""}
+            </div>
             {valueInputtedState.map((va, index) => (
                 <ValueInput key={index} isEditable={isEditable} updateValuesList={updateValuesInputtedList}
                     valueName={va} isInTheList={valueInputtedState.includes(va)}
