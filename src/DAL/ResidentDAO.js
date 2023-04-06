@@ -22,6 +22,11 @@ class ResidentDAO {
         const r = await addDoc(residentRef, resident);
         const timelineDAO = new TimelineDAO();
         timelineDAO.addTimeline(r.id);
+        //add resident to establishment
+        const establishmentRef = doc(db, "Establishments", localStorage.getItem("establishmentId"));
+        await updateDoc(establishmentRef, {
+            residentsId: arrayUnion(r.id)
+        });
         return r
     }
 
