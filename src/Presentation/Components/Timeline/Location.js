@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FloatLabelInput from "../Form/FloatLabelInput";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
 
-function Location({ location, isEditable, updateLocationList }) {
+function Location({ location, isEditable, updateLocationList, deleteLocation }) {
   const [locationState, setLocation] = useState(location.locationDTO);
 
   const df = new DateFormatter();
@@ -17,6 +17,10 @@ function Location({ location, isEditable, updateLocationList }) {
       ...prevState,
       [fieldName]: value, //es6 computed property syntax
     }));
+  };
+
+  const handleDelete = () => {
+    deleteLocation(location.id);
   };
 
   // update locations list of parent component
@@ -45,6 +49,7 @@ function Location({ location, isEditable, updateLocationList }) {
         type={"date"}
         onChange={onInputChange}
       />
+      <button onClick={handleDelete}>Delete</button>
     </div>
   ) : (
     <p>

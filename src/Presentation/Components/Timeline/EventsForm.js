@@ -4,6 +4,7 @@ import Event from './Event';
 import { EventDAO } from '../../../DAL/EventDAO';
 import { EventWithId } from '../../../DTO/EventWithId';
 import { EventDTO } from '../../../DTO/EventDTO';
+import swal from 'sweetalert';
 
 /**
  * This component renders a list of event. 
@@ -30,6 +31,14 @@ function EventsForm({ events }) {
     const updateEventsInDB = async () => {
         const eventDAO = new EventDAO();
         const timelineId = localStorage.getItem("timelineId");
+
+        const eventsToDelete = eventsBeforeEdition.filter(
+            (event) => !eventState.some((e) => e.id === event.id)
+        );
+        for (const event of eventsToDelete) {
+            await eventDAO.deleteEvent(timelineId, event.id);
+        }
+
         for (const ev of eventState) {
 
             // the id of type int are the newly added one because Firestore
@@ -69,12 +78,20 @@ function EventsForm({ events }) {
         addedItemsCount++;
     }
 
+    const deleteEvent = (eventId) => {
+        const index = eventState.findIndex((event) => event.id === eventId);
+        const newEvents = [...eventState];
+        newEvents.splice(index, 1);
+        setEventState(newEvents);
+        localStorage.setItem("update", true);
+      };
+
     const renderEvents = (events, isEditable) => {
         return events
             .sort((a, b) => new Date(a.eventDTO.startDate) - new Date(b.eventDTO.startDate))
             .map((ev) => (
                 <Event key={ev.id} event={ev} isEditable={isEditable}
-                    updateEventsList={updateEventsList}></Event>
+                    updateEventsList={updateEventsList} deleteEvent={deleteEvent}></Event>
             ));
     }
 
