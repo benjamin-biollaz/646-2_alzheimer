@@ -20,7 +20,7 @@ table {
   width: 40%;
 }
 
-p {
+#popup_button {
   width: 10vw;
   font-weight: bold;
   padding-top: 5vh;
@@ -28,12 +28,12 @@ p {
   font-size: 1.2rem;
 }
 
-p:hover::after {
+#popup_button:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
 
-p::after {
+#popup_button::after {
   content: "";
   display: block;
   margin: auto;
@@ -44,7 +44,7 @@ p::after {
   transition: all 0.3s;
 }
 
-p:hover::after {
+#popup_button:hover::after {
   width: 100%;
   background: #a78a7f;
 }
