@@ -4,7 +4,7 @@
 class ResidentDTO {
     constructor(firstName, lastName, birthDate,
         religionInputted, valuesInputted, practicesInputted,
-        religionId, valueIds, practiceIds) {
+        religionId, valueIds, practiceIds, establishmentId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate
@@ -18,11 +18,12 @@ class ResidentDTO {
         this.religionId = religionId;
         this.valueIds = valueIds;
         this.practiceIds = practiceIds;
+        this.establishmentId = establishmentId;
     }
 
     toString() {
         return this.firstName + " " + this.lastName + " " + this.birthDate + " " + this.religionId
-            + " " + this.valueIds + " " + this.practiceIds;
+            + " " + this.valueIds + " " + this.practiceIds + " " + this.establishmentId;
     }
 }
 
@@ -31,7 +32,7 @@ const residentConverter = {
         return {
             firstName: res.firstName, lastName: res.lastName, birthDate: res.birthDate,
             religionInputted: res.religionInputted, valuesInputted: res.valuesInputted, practicesInputted: res.practicesInputted,
-            religionId: res.religionId, valueIds: res.valueIds, practiceIds: res.practiceIds
+            religionId: res.religionId, valueIds: res.valueIds, practiceIds: res.practiceIds, establishmentId: res.establishmentId
         };
     },
     fromFirestore(
@@ -41,7 +42,7 @@ const residentConverter = {
         const data = snapshot.data(options);
         return new ResidentDTO(data.firstName, data.lastName, data.birthDate,
             data.religionInputted, data.valuesInputted, data.practicesInputted,
-            data.religionId, data.valueIds, data.practiceIds);
+            data.religionId, data.valueIds, data.practiceIds, data.establishmentId);
     }
 };
 export { residentConverter };

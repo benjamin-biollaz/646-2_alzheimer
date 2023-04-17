@@ -20,7 +20,7 @@ export default function Home() {
   const context = useContext(ResidentContext);
   const residentDAO = new ResidentDAO();
   const [newRes, setResident] = React.useState(
-    new ResidentDTO("", "", "", [], [],[],"qSBOgadePITwLn1HYZbW","","")
+    new ResidentDTO("", "", "", [], [],[],"qSBOgadePITwLn1HYZbW","","", localStorage.getItem("establishmentId"))
   );
   const [residents, setResidents] = React.useState(null);
   const [establishment, setEstablishment] = React.useState(null);
