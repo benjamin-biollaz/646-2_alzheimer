@@ -5,8 +5,10 @@ import { iconSets } from "../IconPopup/IconPicker";
 import { IconContext } from "react-icons";
 import Popup from "reactjs-popup";
 import { AiFillCloseCircle } from "react-icons/ai";
+import Swal from "sweetalert2";
 import "../../CSS/Preferences.css";
 import "../../CSS/IconPicker.css"
+import {TbTrash} from "react-icons/tb"
 
 /**
  * Display a preference properties. This component will either render an input
@@ -15,6 +17,25 @@ import "../../CSS/IconPicker.css"
 function Preference({ prefWithId, isEditable, updatePrefList, onDelete}) {
   const [prefState, setPrefState] = useState(prefWithId.preferenceDTO);
   const callback = useCallback(() => onDelete(prefWithId.id), []);
+  const [deleted, setDeleted] = useState(false);
+
+  const del = () => {
+    Swal.fire({
+      title: 'Voulez-vous réellement suprimer ?',
+      text: "Cette action est irréversible !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, supprimer !'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        callback();
+        setDeleted(true);
+      }
+    })
+    
+  }
 
   const handleSelectIcon = (icon) => {
     setPrefState((prevState) => ({
@@ -47,7 +68,8 @@ function Preference({ prefWithId, isEditable, updatePrefList, onDelete}) {
   // this is called at every render as setState renders the component again
   if (updatePrefList !== undefined) updatePrefList(prefWithId.id, prefState);
 
-  return isEditable ? (
+  return deleted ? null :
+  isEditable ? (
     <div className="inputDiv">
       <FloatLabelInput
         label="Label"
@@ -78,7 +100,9 @@ function Preference({ prefWithId, isEditable, updatePrefList, onDelete}) {
           )}
         </Popup>
       </div>
-      <button className="form_btn" onClick={callback}> Supprimer </button>
+      <div className="trash_button_div">
+      <TbTrash onClick={del} className="trash_button" />
+      </div>
     </div>
   ) : (
     <div className="preferenceDiv">

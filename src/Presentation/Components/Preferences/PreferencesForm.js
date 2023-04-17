@@ -6,6 +6,7 @@ import { PreferenceWithId } from "../../../DTO/PreferenceWithId";
 import { PreferenceDTO } from "../../../DTO/PreferenceDTO";
 import { AiFillEdit } from "react-icons/ai";
 import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 /**
  * This components renders a list of preferences in a form.
@@ -92,9 +93,7 @@ function PreferencesForm({ preferences, category }) {
     ));
   };
   //delete preference from the list and from the database if id is not empty
-  const deletePreference = async (id) => {
-    
-    const prefDAO = new PreferenceDAO();
+  const deletePreference = (id) => {
     const residentId = localStorage.getItem("residentId");
     const prefIndex = prefState.findIndex((p) => p.id === id);
     if (typeof id === "number") {
@@ -102,34 +101,30 @@ function PreferencesForm({ preferences, category }) {
       const elements = prefState;
       elements.splice(prefIndex, 1);
       setPrefState(elements);
-      swal({ type: "success", title: "Je passe dans le if" });
-      return;     
+      Swal.fire(
+        'Supprimé !',
+        'La préférence a été supprimée.',
+        'success'
+      );
+      return;
     }
-    prefDAO.deletePreference(residentId, id);
-    const elements = prefState;
-    elements.splice(prefIndex, 1);
-    setPrefState(elements);
-    console.log("delete "+id);
-    // swal.fire({
-    //   title: 'Are you sure?',
-    //   text: "You won't be able to revert this!",
-    //   icon: 'warning',
-    //   showCancelButton: true,
-    //   confirmButtonColor: '#3085d6',
-    //   cancelButtonColor: '#d33',
-    //   confirmButtonText: 'Yes, delete it!'
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     swal.fire(
-    //       'Deleted!',
-    //       'Your file has been deleted.',
-    //       'success'
-    //     )
-    //   }
-      // })
-    swal({ type: "success", title: "Supprimé!" });
-
+    delFromDB(residentId, id).then(() => {
+      const elements = prefState;
+      elements.splice(prefIndex, 1);
+      setPrefState(elements);
+      Swal.fire(
+        'Supprimé !',
+        'La préférence a été supprimée.',
+        'success'
+      );
+      return;
+    });
   };
+
+  const delFromDB = async (residentId, id) => {
+    const prefDAO = new PreferenceDAO();
+    await prefDAO.deletePreference(residentId, id);
+  }
 
   return (
     <div className="flexDiv">
