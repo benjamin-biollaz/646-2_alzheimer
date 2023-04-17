@@ -9987,7 +9987,7 @@ universalify@^2.0.0:
 
 unop-react-dropdown@^0.2.3:
   version "0.2.3"
-  resolved "https://registry.yarnpkg.com/unop-react-dropdown/-/unop-react-dropdown-0.2.3.tgz#b1e640438f12843b8cc812c38c79a207c9a0569c"
+  resolved "https://registry.npmjs.org/unop-react-dropdown/-/unop-react-dropdown-0.2.3.tgz"
   integrity sha512-pb4WYD9R/Axhp95CrGvkWNlZ0u2DMZ2YXlcRONetAIWJqSSXpnP7iQxMBl8RMIdhsYpC9VbvWrR26NTu/cUNQw==
 
 unpipe@1.0.0, unpipe@~1.0.0:
