@@ -30,7 +30,6 @@
 
 .form_btn {
   background-color: #8c1c13;
-  margin-left: 15%;
   width: 4vw;
   margin-right: 1vh;
   margin-top: -1vh;
@@ -80,6 +79,15 @@
   box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5), -0.125rem -0.125rem 1rem #e7d7c1,
     0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
   cursor: pointer;
+}
+
+.preference_input_div{
+  /*2 columns using grid*/
+  display: grid;
+  grid-template-columns: 30% auto;
+  grid-gap: 1rem;
+  margin: 1rem;
+  
 }
 
 

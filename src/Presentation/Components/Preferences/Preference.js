@@ -8,13 +8,13 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import Swal from "sweetalert2";
 import "../../CSS/Preferences.css";
 import "../../CSS/IconPicker.css"
-import {TbTrash} from "react-icons/tb"
+import { TbTrash } from "react-icons/tb"
 
 /**
  * Display a preference properties. This component will either render an input
  * or a text box depending on the "idEditable" argument.
  */
-function Preference({ prefWithId, isEditable, updatePrefList, onDelete}) {
+function Preference({ prefWithId, isEditable, updatePrefList, onDelete }) {
   const [prefState, setPrefState] = useState(prefWithId.preferenceDTO);
   const callback = useCallback(() => onDelete(prefWithId.id), []);
   const [deleted, setDeleted] = useState(false);
@@ -36,7 +36,7 @@ function Preference({ prefWithId, isEditable, updatePrefList, onDelete}) {
         setDeleted(true);
       }
     })
-    
+
   }
 
   const handleSelectIcon = (icon) => {
@@ -71,50 +71,53 @@ function Preference({ prefWithId, isEditable, updatePrefList, onDelete}) {
   if (updatePrefList !== undefined) updatePrefList(prefWithId.id, prefState);
 
   return deleted ? null :
-  isEditable ? (
-    <div className="inputDiv">
-      <FloatLabelInput
-        label="Label"
-        name={"label"}
-        value={prefState.label}
-        onChange={onInputChange}
-        type={"text"}
-      />
-
+    isEditable ? (
       <div>
-        <span className="icon-wrapper">
+        <FloatLabelInput
+          label="Label"
+          name={"label"}
+          value={prefState.label}
+          onChange={onInputChange}
+          type={"text"}
+        />
+
+        <div className="preference_input_div">
+          <span className="icon-wrapper">
+            {getIconByName(prefState.iconName).icon}
+          </span>
+          <Popup
+            className={"icon-popup"}
+            trigger={<button className="form_btn">Icônes</button>}
+            nested
+            modal
+            closeOnDocumentClick={false}
+          >
+            {(close) => (
+              <div className="icon-picker-popup">
+                <IconContext.Provider value={{ size: "25px", color: "#a78a7f" }}>
+                  <AiFillCloseCircle onClick={close} />
+                </IconContext.Provider>
+                <IconPicker onSelect={handleSelectIcon} onClick={close} />
+              </div>
+            )}
+          </Popup>
+          <div />
+          <div className="trash_button_div">
+            <TbTrash onClick={del} className="trash_button" />
+          </div>
+        </div>
+        <hr/>
+
+      </div>
+    ) : (
+      <div className="preferenceDiv">
+        <div className="icon-wrapper">
           {getIconByName(prefState.iconName).icon}
-        </span>
-        <Popup
-          className={"icon-popup"}
-          trigger={<button className="form_btn">Icônes</button>}
-          nested
-          modal
-          closeOnDocumentClick={false}
-        >
-          {(close) => (
-            <div className="icon-picker-popup">
-              <IconContext.Provider value={{ size: "25px", color: "#a78a7f" }}>
-                <AiFillCloseCircle onClick={close} />
-              </IconContext.Provider>
-              <IconPicker onSelect={handleSelectIcon} onClick={close} />
-            </div>
-          )}
-        </Popup>
+        </div>
+        <div className="label-wrapper">&nbsp;{prefState.label}</div>
+        <br></br>
       </div>
-      <div className="trash_button_div">
-      <TbTrash onClick={del} className="trash_button" />
-      </div>
-    </div>
-  ) : (
-    <div className="preferenceDiv">
-      <div className="icon-wrapper">
-        {getIconByName(prefState.iconName).icon}
-      </div>
-      <div className="label-wrapper">&nbsp;{prefState.label}</div>
-      <br></br>
-    </div>
-  );
+    );
 }
 
 export default Preference;
