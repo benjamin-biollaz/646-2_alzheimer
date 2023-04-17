@@ -21,13 +21,14 @@ function Preference({ prefWithId, isEditable, updatePrefList, onDelete}) {
 
   const del = () => {
     Swal.fire({
-      title: 'Voulez-vous réellement suprimer ?',
+      title: 'Voulez-vous réellement supprimer ?',
       text: "Cette action est irréversible !",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Oui, supprimer !'
+      confirmButtonText: 'Oui, supprimer !',
+      reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
         callback();
