@@ -28,7 +28,8 @@ function Preference({ prefWithId, isEditable, updatePrefList, onDelete}) {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Oui, supprimer !',
-      reverseButtons: true
+      reverseButtons: true,
+      cancelButtonText: 'Annuler'
     }).then((result) => {
       if (result.isConfirmed) {
         callback();
