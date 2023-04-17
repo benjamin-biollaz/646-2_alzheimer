@@ -69,6 +69,11 @@ p:hover::after {
   display: flex;
 }
 
+#link:hover {
+  color: #780000;
+  font-weight: bold;
+}
+
 #popup_button:hover {
   color: var(--title-color);
   font-weight: bolder;

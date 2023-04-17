@@ -59,6 +59,17 @@
 
 .dropdown-menu {
   position: absolute;
+  display: grid;
+  right: 3vh;
+  z-index: 3;
+  color: #212529;
+  background-color: #e7d7c1;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+}
+
+/* .dropdown-menu {
+  position: absolute;
   display: block;
   right: 2vh;
   margin-right: 10px;
@@ -71,7 +82,8 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
   padding: 0.5rem;
-}
+} */
+
 /* 
 .dropdown-item {
   display: block;

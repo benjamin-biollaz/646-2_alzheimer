@@ -46,7 +46,7 @@ class Nav extends React.Component {
         </div>
         {this.state.isDropdownOpen && (
           <div className="dropdown-menu">
-            <NavLink to="/changepassword" onClick={() => this.closeNavBar()}>
+            <NavLink to="/profile" onClick={() => this.closeNavBar()}>
               Change Password
             </NavLink>
             <NavLink to="/logout" onClick={() => this.closeNavBar()}>
