@@ -9,6 +9,7 @@ import Information from "./Information";
 import Logout from "../Components/Login/Logout";
 import "../CSS/App.css";
 import IconPicker from "./IconPopup/IconPicker";
+import Profile from "./Login/Profile";
 
 function App() {
   const [resident, setResident] = useState(undefined);
@@ -42,6 +43,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/infos" element={<Information />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/logout" element={<Logout />} />
 
         {/* No route found - 404 page */}
@@ -62,7 +64,7 @@ function App() {
   const handleIconSelect = (icon) => {
     setSelectedIcon(icon);
   };
-  
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -74,7 +76,7 @@ function App() {
   async function testDB() {
     // write here test access to the database
     // those are run when the app starts
-  
+
   }
 }
 
