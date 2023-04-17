@@ -13,23 +13,50 @@ th {
 
 tr {
   height: 3vh;
+  font-size: 1.2rem;
 }
 
 table {
   width: 40%;
 }
 
-#popup_button,
+p {
+  width: 10vw;
+  font-weight: bold;
+  padding-top: 5vh;
+  padding-bottom: 1vh;
+  font-size: 1.2rem;
+}
+
+p:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+p::after {
+  content: "";
+  display: block;
+  margin: auto;
+  height: 3px;
+  width: 0;
+  top: 5px;
+  background: transparent;
+  transition: all 0.3s;
+}
+
+p:hover::after {
+  width: 100%;
+  background: #a78a7f;
+}
+
 #add_button {
   margin-top: 5vh;
   color: white;
   background-color: #780000;
   border-radius: 10px;
   border-color: transparent;
-  box-shadow: 5px 0 0 0 grey;
-  box-shadow: 0 2px 0 0 grey;
-  padding-left: 6vh;
-  padding-right: 6vh;
+  padding-left: 2vh;
+  padding-right: 2vh;
   padding-top: 1vh;
   padding-bottom: 1vh;
   transition: 0.3s;
@@ -42,11 +69,9 @@ table {
   display: flex;
 }
 
-#link:hover {
-  color: #780000;
-  font-weight: bold;
-  border-radius: 5px;
-  border-color: transparent;
+#popup_button:hover {
+  color: var(--title-color);
+  font-weight: bolder;
 }
 
 .data {
