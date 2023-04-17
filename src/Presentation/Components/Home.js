@@ -20,7 +20,7 @@ export default function Home() {
   const context = useContext(ResidentContext);
   const residentDAO = new ResidentDAO();
   const [newRes, setResident] = React.useState(
-    new ResidentDTO("", "", "", "qSBOgadePITwLn1HYZbW", [], [])
+    new ResidentDTO("", "", "", [], [],[],"qSBOgadePITwLn1HYZbW","","")
   );
   const [residents, setResidents] = React.useState(null);
   const [establishment, setEstablishment] = React.useState(null);
@@ -70,8 +70,8 @@ export default function Home() {
       return;
     }
     var r = await residentDAO.addResident(newRes);
-    console.log(r.id);
-    window.location.href = `/infos/${r.id}`;
+    setContext(r.id, newRes);
+    navigate("/infos");
   };
 
   const setContext = (id, resident) => {
@@ -167,5 +167,7 @@ export default function Home() {
     const res = await residentDAO.getResidents(establishment.residentsId);
     setResidents(res);
     setEstablishment(establishment);
+    localStorage.setItem("establishmentId", nurse.establishmentId);
+    
   }
 }

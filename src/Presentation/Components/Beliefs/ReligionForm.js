@@ -37,6 +37,9 @@ function ReligionForm({ allReligions, residentReligionId, religionInputted }) {
                     ></Religion>
                 ))}
             {/* To enter a religion that doesn't figure in the list */}
+            <div className='left_div'>
+                {isEditable ? <h3>Autre</h3> : ""}
+            </div>
             <ReligionInput key={religionInputted} isEditable={isEditable}
                 isSelected={!allReligions.some(r => r.id === resReligionIdState)}
                 religionName={resReligionIdState} updateReligion={setReligionIdState}></ReligionInput>

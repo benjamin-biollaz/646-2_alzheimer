@@ -22,6 +22,11 @@ class ResidentDAO {
         const r = await addDoc(residentRef, resident);
         const timelineDAO = new TimelineDAO();
         timelineDAO.addTimeline(r.id);
+        //add resident to establishment
+        const establishmentRef = doc(db, "Establishments", localStorage.getItem("establishmentId"));
+        await updateDoc(establishmentRef, {
+            residentsId: arrayUnion(r.id)
+        });
         return r
     }
 
@@ -32,17 +37,17 @@ class ResidentDAO {
         });
     }
 
-    async updateInputtedValue(residentId, value) {
+    async updateInputtedValue(residentId, values) {
         const residentRef = doc(collection(db, "Residents"), residentId);
         await updateDoc(residentRef, {
-            valuesInputted: arrayUnion(value)
+            valuesInputted: values
         });
     }
 
-    async updateInputtedPractice(residentId, practice) {
+    async updateInputtedPractice(residentId, practices) {
         const residentRef = doc(collection(db, "Residents"), residentId);
         await updateDoc(residentRef, {
-            practicesInputted: arrayUnion(practice)
+            practicesInputted: practices
         });
     }
 }
