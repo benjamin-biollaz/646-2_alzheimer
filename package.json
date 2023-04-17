@@ -32,6 +32,7 @@
     "semantic-ui-react": "^2.1.4",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.7.3",
+    "unop-react-dropdown": "^0.2.3",
     "web-vitals": "^2.1.0"
   },
   "scripts": {

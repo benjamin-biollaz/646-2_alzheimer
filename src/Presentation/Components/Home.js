@@ -20,7 +20,18 @@ export default function Home() {
   const context = useContext(ResidentContext);
   const residentDAO = new ResidentDAO();
   const [newRes, setResident] = React.useState(
-    new ResidentDTO("", "", "", [], [],[],"qSBOgadePITwLn1HYZbW","","")
+    new ResidentDTO(
+      "",
+      "",
+      "",
+      [],
+      [],
+      [],
+      "qSBOgadePITwLn1HYZbW",
+      "",
+      "",
+      localStorage.getItem("establishmentId")
+    )
   );
   const [residents, setResidents] = React.useState(null);
   const [establishment, setEstablishment] = React.useState(null);
@@ -127,7 +138,7 @@ export default function Home() {
             })}
           </tbody>
         </table>
-        <Popup trigger={<button id="popup_button">Ajouter un résident</button>}>
+        <Popup trigger={<p id="popup_button">Ajouter un résident</p>}>
           <div id="my_popup">
             <label>Prénom</label>
             <input
@@ -168,6 +179,5 @@ export default function Home() {
     setResidents(res);
     setEstablishment(establishment);
     localStorage.setItem("establishmentId", nurse.establishmentId);
-    
   }
 }
