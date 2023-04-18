@@ -82,12 +82,14 @@ function Preference({ prefWithId, isEditable, updatePrefList, onDelete }) {
         />
 
         <div className="preference_input_div">
-          <span className="icon-wrapper">
+          <div className="icon-wrapper-edit">
+            <div className="icon-edit">
             {getIconByName(prefState.iconName).icon}
-          </span>
+            </div>
+          </div>
           <Popup
             className={"icon-popup"}
-            trigger={<button className="form_btn">Icônes</button>}
+            trigger={<button className="form-btn-pref">Icônes</button>}
             nested
             modal
             closeOnDocumentClick={false}
