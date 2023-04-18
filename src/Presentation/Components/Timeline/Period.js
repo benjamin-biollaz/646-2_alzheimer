@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
 import FloatLabelInput from "../Form/FloatLabelInput";
 import { BiTrash } from "react-icons/bi";
+import Swal from "sweetalert2";
 
 function Period({ period, isEditable, updatePeriodList, deletePeriod }) {
   const [periodState, setPeriod] = useState(period.periodDTO);
@@ -21,7 +22,21 @@ function Period({ period, isEditable, updatePeriodList, deletePeriod }) {
   };
 
   const handleDelete = () => {
-    deletePeriod(period.id);
+    Swal.fire({
+      title: 'Voulez-vous réellement supprimer ?',
+      text: "Cette action est irréversible !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, supprimer !',
+      reverseButtons: true,
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deletePeriod(period.id);
+      }
+    })
   }
 
   // update periods list of parent component

@@ -25,6 +25,7 @@ import { DateFormatter } from "../../../Utilities/DateFormatter";
 import { color } from "@mui/system";
 import { border } from '@mui/system';
 import { useNavigate } from "react-router";
+import NestedHeader from "../NestedHeader";
 
 export function TimelineWidget() {
 
@@ -75,7 +76,7 @@ export function TimelineWidget() {
             }
         }
         const fetchData = async () => {
-            const timeline = await timelineDAO.getTimelineByResidentId(localStorage.getItem("residentId"));
+            const timeline = await timelineDAO.getTimelineByResidentId(localStorage.getItem("residentId"))
             // const timeline = await timelineDAO.getTimelineByResidentId(resident.id);
             setTimeline(timeline);
 
@@ -165,14 +166,14 @@ export function TimelineWidget() {
 
     return (
         <div className="evenements">
-            <SectionHeader onClose={doRender.bind(this)} sectionTitle={"Évènements"} popupContent={
+            <NestedHeader onClose={doRender.bind(this)} sectionTitle={"Évènements"} popupContent={
                  <TimelineForm
                  events={events}
                  periods={periods}
                  locations={locations}
                  id={timeline?.id}
              />
-            }></SectionHeader>
+            }></NestedHeader>
 
             <Popup className-popup={'info-popup-content'} ref={ref} position={'bottom left'} keepTooltipInside={true} trigger={<button disabled>ℹ️</button>}><div>{toolTipText}</div></Popup>
             <Timeline
