@@ -1,8 +1,5 @@
 .preferenceDiv {
-  display: flex;
-  float: left;
-  /* columns: 100px 3; */
-  font: 1.5rem;
+  display: block;
 }
 
 .pref_icon {
@@ -15,7 +12,7 @@
 .icon-wrapper {
   display: inline-block;
   vertical-align: middle;
-  padding: 0 10px;
+  padding: 0 8px;
   font-size: 1.7rem;
   color: var(--logo-color);
 }
@@ -40,7 +37,6 @@
 
 .label-wrapper {
   display: inline-block;
-  vertical-align: middle;
   margin-right: 2vh;
   font-size: 1rem;
   color: black;
