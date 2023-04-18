@@ -73,11 +73,9 @@ class Nav extends React.Component {
         <nav
           className={this.state.isNavBarOpen ? "appBar" : "appBar appBarClosed"}
         >
-          <div className="container-fluid">
-            <ul className="nav navbar-nav">
-              <div className="account_icon">{menu}</div>
-            </ul>
-          </div>
+          <ul className="nav navbar-nav">
+            <div className="account_icon">{menu}</div>
+          </ul>
         </nav>
       </>
     );

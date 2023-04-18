@@ -23,7 +23,7 @@ function SectionHeader({ sectionTitle, popupContent, onClose }) {
         onClose={useCallback(() => onClose(), [])}
         trigger={
           <button className="edit_button">
-            <FaEdit style={{ width: "25px", color: "#a78a7f" }}></FaEdit>
+            <FaEdit></FaEdit>
           </button>
         }
         closeOnDocumentClick
