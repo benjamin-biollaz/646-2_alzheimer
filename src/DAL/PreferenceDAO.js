@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc, updateDoc, getDocs, collection, addDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc,deleteDoc, getDocs, collection, addDoc } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { preferenceConverter, PreferenceDTO } from "../DTO/PreferenceDTO";
 import { PreferenceWithId } from "../DTO/PreferenceWithId";
@@ -68,6 +68,17 @@ class PreferenceDAO {
                 , preferenceToChange.id).withConverter(preferenceConverter);
 
         await setDoc(prefRef, newPreference.preferenceDTO);
+    }
+
+    async deletePreference(residentId, preferenceId) {
+        const prefRef =
+            doc(
+                collection(
+                    doc(collection(db, "Residents"), residentId),
+                    "Preferences")
+                , preferenceId).withConverter(preferenceConverter);
+
+        await deleteDoc(prefRef);
     }
 }
 

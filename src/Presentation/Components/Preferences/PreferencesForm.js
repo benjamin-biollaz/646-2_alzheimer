@@ -5,6 +5,8 @@ import { PreferenceDAO } from "../../../DAL/PreferenceDAO";
 import { PreferenceWithId } from "../../../DTO/PreferenceWithId";
 import { PreferenceDTO } from "../../../DTO/PreferenceDTO";
 import { AiFillEdit } from "react-icons/ai";
+import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 /**
  * This components renders a list of preferences in a form.
@@ -86,9 +88,43 @@ function PreferencesForm({ preferences, category }) {
         prefWithId={pr}
         isEditable={isEditable}
         updatePrefList={updatePrefList}
+        onDelete={deletePreference.bind(this, pr.id)}
       ></Preference>
     ));
   };
+  //delete preference from the list and from the database if id is not empty
+  const deletePreference = (id) => {
+    const residentId = localStorage.getItem("residentId");
+    const prefIndex = prefState.findIndex((p) => p.id === id);
+    if (typeof id === "number") {
+      // delete the new preference and rerender the list
+      const elements = prefState;
+      elements.splice(prefIndex, 1);
+      setPrefState(elements);
+      Swal.fire(
+        'Supprimé !',
+        'La préférence a été supprimée.',
+        'success'
+      );
+      return;
+    }
+    delFromDB(residentId, id).then(() => {
+      const elements = prefState;
+      elements.splice(prefIndex, 1);
+      setPrefState(elements);
+      Swal.fire(
+        'Supprimé !',
+        'La préférence a été supprimée.',
+        'success'
+      );
+      return;
+    });
+  };
+
+  const delFromDB = async (residentId, id) => {
+    const prefDAO = new PreferenceDAO();
+    await prefDAO.deletePreference(residentId, id);
+  }
 
   return (
     <div className="flexDiv">
