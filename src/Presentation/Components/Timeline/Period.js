@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
 import FloatLabelInput from "../Form/FloatLabelInput";
+import { BiTrash } from "react-icons/bi";
 
-function Period({ period, isEditable, updatePeriodList }) {
+function Period({ period, isEditable, updatePeriodList, deletePeriod }) {
   const [periodState, setPeriod] = useState(period.periodDTO);
 
   const df = new DateFormatter();
@@ -18,6 +19,10 @@ function Period({ period, isEditable, updatePeriodList }) {
       [fieldName]: value,
     }));
   };
+
+  const handleDelete = () => {
+    deletePeriod(period.id);
+  }
 
   // update periods list of parent component
   // this is called at every render as setState renders the component again
@@ -50,6 +55,7 @@ function Period({ period, isEditable, updatePeriodList }) {
         type="date"
         name={"endDate"}
       />
+      <BiTrash onClick={handleDelete} size={"20px"} ></BiTrash>
     </div>
   ) : (
     <p>

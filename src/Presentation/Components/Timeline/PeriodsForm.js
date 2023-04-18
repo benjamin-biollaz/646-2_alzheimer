@@ -29,6 +29,13 @@ function PeriodsForm({ periods }) {
         const periodDAO = new PeriodDAO();
         const timelineId = localStorage.getItem("timelineId");
 
+        const periodsToDelete = periodsBeforeEdition.filter(
+            (period) => !periodState.some((e) => e.id === period.id)
+        );
+        for (const period of periodsToDelete) {
+            await periodDAO.deletePeriod(timelineId, period.id);
+        }
+        
         for (const per of periodState) {
 
             // the id of type int are the newly added one because Firestore
@@ -67,6 +74,14 @@ function PeriodsForm({ periods }) {
             setPeriodState(elements);
             addedItemsCount++;
         }
+
+    const deletePeriod = (periodId) => {
+        const index = periodState.findIndex((period) => period.id === periodId);
+        const newPeriods = [...periodState];
+        newPeriods.splice(index, 1);
+        setPeriodState(newPeriods);
+        localStorage.setItem("update", true);
+    }
 
     const renderPeriods = (periods, isEditable) => {
         return periods

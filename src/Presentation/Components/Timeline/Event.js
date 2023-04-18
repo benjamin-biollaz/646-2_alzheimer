@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import FloatLabelInput from "../Form/FloatLabelInput";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
+import { BiTrash } from "react-icons/bi";
 
 /**
  * Event renders the details of a timeline event either an input or a text field 
  * depending if the view is readonly or not.
  */
 
-function Event({ event, isEditable, updateEventsList }) {
+function Event({ event, isEditable, updateEventsList, deleteEvent }) {
   const [eventState, setEvent] = useState(event.eventDTO);
 
   const df = new DateFormatter();
@@ -23,6 +24,10 @@ function Event({ event, isEditable, updateEventsList }) {
       [fieldName]: value, //es6 computed property syntax
     }))
 
+  };
+
+  const handleDelete = () => {
+    deleteEvent(event.id);
   };
 
     // update events list of parent component
@@ -52,7 +57,7 @@ function Event({ event, isEditable, updateEventsList }) {
         onChange={onInputChange}
         type={"date"}
       />
-
+      <BiTrash onClick={handleDelete} size={"20px"} ></BiTrash>
     </div>
   ) : (
     <p>
