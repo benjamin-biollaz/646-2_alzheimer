@@ -25,6 +25,7 @@
   margin-top: 2.5vh;
   font-size: 30px;
   float: right;
+  margin-right: 75px;
   height: 7vh;
   color: var(--logo-color);
 }
@@ -118,7 +119,7 @@
 }
 
 .appBar {
-  width: 90%;
+  width: 100%;
 }
 
 .appBar a {
