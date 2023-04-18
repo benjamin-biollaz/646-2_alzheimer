@@ -87,7 +87,8 @@ function PeriodsForm({ periods }) {
         return periods
             .sort((a, b) => new Date(a.periodDTO.endDate) - new Date(b.periodDTO.endDate))
             .map((per) => (
-                <Period key={per.id} period={per} isEditable={isEditable} updatePeriodList={updatePeriodsList}></Period>
+                <Period key={per.id} period={per} isEditable={isEditable} updatePeriodList={updatePeriodsList}
+                deletePeriod={deletePeriod}></Period>
             ))
     }
 
