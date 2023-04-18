@@ -21,10 +21,10 @@ function NestedHeader({ sectionTitle, popupContent, onClose }) {
       <Popup
         nested
         className-content={"form-popup-content"}
-        onClose={useCallback(() => onClose(), [])}
+        onClose={useCallback(() => onClose(), [popupContent])}
         trigger={
           <button className="edit_button">
-            <FaEdit style={{ width: "25px", color: "#a78a7f" }}></FaEdit>
+            <FaEdit></FaEdit>
           </button>
         }
         closeOnDocumentClick

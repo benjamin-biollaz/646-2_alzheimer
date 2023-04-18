@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
 import FloatLabelInput from "../Form/FloatLabelInput";
+import { BiTrash } from "react-icons/bi";
+import Swal from "sweetalert2";
 
-function Period({ period, isEditable, updatePeriodList }) {
+function Period({ period, isEditable, updatePeriodList, deletePeriod }) {
   const [periodState, setPeriod] = useState(period.periodDTO);
 
   const df = new DateFormatter();
@@ -18,6 +20,24 @@ function Period({ period, isEditable, updatePeriodList }) {
       [fieldName]: value,
     }));
   };
+
+  const handleDelete = () => {
+    Swal.fire({
+      title: 'Voulez-vous réellement supprimer ?',
+      text: "Cette action est irréversible !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, supprimer !',
+      reverseButtons: true,
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deletePeriod(period.id);
+      }
+    })
+  }
 
   // update periods list of parent component
   // this is called at every render as setState renders the component again
@@ -50,6 +70,7 @@ function Period({ period, isEditable, updatePeriodList }) {
         type="date"
         name={"endDate"}
       />
+      <BiTrash onClick={handleDelete} size={"20px"} ></BiTrash>
     </div>
   ) : (
     <p>

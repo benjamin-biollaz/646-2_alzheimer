@@ -14,8 +14,8 @@
     "@mui/material": "^5.11.12",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/user-event": "^13.2.1",
-    "iconify-icon": "^1.0.7",
     "html2canvas": "^1.4.1",
+    "iconify-icon": "^1.0.7",
     "interactjs": "^1.10.17",
     "moment": "^2.29.4",
     "primeicons": "^6.0.1",
@@ -31,6 +31,8 @@
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.4",
     "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.7.3",
+    "unop-react-dropdown": "^0.2.3",
     "web-vitals": "^2.1.0"
   },
   "scripts": {

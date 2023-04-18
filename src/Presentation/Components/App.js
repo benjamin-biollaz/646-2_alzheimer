@@ -7,6 +7,7 @@ import Login from "../Components/Login/Login";
 import Page404 from "./Page404";
 import Information from "./Information";
 import Logout from "../Components/Login/Logout";
+import Reload from "./Reload";
 import "../CSS/App.css";
 import IconPicker from "./IconPopup/IconPicker";
 import Profile from "./Login/Profile";
@@ -45,6 +46,7 @@ function App() {
         <Route path="/infos" element={<Information />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/reload" element={<Reload />} />
 
         {/* No route found - 404 page */}
         <Route path="*" element={<Page404 />} />

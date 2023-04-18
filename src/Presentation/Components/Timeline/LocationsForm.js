@@ -4,6 +4,7 @@ import Location from './Location';
 import { LocationWithId } from '../../../DTO/LocationWithId'
 import { LocationDAO } from '../../../DAL/LocationDAO'
 import { LocationDTO } from '../../../DTO/LocationDTO';
+import Swal from 'sweetalert2'
 
 function LocationsForm({ locations, id }) {
 
@@ -25,6 +26,14 @@ function LocationsForm({ locations, id }) {
     const updateLocationsInDB = async () => {
         const locationDAO = new LocationDAO();
         const timelineId = localStorage.getItem("timelineId");
+
+        const locationsToDelete = locationsBeforeEdition.filter(
+            (location) => !locationState.some((e) => e.id === location.id)
+        );
+        for (const location of locationsToDelete) {
+            await locationDAO.deleteLocation(timelineId, location.id);
+        }
+
         for (const loc of locationState) {
 
             // the id of type int are the newly added one because Firestore
@@ -56,11 +65,26 @@ function LocationsForm({ locations, id }) {
         addedItemsCount++;
     }
 
+    const deleteLocation = (locationId) => {
+        const index = locationState.findIndex((location) => location.id === locationId);
+        const newLocations = [...locationState];
+        newLocations.splice(index, 1);
+        setLocationState(newLocations);
+        localStorage.setItem("update", true);
+        Swal.fire(
+            'Supprimé !',
+            'La préférence a été supprimée.',
+            'success',
+            2000
+          )
+    }
+
     const renderLocations = (locations, isEditable) => {
         return locations
             .sort((a, b) => new Date(a.locationDTO.endDate) - new Date(b.locationDTO.endDate))
             .map((loc) => (
-                <Location key={loc.id} location={loc} isEditable={isEditable} updateLocationList={updateLocationsList}></Location>
+                <Location key={loc.id} location={loc} isEditable={isEditable} 
+                    updateLocationList={updateLocationsList} deleteLocation={deleteLocation}></Location>
             ));
     }
 

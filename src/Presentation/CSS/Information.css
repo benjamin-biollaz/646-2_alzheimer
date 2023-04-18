@@ -4,14 +4,11 @@
   display: grid;
   margin-right: 10px;
   margin-left: 50px;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.6fr 0.5fr;
   gap: 20px 50px;
   grid-auto-flow: row;
   grid-template-areas:
-    "passions habitudes croyances"
-    "preferences habitudes croyances"
-    "evenements evenements evenements";
+    "preferences croyances"
+    "preferences croyances";
 }
 
 .container_timeline {
@@ -21,9 +18,9 @@
 }
 
 .personal_infos {
-  display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 45%;
   margin-top: 6%;
   font-size: var(--h2-size);
   color: black;
@@ -41,19 +38,6 @@
   font-size: var(--small-icon-size);
 }
 
-.passions {
-  color: black;
-  font-size: var(--h3-size);
-  font-weight: bold;
-  margin-top: 2vh;
-  height: fit-content;
-  padding-bottom: 2vh;
-  grid-area: passions;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 2vh;
-  margin-bottom: 2vh;
-}
-
 .categories {
   margin-left: 10px;
   margin-right: 10px;
@@ -64,34 +48,11 @@
   color: black;
   font-size: 1rem;
   font-weight: bold;
-  margin-top: -2.5%;
+  margin-top: 2%;
   margin-bottom: 15px;
-  height: 100%;
+  width: 600px;
+  height: 80%;
   grid-area: preferences;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 2vh;
-}
-
-.evenements {
-  justify-content: center;
-  margin-left: 10px;
-  color: #a78a7f;
-  font-size: 1rem;
-  font-weight: bold;
-  height: fit-content;
-  border-radius: 2vh;
-  margin-right: 10px;
-  max-width: 100%;
-}
-
-.habitudes {
-  justify-content: center;
-  margin-top: 10%;
-  font-size: 1rem;
-  font-weight: bold;
-  height: 65%;
-  width: 100%;
-  grid-area: habitudes;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 2vh;
 }
@@ -100,26 +61,15 @@
   justify-content: center;
   font-size: 1rem;
   font-weight: bold;
-  margin-top: 10%;
-  width: 70%;
-  height: 65%;
+  margin-top: 3%;
+  width: 90%;
+  height: 80%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   color: black;
   font-weight: bold;
   grid-area: croyances;
   border-radius: 2vh;
   padding-bottom: 7vh;
-}
-
-.habitudes_grid {
-  margin-top: 5%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 3vh;
-  color: black;
-  font-size: 1rem;
-  font-weight: bold;
-  grid-area: habitudes;
 }
 
 .icon_passion {
@@ -172,18 +122,21 @@
 }
 
 .printButton {
+  float: right;
+  margin-top: -10px;
+  margin-right: 75px;
   width: 30px;
   color: #a78a7f;
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-top: 70px;
-  margin-right: 40px;
+  cursor: pointer;
+}
+
+.printButton:hover {
+  color: var(--logo-color);
 }
 
 @media print {
-
-  html, body {
+  html,
+  body {
     height: initial !important;
     overflow: initial !important;
   }
@@ -222,18 +175,17 @@
     width: 100%;
     max-width: 100%;
   }
-  .imageTimeline{
+  .imageTimeline {
     max-width: 100%;
     margin-right: 5px;
   }
-  .evenements{
+  .evenements {
     /* no box shadow */
     box-shadow: none;
   }
- 
 }
 
-.html2canvas-container { width: 100vw !important; height: 100vh !important; }
-
-
-
+.html2canvas-container {
+  width: 100vw !important;
+  height: 100vh !important;
+}

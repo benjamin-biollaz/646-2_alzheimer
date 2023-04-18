@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import FloatLabelInput from "../Form/FloatLabelInput";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
+import { BiTrash } from "react-icons/bi";
+import Swal from "sweetalert2";
 
 /**
  * Event renders the details of a timeline event either an input or a text field 
  * depending if the view is readonly or not.
  */
 
-function Event({ event, isEditable, updateEventsList }) {
+function Event({ event, isEditable, updateEventsList, deleteEvent }) {
   const [eventState, setEvent] = useState(event.eventDTO);
 
   const df = new DateFormatter();
@@ -25,8 +27,26 @@ function Event({ event, isEditable, updateEventsList }) {
 
   };
 
-    // update events list of parent component
-    // this is called at every render as setState renders the component again
+  const handleDelete = () => {
+    Swal.fire({
+      title: 'Voulez-vous réellement supprimer ?',
+      text: "Cette action est irréversible !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, supprimer !',
+      reverseButtons: true,
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteEvent(event.id);
+      }
+    })
+  };
+
+  // update events list of parent component
+  // this is called at every render as setState renders the component again
   updateEventsList(event.id, eventState);
 
   return isEditable ? (
@@ -52,7 +72,7 @@ function Event({ event, isEditable, updateEventsList }) {
         onChange={onInputChange}
         type={"date"}
       />
-
+      <BiTrash onClick={handleDelete} size={"20px"} ></BiTrash>
     </div>
   ) : (
     <p>
