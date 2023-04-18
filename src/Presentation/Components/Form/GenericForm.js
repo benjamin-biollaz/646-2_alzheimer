@@ -18,7 +18,7 @@ function GenericForm({
   renderItems,
   addNewItem,
   submitModifications,
-  doNotDisplayAddButton
+  doNotDisplayAddButton,
 }) {
   // readonly/edit mode
   const [isEditableState, setIsEditable] = useState(false);
@@ -32,7 +32,7 @@ function GenericForm({
 
     // force re-render
     setEmptyState(!emptyState);
-  }
+  };
 
   // toggle readonly / edit view
   const toggleView = () => {
@@ -43,7 +43,12 @@ function GenericForm({
   const sendModifications = () => {
     submitModifications();
     toggleView();
-    swal({ timer: 1500, type: "success", icon: 'success', title: "Sauvegardé!" });
+    swal({
+      timer: 1500,
+      type: "success",
+      icon: "success",
+      title: "Sauvegardé!",
+    });
   };
 
   return (
@@ -59,18 +64,16 @@ function GenericForm({
                 size={"20px"}
               />
 
-              {doNotDisplayAddButton ?
+              {doNotDisplayAddButton ? (
                 ""
-                :
-                <IoIosAddCircle
-                  onClick={add}
-                  color="#A78A7F"
-                  size={"20px"}
-                />}
-
+              ) : (
+                <IoIosAddCircle onClick={add} color="#A78A7F" size={"20px"} />
+              )}
             </span>
           ) : (
-            <FaEdit onClick={toggleView} color="grey" size={"20px"} />
+            <button className="edit_button">
+              <FaEdit onClick={toggleView} />
+            </button>
           )}
         </div>
       </div>
@@ -83,7 +86,6 @@ function GenericForm({
       >
         {renderItems(items, isEditableState)}
       </div>
-
     </div>
   );
 }
