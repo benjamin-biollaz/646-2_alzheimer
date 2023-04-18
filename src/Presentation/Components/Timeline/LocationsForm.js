@@ -70,7 +70,7 @@ function LocationsForm({ locations, id }) {
         newLocations.splice(index, 1);
         setLocationState(newLocations);
         localStorage.setItem("update", true);
-      };
+    }
 
     const renderLocations = (locations, isEditable) => {
         return locations

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FloatLabelInput from "../Form/FloatLabelInput";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
-
+import { BiTrash } from "react-icons/bi";
 
 /**
  * Event renders the details of a timeline event either an input or a text field 
@@ -57,7 +57,7 @@ function Event({ event, isEditable, updateEventsList, deleteEvent }) {
         onChange={onInputChange}
         type={"date"}
       />
-      <button onClick={handleDelete}>Delete</button>
+      <BiTrash onClick={handleDelete} size={"20px"} ></BiTrash>
     </div>
   ) : (
     <p>

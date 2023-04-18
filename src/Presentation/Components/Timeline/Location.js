@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FloatLabelInput from "../Form/FloatLabelInput";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
+import { BiTrash } from "react-icons/bi";
 
 function Location({ location, isEditable, updateLocationList, deleteLocation }) {
   const [locationState, setLocation] = useState(location.locationDTO);
@@ -49,7 +50,7 @@ function Location({ location, isEditable, updateLocationList, deleteLocation }) 
         type={"date"}
         onChange={onInputChange}
       />
-      <button onClick={handleDelete}>Delete</button>
+      <BiTrash onClick={handleDelete} size={"20px"} ></BiTrash>
     </div>
   ) : (
     <p>
