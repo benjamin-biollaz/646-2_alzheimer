@@ -62,7 +62,7 @@ function PreferencesList() {
   return (
     <div className="preferences">
       <NestedHeader
-        onClose={doRender.bind(this)}
+        onClose={getPreferencesList.bind(this)}
         sectionTitle={"Préférences"}
         popupContent={
           // popup content takes the three list as props

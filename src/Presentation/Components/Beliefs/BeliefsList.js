@@ -43,7 +43,7 @@ function BeliefsList() {
                     allPractices={allPractices}
                     allReligions={allReligions}>
                 </BeliefPopUpContent>}
-                onClose={doRender.bind(this)}
+                onClose={fetchBeliefs.bind(this)}
                 sectionTitle={"Croyances"}></SectionHeader>
 
             <div className="infos_list">

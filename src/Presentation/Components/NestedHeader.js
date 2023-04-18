@@ -21,7 +21,7 @@ function NestedHeader({ sectionTitle, popupContent, onClose }) {
       <Popup
         nested
         className-content={"form-popup-content"}
-        onClose={useCallback(() => onClose(), [])}
+        onClose={useCallback(() => onClose(), [popupContent])}
         trigger={
           <button className="edit_button">
             <FaEdit></FaEdit>
