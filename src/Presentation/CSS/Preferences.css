@@ -12,7 +12,7 @@
 .icon-wrapper {
   display: inline-block;
   vertical-align: middle;
-  padding: 0 10px;
+  padding: 0 8px;
   font-size: 1.7rem;
   color: var(--logo-color);
 }
