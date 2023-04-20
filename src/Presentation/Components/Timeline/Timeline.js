@@ -240,11 +240,12 @@ export function TimelineWidget() {
             </Timeline>
             <br />
             <div>
-               
+                <button className="reload-button">
                 <TbReload
-                    onClick={() => window.location.reload()}
-                    style={{ width: "25px", color: "#a78a7f" }}
+                    onClick={() => reload()}
+                    style={{ width: "25px" }}
                 ></TbReload>
+                </button>
             </div>
         </div>
     );
