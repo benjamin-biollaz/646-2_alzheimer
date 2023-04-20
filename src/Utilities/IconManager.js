@@ -8,6 +8,7 @@ export class IconManager {
             if (icons.name === iconName) return icons;
           }
         }
+        return null;
       };
 
 }

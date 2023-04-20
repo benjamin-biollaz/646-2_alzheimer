@@ -39,7 +39,7 @@ function PreferencesList() {
         <h4 className="categories">{category}</h4>
         <span className="infos_item">
           {preferencesState?.map((p) => (
-            <span>
+            <span key={p.id}>
               <span className="icon-wrapper">
                 {iconManager.getIconByName(p.preferenceDTO.iconName).icon}
               </span>
