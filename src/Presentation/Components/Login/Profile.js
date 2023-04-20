@@ -38,7 +38,7 @@ function Profile() {
 
             // Firebase method to update the password
             updatePassword(user, confirmPassword).then(() => {
-                swal({ timer: 1500, type: "success", icon: 'success', title: "Votre mot de passe a été modifié!" });
+                swal({ timer: 1500, icon: 'success', title: "Votre mot de passe a été modifié!" });
                 navigate("/home");
             }).catch((error) => {
                 swal("Erreur", "Le mot de passe n'est pas mis à jour", "error");

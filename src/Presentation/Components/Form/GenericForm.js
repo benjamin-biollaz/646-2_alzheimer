@@ -45,7 +45,6 @@ function GenericForm({
     toggleView();
     swal({
       timer: 1500,
-      type: "success",
       icon: "success",
       title: "Sauvegardé!",
     });
