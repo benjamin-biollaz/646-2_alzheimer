@@ -1,3 +1,12 @@
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
 .preferenceDiv {
   display: block;
 }
@@ -82,7 +91,7 @@
   position: relative;
   top: 50%;
   left: 50%;
-  transform: translate(-45%, -50%);
+  transform: translate(-47%, -50%);
   font-size: 1.5rem;
 }
 
@@ -90,6 +99,8 @@
   box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5), -0.125rem -0.125rem 1rem #e7d7c1,
     0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
   cursor: pointer;
+  background-color: #9e322a;
+  animation: rotation 1s 1 ease-in-out;
 }
 
 .preference_input_div{

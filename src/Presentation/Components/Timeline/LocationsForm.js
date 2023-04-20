@@ -4,6 +4,7 @@ import Location from './Location';
 import { LocationWithId } from '../../../DTO/LocationWithId'
 import { LocationDAO } from '../../../DAL/LocationDAO'
 import { LocationDTO } from '../../../DTO/LocationDTO';
+import Swal from 'sweetalert2'
 
 function LocationsForm({ locations, id }) {
 
@@ -70,6 +71,12 @@ function LocationsForm({ locations, id }) {
         newLocations.splice(index, 1);
         setLocationState(newLocations);
         localStorage.setItem("update", true);
+        Swal.fire(
+            'Supprimé !',
+            'La préférence a été supprimée.',
+            'success',
+            2000
+          )
     }
 
     const renderLocations = (locations, isEditable) => {

@@ -7,6 +7,7 @@ import { PeriodDAO } from '../../../DAL/PeriodDAO'
 import { ResidentContext } from '../../../Context/ResidentContext';
 import { async } from '@firebase/util';
 import { PeriodDTO } from '../../../DTO/PeriodDTO';
+import Swal from 'sweetalert2';
 
 function PeriodsForm({ periods }) {
 
@@ -43,8 +44,8 @@ function PeriodsForm({ periods }) {
             if (typeof (per.id) === "number") {
                 // add the new event
                 console.log(per);   
-                const newId = await periodDAO.addPeriod(timelineId, per.periodDTO.startDate,
-                    per.periodDTO.endDate, per.periodDTO.name);
+                const newId = await periodDAO.addPeriod(timelineId, per.periodDTO.name, per.periodDTO.startDate,
+                    per.periodDTO.endDate);
                 setNewItemId(newId, per.id);
                 continue;
             }
@@ -81,13 +82,20 @@ function PeriodsForm({ periods }) {
         newPeriods.splice(index, 1);
         setPeriodState(newPeriods);
         localStorage.setItem("update", true);
+        Swal.fire(
+            'Supprimé !',
+            'La préférence a été supprimée.',
+            'success',
+            2000
+          )
     }
 
     const renderPeriods = (periods, isEditable) => {
         return periods
             .sort((a, b) => new Date(a.periodDTO.endDate) - new Date(b.periodDTO.endDate))
             .map((per) => (
-                <Period key={per.id} period={per} isEditable={isEditable} updatePeriodList={updatePeriodsList}></Period>
+                <Period key={per.id} period={per} isEditable={isEditable} updatePeriodList={updatePeriodsList}
+                deletePeriod={deletePeriod}></Period>
             ))
     }
 

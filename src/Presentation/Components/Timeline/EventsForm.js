@@ -4,8 +4,7 @@ import Event from './Event';
 import { EventDAO } from '../../../DAL/EventDAO';
 import { EventWithId } from '../../../DTO/EventWithId';
 import { EventDTO } from '../../../DTO/EventDTO';
-import swal from 'sweetalert';
-
+import Swal from 'sweetalert2';
 /**
  * This component renders a list of event. 
  * Note that the display of indivual event is handled in the "Event" component.
@@ -84,6 +83,12 @@ function EventsForm({ events }) {
         newEvents.splice(index, 1);
         setEventState(newEvents);
         localStorage.setItem("update", true);
+        Swal.fire(
+            'Supprimé !',
+            'La préférence a été supprimée.',
+            'success',
+            2000
+          );
       };
 
     const renderEvents = (events, isEditable) => {

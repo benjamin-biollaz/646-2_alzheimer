@@ -9,6 +9,7 @@ import PreferencesList from "./Preferences/PreferencesList";
 import PersonalInfos from "./PersonalInfos";
 import BeliefsList from "./Beliefs/BeliefsList";
 import html2canvas from "html2canvas";
+import { useNavigate } from "react-router";
 
 function Information() {
   function MusicNoteIcon() {
@@ -16,6 +17,7 @@ function Information() {
   }
   const infoRef = useRef(null);
   const [imageData, setImageData] = useState(null);
+  const navigate = useNavigate();
 
   async function handlePrint() {
     window.scrollTo(0, 0);
@@ -34,7 +36,7 @@ function Information() {
       }, 1000);
     //reload after print
     window.onafterprint = function () {
-      window.location.reload();
+      navigate("/reload");
     };
   }
   function print() {

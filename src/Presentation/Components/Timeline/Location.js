@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FloatLabelInput from "../Form/FloatLabelInput";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
 import { BiTrash } from "react-icons/bi";
+import Swal from "sweetalert2";
 
 function Location({ location, isEditable, updateLocationList, deleteLocation }) {
   const [locationState, setLocation] = useState(location.locationDTO);
@@ -21,7 +22,21 @@ function Location({ location, isEditable, updateLocationList, deleteLocation }) 
   };
 
   const handleDelete = () => {
-    deleteLocation(location.id);
+    Swal.fire({
+      title: 'Voulez-vous réellement supprimer ?',
+      text: "Cette action est irréversible !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, supprimer !',
+      reverseButtons: true,
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteLocation(location.id);
+      }
+    })
   };
 
   // update locations list of parent component
