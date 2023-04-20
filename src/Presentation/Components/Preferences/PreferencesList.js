@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "../../CSS/Information.css";
 import { PreferenceDAO } from "../../../DAL/PreferenceDAO";
-import { iconSets } from "../IconPopup/IconPicker";
 import NestedHeader from "../NestedHeader";
 import PrefPopUPContent from "./PrefPopUPContent";
+import { IconManager } from "../../../Utilities/IconManager";
+
 
 function PreferencesList() {
+
+  const iconManager = new IconManager;
+
   // states for the preference categories
   const [prefAlimState, setPrefAlim] = useState(null);
   const [prefSleepState, setPrefSleep] = useState(null);
@@ -27,14 +31,6 @@ function PreferencesList() {
     setPrefHygiene(pref.filter((p) => p.preferenceDTO.category === "Hygiène"));
   };
 
-  const getIconByName = (iconName) => {
-    for (const category of iconSets) {
-      for (const icons of category.icons) {
-        if (icons.name === iconName) return icons;
-      }
-    }
-  };
-
   // renders a list of preferences as readonly
   const renderPreferences = (category, preferencesState) => {
     return (
@@ -43,9 +39,9 @@ function PreferencesList() {
         <h4 className="categories">{category}</h4>
         <span className="infos_item">
           {preferencesState?.map((p) => (
-            <span>
+            <span key={p.id}>
               <span className="icon-wrapper">
-                {getIconByName(p.preferenceDTO.iconName).icon}
+                {iconManager.getIconByName(p.preferenceDTO.iconName).icon}
               </span>
               {p.preferenceDTO.label}
             </span>

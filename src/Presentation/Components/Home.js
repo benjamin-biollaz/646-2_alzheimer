@@ -95,11 +95,11 @@ export default function Home() {
       </div>
       <div style={{ marginLeft: "10%", marginTop: "15vh" }}>
         <h2>Liste des résidents au {establishment?.name}</h2>
-        <div class="box">
-          <div class="input-wrapper">
+        <div className="box">
+          <div className="input-wrapper">
             <input
               type="text"
-              class="input"
+              className="input"
               name="txt"
               value={searchResidents}
               onChange={handleSearch}

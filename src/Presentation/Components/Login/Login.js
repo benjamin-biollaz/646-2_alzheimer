@@ -17,7 +17,7 @@ export default function Login() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/home");
-      swal({ timer: 1500, type: "success", icon: logoSwal, title: "Bienvenue!" });
+      swal({ timer: 1500, icon: logoSwal, title: "Bienvenue!" });
     } catch (e) {
       swal("Email ou mot de passe invalide", "Veuillez contrôler vos informations de connection", "error");
     }
@@ -36,7 +36,7 @@ export default function Login() {
         >
           <path
             fill="#A78A7F"
-            fill-opacity=".86"
+            fillOpacity=".86"
             d="M1197.2 559.412c0 283.907-211.331 514.058-472.022 514.058C-318.715 1399.91-1.3 570.913 249.683 485.5c-99.631-472.408 394.751-141.161 165-544.5C675.374-59 1197.2 275.505 1197.2 559.412Z"
           />
         </svg>

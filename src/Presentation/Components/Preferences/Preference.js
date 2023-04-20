@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
 import FloatLabelInput from "../Form/FloatLabelInput";
 import IconPicker from "../IconPopup/IconPicker";
-import { iconSets } from "../IconPopup/IconPicker";
 import { IconContext } from "react-icons";
 import Popup from "reactjs-popup";
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -9,6 +8,7 @@ import Swal from "sweetalert2";
 import "../../CSS/Preferences.css";
 import "../../CSS/IconPicker.css"
 import { TbTrash } from "react-icons/tb"
+import { IconManager } from "../../../Utilities/IconManager";
 
 /**
  * Display a preference properties. This component will either render an input
@@ -18,6 +18,8 @@ function Preference({ prefWithId, isEditable, updatePrefList, onDelete }) {
   const [prefState, setPrefState] = useState(prefWithId.preferenceDTO);
   const callback = useCallback(() => onDelete(prefWithId.id), []);
   const [deleted, setDeleted] = useState(false);
+
+  const iconManager = new IconManager();
 
   const del = () => {
     Swal.fire({
@@ -44,14 +46,6 @@ function Preference({ prefWithId, isEditable, updatePrefList, onDelete }) {
       ...prevState,
       iconName: icon.name, //es6 computed property syntax
     }));
-  };
-
-  const getIconByName = (iconName) => {
-    for (const category of iconSets) {
-      for (const icons of category.icons) {
-        if (icons.name === iconName) return icons;
-      }
-    }
   };
 
   const onInputChange = (e) => {
@@ -84,7 +78,7 @@ function Preference({ prefWithId, isEditable, updatePrefList, onDelete }) {
         <div className="preference_input_div">
           <div className="icon-wrapper-edit">
             <div className="icon-edit">
-            {getIconByName(prefState.iconName).icon}
+            {iconManager.getIconByName(prefState.iconName).icon}
             </div>
           </div>
           <Popup
@@ -114,7 +108,7 @@ function Preference({ prefWithId, isEditable, updatePrefList, onDelete }) {
     ) : (
       <div className="preferenceDiv">
         <div className="icon-wrapper">
-          {getIconByName(prefState.iconName).icon}
+          {iconManager.getIconByName(prefState.iconName).icon}
         </div>
         <div className="label-wrapper">&nbsp;{prefState.label}</div>
         <br></br>

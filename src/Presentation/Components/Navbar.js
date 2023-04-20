@@ -25,7 +25,6 @@ class Nav extends React.Component {
       (prevState) => ({
         isDropdownOpen: !prevState.isDropdownOpen,
       }),
-      () => console.log("Dropdown open state:", this.state.isDropdownOpen)
     );
   };
 
