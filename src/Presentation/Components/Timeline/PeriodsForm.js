@@ -1,11 +1,9 @@
 import React from 'react'
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import GenericForm from '../Form/GenericForm';
 import Period from './Period';
 import { PeriodWithId } from '../../../DTO/PeriodWithId';
 import { PeriodDAO } from '../../../DAL/PeriodDAO'
-import { ResidentContext } from '../../../Context/ResidentContext';
-import { async } from '@firebase/util';
 import { PeriodDTO } from '../../../DTO/PeriodDTO';
 import Swal from 'sweetalert2';
 
@@ -20,7 +18,7 @@ function PeriodsForm({ periods }) {
 
     // this functions is passed to the child to keep tack of changes
     const updatePeriodsList = (periodId, periodDTO) => {
-        var foundIndex = periodState.findIndex(p => p.id == periodId);
+        var foundIndex = periodState.findIndex(p => p.id === periodId);
         const elements = periodState;
         elements[foundIndex] = new PeriodWithId(periodId, periodDTO);
         setPeriodState(elements);
@@ -51,7 +49,7 @@ function PeriodsForm({ periods }) {
             }
 
             // update each event
-            const periodIndex = periodsBeforeEdition.findIndex(p => p.id == per.id)
+            const periodIndex = periodsBeforeEdition.findIndex(p => p.id === per.id)
             periodDAO.updatePeriod(timelineId, periodsBeforeEdition[periodIndex], per.periodDTO.startDate,
                 per.periodDTO.endDate, per.periodDTO.name)
         }

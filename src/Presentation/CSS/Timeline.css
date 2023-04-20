@@ -120,3 +120,14 @@
     display:flex;
     justify-content: center;
   }
+  .reload-button{
+    border: 0;
+    background-color: transparent;
+    color: #a78a7f;
+  }
+
+  .reload-button:hover {
+    color: var(--logo-color);
+    cursor: pointer;
+  }
+  

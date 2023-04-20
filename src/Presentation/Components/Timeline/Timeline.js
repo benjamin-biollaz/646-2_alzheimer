@@ -12,9 +12,7 @@ import { TimelineDAO } from "../../../DAL/TimelineDAO";
 import { EventDAO } from "../../../DAL/EventDAO";
 import { PeriodDAO } from "../../../DAL/PeriodDAO";
 import { LocationDAO } from "../../../DAL/LocationDAO";
-import { FaEdit } from "react-icons/fa";
 import { TbReload } from "react-icons/tb";
-import SectionHeader from "../SectionHeader";
 
 //popup
 import Popup from "reactjs-popup";
@@ -22,8 +20,6 @@ import TimelineForm from "./TimelineForm";
 import "reactjs-popup/dist/index.css";
 import "../../CSS/TimelineForm.css";
 import { DateFormatter } from "../../../Utilities/DateFormatter";
-import { color } from "@mui/system";
-import { border } from '@mui/system';
 import { useNavigate } from "react-router";
 import NestedHeader from "../NestedHeader";
 
@@ -65,8 +61,6 @@ export function TimelineWidget() {
 
     const ref = useRef();
     const toggleTooltip = () => ref.current.toggle();
-    function doRender(){window.location.reload(false)};
-
     const fetchData = async () => {
 
         const timeline = await timelineDAO.getTimelineByResidentId(localStorage.getItem("residentId"))
@@ -87,10 +81,10 @@ export function TimelineWidget() {
                 id: parseInt(element.id, 36),
                 group: 3,
                 // title: (element.eventDTO.name).split(/\s+/).slice(0, 1),
-                title: element.eventDTO.name + " (" + moment(element.eventDTO.startDate).format('DD/MM/YY') + (element.eventDTO.endDate == '' || element.eventDTO.endDate == element.eventDTO.startDate ? '' : '-' + moment(element.eventDTO.endDate).format('DD/MM/YY')) + ")",
+                title: element.eventDTO.name + " (" + moment(element.eventDTO.startDate).format('DD/MM/YY') + (element.eventDTO.endDate === '' || element.eventDTO.endDate === element.eventDTO.startDate ? '' : '-' + moment(element.eventDTO.endDate).format('DD/MM/YY')) + ")",
                 tip: element.eventDTO.name,
                 start_time: moment(df.format_YYYMMDD(element.eventDTO.startDate)),
-                end_time: (element.eventDTO.endDate == '' ? moment(df.format_YYYMMDD(element.eventDTO.startDate)).add(1, 'days') : moment(df.format_YYYMMDD(element.eventDTO.endDate))),
+                end_time: (element.eventDTO.endDate === '' ? moment(df.format_YYYMMDD(element.eventDTO.startDate)).add(1, 'days') : moment(df.format_YYYMMDD(element.eventDTO.endDate))),
                 canMove: false,
                 itemProps: {
                     'data-custom-attribute': 'Random content',
@@ -209,7 +203,7 @@ export function TimelineWidget() {
                         intervalRenderer={({ getIntervalProps, intervalContext }) => {
                             const intervalProps = getIntervalProps()
                             {
-                                if (intervalContext.intervalText % 10 == 0) {
+                                if (intervalContext.intervalText % 10 === 0) {
                                     intervalProps.style.textAlign = 'right'
                                     intervalProps.style.borderLeft = '2px solid gray'
 
@@ -240,11 +234,12 @@ export function TimelineWidget() {
             </Timeline>
             <br />
             <div>
-               
+                <button className="reload-button">
                 <TbReload
-                    onClick={() => window.location.reload()}
-                    style={{ width: "25px", color: "#a78a7f" }}
+                    onClick={() => reload()}
+                    style={{ width: "25px" }}
                 ></TbReload>
+                </button>
             </div>
         </div>
     );

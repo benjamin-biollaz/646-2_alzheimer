@@ -1,5 +1,5 @@
 import { db } from "./FirebaseConf";
-import { doc, getDoc, setDoc, updateDoc, getDocs, collection, arrayUnion } from "firebase/firestore";
+import { doc, updateDoc, getDocs, collection } from "firebase/firestore";
 import { PracticeWithId } from "../DTO/PracticeWithId";
 
 import { practiceConverter } from "../DTO/PracticeDTO"

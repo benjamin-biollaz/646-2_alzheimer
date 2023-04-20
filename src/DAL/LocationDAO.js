@@ -1,4 +1,4 @@
-import { doc, getDocs, collection, withConverter, updateDoc, setDoc, addDoc, deleteDoc } from "firebase/firestore";
+import { doc, getDocs, collection, setDoc, addDoc, deleteDoc } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { locationConverter, LocationDTO } from "../DTO/LocationDTO";
 import { LocationWithId } from "../DTO/LocationWithId";
@@ -34,8 +34,8 @@ class LocationDAO {
  */
     async updateLocation(timelineId, locationToChange, newStartDate, newEndDate, newName) {
         // access DB only if changes have been made 
-        if (locationToChange.startDate == newStartDate && locationToChange.endDate == newEndDate
-            && locationToChange.name == newName)
+        if (locationToChange.startDate === newStartDate && locationToChange.endDate === newEndDate
+            && locationToChange.name === newName)
             return;
 
         // point to the document in db

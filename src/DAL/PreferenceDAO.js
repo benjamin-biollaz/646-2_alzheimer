@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc, updateDoc,deleteDoc, getDocs, collection, addDoc } from "firebase/firestore";
+import { doc, setDoc, deleteDoc, getDocs, collection, addDoc } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { preferenceConverter, PreferenceDTO } from "../DTO/PreferenceDTO";
 import { PreferenceWithId } from "../DTO/PreferenceWithId";
@@ -56,7 +56,7 @@ class PreferenceDAO {
     async updatePreference(residentId, preferenceToChange, newPreference) {
 
         // access DB only if changes have been made 
-        if (preferenceToChange.preferenceDTO.label === newPreference.preferenceDTO.label && 
+        if (preferenceToChange.preferenceDTO.label === newPreference.preferenceDTO.label &&
             preferenceToChange.preferenceDTO.iconName === newPreference.preferenceDTO.iconName)
             return;
 
