@@ -9,7 +9,6 @@ import Information from "./Information";
 import Logout from "../Components/Login/Logout";
 import Reload from "./Reload";
 import "../CSS/App.css";
-import IconPicker from "./IconPopup/IconPicker";
 import Profile from "./Login/Profile";
 
 function App() {
@@ -60,12 +59,6 @@ function App() {
       </Routes>
     );
   }
-
-  const [selectedIcon, setSelectedIcon] = useState(null);
-
-  const handleIconSelect = (icon) => {
-    setSelectedIcon(icon);
-  };
 
   return (
     <BrowserRouter>

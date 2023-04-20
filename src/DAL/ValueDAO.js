@@ -1,7 +1,6 @@
 import { db } from "./FirebaseConf";
-import { doc, getDoc, setDoc, updateDoc, getDocs, collection, arrayUnion } from "firebase/firestore";
+import { doc, updateDoc, getDocs, collection } from "firebase/firestore";
 import { ValuesWithId } from "../DTO/ValuesWithId";
-
 import { valueConverter } from "../DTO/ValueDTO"
 
 class ValueDAO {

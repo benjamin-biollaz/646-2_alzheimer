@@ -1,8 +1,6 @@
 import moment from 'moment';
 import React from 'react'
 
-
-
 function PersonalInfos() {
  
     const age = moment().diff(localStorage.getItem("residentBirthDate"), 'years');

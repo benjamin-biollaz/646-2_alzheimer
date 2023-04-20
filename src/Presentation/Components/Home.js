@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../CSS/Home.css";
 import { Link, useNavigate } from "react-router-dom";
 import { ResidentDAO } from "../../DAL/ResidentDAO";
@@ -7,9 +7,6 @@ import Popup from "reactjs-popup";
 import swal from "sweetalert";
 import { ResidentDTO } from "../../DTO/ResidentDTO";
 import Navbar from "./Navbar";
-import { ResidentContext } from "../../Context/ResidentContext";
-import logout from "../Components/Login/Logout";
-import { margin } from "@mui/system";
 import { NurseDAO } from "../../DAL/NurseDAO";
 import { auth } from "../../DAL/FirebaseConf";
 import { EstablishmentDAO } from "../../DAL/EstablishmentDAO";
@@ -17,7 +14,6 @@ import { BiSearch } from "react-icons/bi";
 
 export default function Home() {
   const navigate = useNavigate();
-  const context = useContext(ResidentContext);
   const residentDAO = new ResidentDAO();
   const [newRes, setResident] = React.useState(
     new ResidentDTO(
@@ -43,17 +39,17 @@ export default function Home() {
 
   const filteredResidents = residents
     ? residents.filter(
-        (resident) =>
-          resident.firstName
-            .toLowerCase()
-            .includes(searchResidents.toLowerCase()) ||
-          resident.lastName
-            .toLowerCase()
-            .includes(searchResidents.toLowerCase()) ||
-          resident.birthDate
-            .toLowerCase()
-            .includes(searchResidents.toLowerCase())
-      )
+      (resident) =>
+        resident.firstName
+          .toLowerCase()
+          .includes(searchResidents.toLowerCase()) ||
+        resident.lastName
+          .toLowerCase()
+          .includes(searchResidents.toLowerCase()) ||
+        resident.birthDate
+          .toLowerCase()
+          .includes(searchResidents.toLowerCase())
+    )
     : [];
 
   useEffect(() => {
@@ -115,10 +111,6 @@ export default function Home() {
         </div>
         <table>
           <tbody>
-            {/* {residents
-              ?.sort(function (a, b) {
-                return a.lastName.localeCompare(b.lastName);
-              }) */}
             {filteredResidents.map((resident) => {
               return (
                 <tr key={resident.id}>

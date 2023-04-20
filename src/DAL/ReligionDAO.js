@@ -1,5 +1,5 @@
 import { db } from "./FirebaseConf";
-import { doc, getDoc, setDoc, updateDoc, getDocs, collection } from "firebase/firestore";
+import { doc, getDoc, updateDoc, getDocs, collection } from "firebase/firestore";
 import {ReligionWithId} from "../DTO/ReligionWithId";
 
 import {religionConverter} from "../DTO/ReligionDTO"

@@ -16,19 +16,15 @@ function PreferencesList() {
     getPreferencesList();
   }, []);
 
-  function doRender() {
-    window.location.reload(false);
-  }
-
   // access db and set the lists in the state
   const getPreferencesList = async () => {
     const prefDAO = new PreferenceDAO();
     const pref = await prefDAO.getPreferencesByResidentId(
       localStorage.getItem("residentId")
     );
-    setPrefAlim(pref.filter((p) => p.preferenceDTO.category == "Alimentation"));
-    setPrefSleep(pref.filter((p) => p.preferenceDTO.category == "Sommeil"));
-    setPrefHygiene(pref.filter((p) => p.preferenceDTO.category == "Hygiène"));
+    setPrefAlim(pref.filter((p) => p.preferenceDTO.category === "Alimentation"));
+    setPrefSleep(pref.filter((p) => p.preferenceDTO.category === "Sommeil"));
+    setPrefHygiene(pref.filter((p) => p.preferenceDTO.category === "Hygiène"));
   };
 
   const getIconByName = (iconName) => {
