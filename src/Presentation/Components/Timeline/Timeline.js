@@ -65,8 +65,6 @@ export function TimelineWidget() {
 
     const ref = useRef();
     const toggleTooltip = () => ref.current.toggle();
-    function doRender(){window.location.reload(false)};
-
     const fetchData = async () => {
 
         const timeline = await timelineDAO.getTimelineByResidentId(localStorage.getItem("residentId"))
