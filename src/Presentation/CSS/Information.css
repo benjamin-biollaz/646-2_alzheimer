@@ -50,7 +50,7 @@
   font-weight: bold;
   margin-top: 2%;
   margin-bottom: 15px;
-  width: 600px;
+  width: 67%;
   height: 80%;
   grid-area: preferences;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -62,7 +62,7 @@
   font-size: 1rem;
   font-weight: bold;
   margin-top: 3%;
-  width: 90%;
+  width: 9 0%;
   height: 80%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   color: black;
