@@ -17,7 +17,7 @@ function LocationsForm({ locations, id }) {
 
     // this functions is passed to the child to keep tack of changes
     const updateLocationsList = (locationId, locationDTO) => {
-        var foundIndex = locationState.findIndex(l => l.id == locationId);
+        var foundIndex = locationState.findIndex(l => l.id === locationId);
         const elements = locationState;
         elements[foundIndex] = new LocationWithId(locationId, locationDTO);
         setLocationState(elements);
@@ -47,7 +47,7 @@ function LocationsForm({ locations, id }) {
             }
 
             // update each location
-            const locationIndex = locationState.findIndex(l => l.id == loc.id)
+            const locationIndex = locationState.findIndex(l => l.id === loc.id)
             locationDAO.updateLocation(timelineId, locationsBeforeEdition[locationIndex],
                 loc.locationDTO.startDate, loc.locationDTO.endDate, loc.locationDTO.name)
         }

@@ -33,7 +33,7 @@ function ReligionForm({ allReligions, residentReligionId, religionInputted }) {
             {religions
                 .map((r) => (
                     <Religion key={r.id} religionWithId={r} isEditable={isEditable}
-                        updateReligion={setReligionIdState} isSelected={resReligionIdState == r.id}
+                        updateReligion={setReligionIdState} isSelected={resReligionIdState === r.id}
                     ></Religion>
                 ))}
             {/* To enter a religion that doesn't figure in the list */}

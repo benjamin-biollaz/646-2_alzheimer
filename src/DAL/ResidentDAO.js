@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc, updateDoc, getDocs, collection, addDoc, arrayUnion } from "firebase/firestore";
+import { doc, getDoc, updateDoc, collection, addDoc, arrayUnion } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { residentConverter } from "../DTO/ResidentDTO";
 import { TimelineDAO } from "./TimelineDAO";

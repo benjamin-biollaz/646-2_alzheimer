@@ -4,7 +4,6 @@ import icon from "../img/logo_memorys.png";
 import "../CSS/Navbar.css";
 import { FiMenu } from "react-icons/fi";
 import { BsFillPersonFill } from "react-icons/bs";
-import UnopDropdown from "unop-react-dropdown";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -47,10 +46,10 @@ class Nav extends React.Component {
         {this.state.isDropdownOpen && (
           <div className="dropdown-menu">
             <NavLink to="/profile" onClick={() => this.closeNavBar()}>
-              Change Password
+              Changer de mot de passe
             </NavLink>
             <NavLink to="/logout" onClick={() => this.closeNavBar()}>
-              Logout
+              Se déconnecter
             </NavLink>
           </div>
         )}

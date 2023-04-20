@@ -3,11 +3,9 @@ import { IconContext } from "react-icons";
 import "../../CSS/IconPicker.css";
 
 import {
-  FaPizzaSlice,
   FaCarrot,
   FaFish,
   FaCoffee,
-  FaBeer,
   FaBath,
   FaChessKnight,
   FaMusic,
@@ -20,7 +18,6 @@ import {
   GiSoccerBall,
   GiBasketballBall,
   GiBread,
-  GiBaseballBat,
   GiPeanut,
   GiHoneypot,
   GiPig,

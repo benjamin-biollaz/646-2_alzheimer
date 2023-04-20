@@ -100,7 +100,7 @@ label {
 
 .input {
   padding: 10px 10px 10px 22px; /* add some padding on the left to make space for the icon */
-  width: 2vh;
+  width: 5vh;
   height: 5vh;
   background: none;
   border: 4px solid var(--title-color);
@@ -120,8 +120,7 @@ label {
 .box i {
   position: absolute;
   top: 40%;
-  left: 3vh; /* move the icon to the left */
-  transform: translate(-50%, -50%);
+  transform: translate(0.8vw,-50%);
   font-size: 20px;
   color: var(--logo-color);
   transition: 0.2s;

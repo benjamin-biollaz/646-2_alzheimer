@@ -4,8 +4,6 @@ import Preference from "./Preference";
 import { PreferenceDAO } from "../../../DAL/PreferenceDAO";
 import { PreferenceWithId } from "../../../DTO/PreferenceWithId";
 import { PreferenceDTO } from "../../../DTO/PreferenceDTO";
-import { AiFillEdit } from "react-icons/ai";
-import swal from 'sweetalert';
 import Swal from 'sweetalert2';
 
 /**
