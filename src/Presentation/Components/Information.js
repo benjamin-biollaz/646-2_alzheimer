@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import Navbar from "./Navbar";
 import "../CSS/Information.css";
 import "../fonts/LexendDeca.ttf";
-import { GiMusicalNotes } from "react-icons/gi";
 import { BiPrinter } from "react-icons/bi";
 import { TimelineWidget } from "./Timeline/Timeline";
 import PreferencesList from "./Preferences/PreferencesList";
@@ -12,9 +11,6 @@ import html2canvas from "html2canvas";
 import { useNavigate } from "react-router";
 
 function Information() {
-  function MusicNoteIcon() {
-    return <GiMusicalNotes />;
-  }
   const infoRef = useRef(null);
   const [imageData, setImageData] = useState(null);
   const navigate = useNavigate();
@@ -39,12 +35,12 @@ function Information() {
       navigate("/reload");
     };
   }
-  function print() {
-    window.print();
-    window.onafterprint = function () {
-      window.location.reload();
-    };
-  }
+  // function print() {
+  //   window.print();
+  //   window.onafterprint = function () {
+  //     window.location.reload();
+  //   };
+  // }
 
   return (
     <>

@@ -1,7 +1,5 @@
 import React, { useCallback } from "react";
-import EditButton from "./Buttons/EditButton";
 import { FaEdit } from "react-icons/fa";
-
 import "../CSS/SectionHeader.css";
 import Popup from "reactjs-popup";
 

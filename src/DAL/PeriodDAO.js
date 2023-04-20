@@ -1,4 +1,4 @@
-import { doc, getDocs, collection, withConverter, setDoc, addDoc, deleteDoc } from "firebase/firestore";
+import { doc, getDocs, collection, setDoc, addDoc, deleteDoc } from "firebase/firestore";
 import { db } from "./FirebaseConf";
 import { periodConverter, PeriodDTO } from "../DTO/PeriodDTO";
 import { PeriodWithId } from "../DTO/PeriodWithId";

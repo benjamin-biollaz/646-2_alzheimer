@@ -13,8 +13,6 @@ import '../../CSS/Beliefs.css'
 
 function BeliefsList() {
 
-    function doRender() { window.location.reload(false) };
-
     useEffect(() => {
         fetchBeliefs();
     }, []);
@@ -50,7 +48,7 @@ function BeliefsList() {
                 <h4 className="categories">Religion</h4>
                 <span className="infos_religion religion_div">
                     {resident?.religionInputted === "" || resident?.religionInputted === undefined ?
-                        allReligions?.filter((r) => resident.religionId == r.id)
+                        allReligions?.filter((r) => resident.religionId === r.id)
                             .map((p) =>
                                 <p key={p.id} className="item">{p.religionDTO.name} &nbsp;</p>
                             )
