@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { auth } from "../../../DAL/FirebaseConf";
 import { useNavigate } from "react-router-dom";
-import { updatePassword, reauthenticateWithCredential, EmailAuthProvider } from "firebase/auth";
+import { updatePassword, reauthenticateWithCredential, EmailAuthProvider, sendPasswordResetEmail } from "firebase/auth";
 import swal from "sweetalert";
 import Navbar from "../../../Presentation/Components/Navbar";
 import "../../../Presentation/CSS/Profile.css";
@@ -54,6 +54,17 @@ function Profile() {
         reauthenticate();
     };
 
+    const handlePasswordReset = async (e) => {
+        e.preventDefault();
+
+        try {
+            await sendPasswordResetEmail(auth, user.email);
+            swal({ timer: 3000, icon: 'success', title: "Vous allez recevoir un Email pour modifier votre mot de passe!" });
+          } catch (error) {    
+            console.log(error);
+            }
+    }
+
     return (
         <>
             <Navbar />
@@ -94,6 +105,9 @@ function Profile() {
                         />
                     </div>
                     <button className="button_profile" type="submit">Changer le mot de passe</button>
+                </form>
+                <form onSubmit={handlePasswordReset}>
+                    <button className="button_reset" type="submit">Réinitialiser le mot de passe</button>
                 </form>
             </div>
         </>
