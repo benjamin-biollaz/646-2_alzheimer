@@ -93,8 +93,10 @@
   margin-top: 30px;
 }
 
-.button_login {
+.button_login,
+.button_login_reset {
   margin-top: 5vh;
+  margin-right: 5%;
   color: white;
   background-color: #780000;
   border-radius: 10px;
@@ -111,8 +113,25 @@
   letter-spacing: 1.5px;
 }
 
-.button_login:hover {
+.button_login:hover,
+.button_login_reset:hover {
   background-color: #c40000;
   box-shadow: 0 0 0 5px #78000061;
   color: #fff;
+}
+
+.div_reset {
+  margin-right: -100%;
+}
+
+.div_link_login {
+  padding-top: 10%;
+}
+
+.link_login {
+  color: #780000;
+}
+
+.link_login:hover {
+  color: #c40000;
 }
