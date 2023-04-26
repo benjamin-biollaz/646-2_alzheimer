@@ -15,9 +15,9 @@ export default function ResetPassword() {
 
         try {
             await sendPasswordResetEmail(auth, email);
-            swal({ timer: 3000, icon: 'success', title: "Vous allez recevoir un Email pour modifier votre mot de passe!" });
+            swal({icon: 'success', title: "Si votre email existe vous allez recevoir une notification pour changer votre mot de passe!" });
         } catch (error) {
-            swal("Erreur", "Veuillez contrôler votre adresse email...", "error");
+            swal({icon: 'success', title: "Si votre email existe vous allez recevoir une notification pour changer votre mot de passe!" });
         }
     }
 
