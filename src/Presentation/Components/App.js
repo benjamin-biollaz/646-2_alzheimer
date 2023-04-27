@@ -10,6 +10,7 @@ import Logout from "../Components/Login/Logout";
 import Reload from "./Reload";
 import "../CSS/App.css";
 import Profile from "./Login/Profile";
+import ResetPassword from "./Login/ResetPassword";
 
 function App() {
   const [resident, setResident] = useState(undefined);
@@ -46,6 +47,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/reload" element={<Reload />} />
+        <Route path="/reset" element={<ResetPassword />} />
 
         {/* No route found - 404 page */}
         <Route path="*" element={<Page404 />} />
@@ -55,6 +57,7 @@ function App() {
     routes = (
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/reset" element={<ResetPassword />} />
         <Route path="*" element={<Login />} />
       </Routes>
     );

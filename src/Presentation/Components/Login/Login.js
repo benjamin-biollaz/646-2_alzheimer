@@ -7,6 +7,7 @@ import LoginForm from "./LoginForm";
 import logoSwal from "../../img/logo_swal.png";
 import logo from "../../img/logo_memorys.png";
 import "../../CSS/Login.css";
+import { NavLink } from "react-router-dom";
 
 export default function Login() {
 
@@ -46,6 +47,8 @@ export default function Login() {
         <div className="login_container">
           <div className="btn_container">
             <LoginForm handleSubmit={handleLogin} />
+            <br></br>
+            <NavLink className="link_login" to="/reset">Oublié votre mot de passe?</NavLink>
           </div>
         </div>
       </div>

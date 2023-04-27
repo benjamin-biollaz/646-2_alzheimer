@@ -36,10 +36,10 @@ img {
 }
 
 /* Button to validate the form */
-.button_profile {
+.button_profile, .button_reset {
     margin-top: 5vh;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 22%;
+    margin-right: 22%;
     color: white;
     background-color: #780000;
     border-radius: 10px;
@@ -48,8 +48,8 @@ img {
     /* Border right */
     box-shadow: 0 2px 0 0 grey;
     /* Border bottom */
-    padding-left: 6vh;
-    padding-right: 6vh; 
+    padding-left: 4vh;
+    padding-right: 4vh; 
     padding-top: 1vh;
     padding-bottom: 1vh;
     transition: .3s;
@@ -62,8 +62,18 @@ img {
     color: #fff;
 }
 
+.button_reset {
+    background-color: #78000061;
+}
+
+.button_reset:hover {
+    background-color: #c40000;
+    box-shadow: 0 0 0 5px #78000061;
+    color: #fff;
+}
+
 @media (max-width: 600px) {
-    .button_profile {
+    .button_profile, .button_reset {
         font-size: 80%;
         margin-left: 0;
         margin-right: 0;
