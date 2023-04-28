@@ -76,7 +76,7 @@ function Event({ event, isEditable, updateEventsList, deleteEvent }) {
     </div>
   ) : (
     <p>
-      {eventState.name} - {df.format_DDMMYYYY(eventState.date)}
+      {eventState.name} - {df.format_DDMMYYYY(eventState.startDate) + (eventState.endDate === '' || eventState.endDate === eventState.startDate ? '' : ' - ' + df.format_DDMMYYYY(eventState.endDate))}
     </p>
   );
 }
